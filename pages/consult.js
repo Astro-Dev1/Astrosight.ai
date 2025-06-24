@@ -140,7 +140,7 @@ const ConsultationPage = () => {
             <i className="fas fa-video text-3xl" />
             <div>
               <h3 className="text-2xl font-semibold">Video Consultations Coming Soon</h3>
-              <p className="text-sm opacity-90">We're setting up our platform for the best consultation experience</p>
+              <p className="text-sm opacity-90">Were setting up our platform for the best consultation experience</p>
             </div>
           </div>
           <div className="bg-white bg-opacity-20 rounded-lg p-4 mt-4">
@@ -323,7 +323,7 @@ const ConsultationPage = () => {
                   <i className="fas fa-check text-green-500 text-2xl" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
-                <p className="text-gray-600">You'll be the first to know when consultations are available!</p>
+                <p className="text-gray-600">Youll be the first to know when consultations are available!</p>
               </div>
             )}
 
@@ -356,7 +356,7 @@ const ConsultationPage = () => {
                 <i className="fas fa-question-circle text-[#FF9D42] mr-2" />
                 When will video consultations be available?
               </h4>
-              <p className="text-gray-600 text-sm">We're launching soon! Sign up to be notified when bookings open.</p>
+              <p className="text-gray-600 text-sm">We re launching soon! Sign up to be notified when bookings open.</p>
             </div>
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
@@ -377,7 +377,7 @@ const ConsultationPage = () => {
                 <i className="fas fa-question-circle text-[#FF9D42] mr-2" />
                 Will I get a recording of the session?
               </h4>
-              <p className="text-gray-600 text-sm">You'll receive a written summary with key insights and recommendations.</p>
+              <p className="text-gray-600 text-sm">Youll receive a written summary with key insights and recommendations.</p>
             </div>
           </div>
         </div>
