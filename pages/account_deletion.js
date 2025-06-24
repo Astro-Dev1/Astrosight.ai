@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/router';
-import { t } from '../locales/i18n';
 
 const AccountDeletionPage = () => {
   const router = useRouter();
@@ -83,7 +82,7 @@ const AccountDeletionPage = () => {
                 <li>• Your account will be deleted within 24 hours</li>
                 <li>• All your personal data will be permanently removed</li>
                 <li>• This action cannot be undone</li>
-                <li>• You'll need to create a new account to use our services again</li>
+                <li>• You ll need to create a new account to use our services again</li>
               </ul>
             </div>
           </>
