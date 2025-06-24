@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/next"
+      }
+    ],
+    "env": {
+      "DATABASE_URL": "postgres://default:If43EMxKojBJ@ep-divine-cherry-a1t363s9-pooler.ap-southeast-1.aws.neon.tech/verceldb?sslmode=require"
+    }
+  }
+  

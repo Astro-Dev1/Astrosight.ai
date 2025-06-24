@@ -1,0 +1,306 @@
+:root {
+  --red: #ef233c;
+  --darkred: #c00424;
+  --platinum: #e5e5e5;
+  --black: #2b2d42;
+  --white: #fff;
+  --thumb: #edf2f4;
+  --orange: #FFA500;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  max-width: 1400px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 1em;
+}
+
+.cards {
+  display: flex;
+  padding: 25px 0px;
+  list-style: none;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.card {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  transition: all 0.2s;
+}
+
+.card:not(:last-child) {
+  margin-right: 10px;
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+  text-decoration: none;
+  color: var(--black);
+}
+
+.card-link:hover {
+  color: var(--white);
+  background: var(--orange);
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.card-image {
+  width: 60px;
+  height: 60px;
+  transition: filter 0.2s;
+}
+
+.card-link:hover .card-image {
+  filter: brightness(0) invert(1);
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.card-description {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.card-link-wrapper {
+  text-align: center;
+}
+
+.learn-more {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--orange);
+  color: var(--white);
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.card-link:hover .learn-more {
+  background: var(--white);
+  color: var(--orange);
+}
+
+.cards::-webkit-scrollbar {
+  height: 12px;
+}
+
+.cards::-webkit-scrollbar-thumb,
+.cards::-webkit-scrollbar-track {
+  border-radius: 92px;
+}
+
+.cards::-webkit-scrollbar-thumb {
+  background: var(--orange);
+}
+
+.cards::-webkit-scrollbar-track {
+  background: var(--thumb);
+}
+
+@media (min-width: 500px) {
+  .card {
+      flex-basis: calc(50% - 10px);
+  }
+
+  .card:not(:last-child) {
+      margin-right: 20px;
+  }
+}
+
+@media (min-width: 700px) {
+  .card {
+      flex-basis: calc(calc(100% / 3) - 20px);
+  }
+
+  .card:not(:last-child) {
+      margin-right: 30px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .card {
+      flex-basis: calc(25% - 30px);
+  }
+
+  .card:not(:last-child) {
+      margin-right: 40px;
+  }
+}
+
+
+/* Adjusting card content padding and layout */
+.latest-blog-card-content {
+  flex-grow: 1;
+  padding: 15px; /* Reduce padding */
+}
+
+/* Modify card width to fit 3 per row on larger screens */
+@media (min-width: 700px) {
+  .latest-blog-card {
+      flex-basis: calc(100% / 3 - 20px); /* 3 cards per row */
+  }
+
+  .latest-blog-card:not(:last-child) {
+      margin-right: 30px;
+  }
+}
+
+/* Adjust height-related properties */
+.latest-blog-card {
+  height: auto; /* Ensure the card height adjusts dynamically based on content */
+  padding: 20px;
+}
+
+.latest-blog-card-title {
+  font-size: 20px; /* Default title size */
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Adjust title size for smaller screens */
+@media (max-width: 600px) {
+  .latest-blog-card-title {
+    font-size: 16px; /* Smaller font size for mobile screens */
+  }
+}
+
+.latest-blog-card-description {
+  font-size: 14px; /* Reduce font size to shorten card height */
+  line-height: 1.4; /* Adjust line height for better text compactness */
+  max-height: 80px; /* Limit height of description to avoid overly tall cards */
+  overflow: hidden; /* Hide overflow if the text exceeds max height */
+}
+
+/* Adjust button padding to reduce button size */
+.latest-blog-learn-more {
+  padding: 8px 16px; /* Smaller button */
+}
+
+.latest-blog-cards {
+  display: flex;
+  padding: 5px 0px;
+  list-style: none;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.latest-blog-card {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  transition: all 0.2s;
+}
+
+.latest-blog-card:not(:last-child) {
+  margin-right: 10px;
+}
+
+.latest-blog-card-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
+  text-decoration: none;
+  color: var(--black);
+}
+
+.latest-blog-card-link:hover {
+  color: var(--white);
+  background: var(--orange);
+}
+
+.latest-blog-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.latest-blog-card-image {
+  width: 250px;
+  height: 140px;
+  transition: filter 0.2s;
+  border-radius: 12px;
+}
+
+.latest-blog-card-link-wrapper {
+  text-align: center;
+}
+
+.latest-blog-cards::-webkit-scrollbar {
+  height: 12px;
+}
+
+.latest-blog-cards::-webkit-scrollbar-thumb,
+.latest-blog-cards::-webkit-scrollbar-track {
+  border-radius: 92px;
+}
+
+.latest-blog-cards::-webkit-scrollbar-thumb {
+  background: var(--orange);
+}
+
+.latest-blog-cards::-webkit-scrollbar-track {
+  background: var(--thumb);
+}
+
+@media (min-width: 500px) {
+  .latest-blog-card {
+      flex-basis: calc(50% - 10px);
+  }
+
+  .latest-blog-card:not(:last-child) {
+      margin-right: 20px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .latest-blog-card {
+      flex-basis: calc(100% / 3 - 30px);
+  }
+
+  .latest-blog-card:not(:last-child) {
+      margin-right: 40px;
+  }
+}
+
+.image-container {
+  display: flex;
+  align-items: center;     /* Centers vertically */
+  height: 100%;            /* Ensures the container takes full height */
+}
+

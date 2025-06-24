@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom styles */
+
+@layer base {
+  :root {
+
+    --background: 0 0% 100%;
+
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+
+    --input: 0 0% 89.8%;
+
+    --ring: 0 0% 3.9%;
+
+    --chart-1: 12 76% 61%;
+
+    --chart-2: 173 58% 39%;
+
+    --chart-3: 197 37% 24%;
+
+    --chart-4: 43 74% 66%;
+
+    --chart-5: 27 87% 67%;
+
+    --radius: 0.5rem
+  ;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%}
+  .dark {
+
+    --background: 0 0% 3.9%;
+
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+
+    --input: 0 0% 14.9%;
+
+    --ring: 0 0% 83.1%;
+
+    --chart-1: 220 70% 50%;
+
+    --chart-2: 160 60% 45%;
+
+    --chart-3: 30 80% 55%;
+
+    --chart-4: 280 65% 60%;
+
+    --chart-5: 340 75% 55%
+  ;
+
+    --sidebar-background: 240 5.9% 10%;
+
+    --sidebar-foreground: 240 4.8% 95.9%;
+
+    --sidebar-primary: 224.3 76.3% 48%;
+
+    --sidebar-primary-foreground: 0 0% 100%;
+
+    --sidebar-accent: 240 3.7% 15.9%;
+
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+
+    --sidebar-border: 240 3.7% 15.9%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%}
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+/* html {
+  scroll-behavior: smooth;
+} */
+#__next {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.debug-outline { outline: 2px solid red; }
+.debug-outline-blue { outline: 2px solid blue; }
+.debug-outline-green { outline: 2px solid green; }
+
+.activeTab {
+  background-color: #FFA500; /* Orange background for active tab */
+  color: white; /* White text for active tab */
+  border-radius: 4px; /* Rounded corners for active tab */
+}
+
+
+/* Add this to your global CSS file or a CSS module */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #f97316 #fef3c7;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #fef3c7;
+  border-radius: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #f97316;
+  border-radius: 6px;
+  border: 3px solid #fef3c7;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #ea580c;
+}
+
+.carousel-button {
+  background-color: #FFA500; /* Orange background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  padding: 20px 40px; /* Add padding */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Increase font size */
+  border-radius: 5px; /* Rounded corners */
+  position: absolute; /* Make the buttons absolute */
+  z-index: 10; /* Ensure buttons appear above other elements */
+}
+
+.carousel-button.bottom-0 {
+  bottom: -60px; /* Position at the bottom */
+}
+
+.carousel-button.left-0 {
+  left: -70px; /* Align previous button on the left with a margin */
+}
+
+.carousel-button.right-0 {
+  right: 10px; /* Align next button on the right with a margin */
+}
+
+.carousel-button:hover {
+  background-color: #FF8C00; /* Darker orange on hover */
+}
+
+.carousel-item img {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.carousel-item {
+  width: 400px;
+}
+
+.carousel .card, .carousel .image-container {
+  flex: none;
+  width: auto;
+  height: auto;
+  max-width: 400px; /* Ensure max width for carousel cards */
+}
+
+/* Zodiac Wheel Animation */
+
+@keyframes rotateZodiac {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.zodiac-wheel {
+  position: absolute;
+  width: 100vw; /* Full width of viewport */
+  height: 35vh; /* Full height of viewport */
+  top: 0;
+  left: 0;
+  background-image: url('/ZOdiacWHeel.png');
+  background-size: contain; /* Ensure the full wheel is visible */
+  background-position: center; /* Center the wheel */
+  background-repeat: no-repeat; /* Prevent repeating */
+  animation: rotateZodiac 100s linear infinite;
+  opacity: 0.6; /* Reduce opacity for less distraction */
+  }
+
+

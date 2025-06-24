@@ -1,0 +1,127 @@
+{
+    "weekStart": "2025-12-14",
+    "weekEnd": "2025-12-20",
+    "horoscopes": {
+        "Aries": {
+            "text": "This week, Aries, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Patience is needed in relationships. Be understanding of your partner’s needs and avoid making rushed decisions.",
+                "Health & Wellness": "Balance your energy levels by ensuring sufficient rest. Avoid pushing yourself too hard.",
+                "Career & Education": "Opportunities for growth continue to emerge. Persevere through challenges, and success will follow.",
+                "Money & Finances": "Be cautious with financial decisions, particularly toward the weekend. Stick to your budget and avoid impulsive purchases."
+            },
+            "remedy": "Offer red flowers to Mars on Tuesday for strength and resilience."
+        },
+        "Taurus": {
+            "text": "This week, Taurus, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Open communication will strengthen your relationships. Be patient with your partner, and avoid unnecessary arguments.",
+                "Health & Wellness": "Focus on mental clarity and well-being. Yoga or meditation will help bring peace of mind.",
+                "Career & Education": "Consistency is key in your professional life. Avoid distractions and focus on refining your skills.",
+                "Money & Finances": "Finances remain stable, but avoid unnecessary expenses. Consider long-term savings plans."
+            },
+            "remedy": "Offer white flowers to Venus on Friday to enhance peace and harmony."
+        },
+        "Gemini": {
+            "text": "This week, Gemini, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Relationships benefit from clear communication. Singles may meet someone interesting through social or professional events.",
+                "Health & Wellness": "Maintain a balance between physical and mental well-being. Don’t neglect your health while focusing on social obligations.",
+                "Career & Education": "Networking opportunities will open doors in your career. Stay adaptable and embrace new ideas.",
+                "Money & Finances": "It’s a good week for financial planning. Avoid impulsive spending and prioritize saving."
+            },
+            "remedy": "Donate food to the needy on Thursday to attract good fortune."
+        },
+        "Cancer": {
+            "text": "This week, Cancer, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Take time to nurture your relationships. Open up emotionally to your partner to create a stronger connection.",
+                "Health & Wellness": "Pay attention to your emotional and mental health. Self-care practices will help you maintain balance.",
+                "Career & Education": "Stay consistent at work. Steady progress will lead to positive results by the end of the week.",
+                "Money & Finances": "Avoid making large financial decisions. This is a good time to focus on saving."
+            },
+            "remedy": "Perform a water offering to the Moon on Monday for emotional clarity."
+        },
+        "Leo": {
+            "text": "This week, Leo, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Romantic relationships will flourish through open communication. Be mindful of your partner’s needs.",
+                "Health & Wellness": "Maintain your energy levels through a balanced routine of activity and rest.",
+                "Career & Education": "Your leadership abilities will be recognized. Keep a humble attitude to achieve the best results.",
+                "Money & Finances": "Financial rewards are likely, particularly from professional success or smart investments."
+            },
+            "remedy": "Light a lamp and offer prayers to the Sun on Sunday to enhance clarity and focus."
+        },
+        "Virgo": {
+            "text": "This week, Virgo, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Patience is necessary in relationships. Avoid overanalyzing situations and practice open dialogue.",
+                "Health & Wellness": "Stress management is important this week. Consider incorporating meditation into your routine.",
+                "Career & Education": "Your dedication will pay off. Stay diligent and push through any obstacles with your methodical approach.",
+                "Money & Finances": "Financial stability continues. It’s a good time to reassess your long-term financial goals."
+            },
+            "remedy": "Offer green vegetables to the needy on Wednesday for prosperity and well-being."
+        },
+        "Libra": {
+            "text": "This week, Libra, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "This is a great week for love. Be open to compromise and avoid unnecessary arguments.",
+                "Health & Wellness": "Focus on maintaining a balanced diet and regular exercise to stay in top shape.",
+                "Career & Education": "Collaborative efforts will be successful. Seek guidance from peers and mentors to enhance your progress.",
+                "Money & Finances": "Financial opportunities may arise through partnerships. Evaluate collaborations carefully before committing."
+            },
+            "remedy": "Offer white flowers to Goddess Lakshmi on Friday for peace and prosperity."
+        },
+        "Scorpio": {
+            "text": "This week, Scorpio, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Transformation is happening in your relationships. Address unresolved issues to create stronger bonds.",
+                "Health & Wellness": "Focus on emotional health. Meditation or light physical activities will help bring balance.",
+                "Career & Education": "It’s a good time to reassess your career path. Make adjustments for long-term success.",
+                "Money & Finances": "Avoid impulsive financial decisions. Focus on long-term planning for stability."
+            },
+            "remedy": "Perform a water ritual on Tuesday evening for emotional clarity and peace."
+        },
+        "Sagittarius": {
+            "text": "This week, Sagittarius, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Spontaneity will bring excitement to your love life. Singles may meet someone new through social activities.",
+                "Health & Wellness": "Maintain your high energy levels with a balanced mix of physical activity and rest.",
+                "Career & Education": "New career opportunities are on the horizon. Be ready to seize them as they arise.",
+                "Money & Finances": "Financial prospects are improving. Explore new investments or projects for growth."
+            },
+            "remedy": "Offer yellow flowers to Lord Vishnu on Thursday for positivity and growth."
+        },
+        "Capricorn": {
+            "text": "This week, Capricorn, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Stability is key in relationships. Focus on building trust and patience with your partner.",
+                "Health & Wellness": "Stick to your health routine, but ensure you are not overworking yourself. Rest when needed.",
+                "Career & Education": "Discipline will lead to success. Stay focused on your goals and avoid distractions.",
+                "Money & Finances": "Financial stability is within reach, but avoid impulsive purchases and unnecessary spending."
+            },
+            "remedy": "Light a mustard oil lamp on Saturday to remove obstacles and promote success."
+        },
+        "Aquarius": {
+            "text": "This week, Aquarius, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "Open communication will strengthen your relationships. Singles may meet someone through shared interests.",
+                "Health & Wellness": "Engage in creative outlets to boost mental and emotional well-being.",
+                "Career & Education": "Innovation is the key to success this week. Don’t be afraid to propose bold new ideas.",
+                "Money & Finances": "Financial opportunities may come through creative ventures. Consider new ways to increase your income."
+            },
+            "remedy": "Donate to a charitable cause on Saturday for blessings and success."
+        },
+        "Pisces": {
+            "text": "This week, Pisces, no major planetary shifts directly affect you. Focus on stability.",
+            "sections": {
+                "Love & Relationship": "This is a nurturing week for relationships. Offer emotional support to your partner and deepen your connection.",
+                "Health & Wellness": "Focus on mental and emotional health. Calming activities like meditation will help you stay balanced.",
+                "Career & Education": "Your creativity will guide you in making important career decisions. Trust your instincts.",
+                "Money & Finances": "Avoid impulsive financial decisions. Focus on long-term planning and stability."
+            },
+            "remedy": "Offer milk to a temple on Monday for clarity and inner peace."
+        }
+    },
+    "default": "The weekly horoscope is being prepared. Please check back later for your detailed weekly horoscope."
+}

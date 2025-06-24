@@ -1,0 +1,86 @@
+{
+    "Aries": {
+      "dateRange": "March 21 - April 19",
+      "element": "Fire",
+      "quality": "Cardinal",
+      "rulingPlanet": "Mars",
+      "description": "Aries is a passionate, motivated, and confident leader who builds community with their cheerful disposition and relentless determination. Uncomplicated and direct in their approach, they often get frustrated by exhaustive details and unnecessary nuances. They prefer to act first and think later, trusting in their ability to make quick, instinctive decisions. The bold and ambitious Aries is always ready for a new challenge."
+    },
+    "Taurus": {
+      "dateRange": "April 20 - May 20",
+      "element": "Earth",
+      "quality": "Fixed",
+      "rulingPlanet": "Venus",
+      "description": "Taurus is known for being reliable, practical, ambitious and sensual. As an earth sign, they are grounded and stable, with a talent for working steadily towards their goals. Taureans value comfort, luxury and beautiful surroundings. They are patient and determined, often stubborn in their pursuits. With a strong connection to the physical world, Taurus enjoys the pleasures of life and has a keen appreciation for art and beauty."
+    },
+    "Gemini": {
+      "dateRange": "May 21 - June 20",
+      "element": "Air",
+      "quality": "Mutable",
+      "rulingPlanet": "Mercury",
+      "description": "Gemini is versatile, expressive, and quick-witted. As an air sign, they are communicative, intellectual, and always ready to learn something new. Geminis are known for their dual nature, often described as having two different personalities. They are adaptable and flexible, thriving on change and variety. With a natural curiosity and love for information, Geminis are excellent communicators and enjoy engaging in witty banter and intellectual discussions."
+    },
+    "Cancer": {
+      "dateRange": "June 21 - July 22",
+      "element": "Water",
+      "quality": "Cardinal",
+      "rulingPlanet": "Moon",
+      "description": "Cancer is intuitive, emotional, and deeply connected to their home and family. As a water sign, they are sensitive and empathetic, often picking up on the emotions of those around them. Cancers are nurturing and protective of their loved ones, creating a safe and comfortable environment for all. They have a strong connection to the past and value tradition. While they may appear tough on the outside, Cancers have a soft and caring interior, making them one of the most compassionate signs of the zodiac."
+    },
+    "Leo": {
+      "dateRange": "July 23 - August 22",
+      "element": "Fire",
+      "quality": "Fixed",
+      "rulingPlanet": "Sun",
+      "description": "Leo is creative, passionate, and warm-hearted. As a fire sign, they are full of energy and enthusiasm, often taking center stage wherever they go. Leos are natural leaders with a flair for drama and a love for luxury. They are generous and loyal friends, always ready to support and encourage others. With their sunny disposition and charismatic personality, Leos bring light and warmth to the lives of those around them."
+    },
+    "Virgo": {
+      "dateRange": "August 23 - September 22",
+      "element": "Earth",
+      "quality": "Mutable",
+      "rulingPlanet": "Mercury",
+      "description": "Virgo is analytical, practical, and hardworking. As an earth sign, they are grounded and methodical in their approach to life. Virgos have a keen eye for detail and a talent for organization. They are often perfectionists, striving for excellence in all they do. With a natural inclination to help others, Virgos make loyal friends and dedicated workers. Their practical nature is balanced by a deep sense of humanity and a desire to make the world a better place."
+    },
+    "Libra": {
+      "dateRange": "September 23 - October 22",
+      "element": "Air",
+      "quality": "Cardinal",
+      "rulingPlanet": "Venus",
+      "description": "Libra is charming, harmonious, and diplomatic. As an air sign, they are social creatures who thrive on balanced relationships and partnerships. Libras have a strong sense of justice and always strive for fairness in all situations. They appreciate beauty and harmony in their surroundings and relationships. With their natural grace and ability to see all sides of a situation, Libras excel at mediating conflicts and creating peaceful environments."
+    },
+    "Scorpio": {
+      "dateRange": "October 23 - November 21",
+      "element": "Water",
+      "quality": "Fixed",
+      "rulingPlanet": "Mars",
+      "description": "Scorpio is passionate, resourceful, and intensely emotional. As a water sign, they have deep intuition and a powerful emotional world. Scorpios are known for their mysterious nature and their ability to see beneath the surface of things. They are fiercely loyal and protective of their loved ones. With their determination and resilience, Scorpios have the power to transform themselves and others, making them one of the most powerful signs of the zodiac."
+    },
+    "Sagittarius": {
+      "dateRange": "November 22 - December 21",
+      "element": "Fire",
+      "quality": "Mutable",
+      "rulingPlanet": "Jupiter",
+      "description": "Sagittarius is optimistic, adventurous, and philosophical. As a fire sign, they are energetic and always eager to explore new horizons, both physically and mentally. Sagittarians have a love for travel, learning, and expanding their understanding of the world. They are honest and straightforward, sometimes to a fault. With their infectious enthusiasm and broad-minded approach to life, Sagittarians inspire others to seek truth and embrace new experiences."
+    },
+    "Capricorn": {
+      "dateRange": "December 22 - January 19",
+      "element": "Earth",
+      "quality": "Cardinal",
+      "rulingPlanet": "Saturn",
+      "description": "Capricorn is responsible, disciplined, and self-controlled. As an earth sign, they are practical and grounded, with a strong focus on achieving their goals. Capricorns are known for their ambition and determination, often climbing to the top of their chosen field. They value tradition and have a strong sense of duty. With their patience and perseverance, Capricorns build solid foundations for long-term success and stability."
+    },
+    "Aquarius": {
+      "dateRange": "January 20 - February 18",
+      "element": "Air",
+      "quality": "Fixed",
+      "rulingPlanet": "Saturn",
+      "description": "Aquarius is original, progressive, and humanitarian. As an air sign, they are intellectual and innovative, often thinking far ahead of their time. Aquarians are known for their unique perspective and their desire to make the world a better place. They value individuality and often march to the beat of their own drum. With their visionary ideas and strong sense of community, Aquarians work towards creating a more equitable and enlightened society."
+    },
+    "Pisces": {
+      "dateRange": "February 19 - March 20",
+      "element": "Water",
+      "quality": "Mutable",
+      "rulingPlanet": "Jupiter",
+      "description": "Pisces is intuitive, creative, and deeply empathetic. As a water sign, they are emotionally sensitive and often have a strong connection to the spiritual realm. Pisceans are known for their imagination and artistic talents. They are compassionate and often put the needs of others before their own. With their intuitive understanding of human nature and their ability to go with the flow, Pisces brings a touch of magic and mystery to the world around them."
+    }
+  }

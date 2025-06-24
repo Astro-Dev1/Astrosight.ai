@@ -1,0 +1,330 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrology Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div id="paymentContainer" class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Astrology Consultation</h2>
+        <form id="paymentForm" class="space-y-4">
+            <label for="name" class="block text-gray-700">Full Name</label>
+            <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded" required>
+            
+            <label for="email" class="block text-gray-700">Email</label>
+            <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded" required>
+            
+            <label for="phone" class="block text-gray-700">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Phone Number" class="w-full p-2 border rounded" required>
+
+            <label for="dob" class="block text-gray-700">Date of Birth</label>
+            <input type="date" id="dob" class="w-full p-2 border rounded" required>
+
+            <label for="gender" class="block text-gray-700">Gender</label>
+            <select id="gender" class="w-full p-2 border rounded bg-white">
+                <option value="" disabled selected>Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <button type="button" id="payButton" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Pay ₹499</button>
+        </form>
+    </div>
+    
+    <script>
+        function getUTMParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+                utm_source: urlParams.get("utm_source") || "",
+                utm_medium: urlParams.get("utm_medium") || "",
+                utm_campaign: urlParams.get("utm_campaign") || "",
+                utm_term: urlParams.get("utm_term") || "",
+                utm_content: urlParams.get("utm_content") || "",
+                utm_adname: urlParams.get("utm_adname") || "",
+                utm_adsetname: urlParams.get("utm_adsetname") || ""
+            };
+        }
+
+        function sendToWebhook(data) {
+            fetch("https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY5MDYzNzA0MzA1MjZmNTUzNTUxMzUi_pc", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())
+            .then(result => console.log("Webhook Response:", result))
+            .catch(error => console.error("Error sending data:", error));
+        }
+
+        function handlePayment() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const dob = document.getElementById('dob').value.trim();
+            const gender = document.getElementById('gender').value;
+            const utmParams = getUTMParameters();
+
+            if (!name || !email || !phone || !dob || !gender) {
+                alert("Please fill all fields before proceeding.");
+                return;
+            }
+
+            const initialData = { 
+                "Name": name, 
+                "Email": email, 
+                "Phone": phone, 
+                "Date of Birth": dob, 
+                "Gender": gender, 
+                "Order Status": "Initiated", 
+                ...utmParams 
+            };
+            console.log("Sending Initial Data:", initialData);
+            sendToWebhook(initialData);
+
+            const options = {
+                key: "rzp_live_k3WJT9MLidyt3i", // Replace with your Razorpay Key
+                amount: 1* 100, 
+                currency: "INR",
+                name: name,
+                description: "Astrology Consultation Fee",
+                prefill: {
+                    name: name,
+                    email: email,
+                    contact: phone
+                },
+                handler: async function (response) {
+                    const paymentId = response.razorpay_payment_id;
+                    const successData = { 
+                        "Name": name, 
+                        "Email": email, 
+                        "Phone": phone, 
+                        "Date of Birth": dob, 
+                        "Gender": gender, 
+                        "Amount Paid": "₹499", 
+                        "Payment ID": paymentId, 
+                        "Order Status": "Success", 
+                        ...utmParams 
+                    };
+                    sendToWebhook(successData);
+
+                    const captureResponse = await fetch("https://astroanswer.co/api/create-order", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        paymentId: paymentId,
+        amount: 1 * 100 // Amount in paise
+    }),
+});
+
+const captureResult = await captureResponse.json();
+console.log("Payment Capture Response:", captureResult);
+
+
+                    // Redirect to Thank You Page
+                    window.location.href = "https://lp.astroanswer.co/ty-page";
+                },
+                modal: {
+                    ondismiss: function () {
+                        const failedData = { 
+                            "Name": name, 
+                            "Email": email, 
+                            "Phone": phone, 
+                            "Date of Birth": dob, 
+                            "Gender": gender, 
+                            "Order Status": "Failed", 
+                            ...utmParams 
+                        };
+                        sendToWebhook(failedData);
+                        document.getElementById('paymentContainer').innerHTML = `
+                            <div class='text-center'>
+                                <h2 class='text-2xl font-bold text-red-600'>Payment Failed</h2>
+                                <p class='mt-2'>Your payment could not be processed. Please try again.</p>
+                            </div>`;
+                    }
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        document.getElementById('payButton').addEventListener('click', handlePayment);
+    </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrology Payment</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div id="paymentContainer" class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Astrology Consultation</h2>
+        <form id="paymentForm" class="space-y-4">
+            <label for="name" class="block text-gray-700">Full Name</label>
+            <input type="text" id="name" placeholder="Full Name" class="w-full p-2 border rounded" required>
+            
+            <label for="email" class="block text-gray-700">Email</label>
+            <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded" required>
+            
+            <label for="phone" class="block text-gray-700">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Phone Number" class="w-full p-2 border rounded" required>
+
+            <label for="dob" class="block text-gray-700">Date of Birth</label>
+            <input type="date" id="dob" class="w-full p-2 border rounded" required>
+
+            <label for="gender" class="block text-gray-700">Gender</label>
+            <select id="gender" class="w-full p-2 border rounded bg-white">
+                <option value="" disabled selected>Select your gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <button type="button" id="payButton" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Pay ₹499</button>
+        </form>
+    </div>
+    
+    <script>
+        function getUTMParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return {
+             
+    utm_source: urlParams.get('utm_source') || '',
+    utm_medium: urlParams.get('utm_medium') || '',
+    utm_campaign: urlParams.get('utm_campaign') || '',
+    utm_content: urlParams.get('utm_content') || '',
+    utm_term: urlParams.get('utm_term') || '',
+    utm_adset: urlParams.get('utm_adset') || '', // Get ad set parameter
+    utm_adname: urlParams.get('utm_adname') || '', // Get ad name parameter
+    fbclid: urlParams.get('fbclid') || '' // Often useful to capture Facebook click ID
+  };
+        }
+
+        function sendToWebhook(data) {
+            fetch("https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjYwNTY5MDYzNzA0MzA1MjZmNTUzNTUxMzUi_pc", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())
+            .then(result => console.log("Webhook Response:", result))
+            .catch(error => console.error("Error sending data:", error));
+        }
+
+        function handlePayment() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const dob = document.getElementById('dob').value.trim();
+            const gender = document.getElementById('gender').value;
+            const utmParams = getUTMParameters();
+
+            if (!name || !email || !phone || !dob || !gender) {
+                alert("Please fill all fields before proceeding.");
+                return;
+            }
+
+            const initialData = { 
+                "Name": name, 
+                "Email": email, 
+                "Phone": phone, 
+                "Date of Birth": dob, 
+                "Gender": gender, 
+                "Order Status": "Initiated", 
+                ...utmParams 
+            };
+            console.log("Sending Initial Data:", initialData);
+            sendToWebhook(initialData);
+
+            const options = {
+                key: "rzp_live_k3WJT9MLidyt3i", // Replace with your Razorpay Key
+                amount: 499* 100,  
+                currency: "INR",
+                name: name,
+                description:name,
+                prefill: {
+                    name: name,
+                    email: email,
+                    contact: phone
+                },
+                handler: async function (response) {
+                    const paymentId = response.razorpay_payment_id;
+                    const successData = { 
+                        "Name": name, 
+                        "Email": email, 
+                        "Phone": phone, 
+                        "Date of Birth": dob, 
+                        "Gender": gender, 
+                        "Amount Paid": "₹499", 
+                        "Payment ID": paymentId, 
+                        "Order Status": "Success", 
+                        ...utmParams 
+                    };
+                    sendToWebhook(successData);
+
+                    try {
+    const keyId = "rzp_live_k3WJT9MLidyt3i";
+    const keySecret = "ag12g0AjZ9E5juKgQo4VOil4";
+    
+    // Capture the payment
+    const captureResponse = await fetch(`https://api.razorpay.com/v1/payments/${paymentId}/capture`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Basic ${btoa(`${keyId}:${keySecret}`)}`  // Using btoa instead of Buffer
+        },
+        body: JSON.stringify({
+            amount: 499 * 100, 
+            currency: "INR"
+        }),
+    });
+
+    const captureResult = await captureResponse.json();
+    console.log("Payment Capture Response:", captureResult);
+} catch (error) {
+    console.error("Error capturing payment:", error);
+}
+
+                    // Redirect to Thank You Page
+                    window.location.href = "https://lp.astroanswer.co/ty-page";
+                },
+                modal: {
+                    ondismiss: function () {
+                        const failedData = { 
+                            "Name": name, 
+                            "Email": email, 
+                            "Phone": phone, 
+                            "Date of Birth": dob, 
+                            "Gender": gender, 
+                            "Order Status": "Failed", 
+                            ...utmParams 
+                        };
+                        sendToWebhook(failedData);
+                        document.getElementById('paymentContainer').innerHTML = `
+                            <div class='text-center'>
+                                <h2 class='text-2xl font-bold text-red-600'>Payment Failed</h2>
+                                <p class='mt-2'>Your payment could not be processed. Please try again.</p>
+                            </div>`;
+                    }
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        document.getElementById('payButton').addEventListener('click', handlePayment);
+    </script>
+</body>
+</html>

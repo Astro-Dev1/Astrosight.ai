@@ -1,0 +1,34 @@
+
+  {
+    "_id": {
+      "$oid": "6801f7b2c4991c29ee26bc3c"
+    },
+    "user": {
+      "$oid": "67f9105c542014f73948bc4d"
+    },
+    "dob": {
+      "$date": "1995-07-15T00:00:00.000Z"
+    },
+    "birthTime": "05:30 AM",
+    "birthPlace": "New Delhi, India",
+    "timezone": "Asia/Kolkata",
+    "maritalStatus": "Married",
+    "language": "Hindi",
+    "astrodetails":{
+        "ascendant": "Virgo",
+        "nakshatra": "Ashwini",
+        "zodiac": "Leo",
+        "sunSign": "Cancer"
+
+    },
+    "createdAt": {
+      "$date": "2025-04-18T06:56:50.587Z"
+    },
+    "updatedAt": {
+      "$date": "2025-04-24T12:30:09.228Z"
+    },
+    "__v": 0,
+    "gender": "male",
+    "occupation": "Software Engineer",
+    "pada": "2"
+  }

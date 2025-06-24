@@ -1,0 +1,945 @@
+{
+      "Aries": {
+        "Overall": "Aries, today's potent blend of lunar energy in your sign and Venus's presence amplifies your charisma and self-assurance.  Expect a day filled with vibrant energy and opportunities for creative expression. Embrace the surge of passion and confidence that courses through you.",
+       "Detailed Predictions":{ 
+        "percentage":[
+          80,
+          90,
+          70,
+          60
+        ],
+        "Love & Relationships": "Your romantic life is particularly vibrant today.  Open communication and a willingness to express your feelings will deepen existing bonds or spark exciting new connections.  Don't shy away from expressing your desires; authenticity is key.",
+       "Career & Money": "Your proactive nature and unwavering determination shine brightly in your professional life today.  A bold initiative or a well-timed presentation could lead to significant advancements. Trust your instincts and seize any opportunities that arise.",
+        "Health & Wellness": "Exercise caution with impulsive spending today, despite the abundance of energy.  Focus on making sound financial decisions that align with your long-term goals.  A review of your budget might reveal areas for improvement.",
+        "Personal Growth": "Your boundless energy needs a balanced approach.  Engage in physical activities that invigorate you, but remember to incorporate moments of stillness and mindfulness for rejuvenation.  Prioritize adequate sleep and hydration.",
+    },
+        "Daily Wisdom & Suggestions": 
+          "Embrace your inner fire and let your passion guide your actions.Practice mindful self-expression; communicate your needs and desires clearly."
+        ,
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Taurus": {
+        "Overall": "Taurus, today's celestial dance brings a blend of grounded energy and exciting possibilities.  Mercury in your sign sharpens your mind, while the Aries Moon adds a spark of impulsive passion. Embrace this dynamic energy to achieve your goals.",
+        "Love & Relationship": "Venus in Aries encourages bold expressions of affection. Don't be shy about sharing your feelings with your loved ones.  Single Taureans might find themselves unexpectedly drawn to someone new and exciting.",
+        "Career": "Your inherent practicality, amplified by Mercury in Taurus, will be invaluable in navigating any professional challenges.  Focus on detail and clear communication; your meticulous approach will impress.",
+        "Money & Finances": "A cautious approach to financial matters is advised.  While opportunities may arise, avoid impulsive spending.  Consider long-term investments rather than short-term gains.",
+        "Health": "The energetic Aries Moon might leave you feeling restless.  Channel this energy into physical activity like a brisk walk or a yoga session. Prioritize mindful moments to ground yourself.",
+        "Daily Wisdom & Suggestions": [
+          "Trust your instincts; they're sharper than usual today.",
+          "Communicate your needs clearly and directly to avoid misunderstandings."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Gemini": {
+        "Overall": "Gemini, today's celestial alignment, with the Sun and Jupiter in your sign, amplifies your natural charm and intellectual prowess.  Embrace this vibrant energy to confidently pursue your goals and connect with others on a deeper level. Expect a day filled with opportunities for growth and self-expression.",
+        "Love & Relationship": "Venus in Aries ignites passion and direct communication in your relationships.  Don't shy away from expressing your feelings openly and honestly.  A heartfelt conversation could lead to a significant deepening of connection with your loved ones.",
+        "Career": "Mercury in Taurus encourages a methodical and practical approach to your work. Focus on detailed tasks and strategic planning.  Your sharp intellect will allow you to navigate any challenges with ease and precision, leading to impressive results.",
+        "Money & Finances": "With Uranus in Taurus, unexpected financial opportunities might arise.  Be open to new ideas and ventures, but maintain a cautious, well-researched approach before committing to any significant investments.  Review your budget for potential savings.",
+        "Health": "The fiery energy of Mars in Leo and the Moon in Aries might leave you feeling particularly energetic.  Channel this vitality through physical activity, but remember to pace yourself and prioritize rest to avoid burnout.  Nourish your body with healthy foods.",
+        "Daily Wisdom & Suggestions": [
+          "Trust your gut feelings; they are often surprisingly accurate.",
+          "Celebrate your accomplishments, no matter how small; they are stepping stones to greater things."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Cancer": {
+        "Overall": "Cancer, today's celestial alignment brings a surge of creative energy and emotional clarity.  With the Sun in Gemini sparking your intellect and the Moon in Aries igniting your passions, you're poised to make significant strides in both personal and professional life. Embrace this dynamic energy with confidence.",
+        "Love & Relationship": "Venus in Aries encourages bold expressions of affection. Don't hesitate to share your feelings with your loved ones; honest communication will strengthen your bonds.  Single Cancers might find themselves unexpectedly drawn to someone exciting and spontaneous.",
+        "Career": "Mercury in Taurus grounds your ambitions, urging you to focus on practical steps towards your goals.  Avoid impulsive decisions; instead, strategically plan your next move. Your meticulous nature will pay off handsomely.",
+        "Money & Finances": "Jupiter in Gemini expands your financial horizons, suggesting new opportunities might arise.  However, Saturn in Pisces reminds you to exercise caution and avoid unnecessary risks.  Sound financial planning is key.",
+        "Health": "The fiery influence of Mars and the Moon in Aries may leave you feeling particularly energetic. Channel this vitality through physical activity or creative pursuits.  Prioritize sufficient rest to maintain balance.",
+        "Daily Wisdom & Suggestions": [
+          "Trust your intuition; it's especially sharp today.",
+          "Embrace calculated risks; they can lead to remarkable rewards."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Leo": {
+        "Overall": "Leo, today's celestial alignment ignites your inner fire! With Mars residing in your sign, you're brimming with energy and charisma.  Embrace this potent energy to tackle challenges head-on and achieve your goals.  The Sun in Gemini encourages clear communication, helping you express yourself with confidence and grace.",
+        "Love & Relationship": "Venus in Aries adds a spark of passion and romance to your relationships.  Be open to new connections and nurture existing bonds with heartfelt gestures.  Direct communication will strengthen your partnerships, fostering deeper understanding and intimacy.",
+        "Career": "Your ambition is amplified today, Leo.  Mars in Leo gives you the drive to pursue your professional aspirations with unwavering determination.  Use your enhanced energy to tackle demanding projects and showcase your exceptional skills to colleagues and superiors.",
+        "Money & Finances": "Financial matters require careful consideration today.  While opportunities might present themselves, avoid impulsive spending.  Strategic planning and sound financial decisions will ensure long-term stability and prosperity.  Trust your instincts when making financial choices.",
+        "Health": "Your vibrant energy levels are high today, Leo, but remember to pace yourself.  Engage in activities that nourish your body and mind, such as a invigorating workout or a calming meditation session.  Prioritize self-care to maintain this positive momentum.",
+        "Daily Wisdom & Suggestions": [
+          "Harness your fiery energy to overcome obstacles and achieve your ambitions.",
+          "Communicate your needs and desires clearly and assertively."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Virgo": {
+        "Overall": "Virgos, today's blend of fiery Aries energy (Moon and Venus) and grounded Taurus influence (Mercury and Uranus) creates a dynamic day.  Expect a surge of creative energy coupled with a practical approach to problem-solving.  Embrace this potent combination to achieve remarkable results.",
+        "Love & Relationship": "The passionate Aries influence may ignite a spark in your romantic life.  Be open to expressing your feelings honestly and directly.  For those unattached, today holds the potential for a chance encounter that could blossom into something special.",
+        "Career": "Your meticulous nature and sharp intellect (Mercury in Taurus) will be invaluable in navigating any professional challenges.  Don't hesitate to take initiative and showcase your talents. A new opportunity might present itself \u2013 be prepared to seize it.",
+        "Money & Finances": "With Uranus in Taurus, unexpected financial opportunities might arise.  Review your budget carefully and consider any new ventures with a calculated approach.  Avoid impulsive spending; your careful planning will pay off.",
+        "Health": "The energetic planetary alignment could leave you feeling invigorated.  Channel this energy into physical activity, whether it's a brisk walk or a yoga session. Prioritize mindful self-care to maintain balance.",
+        "Daily Wisdom & Suggestions": [
+          "Trust your instincts; they are sharper than usual today.",
+          "Embrace calculated risks; they can lead to significant rewards."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Libra": {
+        "Overall": "Libra, today's dynamic planetary influences bring a surge of energy and exciting opportunities.  Embrace the adventurous spirit of Aries, channeled through Venus, to navigate any challenges with grace and determination.  Your natural diplomatic skills, amplified by the Sun in Gemini, will be invaluable in achieving your goals.",
+        "Love & Relationship": "Your romantic relationships benefit from a direct and honest approach today.  The fiery energy of Mars in Leo encourages passionate expression, while Venus in Aries adds a spark of adventure.  Don't hesitate to voice your needs and desires clearly and confidently.",
+        "Career": "Mercury in Taurus encourages a methodical and thoughtful approach to your work.  Focus on details and ensure thoroughness in your tasks.  Your innate sense of balance will help you navigate any workplace conflicts with diplomacy and effectiveness, leading to positive outcomes.",
+        "Money & Finances": "A prudent approach to financial matters is advised today.  While opportunities may arise, avoid impulsive spending.  The influence of Uranus in Taurus suggests unexpected financial shifts, so careful planning and budgeting are crucial for long-term stability.",
+        "Health": "The energetic alignment of planets today may leave you feeling invigorated.  However, remember to balance this heightened activity with moments of quiet reflection and relaxation.  Prioritize mindful movement and sufficient rest to maintain your well-being.",
+        "Daily Wisdom & Suggestions": [
+          "Communicate your needs with assertive kindness.",
+          "Prioritize self-care to maintain your energetic balance."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Scorpio": {
+        "Overall": "Scorpio, today's celestial alignment brings a surge of creative energy and intuitive insights.  The fiery influence of Mars in Leo and the Moon in Aries encourages bold action, while Mercury in Taurus grounds you with practical wisdom. Embrace this dynamic blend for a productive and fulfilling day.",
+        "Love & Relationship": "Your passionate nature is amplified today, Scorpio.  Venus in Aries adds a spark to existing relationships, while the Sun in Gemini encourages open and honest communication.  Single Scorpios might find themselves unexpectedly drawn to someone new and exciting.",
+        "Career": "Your sharp intellect, enhanced by Mercury in Taurus, allows for clear strategic thinking.  Don't hesitate to propose innovative ideas at work; your confidence will impress.  The ambitious energy of Mars in Leo supports taking on challenging projects.",
+        "Money & Finances": "A cautious approach to finances is advised today.  While opportunities may present themselves, careful consideration and planning before making any significant investments are key.  Focus on managing existing resources effectively.",
+        "Health": "The energetic planetary influences might leave you feeling invigorated.  However, remember to balance this activity with moments of rest and relaxation.  Engage in activities that ground you, such as yoga or spending time in nature.",
+        "Daily Wisdom & Suggestions": [
+          "Trust your gut instincts; they are particularly sharp today.",
+          "Prioritize self-care to maintain your energy and focus."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Sagittarius": {
+        "Overall": "Sagittarius, today's vibrant planetary alignment fuels your adventurous spirit!  With the Sun in Gemini sparking your intellect and Venus in Aries igniting your passions, expect a day brimming with exciting opportunities. Embrace the unexpected twists and turns with your characteristic optimism.",
+        "Love & Relationship": "Your romantic relationships will benefit from open and honest communication today. Mercury in Taurus encourages thoughtful expression, while the fiery energy of Venus in Aries adds a spark of passion.  Don't be afraid to express your feelings directly and authentically.",
+        "Career": "The ambitious Mars in Leo aligns perfectly with your drive for success.  This is a powerful day to take initiative, network effectively, and pursue those professional goals you've been contemplating.  Your confidence will shine through.",
+        "Money & Finances": "Jupiter in Gemini expands your financial horizons today.  Consider exploring new investment opportunities or creative ways to boost your income.  However, the influence of Uranus in Taurus suggests a need for careful planning and risk management.",
+        "Health": "The Aries Moon might leave you feeling particularly energetic, so channel this vitality into physical activity.  Remember to balance this fiery energy with moments of calm reflection and mindful self-care, perhaps through meditation or yoga.",
+        "Daily Wisdom & Suggestions": [
+          "Embrace the unexpected opportunities that arise today with open arms.",
+          "Prioritize clear communication to foster deeper connections in all areas of your life."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Capricorn": {
+        "Overall": "Capricorns, today's blend of fiery Aries energy (Moon and Venus) and grounded Taurus influence (Mercury and Uranus) offers a potent mix of ambition and practicality.  Harness this dynamic energy to tackle challenges head-on, balancing your drive with careful consideration.  Your inherent discipline, amplified by Saturn in Pisces, will guide you to success.",
+        "Love & Relationship": "The passionate Aries influence encourages open and honest communication with loved ones.  Express your feelings with heartfelt sincerity, but remember the importance of thoughtful consideration, particularly when navigating potential conflicts. A touch of diplomacy, thanks to Mercury in Taurus, will go a long way.",
+        "Career": "Your ambition is ignited today, Capricorn.  Use the potent energy of Mars in Leo to creatively tackle workplace challenges and confidently present your ideas.  Remember to leverage your innate strategic thinking and organizational skills to ensure your plans are well-structured and realistic.",
+        "Money & Finances": "Review your financial plans with a discerning eye.  The influence of Uranus in Taurus might bring unexpected opportunities or changes.  Stay grounded and avoid impulsive decisions; careful planning and analysis will lead to sound financial choices.",
+        "Health": "With the dynamic planetary influences, maintain a balanced approach to your well-being.  Engage in physical activity to channel the fiery energy, but prioritize rest and relaxation to avoid burnout.  Listen to your body's signals and prioritize mindful self-care.",
+        "Daily Wisdom & Suggestions": [
+          "Embrace calculated risks; they often lead to unexpected rewards.",
+          "Prioritize clear communication to avoid misunderstandings."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Aquarius": {
+        "Overall": "With Pluto in your sign today, Aquarius, you're experiencing a powerful surge of transformative energy.  Embrace this potent force to reshape aspects of your life that no longer serve you. The Sun in Gemini encourages clear communication, helping you navigate any challenges with grace and intelligence.",
+        "Love & Relationship": "Venus in Aries ignites passion and directness in your relationships.  Don't shy away from expressing your needs and desires; honest communication will strengthen your bonds.  Single Aquarians might find themselves drawn to someone bold and exciting.",
+        "Career": "Mercury in Taurus grounds your ambitious spirit, urging you to focus on practical steps towards your goals.  Avoid impulsive decisions and instead concentrate on meticulous planning and execution.  Your efforts will yield significant results.",
+        "Money & Finances": "The influence of Uranus in Taurus encourages you to reassess your financial strategies.  Consider diversifying your investments and exploring new avenues for income.  A thoughtful approach will lead to long-term financial security.",
+        "Health": "The energetic Aries Moon might leave you feeling restless.  Channel this energy through physical activity \u2013 a brisk walk, a yoga session, or a dance class.  Prioritize mindful practices to maintain balance and inner peace.",
+        "Daily Wisdom & Suggestions": [
+          "Embrace the transformative power of Pluto; let go of what no longer serves you.",
+          "Prioritize clear communication to foster understanding and strengthen connections."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      },
+      "Pisces": {
+        "Overall": "Dear Pisces, today's celestial dance brings a blend of emotional intensity (Moon in Aries) and intellectual clarity (Mercury in Taurus).  Saturn in your sign encourages introspection, while the Sun in Gemini sparks lively communication. Embrace this potent mix for a day of insightful progress.",
+        "Love & Relationship": "Your relationships will benefit from honest and open communication today.  The fiery energy of Venus in Aries might bring passionate encounters, but remember to temper impulsiveness with thoughtful consideration.  Focus on nurturing existing bonds.",
+        "Career": "A surge of creative energy (Mars in Leo) could inspire innovative solutions at work. Don't be afraid to present your unique ideas; your perspective is valued.  The influence of Mercury in Taurus encourages meticulous planning and attention to detail.",
+        "Money & Finances": "Approach financial matters with a practical and grounded perspective (Mercury in Taurus).  Avoid impulsive spending; instead, focus on long-term stability and strategic planning.  Review your budget and identify areas for improvement.",
+        "Health": "The Aries influence urges you to prioritize physical activity.  Engage in invigorating exercise to release pent-up energy.  Remember to balance this with moments of quiet reflection and mindful relaxation to counter any potential restlessness.",
+        "Daily Wisdom & Suggestions": [
+          "Trust your intuition, especially when making important decisions.",
+          "Communicate your needs and desires clearly and assertively."
+        ],
+        "lucky_elements": {
+          "lucky_numbers": [
+            7,
+            11,
+            22,
+            34
+          ],
+          "lucky_colors": [
+            "sky blue",
+            "silver",
+            "emerald green"
+          ]
+        },
+        "daily_timeline": [
+          {
+            "time": "6:00 - 8:00",
+            "favorability": "neutral",
+            "activity": "Morning reflection or light stretching"
+          },
+          {
+            "time": "8:00 - 10:00",
+            "favorability": "favorable",
+            "activity": "Focus on important communications and planning"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "favorability": "most-favorable",
+            "activity": "Tackle creative projects or challenging tasks"
+          },
+          {
+            "time": "12:00 - 14:00",
+            "favorability": "neutral",
+            "activity": "Lunch break, mindful eating, recharge"
+          },
+          {
+            "time": "14:00 - 16:00",
+            "favorability": "favorable",
+            "activity": "Collaborative work or detail-oriented tasks"
+          },
+          {
+            "time": "16:00 - 18:00",
+            "favorability": "favorable",
+            "activity": "Networking, learning, or wrapping up work"
+          },
+          {
+            "time": "18:00 - 20:00",
+            "favorability": "favorable",
+            "activity": "Connect with loved ones or engage in hobbies"
+          },
+          {
+            "time": "20:00 - 22:00",
+            "favorability": "neutral",
+            "activity": "Relaxation, reading, or preparing for tomorrow"
+          }
+        ],
+        "personalized_recommendations": {
+          "dos": [
+            "Embrace new perspectives with an open heart.",
+            "Practice active listening to foster understanding.",
+            "Schedule brief moments for mindfulness throughout the day."
+          ],
+          "donts": [
+            "Avoid snap judgments in complex situations.",
+            "Don't let minor setbacks derail your overall progress.",
+            "Refrain from overcommitting your time and energy."
+          ]
+        }
+      }
+    }
