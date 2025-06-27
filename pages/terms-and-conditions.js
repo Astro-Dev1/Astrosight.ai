@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/router';
 
@@ -6,7 +7,18 @@ const TermsAndConditionsPage = () => {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-[#FFF6E9] p-4">
+    <>
+      <Head>
+        <title>Terms & Conditions - AstroSight | Service Agreement</title>
+        <meta name="description" content="Read AstroSight's terms and conditions, service agreement, and user guidelines for our astrology platform and services." />
+        <meta name="keywords" content="AstroSight terms conditions, service agreement, astrology app terms, user guidelines, legal terms" />
+        <meta property="og:title" content="Terms & Conditions - AstroSight" />
+        <meta property="og:description" content="AstroSight's comprehensive terms and conditions outlining service agreement and user responsibilities." />
+        <meta property="og:url" content="https://astrosight.co/terms-and-conditions" />
+        <link rel="canonical" href="https://astrosight.co/terms-and-conditions" />
+      </Head>
+      
+      <div className="min-h-screen bg-[#FFF6E9] p-4">
       {/* Header */}
       <div className="flex items-center mb-6">
         <Button
@@ -185,9 +197,10 @@ const TermsAndConditionsPage = () => {
           <p className="text-sm text-gray-600">
             By using AstroSight, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions.
           </p>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

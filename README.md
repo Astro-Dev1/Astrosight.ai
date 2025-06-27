@@ -1,6 +1,6 @@
-# AstroAnswer - Vedic Astrology Consultation Platform
+# AstroSight - Vedic Astrology Consultation Platform
 
-AstroAnswer is a comprehensive Vedic astrology platform built with Next.js, offering personalized astrological consultations, horoscope readings, and spiritual guidance.
+AstroSight is a comprehensive Vedic astrology platform built with Next.js, offering personalized astrological consultations, horoscope readings, and spiritual guidance.
 
 ## 🌟 Features
 
@@ -28,8 +28,8 @@ AstroAnswer is a comprehensive Vedic astrology platform built with Next.js, offe
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/astroanswer.git
-cd astroanswer
+git clone https://github.com/yourusername/astrosight.git
+cd astrosight
 ```
 
 2. Install dependencies:
@@ -58,7 +58,7 @@ npm run dev
 ## 📁 Project Structure
 
 ```
-astroanswer/
+astrosight/
 ├── components/         # Reusable UI components
 ├── pages/             # Next.js pages and API routes
 ├── public/            # Static assets
@@ -111,9 +111,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 For any queries or support:
-- Email: admin@astroanswer.co
+- Email: admin@astrosight.com
 - WhatsApp: +91-9964128377
 
 ---
 
-Built with ❤️ by the AstroAnswer Team
+Built with ❤️ by the AstroSight Team

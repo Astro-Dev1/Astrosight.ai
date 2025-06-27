@@ -921,7 +921,7 @@ await fetchHoroscope()
                   className="w-full h-full object-contain"
                 />
               </div>
-              <h1 className="text-3xl font-bold text-[#FF9D42] mb-1">AstroAnswer</h1>
+              <h1 className="text-3xl font-bold text-[#FF9D42] mb-1">astrosight</h1>
               <p className="text-[#5A6B87] text-sm">Your Trusted Personal Jyotishi</p>
             </div>
             <Card className="w-full p-4 shadow-md mb-6">

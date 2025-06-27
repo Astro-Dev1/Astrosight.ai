@@ -26,7 +26,7 @@ const HomeMobileScreen = () => {
     defer
   ></script>
         {/* Page Title and Meta Tags */}
-        <title>AstroAnswer - Expert Vedic Astrology Consultations & Horoscopes</title>
+        <title>astrosight - Expert Vedic Astrology Consultations & Horoscopes</title>
         <meta
           name="description"
           content="Get personalized Vedic astrology readings, accurate horoscopes, and spiritual guidance from experienced astrologers. Discover your life path through ancient astrological wisdom."
@@ -43,8 +43,8 @@ const HomeMobileScreen = () => {
           property="og:description"
           content="Transform your life with expert Vedic astrology consultations. Get accurate readings, personalized guidance, and spiritual solutions."
         />
-        <meta property="og:url" content="https://astroanswer.co" />
-        <meta property="og:image" content="https://astroanswer.co/images/home-cover.jpg" />
+        <meta property="og:url" content="https://astrosight.co" />
+        <meta property="og:image" content="https://astrosight.co/images/home-cover.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -53,10 +53,10 @@ const HomeMobileScreen = () => {
           name="twitter:description"
           content="Experience transformative Vedic astrology readings with professional consultations and spiritual guidance."
         />
-        <meta name="twitter:image" content="https://astroanswer.co/images/home-cover.jpg" />
+        <meta name="twitter:image" content="https://astrosight.co/images/home-cover.jpg" />
         <meta name="facebook-domain-verification" content="v1wzt5pr5bady8hkk5foyu029cgxpr" />
         {/* Canonical URL */}
-        <link rel="canonical" href="https://astroanswer.co" />
+        <link rel="canonical" href="https://astrosight.co" />
 
         {/* Structured Data for Homepage */}
         <script type="application/ld+json">
@@ -65,19 +65,19 @@ const HomeMobileScreen = () => {
             "@type": "Organization",
             name: "Astro Answer",
             description: "Professional Vedic astrology services and consultations",
-            url: "https://astroanswer.co",
+            url: "https://astrosight.co",
             logo: {
               "@type": "ImageObject",
-              url: "https://astroanswer.co/logo.png",
+              url: "https://astrosight.co/logo.png",
             },
             sameAs: [
-              "https://facebook.com/astroanswer",
-              "https://twitter.com/astroanswer",
-              "https://instagram.com/astroanswer",
+              "https://facebook.com/astrosight",
+              "https://twitter.com/astrosight",
+              "https://instagram.com/astrosight",
             ],
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": "https://astroanswer.co",
+              "@id": "https://astrosight.co",
             },
           })}
         </script>

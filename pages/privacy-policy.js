@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/router';
 
@@ -6,7 +7,18 @@ const PrivacyPolicyPage = () => {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-[#FFF6E9] p-4">
+    <>
+      <Head>
+        <title>Privacy Policy - AstroSight | Data Protection & Privacy</title>
+        <meta name="description" content="Learn about AstroSight's privacy policy, data protection practices, and how we handle your personal information securely and responsibly." />
+        <meta name="keywords" content="AstroSight privacy policy, data protection, personal information, astrology app privacy, secure data handling" />
+        <meta property="og:title" content="Privacy Policy - AstroSight" />
+        <meta property="og:description" content="AstroSight's comprehensive privacy policy outlining our data protection practices and commitment to user privacy." />
+        <meta property="og:url" content="https://astrosight.co/privacy-policy" />
+        <link rel="canonical" href="https://astrosight.co/privacy-policy" />
+      </Head>
+      
+      <div className="min-h-screen bg-[#FFF6E9] p-4">
       {/* Header */}
       <div className="flex items-center mb-6">
         <Button
@@ -155,8 +167,9 @@ const PrivacyPolicyPage = () => {
             By using AstroSight, you acknowledge that you have read and understood this Privacy Policy.
           </p>
         </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

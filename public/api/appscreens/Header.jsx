@@ -254,7 +254,7 @@ const Header = () => {
     <div className="w-[100px] md:w-[240px] relative aspect-[963/512]">
       <Image
         src={userData.profileImage || "/default-profile.png"}
-        alt="AstroAnswer Logo"
+        alt="astrosight Logo"
         fill
         priority
         className="object-contain"
@@ -360,7 +360,7 @@ const Header = () => {
           >
             <Image
               src="/logo.png"
-              alt="AstroAnswer Logo"
+              alt="astrosight Logo"
               width={340}
               height={340}
               className="rounded-full relative -left-4"

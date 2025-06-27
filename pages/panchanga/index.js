@@ -21,17 +21,17 @@ export default function PanchangaPage() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Daily Panchanga Calendar & Auspicious Timings" />
         <meta property="og:description" content="Get accurate Panchanga calculations including Tithi, Nakshatra, and auspicious timings. Plan your activities according to Vedic astrology principles." />
-        <meta property="og:url" content="https://astroanswer.co/panchanga" />
-        <meta property="og:image" content="https://astroanswer.co/images/panchanga-cover.jpg" />
+        <meta property="og:url" content="https://astrosight.co/panchanga" />
+        <meta property="og:image" content="https://astrosight.co/images/panchanga-cover.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Daily Panchanga & Hindu Calendar Calculations" />
         <meta name="twitter:description" content="Access precise Panchanga calculations and auspicious timings based on Vedic astrology. Plan your day according to cosmic alignments." />
-        <meta name="twitter:image" content="https://astroanswer.co/images/panchanga-cover.jpg" />
+        <meta name="twitter:image" content="https://astrosight.co/images/panchanga-cover.jpg" />
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://astroanswer.co/panchanga" />
+        <link rel="canonical" href="https://astrosight.co/panchanga" />
 
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -58,11 +58,11 @@ export default function PanchangaPage() {
             "provider": {
               "@type": "Organization",
               "name": "Astro Answer",
-              "url": "https://astroanswer.co"
+              "url": "https://astrosight.co"
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://astroanswer.co/panchanga"
+              "@id": "https://astrosight.co/panchanga"
             },
             "about": {
               "@type": "Thing",

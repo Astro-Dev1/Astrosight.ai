@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useRouter } from 'next/router';
@@ -74,7 +75,18 @@ const ReportsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FFF6E9]">
+    <>
+      <Head>
+        <title>Astrological Reports - AstroSight | Detailed Life Analysis</title>
+        <meta name="description" content="Get comprehensive astrological reports from AstroSight including career analysis, relationship compatibility, marriage reports, and more personalized insights." />
+        <meta name="keywords" content="AstroSight reports, astrology reports, career analysis, relationship compatibility, marriage report, birth chart analysis, horoscope reports" />
+        <meta property="og:title" content="Astrological Reports - AstroSight" />
+        <meta property="og:description" content="Unlock profound insights with AstroSight's comprehensive astrological reports covering all aspects of your life." />
+        <meta property="og:url" content="https://astrosight.co/report" />
+        <link rel="canonical" href="https://astrosight.co/report" />
+      </Head>
+      
+      <div className="min-h-screen bg-[#FFF6E9]">
       {/* Header */}
       <div className="bg-white shadow-sm sticky top-0 z-10">
         <div className="flex items-center p-4">
@@ -235,10 +247,11 @@ const ReportsPage = () => {
               <h4 className="text-lg font-semibold text-gray-800 mb-2">Detailed Insights</h4>
               <p className="text-gray-600 text-sm">Comprehensive analysis with actionable recommendations and remedies</p>
             </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

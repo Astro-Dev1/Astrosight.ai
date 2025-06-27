@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Devanagari Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kohinoor+Devanagari:wght@300;400;500;600;700&display=swap');
+
 /* Your custom styles */
 
 @layer base {
@@ -121,8 +125,7 @@
 
     --chart-4: 280 65% 60%;
 
-    --chart-5: 340 75% 55%
-  ;
+    --chart-5: 340 75% 55%;
 
     --sidebar-background: 240 5.9% 10%;
 
@@ -147,6 +150,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+  }
+  
+  /* Apply Devanagari font to common elements */
+  h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label {
+    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
   }
 }
 * {

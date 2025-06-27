@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import Link from "next/link";
-// import Image from "next/image";
-import { Card } from "@/components/ui/card";
-import { Tabs,  TabsContent } from "@/components/ui/tabs";
-// import { Badge } from "@/components/ui/badge";
+import { t } from "../locales/i18n";
+import LanguageSelector from "./LanguageSelector";
 
 // Horoscope data, zodiacImages, and compatibilityData (unchanged for brevity)
 
@@ -58,7 +56,7 @@ const HoroscopePage = ({ sign }) => {
 
   useEffect(() => {
     if (!sign || !validSigns.includes(capitalizedSign)) {
-      setError("Invalid or missing zodiac sign");
+      setError(t('horoscope.invalid_sign'));
       setIsLoading(false);
       return;
     }
@@ -71,7 +69,7 @@ const HoroscopePage = ({ sign }) => {
         // Fetch weekly horoscope for main section
         await fetchWeeklyHoroscope();
         setCurrentDate(
-          `Week of ${format(startOfWeek(new Date(), { weekStartsOn: 1 }), "MMMM d")} - ${format(
+          `${t('horoscope.week_of')} ${format(startOfWeek(new Date(), { weekStartsOn: 1 }), "MMMM d")} - ${format(
             endOfWeek(new Date(), { weekStartsOn: 1 }),
             "MMMM d"
           )}`
@@ -85,7 +83,7 @@ const HoroscopePage = ({ sign }) => {
       } catch (err) {
         console.error("Error in fetchHoroscopes:", err);
         setError(err.message);
-        setHoroscope({ text: ["Horoscope data unavailable."], dateRange: "Loading..." });
+        setHoroscope({ text: [t('horoscope.horoscope_unavailable')], dateRange: t('horoscope.loading_data') });
       } finally {
         setIsLoading(false);
       }
@@ -106,8 +104,8 @@ const HoroscopePage = ({ sign }) => {
       const data = await response.json();
       const horoscopeData =
         data.weekStart === weekStart && data.weekEnd === weekEnd
-          ? data.horoscopes[capitalizedSign] || { text: ["Weekly horoscope not available."] }
-          : { text: ["Weekly horoscope not available for the current week."] };
+          ? data.horoscopes[capitalizedSign] || { text: [t('horoscope.weekly_not_available')] }
+          : { text: [t('horoscope.weekly_not_available')] };
       console.log("Weekly horoscope:", horoscopeData);
 
       const formattedData = {
@@ -126,7 +124,7 @@ console.log("Formatted weekly horoscope data:", formattedData);
     } catch (error) {
       console.error("Error fetching weekly horoscope:", error);
       const fallbackData = {
-        text: ["Weekly horoscope unavailable."],
+        text: [t('horoscope.weekly_not_available')],
         dateRange: `${format(startOfWeek(today, { weekStartsOn: 1 }), "d MMM")} - ${format(
           endOfWeek(today, { weekStartsOn: 1 }),
           "d MMM"
@@ -150,7 +148,7 @@ console.log("Formatted weekly horoscope data:", formattedData);
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       const data = await response.json();
       const horoscopeData =
-        data?.[`${year}-${month}`]?.[capitalizedSign] || { text: ["Monthly horoscope not available."] };
+        data?.[`${year}-${month}`]?.[capitalizedSign] || { text: [t('horoscope.monthly_not_available')] };
       console.log("Monthly horoscope:", horoscopeData);
 
       const formattedData = {
@@ -164,7 +162,7 @@ console.log("Formatted monthly horoscope data:", formattedData);
     } catch (error) {
       console.error("Error fetching monthly horoscope:", error);
       const fallbackData = {
-        text: ["Monthly horoscope unavailable."],
+        text: [t('horoscope.monthly_not_available')],
         dateRange: format(today, "MMMM yyyy"),
       };
       if (forAlsoCheck) {
@@ -180,7 +178,7 @@ console.log("Formatted monthly horoscope data:", formattedData);
       const response = await fetch(`/api/horoscopes/yearly-horoscopes-${year}.json`);
       if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
       const data = await response.json();
-      const horoscopeData = data?.[year]?.[capitalizedSign] || { text: ["Yearly horoscope not available."] };
+      const horoscopeData = data?.[year]?.[capitalizedSign] || { text: [t('horoscope.yearly_not_available')] };
       console.log("Yearly horoscope:", horoscopeData);
 
       const formattedData = {
@@ -218,15 +216,15 @@ console.log("Formatted monthly horoscope data:", formattedData);
   // );
 
   if (isLoading) {
-    return <div className="text-center py-10">Loading...</div>;
+    return <div className="text-center py-10">{t('horoscope.loading')}</div>;
   }
 
   if (error || !capitalizedSign) {
     return (
       <div className="text-center py-10">
-        <p className="text-red-500">Error: {error || "Invalid or missing zodiac sign"}</p>
+        <p className="text-red-500">{t('horoscope.error')}: {error || t('horoscope.invalid_sign')}</p>
         <Link href="/" className="text-blue-500 underline">
-          Return to Home
+          {t('horoscope.return_home')}
         </Link>
       </div>
     );
@@ -245,31 +243,31 @@ console.log("Formatted monthly horoscope data:", formattedData);
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         />
         <title>
-          {capitalizedSign} Horoscope | Weekly, Monthly, Yearly Predictions | AstroAnswer
+          {t('horoscope.meta.title', { sign: capitalizedSign })}
         </title>
         <meta
           name="description"
-          content={`Discover your ${capitalizedSign} horoscope. Get weekly, monthly, and yearly predictions for love, career, health, and more at AstroAnswer.`}
+          content={t('horoscope.meta.description', { sign: capitalizedSign })}
         />
         <meta
           name="keywords"
-          content={`${capitalizedSign} horoscope, ${capitalizedSign} zodiac, astrology, weekly horoscope, monthly horoscope, yearly horoscope`}
+          content={t('horoscope.meta.keywords', { sign: capitalizedSign })}
         />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${capitalizedSign} Horoscope | AstroAnswer`} />
+        <meta property="og:title" content={t('horoscope.meta.og_title', { sign: capitalizedSign })} />
         <meta
           property="og:description"
-          content={`Get your personalized ${capitalizedSign} horoscope. Weekly, monthly, and yearly predictions for love, career, and more.`}
+          content={t('horoscope.meta.og_description', { sign: capitalizedSign })}
         />
-        <meta property="og:url" content={`https://astroanswer.co/horoscope/${signKey}`} />
-        <meta property="og:image" content={`https://astroanswer.co/${signKey}.jpg`} />
+        <meta property="og:url" content={`https://AstroSight.co/horoscope/${signKey}`} />
+        <meta property="og:image" content={`https://AstroSight.co/${signKey}.jpg`} />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content={`${capitalizedSign} Horoscope | AstroAnswer`} />
+        <meta property="twitter:title" content={t('horoscope.meta.twitter_title', { sign: capitalizedSign })} />
         <meta
           property="twitter:description"
-          content={`Explore your ${capitalizedSign} horoscope. Get insights on love, career, and more with our weekly, monthly, and yearly predictions.`}
+          content={t('horoscope.meta.twitter_description', { sign: capitalizedSign })}
         />
-        <link rel="canonical" href={`https://astroanswer.co/horoscope/${signKey}`} />
+        <link rel="canonical" href={`https://AstroSight.co/horoscope/${signKey}`} />
       </Head>
 
       <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
@@ -278,10 +276,13 @@ console.log("Formatted monthly horoscope data:", formattedData);
           <Link href="/" className="text-white cursor-pointer">
             <i className="fas fa-arrow-left text-xl"></i>
           </Link>
-          <div className="text-white font-bold text-xl">{capitalizedSign} Horoscope</div>
-          <button className="text-white cursor-pointer">
-            <i className="fas fa-share-alt text-xl"></i>
-          </button>
+          <div className="text-white font-bold text-xl">{t('horoscope.horoscope_title', { sign: t(capitalizedSign.toLowerCase()) })}</div>
+          <div className="flex items-center space-x-3">
+            <LanguageSelector variant="header" />
+            <button className="text-white cursor-pointer">
+              <i className="fas fa-share-alt text-xl"></i>
+            </button>
+          </div>
         </header>
 
         {/* Main Content */}
@@ -302,78 +303,59 @@ console.log("Formatted monthly horoscope data:", formattedData);
 
             {/* Also Check Section */}
             <div className="mb-20">
-              <h3 className="text-black text-xl font-semibold mb-4">Also Check</h3>
-              <Tabs defaultValue="weekly" className="w-full">
+              <h3 className="text-black text-xl font-semibold mb-4">{t('horoscope.also_check')}</h3>
+              <div className="w-full">
                 
 <div className="grid w-full grid-cols-3 gap-2 px-4">
-        {["weekly", "monthly", "yearly"].map((t) => (
+        {["weekly", "monthly", "yearly"].map((t_type) => (
           <Link
-            key={t}
-            href={`/horoscope/${sign}/${t}`}
-            className={`text-center text-sm py-2 rounded-md border transition-colors "bg-orange-100 text-orange-600 font-semibold border-orange-400"
-                 "bg-white text-gray-600 border-gray-300 hover:bg-orange-50"
-            }`}
+            key={t_type}
+            href={`/horoscope/${sign}/${t_type}`}
+            className="text-center text-sm py-2 rounded-md border transition-colors bg-orange-100 text-orange-600 font-semibold border-orange-400 hover:bg-orange-50"
           >
-            {t.charAt(0).toUpperCase() + t.slice(1)}
+            {t(`horoscope.${t_type}`)}
           </Link>
         ))}
       </div>
-                <TabsContent value="weekly">
-                  <Card className="bg-white p-5 rounded-xl shadow-lg">
+                <div>
+                  <div className="bg-white p-5 rounded-xl shadow-lg">
                     <div className="text-center mb-4">
-                      <p className="text-gray-500">{weeklyHoroscope?.dateRange || "Loading..."}</p>
+                      <p className="text-gray-500">{weeklyHoroscope?.dateRange || t('horoscope.loading_data')}</p>
                     </div>
                     <div className="space-y-4 text-gray-700">
-                 
-                        <p  className="text-sm">
-                Career & Education:          {weeklyHoroscope.sections["Career & Education"] || "Weekly horoscope not available."}
-                        </p>
-               
-                    </div>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="monthly">
-                  <Card className="bg-white p-5 rounded-xl shadow-lg">
-                    <div className="text-center mb-4">
-                      <p className="text-gray-500">{monthlyHoroscope?.dateRange || "Loading..."}</p>
-                    </div>
-                    <div className="space-y-4 text-gray-700">
-                     
                         <p className="text-sm">
-                     
-Career & Education:     { monthlyHoroscope.sections?.["Career & Education"] || "Monthly horoscope not available."}
+                          <strong>{t('horoscope.career_education')}:</strong> {weeklyHoroscope?.sections?.["Career & Education"] || t('horoscope.weekly_not_available')}
                         </p>
-                                                <p className="text-sm">
-                     
-Career & Education:     { monthlyHoroscope.sections?.["Career & Education"] || "Monthly horoscope not available."}
-                        </p>
-                                                <p className="text-sm">
-                     
-Career & Education:     { monthlyHoroscope.sections?.["Career & Education"] || "Monthly horoscope not available."}
-                        </p>
-                                                <p className="text-sm">
-                     
-Career & Education:     { monthlyHoroscope.sections?.["Career & Education"] || "Monthly horoscope not available."}
-                        </p>
-
                     </div>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="yearly">
-                  <Card className="bg-white p-5 rounded-xl shadow-lg">
+                  </div>
+                </div>
+                <div>
+                  <div className="bg-white p-5 rounded-xl shadow-lg">
                     <div className="text-center mb-4">
-                      <p className="text-gray-500">{yearlyHoroscope?.dateRange || "Loading..."}</p>
+                      <p className="text-gray-500">{monthlyHoroscope?.dateRange || t('horoscope.loading_data')}</p>
                     </div>
                     <div className="space-y-4 text-gray-700">
-                      {(yearlyHoroscope?.text || ["Yearly horoscope not available."]).map((paragraph, index) => (
+                        <p className="text-sm">
+                          <strong>{t('horoscope.career_education')}:</strong> {monthlyHoroscope?.sections?.["Career & Education"] || t('horoscope.monthly_not_available')}
+                        </p>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="bg-white p-5 rounded-xl shadow-lg">
+                    <div className="text-center mb-4">
+                      <p className="text-gray-500">{yearlyHoroscope?.dateRange || t('horoscope.loading_data')}</p>
+                    </div>
+                    <div className="space-y-4 text-gray-700">
+                      {(yearlyHoroscope?.text || [t('horoscope.yearly_not_available')]).map((paragraph, index) => (
                         <p key={index} className="text-sm">
                           {paragraph}
                         </p>
                       ))}
                     </div>
-                  </Card>
-                </TabsContent>
-              </Tabs>
+                  </div>
+                </div>
+              </div>
             </div>
           </main>
         </div>

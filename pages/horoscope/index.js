@@ -2,10 +2,10 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 import HoroscopePage from '../../components/Horoscopepage';
 import { fetchMyProfile } from '../../services/centralApi'; // Import the API service
+import { t } from '../../locales/i18n';
 
 export default function HoroscopeIndex() {
   const [isLoading, setIsLoading] = useState(true);
@@ -59,13 +59,20 @@ export default function HoroscopeIndex() {
   // Display a loading state while fetching the profile
   if (isLoading) {
     return (
-      <div className="flex flex-col min-h-screen bg-orange-50 font-inter">
-        <Header />
-        <main className="container mx-auto px-4 py-8 flex-grow flex items-center justify-center">
-          <p className="text-lg text-gray-700">Loading...</p>
-        </main>
-        <Footer />
-      </div>
+      <Layout 
+        title={t('horoscope') || 'Horoscope'}
+        showBackButton={true}
+        showSideMenu={false}
+        showWallet={true}
+        showLanguage={true}
+        showProfile={true}
+      >
+        <div className="flex flex-col min-h-screen bg-orange-50 font-inter">
+          <main className="container mx-auto px-4 py-8 flex-grow flex items-center justify-center">
+            <p className="text-lg text-gray-700">{t('loading') || 'Loading...'}</p>
+          </main>
+        </div>
+      </Layout>
     );
   }
 
@@ -75,49 +82,54 @@ export default function HoroscopeIndex() {
   }
 
   return (
-    <>
+    <Layout 
+      title={t('horoscope') || 'Horoscope'}
+      showBackButton={true}
+      showSideMenu={false}
+      showWallet={true}
+      showLanguage={true}
+      showProfile={true}
+    >
       {/* SEO Metadata */}
       <Head>
         <link rel="icon" href="/logo.png" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-        <title>Daily Horoscope Predictions | Zodiac Signs & Astrology Insights | AstroAnswer</title>
+        <title>Daily Horoscope Predictions | Zodiac Signs & Astrology Insights | AstroSight</title>
         <meta
           name="description"
-          content="Discover daily, weekly, and monthly horoscopes for all zodiac signs. Explore personalized astrological insights with AstroAnswer."
+          content="Discover daily, weekly, and monthly horoscopes for all zodiac signs. Explore personalized astrological insights with AstroSight."
         />
         <meta
           name="keywords"
           content="daily horoscope, zodiac signs, astrology predictions, Aries horoscope, Taurus horoscope, Gemini horoscope, Cancer horoscope, Leo horoscope, Virgo horoscope, Libra horoscope, Scorpio horoscope, Sagittarius horoscope, Capricorn horoscope, Aquarius horoscope, Pisces horoscope"
         />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Daily Horoscope Predictions | AstroAnswer" />
+        <meta property="og:title" content="Daily Horoscope Predictions | AstroSight" />
         <meta
           property="og:description"
-          content="Get daily, weekly, and monthly horoscope predictions for all zodiac signs. Discover your astrological insights today with AstroAnswer."
+          content="Get daily, weekly, and monthly horoscope predictions for all zodiac signs. Discover your astrological insights today with AstroSight."
         />
-        <meta property="og:url" content="https://astroanswer.co/horoscope" />
-        <meta property="og:image" content="https://astroanswer.co/horoscope-image.jpg" />
+        <meta property="og:url" content="https://astrosight.ai/horoscope" />
+        <meta property="og:image" content="https://astrosight.ai/horoscope-image.jpg" />
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="Daily Horoscope Predictions | AstroAnswer" />
+        <meta property="twitter:title" content="Daily Horoscope Predictions | AstroSight" />
         <meta
           property="twitter:description"
-          content="Explore personalized daily, weekly, and monthly horoscopes for all zodiac signs at AstroAnswer."
+          content="Explore personalized daily, weekly, and monthly horoscopes for all zodiac signs at AstroSight."
         />
-        <meta property="twitter:image" content="https://astroanswer.co/horoscope-image.jpg" />
-        <link rel="canonical" href="https://astroanswer.co/horoscope" />
+        <meta property="twitter:image" content="https://astrosight.ai/horoscope-image.jpg" />
+        <link rel="canonical" href="https://astrosight.ai/horoscope" />
       </Head>
 
-      <div className="flex flex-col min-h-screen  bg-orange-50 font-inter">
-        <Header />
-
-        <main className="container mx-auto px-4 mt-14 py-8 flex-grow">
+      <div className="flex flex-col min-h-screen bg-orange-50 font-inter">
+        <main className="container mx-auto px-4 py-8 flex-grow">
           {/* Page Header */}
           <section className="text-center mb-8">
             <h1 className="text-3xl md:text-4xl font-bold text-orange-600">
-              Daily Horoscope Predictions for All Zodiac Signs
+              {t('dailyHoroscopePredictions') || 'Daily Horoscope Predictions for All Zodiac Signs'}
             </h1>
             <h2 className="text-lg md:text-xl font-semibold text-gray-700 mt-2">
-              Discover Daily, Weekly, and Monthly Astrological Insights
+              {t('discoverAstrologicalInsights') || 'Discover Daily, Weekly, and Monthly Astrological Insights'}
             </h2>
           </section>
 
@@ -133,8 +145,6 @@ export default function HoroscopeIndex() {
             />
           </section> */}
         </main>
-
-        <Footer />
       </div>
 
       {/* Structured Data */}
@@ -144,25 +154,25 @@ export default function HoroscopeIndex() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AstrologicalService",
-            "name": "AstroAnswer Daily Horoscope",
+            "name": "astrosight Daily Horoscope",
             "description": "Get personalized daily, weekly, and monthly horoscopes for all zodiac signs.",
-            "url": "https://astroanswer.co/horoscope",
+            "url": "https://astrosight.co/horoscope",
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://astroanswer.co/horoscope",
+              "@id": "https://astrosight.co/horoscope",
             },
             "provider": {
               "@type": "Organization",
-              "name": "AstroAnswer",
+              "name": "astrosight",
             },
             "potentialAction": {
               "@type": "ReadAction",
-              "target": "https://astroanswer.co/horoscope/{zodiac_sign}",
+              "target": "https://astrosight.co/horoscope/{zodiac_sign}",
               "query-input": "required name=zodiac_sign",
             },
           }),
         }}
       />
-    </>
+    </Layout>
   );
 }

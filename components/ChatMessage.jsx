@@ -58,7 +58,7 @@ const ChatMessage = ({ message, isUser, persona }) => {
             {!isUser && (
               <span className="flex items-center text-yellow-400">
                 <Star className="w-3 h-3 mr-1" />
-                {personaNames[persona] || "AstroAnswer AI"}
+                {personaNames[persona] || "AstroSight AI"}
               </span>
             )}
           </div>

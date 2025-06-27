@@ -8,7 +8,7 @@ async function main() {
     const newUser = await prisma.user.create({
     data: {
       username: 'admin',                // Replace with your desired username
-      email: 'admin@astroanswer.co',       // Replace with the user's email
+      email: 'admin@astrosight.co',       // Replace with the user's email
       password: hashedPassword,    // Replace with a hashed password if needed
       role: 'ADMIN',                    // Role (e.g., ADMIN, EDITOR, etc.)
     },

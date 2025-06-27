@@ -6,10 +6,10 @@ export default function Footer() {
       {/* About Section */}
       <div className="text-center px-4 mb-6">
         <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   border-b-2 border-yellow-600 inline-block pb-1">
-          About AstroAnswer
+          About AstroSight
         </h2>
         <p className="text-sm bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mt-3">
-          AstroAnswer is the leading platform for online astrology predictions. <br />
+          AstroSight is the leading platform for online astrology predictions. <br />
           Get insights into your future with our expert astrologers and personalized reports.
         </p>
       </div>

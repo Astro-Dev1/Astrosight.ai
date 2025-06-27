@@ -77,25 +77,25 @@ export default function CompatibilityPage() {
     <>
       <Head>
         <link rel="icon" href="/logo.png" />
-        <title>Zodiac Love Compatibility Calculator | AstroAnswer</title>
+        <title>Zodiac Love Compatibility Calculator | astrosight</title>
         <meta name="description" content="Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more." />
         <meta name="keywords" content="zodiac compatibility, love compatibility, astrology compatibility, horoscope matching, relationship astrology" />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Zodiac Love Compatibility Calculator | AstroAnswer" />
+        <meta property="og:title" content="Zodiac Love Compatibility Calculator | astrosight" />
         <meta property="og:description" content="Explore your zodiac love compatibility and find your perfect astrological match with our free compatibility calculator." />
-        <meta property="og:url" content="https://astroanswer.co/compatibility" />
-        <meta property="og:image" content="https://astroanswer.co/compatibility-image.jpg" />
+        <meta property="og:url" content="https://astrosight.co/compatibility" />
+        <meta property="og:image" content="https://astrosight.co/compatibility-image.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zodiac Compatibility Calculator | AstroAnswer" />
+        <meta name="twitter:title" content="Zodiac Compatibility Calculator | astrosight" />
         <meta name="twitter:description" content="Discover your astrological compatibility for love, friendship, and more with our free zodiac matching tool." />
-        <meta name="twitter:image" content="https://astroanswer.co/compatibility-image.jpg" />
+        <meta name="twitter:image" content="https://astrosight.co/compatibility-image.jpg" />
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://astroanswer.co/compatibility" />
+        <link rel="canonical" href="https://astrosight.co/compatibility" />
 
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -104,11 +104,11 @@ export default function CompatibilityPage() {
             "@type": "WebPage",
             "name": "Zodiac Love Compatibility Calculator",
             "description": "Free astrology compatibility calculator to find your perfect zodiac match.",
-            "url": "https://astroanswer.co/compatibility",
+            "url": "https://astrosight.co/compatibility",
             "provider": {
               "@type": "Organization",
-              "name": "AstroAnswer",
-              "url": "https://astroanswer.co"
+              "name": "astrosight",
+              "url": "https://astrosight.co"
             }
           })}
         </script>
@@ -125,7 +125,7 @@ export default function CompatibilityPage() {
         <div className="container mx-auto px-4 py-8 mb-8">
           <section className="mb-10 text-justify bg-white bg-opacity-50 backdrop-blur-lg p-8 rounded-lg shadow-md">
             <p className="text-lg text-gray-900 mb-4">
-              Welcome to AstroAnswer `&lsquo;` s Zodiac Love Compatibility Calculator! Unlock the secrets of your relationships through the wisdom of the stars. Our free compatibility tool helps you explore how well you match with other zodiac signs in love, friendship, and more.
+              Welcome to astrosight `&lsquo;` s Zodiac Love Compatibility Calculator! Unlock the secrets of your relationships through the wisdom of the stars. Our free compatibility tool helps you explore how well you match with other zodiac signs in love, friendship, and more.
             </p>
             <p className="text-lg text-gray-900 mb-4">
               Understanding your astrological compatibility can provide valuable insights into your relationships, helping you navigate the complexities of love and friendship. Whether you`&lsquo;`re curious about a potential romance or want to strengthen existing bonds, our compatibility calculator is here to guide you.
@@ -143,7 +143,7 @@ export default function CompatibilityPage() {
         </div>
         {/* <div className="container text-center px-4 py-8"> 
           <CustomLinkButton
-                  headline="Welcome to AstroAnswer"
+                  headline="Welcome to astrosight"
                   buttonText="Explore Now"
                   buttonPath="/panchanga"
                 />

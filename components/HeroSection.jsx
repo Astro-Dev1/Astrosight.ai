@@ -3,10 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { fetchMyProfile, updateQuestion } from '../services/centralApi';
-import { Card} from '@/components/ui/card';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
-
-import {  Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,17 +13,51 @@ const HeroSection = () => {
   const [activeBanner, setActiveBanner] = useState(0);
   const [inputValue, setInputValue] = useState('');
 
-  // Static banner and companion data
+  // Optimized banner data with better structure
   const banners = [
-    { id: 1, imageUrl: '/compatibility-banner.jpg' },
-    { id: 2, imageUrl: '/compatibility-banner.jpg' },
-    { id: 3, imageUrl: '/compatibility-banner.jpg' },
+    { 
+      id: 1, 
+      imageUrl: '/compatibility-banner.jpg',
+      title: 'Discover Your Compatibility',
+      description: 'Find your perfect cosmic match'
+    },
+    { 
+      id: 2, 
+      imageUrl: '/compatibility-banner.jpg',
+      title: 'Daily Guidance',
+      description: 'Get personalized astrological insights'
+    },
+    { 
+      id: 3, 
+      imageUrl: '/compatibility-banner.jpg',
+      title: 'Spiritual Growth',
+      description: 'Transform your life with Vedic wisdom'
+    },
   ];
 
+  // Enhanced AI companions with better personas
   const aiCompanions = [
-    { id: 1, name: 'Balanced', imageUrl: '/AIAvatar/Auro.png',persona: "balanced" },
-    { id: 2, name: 'Youth', imageUrl: '/AIAvatar/Avi.png', persona: "youth" },
-    { id: 3, name: 'Expert', imageUrl: '/AIAvatar/Jaimini.png' , persona: "expert"},
+    { 
+      id: 1, 
+      name: 'Balanced', 
+      imageUrl: '/AIAvatar/Auro.png',
+      persona: "balanced",
+      description: 'Perfect mix of depth and clarity'
+    },
+    { 
+      id: 2, 
+      name: 'Youth', 
+      imageUrl: '/AIAvatar/Avi.png', 
+      persona: "youth",
+      description: 'Fun and easy to understand'
+    },
+    { 
+      id: 3, 
+      name: 'Expert', 
+      imageUrl: '/AIAvatar/Jaimini.png',
+      persona: "expert",
+      description: 'Deep traditional knowledge'
+    },
   ];
 
   useEffect(() => {
@@ -52,12 +85,12 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="mt-7">
+    <section className="" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>
       <div className="">
         {isLoggedIn ? (
           <div className=" text-center font-poppins lg:text-left">
             <div className="">
-              <h1 className="text-[#FF6D3F] text-center mt-2 text-2xl mb-4 font-semibold">Welcome <span className='text-[#070707]'>{userName}</span> </h1>
+              <h1 className="text-[#FF6D3F] text-center mt-2 text-2xl mb-4 font-semibold" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>Welcome <span className='text-[#070707]'>{userName}</span> </h1>
             </div>
             {/* Banner Section */}
             <div className="relative  rounded-xl overflow-hidden shadow-sm">
@@ -85,7 +118,7 @@ const HeroSection = () => {
             </div>
             {/* AI Companions Section */}
             <div className="mb-6">
-              <h2 className="text-black  text-xl font-semibold mt-5 mb-3">Our AI Companions</h2>
+              <h2 className="text-black text-xl font-semibold mt-5 mb-3" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>Our AI Companions</h2>
 
                 <Card className="bg-white p-8 rounded-xl shadow-lg">
                   <div className="flex justify-between mb-6">
@@ -102,7 +135,7 @@ const HeroSection = () => {
                         </Avatar>
               </Link>
 
-                        <span className="text-[#FF9960] font-medium">{companion.name}</span>
+                        <span className="text-[#FF9960] font-medium" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>{companion.name}</span>
                       </div>
                     ))}
                   </div>
@@ -114,6 +147,7 @@ const HeroSection = () => {
                              onChange={(e) => setInputValue(e.target.value)}
                       placeholder="Ask Anything"
                       className="w-full py-3 px-4 rounded-full bg-[#FFE5CC] text-gray-700 border-none focus:outline-none"
+                      style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}
                     />
                              <Link
                 href={`/chatbot?persona=expert&&input=${inputValue}`}
@@ -131,12 +165,12 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column - Text content */}
             <div className="space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
-              <div className="text-3xl/8 text-[#3A3026] px-auto font-semibold">
-                <span className="text-[#FF6D3F] text-3xl">AstroAnswer</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
+              <div className="text-2xl/9 text-[#3A3026] px-auto font-semibold" style={{ fontFamily: 'Kohinoor Devanagari, Noto Sans Devanagari, Arial, sans-serif' }}>
+                <span className="text-[#fd9474] text-2xl font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
                 <p className="text-base/5 sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
-                  Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos;zzzzzzzzzzzzzzs Burning Questions
+                  Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
                 </p>
                 <div className="hidden md:flex relative -top-3 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <img
@@ -150,7 +184,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <div className="flex flex-row lg:hidden items-center justify-center gap-4">
-                <Link href="https://astroanswer.com/download" passHref>
+                <Link href="https://AstroSight.com/download" passHref>
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
                     <div className="mr-3">
                       <svg viewBox="30 336.7 120.9 129.2" width="20">
@@ -165,8 +199,9 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">Play Store</div>
                     </div>
                   </div>
+                                    <spam className="text-xs text-green-400">comming soon </spam>
                 </Link>
-                <Link href="https://astroanswer.com/download" passHref>
+                <Link href="https://AstroSight.com/download" passHref>
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
                     <div className="mr-3">
                       <svg viewBox="0 0 384 512" width="20">
@@ -181,6 +216,8 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">App Store</div>
                     </div>
                   </div>
+                                    <spam className="text-xs text-green-400">comming soon </spam>
+
                 </Link>
               </div>
             </div>

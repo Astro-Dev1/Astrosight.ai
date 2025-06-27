@@ -2,14 +2,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import Layout from '../../components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { fetchEntries } from '../../lib/contentful';
+import { t } from '../../locales/i18n';
 
 const POSTS_PER_PAGE = 8;
 
@@ -66,7 +66,14 @@ export default function Blog({ posts }) {
   const hasMorePosts = filteredPosts.length > currentPosts.length;
 
   return (
-    <>
+    <Layout 
+      title={t('blog') || 'Blog'}
+      showBackButton={true}
+      showSideMenu={false}
+      showWallet={true}
+      showLanguage={true}
+      showProfile={true}
+    >
       <Head>
         <link rel="icon" href="/logo.png" />
         <title>Astro Answer Blog - Explore Vedic Astrology Articles and Insights</title>
@@ -75,31 +82,31 @@ export default function Blog({ posts }) {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Astro Answer Blog - Vedic Astrology Insights and Horoscopes" />
         <meta property="og:description" content="Explore expert articles on Vedic astrology, horoscopes, planetary influences, and life-changing astrological remedies at Astro Answer." />
-        <meta property="og:url" content="https://astroanswer.co/blog" />
-        <meta property="og:image" content="https://astroanswer.co/images/blog-cover.jpg" />
+        <meta property="og:url" content="https://astrosight.co/blog" />
+        <meta property="og:image" content="https://astrosight.co/images/blog-cover.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Astro Answer Blog - Vedic Astrology Wisdom" />
         <meta name="twitter:description" content="Dive into Vedic astrology articles, horoscopes, and cosmic insights. Discover how celestial bodies influence your life path." />
-        <meta name="twitter:image" content="https://astroanswer.co/images/blog-cover.jpg" />
-        <link rel="canonical" href="https://astroanswer.co/blog" />
+        <meta name="twitter:image" content="https://astrosight.co/images/blog-cover.jpg" />
+        <link rel="canonical" href="https://astrosight.co/blog" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
             "name": "Astro Answer Blog",
             "description": "Expert Vedic astrology articles, horoscopes, and astrological remedies.",
-            "url": "https://astroanswer.co/blog",
+            "url": "https://astrosight.co/blog",
             "publisher": {
               "@type": "Organization",
               "name": "Astro Answer",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://astroanswer.co/logo.png"
+                "url": "https://astrosight.co/logo.png"
               }
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://astroanswer.co/blog"
+              "@id": "https://astrosight.co/blog"
             },
             "blogPost": currentPosts.map(post => ({
               "@type": "BlogPosting",
@@ -116,27 +123,19 @@ export default function Blog({ posts }) {
         </script>
       </Head>
 
-      <Header />
-
       <div className="flex flex-col min-h-screen bg-[#FFF2E2]">
-        <main className="flex-1 pt-20 px-4 pb-20">
-          {/* Back to Home Link */}
-          <Link href="/" className="flex items-center text-[#FF9933] mb-4 cursor-pointer">
-            <i className="fas fa-arrow-left mr-2"></i>
-            <span>Back to Home</span>
-          </Link>
-
+        <main className="flex-1 px-4 pb-20">
           {/* Page Title */}
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">Spiritual Blogs</h1>
-            <p className="text-gray-600">Explore our collection of insightful articles</p>
+            <h1 className="text-2xl font-bold text-gray-900">{t('spiritualBlogs') || 'Spiritual Blogs'}</h1>
+            <p className="text-gray-600">{t('exploreInsightfulArticles') || 'Explore our collection of insightful articles'}</p>
           </div>
 
           {/* Search Bar */}
           <div className="relative mb-5">
             <Input
               type="text"
-              placeholder="Search blogs..."
+              placeholder={t('searchBlogs') || 'Search blogs...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pr-10 pl-4 py-3 rounded-full bg-white border-none shadow-sm text-sm"
@@ -282,16 +281,14 @@ export default function Blog({ posts }) {
             </button>
           )}
         </main>
-
-        <Footer />
       </div>
-    </>
+    </Layout>
   );
 }
 
 export async function getStaticProps() {
   // Fetch blog posts using fetchEntries
-  const posts = await fetchEntries('astroanswerBlog');
+  const posts = await fetchEntries('astrosightBlog');
 
   // Sanitize the posts
   const sanitizedPosts = posts.map((post) => {

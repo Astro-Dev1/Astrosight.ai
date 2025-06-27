@@ -3,6 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/router';
+import Layout from '../components/Layout';
+import { t } from '../locales/i18n';
+import Head from 'next/head';
 
 const ConsultationPage = () => {
   const router = useRouter();
@@ -92,20 +95,21 @@ const ConsultationPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF6E9]">
-      {/* Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="flex items-center p-4">
-          <Button
-            onClick={() => router.back()}
-            variant="ghost"
-            className="p-2 text-gray-600 hover:text-[#FF9D42]"
-          >
-            <i className="fas fa-arrow-left text-xl" />
-          </Button>
-          <h1 className="text-2xl font-bold text-[#FF9D42] ml-4">Astrologer Consultation</h1>
-        </div>
-      </div>
+    <Layout 
+      title={t('consultation') || 'Consultation'}
+      showBackButton={true}
+      showSideMenu={false}
+      showWallet={true}
+      showLanguage={true}
+      showProfile={true}
+    >
+      <Head>
+        <title>Expert Astrologer Consultation - AstroSight</title>
+        <meta name="description" content="Connect with certified Vedic astrologers for personalized 1:1 video consultations. Get expert guidance on career, relationships, health, and life decisions." />
+        <meta name="keywords" content="astrologer consultation, vedic astrology, personal astrologer, astrology reading, horoscope consultation, expert astrologer" />
+      </Head>
+      
+      <div className="min-h-screen bg-[#FFF6E9]">
 
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-[#FF9D42] to-[#FFB366] text-white py-12 px-4">
@@ -401,7 +405,8 @@ const ConsultationPage = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

@@ -19,7 +19,7 @@ export default function BlogsSection() {
   }, []);
 
   return (
-    <section className="py-8 px-0 ">
+    <section className=" px-0 ">
   <h2 className="text-xl font-bold text-center mb-5">
     Latest <span className="text-[#FF6D3F]">Blogs</span>
   </h2>
@@ -28,7 +28,7 @@ export default function BlogsSection() {
 
   <div
     ref={scrollRef}
-    className="flex overflow-x-auto gap-4 snap-x scroll-smooth min-h-[250px] pb-2"
+    className="flex overflow-x-auto gap-4 snap-x scroll-smooth min-h-[350px] pb-2"
   >
     {latestPosts.map((post) => (
       <motion.div
@@ -45,9 +45,9 @@ export default function BlogsSection() {
           <Image
             src={`https:${post.fields.coverImage.fields.file.url}`}
             alt={post.fields.title}
-            width={500}
+            width={200}
             height={200}
-            className="w-full h-28 object-cover"
+            className="w-auto h-auto object-cover"
           />
         )}
         <div className="p-3 pb-4">
