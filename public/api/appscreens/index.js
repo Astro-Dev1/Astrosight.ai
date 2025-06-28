@@ -8,7 +8,7 @@ import ServicesSection from '../components/ServicesSection';
 import BlogsSection from '../components/BlogsSection';
 // import CompanionsSection from '../components/TodaysPanchang';
 import TestimonialsSection from '../components/DailyHoroscope';
-import Header from '../components/Header';
+import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
 import Head from 'next/head';
 
@@ -108,7 +108,7 @@ const HomeMobileScreen = () => {
       </Head>
   <div>
   
-    <Header   />
+    <CustomHeader title="AstroSight" showBackButton={false} />
     <div className=" bg-orange-50 font-poppins min-h-screen "> {/* pt-16 = 64px */}
  
         <section className="bg-white w-full pt-7">

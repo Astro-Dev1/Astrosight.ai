@@ -82,8 +82,8 @@ const ReportsPage = () => {
         <meta name="keywords" content="AstroSight reports, astrology reports, career analysis, relationship compatibility, marriage report, birth chart analysis, horoscope reports" />
         <meta property="og:title" content="Astrological Reports - AstroSight" />
         <meta property="og:description" content="Unlock profound insights with AstroSight's comprehensive astrological reports covering all aspects of your life." />
-        <meta property="og:url" content="https://astrosight.co/report" />
-        <link rel="canonical" href="https://astrosight.co/report" />
+        <meta property="og:url" content="https://astrosight.ai/report" />
+        <link rel="canonical" href="https://astrosight.ai/report" />
       </Head>
       
       <div className="min-h-screen bg-[#FFF6E9]">

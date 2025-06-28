@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { t } from '../locales/i18n';
 import Head from 'next/head';
 
 const ConsultationPage = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
 

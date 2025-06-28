@@ -18,8 +18,7 @@ const Header = () => {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
   const [currentLanguage, setCurrentLanguage] = useState("en");
-  console.log(currentLanguage)
-
+console.log("Header component rendered",currentLanguage);
   const router = useRouter();
 
   // Local language management

@@ -12,7 +12,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Camera, Bell, Globe2, HelpCircle, Mail, Lock } from "lucide-react";
 import { useJsApiLoader, Autocomplete } from "@react-google-maps/api";
-import Header from "../../components/Header";
+import CustomHeader from "../../components/CustomHeader";
+import SideMenu from "../../components/SideMenu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave } from "@fortawesome/free-solid-svg-icons";
 const GOOGLE_MAPS_API_KEY ="AIzaSyDxEVirHNpI2wclTjIe5k6yIvGPToy59jw"|| "";
@@ -32,6 +33,7 @@ const ProfilePage = () => {
   const [language, setLanguage] = useState("English");
   const [gender, setGender] = useState("male");
   const [error, setError] = useState(null); // Added for error handling
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
 
   const router = useRouter();
   const autocompleteRef = useRef(null);
@@ -103,9 +105,20 @@ const ProfilePage = () => {
   }
 
   return (<>
-        <Header />
+        <CustomHeader 
+          title="Profile"
+          showBackButton={true}
+          showSideMenu={true}
+          onSideMenuPress={() => setIsSideMenuOpen(true)}
+        />
+        
+        <SideMenu 
+          isOpen={isSideMenuOpen} 
+          onClose={() => setIsSideMenuOpen(false)}
+          userProfileData={{ astroProfile, userProfile }}
+        />
 
-    <div className="flex flex-col lg:w-full min-h-screen bg-[#FFF2E2] w-[375px] mx-auto relative pb-16 font-poppins">
+    <div className="flex flex-col max-w-7xl mx-auto min-h-screen bg-[#FFF2E2] relative pb-16 font-poppins pt-16">
 
       <div className="mt-16 px-4 py-6 flex flex-col gap-6">
         {/* Profile Info */}

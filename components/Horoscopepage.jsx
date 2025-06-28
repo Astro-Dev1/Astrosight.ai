@@ -58,14 +58,14 @@ const HoroscopePage = () => {
   );
 
   return (
-    <div className="bg-[#faefe0] mb-9">
+    <div className="bg-[#faefe0] mb-9 w-full flex flex-col items-center">
       {/* Page Header */}
-      <header className="text-center bg-orange-500 p-6">
+      <header className="text-center bg-orange-500 p-6 w-full">
         <h1 className="text-4xl font-bold text-[#fdfcfc] mb-2">Today Horoscope</h1>
         <h2 className="text-2xl text-white">Discover Daily, Weekly, and Monthly Predictions</h2>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Summary Section */}
         <section className="mb-8">
           <h2 className="text-2xl font-bold text-orange-600 mb-4">Daily Horoscope Summary</h2>
@@ -75,11 +75,10 @@ const HoroscopePage = () => {
         </section>
 
         {/* Horoscope Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {zodiacSigns.map((sign) => (
-                    <Link key={sign} href={`/horoscope/${sign.toLowerCase()}`} className="text-orange-600 hover:underline">
-
-            <Card key={sign} className="bg-white shadow-md hover:scale-105 hover:shadow-lg">
+            <Link key={sign} href={`/horoscope/${sign.toLowerCase()}`} className="text-orange-600 hover:underline w-full flex justify-center">
+              <Card key={sign} className="bg-white shadow-md hover:scale-105 hover:shadow-lg w-full">
               <div className="relative h-48">
                 <Image
                   src={`/${sign.toLowerCase()}.jpg`}
@@ -96,7 +95,7 @@ const HoroscopePage = () => {
                   <h3 className="text-xl font-semibold">{`${sign}'s Horoscope Today`}</h3>
                 </CardHeader>
                 <p className="text-gray-700">{truncateText(dailyHoroscopes[sign]?.personal || '', 100)}</p>
-                <div className="mt-4 mt-4 text-center text-orange-600 hover:underline text-center">
+                <div className="mt-4 text-center text-orange-600 hover:underline">
                   Read More
                 </div>
               </CardContent>
@@ -123,7 +122,7 @@ const HoroscopePage = () => {
         {/* Internal Linking */}
         <section className="mt-10">
           <h2 className="text-2xl font-bold text-orange-600 mb-4">Explore More Horoscopes</h2>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             {zodiacSigns.map((sign) => (
               <Link key={sign} href={`/horoscope/${sign.toLowerCase()}`} className="text-orange-600 hover:underline">{`${sign} Daily Horoscope`}</Link>
             ))}

@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Header from '../../../components/Header';
+import CustomHeader from '../../../components/CustomHeader';
 import Footer from '../../../components/Footer';
 // import { RefreshCw } from 'lucide-react';
 import Image from 'next/image';
@@ -150,6 +150,16 @@ export default function CompatibilityResultsPage() {
   return (
     <>
       <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
         <link rel="icon" href="/logo.png" />
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -204,13 +214,13 @@ export default function CompatibilityResultsPage() {
       </Head>
 
       <div className="min-h-screen font-serif bg-[#FFF5E6] ">
-        <Header />
-        <header className="w-full bg-gradient-to-r rounded-3xl font-serif  from-rose-200 to-white p-4 text-center mb-4">
+        <CustomHeader title={`${capitalizedSign} & ${capitalizedPartnerSign}`} showBackButton={true} />
+        <div className="w-full bg-gradient-to-r rounded-3xl font-serif from-rose-200 to-white p-4 text-center mb-4 mt-16">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-2">Zodiac Compatibility</h1>
           <h1 className="text-2xl bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent">
             {capitalizedSign} & {capitalizedPartnerSign}
           </h1>
-        </header>
+        </div>
 
         <main className="container mx-auto px-4 py-8">
           {/* Zodiac Signs Display */}

@@ -2,9 +2,19 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import Link from "next/link";
-import { t } from "../locales/i18n";
 import LanguageSelector from "./LanguageSelector";
 
+// Import translations directly to avoid SSR issues
+import enTranslations from '../locales/en.json';
+import hiTranslations from '../locales/hi.json';
+import knTranslations from '../locales/kn.json';
+
+const translations = {
+  en: enTranslations,
+  hi: hiTranslations,
+  kn: knTranslations,
+};
+console.log(translations)
 // Horoscope data, zodiacImages, and compatibilityData (unchanged for brevity)
 
 // const compatibilityData = {

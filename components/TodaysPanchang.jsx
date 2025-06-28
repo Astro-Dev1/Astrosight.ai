@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { useLoadScript, Autocomplete } from '@react-google-maps/api';
+import Link from 'next/link';
 
 const libraries = ['places'];
 
@@ -22,7 +23,7 @@ const TodaysPanchang = () => {
 
   const fetchPanchangaData = async (timezone = 5.5, latitude = 12.9716, longitude = 77.5946) => {
     try {
-      const response = await fetch('https://uoi9zyf3bh.execute-api.ap-south-1.amazonaws.com/Prod/panchanga', {
+      const response = await fetch('https://am8c7vna0d.execute-api.ap-south-1.amazonaws.com/prod/panchanga', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -101,7 +102,7 @@ const TodaysPanchang = () => {
   return (
     <div className="mb-6">
       <h2 className="text-black text-xl font-semibold mb-3">Today&apos;s Panchang</h2>
-      <div className="flex  gap-1 flex-row sm:flex-row items-center  sm:space-y-0 sm:space-x-2 mb-4">
+      <div className="flex flex-row items-center gap-2 mb-4">
         <Autocomplete
           onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
           onPlaceChanged={handlePlaceSelect}
@@ -111,16 +112,15 @@ const TodaysPanchang = () => {
             placeholder="Enter place"
             value={place}
             onChange={(e) => setPlace(e.target.value)}
-            className="w-auto  bg-white border-[#FF9933] text-gray-700"
+            className="w-full bg-white border-[#FF9933] text-gray-700 h-10"
           />
         </Autocomplete>
-        <input
+        <Input
           type="date"
           value={format(date, 'yyyy-MM-dd')}
           onChange={(e) => setDate(new Date(e.target.value))}
-          className="w-auto rounded-lg  bg-white border-[#FF9933] text-gray-700"
+          className="w-full bg-white border-[#FF9933] text-gray-700 h-10"
         />
-   
       </div>
            <div className="flex items-center justify-center space-x-2 mb-4">
           <Button
@@ -145,8 +145,8 @@ const TodaysPanchang = () => {
             <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
-      <a
-        href="https://readdy.ai/home/ee4c356e-147d-4338-904b-93df931486fa/7008b89f-e01e-4bbf-acee-8df9d06fb650"
+      <Link
+        href="/panchanga"
         data-readdy="true"
       >
         <Card className="bg-white p-5 rounded-xl shadow-lg">
@@ -225,7 +225,7 @@ const TodaysPanchang = () => {
             </div>
           </div>
         </Card>
-      </a>
+      </Link>
     </div>
   );
 };

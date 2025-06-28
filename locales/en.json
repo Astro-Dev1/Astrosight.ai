@@ -1,0 +1,102 @@
+{
+  "header": {
+    "home": "Home",
+    "horoscope": "Horoscope",
+    "compatibility": "Compatibility",
+    "panchanga": "Panchanga",
+    "chat": "Chat",
+    "call": "Call",
+    "shop": "Shop",
+    "blog": "Blog",
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "wallet": "Wallet",
+    "profile": "Profile",
+    "login": "Login",
+    "logout": "Logout",
+    "balance": "Balance"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "hindi": "हिंदी",
+    "kannada": "ಕನ್ನಡ"
+  },  "sidemenu": {
+    "title": "Menu",
+    "home": "Home",
+    "profile": "Profile",
+    "wallet": "Wallet",
+    "order_history": "Order History",
+    "horoscope": "Horoscope",
+    "compatibility": "Compatibility",
+    "panchanga": "Panchanga",
+    "blogs": "Blogs",
+    "reports": "Reports",
+    "book_pooja": "Book Pooja",
+    "refer_earn": "Refer & Earn",
+    "coming_soon": "Coming Soon",
+    "chat": "Chat",
+    "call": "Call",
+    "shop": "Shop",
+    "blog": "Blog",
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "logout": "Logout"
+  },
+  "homepage": {
+    "title": "AstroSight - Expert Vedic Astrology Services",
+    "description": "Experience transformative Vedic astrology readings with professional consultations, daily horoscopes, compatibility analysis, and spiritual guidance at AstroSight.",
+    "keywords": "astrology, vedic astrology, horoscope, daily horoscope, compatibility, panchanga, astrology consultation, spiritual guidance, zodiac signs",
+    "og_title": "AstroSight - Expert Vedic Astrology Services",
+    "og_description": "Experience transformative Vedic astrology readings with professional consultations and spiritual guidance at AstroSight.",
+    "twitter_title": "AstroSight - Expert Vedic Astrology Services",
+    "twitter_description": "Experience transformative Vedic astrology readings with professional consultations and spiritual guidance at AstroSight."
+  },
+  "hero": {
+    "title": "Welcome to AstroSight",
+    "subtitle": "Your Personal Astrology Guide",
+    "description": "Discover your destiny with expert Vedic astrology consultations, daily horoscopes, and personalized spiritual guidance.",
+    "cta": "Start Your Journey"
+  },  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive Astrology Solutions",
+    "todayshoroscope": "Today's Horoscope",
+    "freekundli": "Free Kundli",
+    "compatibility": "Compatibility",
+    "kundlimatching": "Kundli Matching",
+    "chinesehoroscope": "Chinese Horoscope",
+    "todaypanchang": "Today Panchang",
+    "orderhistory": "Order History",
+    "horoscope": {
+      "title": "Daily Horoscope",
+      "description": "Get your personalized daily horoscope based on Vedic astrology principles."
+    },
+    "panchanga": {
+      "title": "Panchanga",
+      "description": "Access daily Panchanga with auspicious timings and planetary positions."
+    }
+  },
+  "panchang": {
+    "title": "Today's Panchang",
+    "enter_place": "Enter place",
+    "today": "Today",
+    "loading": "Loading...",
+    "day": "Day",
+    "tithi": "Tithi",
+    "nakshatra": "Nakshatra",
+    "sunrise": "Sunrise",
+    "sunset": "Sunset",
+    "yoga": "Yoga",
+    "karana": "Karana",
+    "hindu_month": "Hindu Month",
+    "na": "N/A"
+  },
+  "complimentaryAstrologyServices": "COMPLIMENTARY ASTROLOGY SERVICES",
+  "footer": {
+    "copyright": "© 2024 AstroSight. All rights reserved.",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  }
+}

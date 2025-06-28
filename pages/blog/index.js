@@ -2,14 +2,15 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Layout from '../../components/Layout';
+import CustomHeader from '../../components/CustomHeader';
+import SideMenu from '../../components/SideMenu';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { fetchEntries } from '../../lib/contentful';
-import { t } from '../../locales/i18n';
+// import { t } from '../../locales/i18n';
 
 const POSTS_PER_PAGE = 8;
 
@@ -65,16 +66,29 @@ export default function Blog({ posts }) {
   const currentPosts = filteredPosts.slice(0, currentPage * POSTS_PER_PAGE);
   const hasMorePosts = filteredPosts.length > currentPosts.length;
 
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
+
   return (
-    <Layout 
-      title={t('blog') || 'Blog'}
-      showBackButton={true}
-      showSideMenu={false}
-      showWallet={true}
-      showLanguage={true}
-      showProfile={true}
-    >
+    <>
+      <CustomHeader 
+        title={ 'Blog'}
+        showBackButton={true}
+      />
+      <SideMenu 
+        isOpen={sideMenuOpen}
+        onClose={() => setSideMenuOpen(false)}
+      />
       <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
         <link rel="icon" href="/logo.png" />
         <title>Astro Answer Blog - Explore Vedic Astrology Articles and Insights</title>
         <meta name="description" content="Discover insightful Vedic astrology articles, horoscopes, planetary influences, and remedies. Learn how astrology shapes your life journey with expert guidance from Astro Answer." />
@@ -127,15 +141,15 @@ export default function Blog({ posts }) {
         <main className="flex-1 px-4 pb-20">
           {/* Page Title */}
           <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">{t('spiritualBlogs') || 'Spiritual Blogs'}</h1>
-            <p className="text-gray-600">{t('exploreInsightfulArticles') || 'Explore our collection of insightful articles'}</p>
+            <h1 className="text-2xl font-bold text-gray-900">{ 'Spiritual Blogs'}</h1>
+            <p className="text-gray-600">{ 'Explore our collection of insightful articles'}</p>
           </div>
 
           {/* Search Bar */}
           <div className="relative mb-5">
             <Input
               type="text"
-              placeholder={t('searchBlogs') || 'Search blogs...'}
+              placeholder={'Search blogs...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pr-10 pl-4 py-3 rounded-full bg-white border-none shadow-sm text-sm"
@@ -282,7 +296,7 @@ export default function Blog({ posts }) {
           )}
         </main>
       </div>
-    </Layout>
+    </>
   );
 }
 

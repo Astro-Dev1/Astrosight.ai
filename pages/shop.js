@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import { t } from '../locales/i18n';
 
 const ShopPage = () => {
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -110,8 +108,8 @@ const ShopPage = () => {
         <meta name="keywords" content="AstroSight shop, spiritual products, rudraksha, gemstones, healing crystals, energized bracelets, puja items, astrological remedies" />
         <meta property="og:title" content="Spiritual Shop - AstroSight" />
         <meta property="og:description" content="Discover authentic spiritual products at AstroSight's shop - from rudraksha and gemstones to healing crystals and energized items." />
-        <meta property="og:url" content="https://astrosight.co/shop" />
-        <link rel="canonical" href="https://astrosight.co/shop" />
+        <meta property="og:url" content="https://astrosight.ai/shop" />
+        <link rel="canonical" href="https://astrosight.ai/shop" />
       </Head>
       
       <div className="min-h-screen bg-[#FFF6E9]">

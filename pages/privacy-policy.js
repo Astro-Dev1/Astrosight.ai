@@ -14,8 +14,8 @@ const PrivacyPolicyPage = () => {
         <meta name="keywords" content="AstroSight privacy policy, data protection, personal information, astrology app privacy, secure data handling" />
         <meta property="og:title" content="Privacy Policy - AstroSight" />
         <meta property="og:description" content="AstroSight's comprehensive privacy policy outlining our data protection practices and commitment to user privacy." />
-        <meta property="og:url" content="https://astrosight.co/privacy-policy" />
-        <link rel="canonical" href="https://astrosight.co/privacy-policy" />
+        <meta property="og:url" content="https://astrosight.ai/privacy-policy" />
+        <link rel="canonical" href="https://astrosight.ai/privacy-policy" />
       </Head>
       
       <div className="min-h-screen bg-[#FFF6E9] p-4">

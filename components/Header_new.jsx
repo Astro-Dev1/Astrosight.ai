@@ -6,6 +6,7 @@ import SideMenu from "./SideMenu";
 import CustomHeader from "./CustomHeader";
 import Cookies from "js-cookie";
 import { fetchMyProfile } from "../services/centralApi";
+import {  setLanguage, getLanguage, useForceUpdate } from "../locales/i18n";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,35 +17,14 @@ const Header = () => {
     phone: "",
   });
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
-  const [currentLanguage, setCurrentLanguage] = useState("en");
-  console.log(currentLanguage)
-
-  const router = useRouter();
-
-  // Local language management
-  const getStoredLanguage = () => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('selectedLanguage') || 'en';
-    }
-    return 'en';
-  };
-
-  const setStoredLanguage = (langCode) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('selectedLanguage', langCode);
-      // Dispatch event for other components
-      window.dispatchEvent(new CustomEvent('languageChanged', { detail: langCode }));
-    }
-  };
-
-  // Initialize language from storage
-  useEffect(() => {
-    const storedLang = getStoredLanguage();
+  const [selectedLanguage, setSelectedLanguage] = useState(() => {
+    const currentLang = getLanguage();
     const langMap = { en: "English", hi: "हिंदी", kn: "ಕನ್ನಡ" };
-    setCurrentLanguage(storedLang);
-    setSelectedLanguage(langMap[storedLang] || "English");
-  }, []);
+    return langMap[currentLang] || "English";
+  });
+
+  const forceUpdate = useForceUpdate();
+  const router = useRouter();
 
   // Fetch user data
   const fetchUserData = async () => {
@@ -99,11 +79,12 @@ const Header = () => {
       setIsLoggedIn(false);
     }
   };
+
   // Handle language change
   const handleLanguageChange = (langCode, langName) => {
-    setStoredLanguage(langCode);
-    setCurrentLanguage(langCode);
+    setLanguage(langCode);
     setSelectedLanguage(langName);
+    forceUpdate();
   };
 
   // Handle logout
@@ -133,19 +114,20 @@ const Header = () => {
   useEffect(() => {
     fetchUserData();
   }, []);
+
   // Listen for language changes from other components
   useEffect(() => {
-    const handleLanguageUpdate = (event) => {
-      const langCode = event.detail;
+    const handleLanguageUpdate = () => {
+      const currentLang = getLanguage();
       const langMap = { en: "English", hi: "हिंदी", kn: "ಕನ್ನಡ" };
-      setCurrentLanguage(langCode);
-      setSelectedLanguage(langMap[langCode] || "English");
+      setSelectedLanguage(langMap[currentLang] || "English");
+      forceUpdate();
     };
 
     // Listen for custom language change events
     window.addEventListener('languageChanged', handleLanguageUpdate);
     return () => window.removeEventListener('languageChanged', handleLanguageUpdate);
-  }, []);
+  }, [forceUpdate]);
 
   return (
     <>

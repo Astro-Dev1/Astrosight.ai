@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs,  TabsContent } from "@/components/ui/tabs";
 import HoroscopeCard from "../../components/Horor";
 import HoroscopePageForMW from "../../components/HoroscopePageForMW";
+import CustomHeader from "../../components/CustomHeader";
 // Horoscope data (unchanged from your input)
 const horoscopeData = {
   "aries": {
@@ -733,6 +734,16 @@ const HoroscopePage = () => {
   return (
     <>
       <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
         <link rel="icon" href="/logo.png" />
         <link
           rel="stylesheet"
@@ -768,18 +779,10 @@ const HoroscopePage = () => {
 
       <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
         {/* Header */}
-        <header className="fixed top-0 w-full bg-[#FF9960] z-50 px-4 py-4 flex justify-between items-center shadow-sm">
-          <Link
-            href="/"
-            className="text-white cursor-pointer"
-          >
-            <i className="fas fa-arrow-left text-xl"></i>
-          </Link>
-          <h1 className="text-white font-bold text-xl">{capitalizedSign} Horoscope</h1>
-          <button className="text-white cursor-pointer">
-            <i className="fas fa-share-alt text-xl"></i>
-          </button>
-        </header>
+        <CustomHeader 
+          title={`${capitalizedSign} Horoscope`}
+          showBackButton={true}
+        />
         {/* Daily Overview Card */}
 
 

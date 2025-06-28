@@ -1,13 +1,16 @@
 // ../pages/blog/[slug].js
 
 import Head from 'next/head';
+import Script from 'next/script';
 import { client } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import Header from '../../components/Header';
+import CustomHeader from '../../components/CustomHeader';
+import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
 import { CalendarIcon, Clock, Tag } from 'lucide-react';
 
 // Custom rendering options for Contentful rich text - Enhanced for Medium style with better spacing
@@ -158,6 +161,8 @@ function calculateReadingTime(content) {
 }
 
 export default function Post({ post, relatedPosts }) {
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  
   const {
     title,
     publishDate,
@@ -177,8 +182,8 @@ export default function Post({ post, relatedPosts }) {
   const readingTime = calculateReadingTime([ bodyContent]);
 
   const keywords = [primaryKeyword, ...(secondaryKeywords || [])].join(', ');
-  const fullUrl = `https://astroanswer.co/blog/${slug}`;
-  const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astroanswer.co/default-blog-image.jpg';
+  const fullUrl = `https://astrosight.co/blog/${slug}`;
+  const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.co/default-blog-image.jpg';
 
   return (
     <>
@@ -206,10 +211,7 @@ export default function Post({ post, relatedPosts }) {
         {/* Canonical URL */}
         <link rel="canonical" href={fullUrl} />
 
-        {/* Google Fonts - For Medium-like Typography */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
+        {/* Note: Google Fonts should be moved to _document.js */}
 
         {/* Structured Data for Article */}
         <script type="application/ld+json">
@@ -222,15 +224,15 @@ export default function Post({ post, relatedPosts }) {
             "dateModified": post.sys.updatedAt,
             "author": {
               "@type": "Organization",
-              "name": "Astro Answer",
-              "url": "https://astroanswer.co/about"
+              "name": "AstroSight",
+              "url": "https://astrosight.co/about-us"
             },
             "publisher": {
               "@type": "Organization",
-              "name": "Astro Answer",
+              "name": "AstroSight",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://astroanswer.co/logo.png"
+                "url": "https://astrosight.co/logo.png"
               }
             },
             "description": metaDescription,
@@ -335,21 +337,51 @@ export default function Post({ post, relatedPosts }) {
           }
         `}</style>
       </Head>
-      <Header />
+      
+      {/* Google Analytics */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"
+        strategy="afterInteractive"
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}
+      />
+      
+      {/* Custom Header and Side Menu */}
+      <CustomHeader 
+        title={"Blog"} 
+        showBackButton={true}
+        showSideMenu={true}
+        onSideMenuPress={() => setIsSideMenuOpen(true)}
+      />
+      
+      <SideMenu 
+        isOpen={isSideMenuOpen} 
+        onClose={() => setIsSideMenuOpen(false)}
+      />
 
       <div className="min-h-screen bg-white">
-        {/* Header */}
+        {/* Content */}
 
         {/* Hero Section with Cover Image */}
         {coverImage && (
-          <div className="relative w-full h-96 md:h-[500px] ">
+          <div className="relative w-full mt-9 h-96 md:h-[500px] ">
             <Image
               src={`https:${coverImage.fields.file.url}`}
               alt={coverImage.fields.title || title}
               fill
               priority
-              sizes="100vw"
-              className="object-cover"
+              sizes="200vw"
+              className="cvertical object-cover rounded-lg shadow-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>

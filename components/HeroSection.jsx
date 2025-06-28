@@ -165,7 +165,7 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column - Text content */}
             <div className="space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
-              <div className="text-2xl/9 text-[#3A3026] px-auto font-semibold" style={{ fontFamily: 'Kohinoor Devanagari, Noto Sans Devanagari, Arial, sans-serif' }}>
+              <div className="text-2xl/9 text-[#3A3026] px-auto font-bold" style={{ fontFamily: 'Kohinoor Devanagari, Noto Sans Devanagari, Arial, sans-serif' }}>
                 <span className="text-[#fd9474] text-2xl font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
@@ -199,7 +199,7 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">Play Store</div>
                     </div>
                   </div>
-                                    <spam className="text-xs text-green-400">comming soon </spam>
+                                    <spam className="text-xs text-green-400">coming soon </spam>
                 </Link>
                 <Link href="https://AstroSight.com/download" passHref>
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
@@ -216,7 +216,7 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">App Store</div>
                     </div>
                   </div>
-                                    <spam className="text-xs text-green-400">comming soon </spam>
+                                    <spam className="text-xs text-green-400">coming soon </spam>
 
                 </Link>
               </div>

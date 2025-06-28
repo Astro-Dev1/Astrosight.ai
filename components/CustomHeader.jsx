@@ -91,7 +91,7 @@ const CustomHeader = ({
               src={titleImage}
               alt="Title"
               width={160}
-              height={32}
+              height={132}
               className="h-8 w-40 max-w-40 object-contain"
             />
           ) : (
@@ -124,23 +124,22 @@ const CustomHeader = ({
                 console.log('Language button clicked!');
                 if (onLanguagePress) onLanguagePress();
               }}
-              className="p-3 hover:bg-orange-100 rounded-lg transition-colors"
+              className="p-1 hover:bg-orange-100 rounded-lg transition-colors"
             >
               <FontAwesomeIcon icon={faLanguage} className="w-5 h-5" style={{ color: iconColor }} />
             </button>
           )}
-          
-          {showProfile && profileImageUrl && (
+            {showProfile && (
             <button 
               onClick={onProfilePress} 
-              className="p-1 hover:opacity-80 transition-opacity"
+              className=" hover:opacity-80 transition-opacity"
             >
               <Image
-                src={profileImageUrl}
+                src={profileImageUrl || "/ZodiacSigns/male/Aries.webp"}
                 alt="Profile"
                 width={40}
                 height={40}
-                className="h-10 w-10 rounded-full border-2 border-orange-400 object-cover"
+                className="h-15 w-15 rounded-full border-2 border-orange-400 object-cover"
               />
             </button>
           )}

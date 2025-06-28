@@ -5,10 +5,11 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import CustomHeader from '../../components/CustomHeader';
 
 const zodiacSigns = [
   { name: "Aries", dates: "Mar 21 - Apr 19", imageUrl: "/zodiacImages/aries.png" },
@@ -173,6 +174,16 @@ export default function PartnerSignPage() {
   return (
     <>
       <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
         <link rel="icon" href="/logo.png" />
         <title>
           {`${capitalizedSign} Compatibility | Choose Partner's Zodiac | AstroAnswer`}
@@ -238,30 +249,10 @@ export default function PartnerSignPage() {
 
       <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-sans">
         {/* Header */}
-        <header className="fixed top-0 w-full bg-[#FFF2E2] z-50 px-4 py-4 flex justify-between items-center shadow-sm">
-          <div className="flex items-center">
-            <Link href="/home" className="cursor-pointer mr-3">
-              <i className="fas fa-arrow-left text-2xl text-black"></i>
-            </Link>
-            <div className="text-[#FF9960] font-bold text-xl">
-              {capitalizedSign} Compatibility
-            </div>
-          </div>
-          <div className="flex items-center gap-5">
-            <button className="text-black cursor-pointer">
-              <i className="fas fa-wallet text-xl"></i>
-            </button>
-            <button className="text-black cursor-pointer">
-              <i className="fas fa-language text-xl"></i>
-            </button>
-            <Avatar className="h-10 w-10 cursor-pointer">
-              <AvatarImage src="https://readdy.ai/api/search-image?query=icon%252C%25203D%2520cartoon%2520avatar%2520of%2520a%2520professional%2520Indian%2520person%252C%2520minimalist%2520design%252C%2520smooth%2520rounded%2520shapes%252C%2520subtle%2520shading%252C%2520no%2520outlines%252C%2520centered%2520composition%252C%2520isolated%2520on%2520white%2520background%252C%2520professional%2520aesthetic&width=80&height=80&seq=profile&orientation=squarish" />
-              <AvatarFallback className="bg-[#FF9933] text-white">
-                SH
-              </AvatarFallback>
-            </Avatar>
-          </div>
-        </header>
+        <CustomHeader 
+          title={`${capitalizedSign} Compatibility`}
+          showBackButton={true}
+        />
 
         {/* Main Content */}
         <main className="flex-1 pt-20 px-4 pb-20">

@@ -4,8 +4,18 @@ import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Card, CardContent,CardTitle } from '@/components/ui/card';
-import { t } from '../locales/i18n';
+import { Card, CardContent } from '@/components/ui/card';
+
+// Import translations directly to avoid SSR issues
+import enTranslations from '../locales/en.json';
+import hiTranslations from '../locales/hi.json';
+import knTranslations from '../locales/kn.json';
+
+const translations = {
+  en: enTranslations,
+  hi: hiTranslations,
+  kn: knTranslations,
+};
 
 // Service cards matching the exact design from screenshot
 const cards = [
@@ -45,14 +55,61 @@ const cards = [
 export default function ServicesSection() {
   const scrollRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState('en');
+
+  // Language helper functions
+  const getLanguage = () => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('language') || 'en';
+    }
+    return 'en';
+  };
+
+  const t = (key, fallback = key) => {
+    const translation = translations[currentLanguage];
+    
+    if (!translation) {
+      return fallback;
+    }
+    
+    // Handle nested keys (e.g., "services.title")
+    const keys = key.split('.');
+    let value = translation;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return fallback;
+      }
+    }
+    
+    return typeof value === 'string' ? value : fallback;
+  };
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    
+    // Initialize language
+    setCurrentLanguage(getLanguage());
+    
+    // Listen for language changes
+    const handleLanguageChange = () => {
+      setCurrentLanguage(getLanguage());
+    };
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('languageChanged', handleLanguageChange);
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      
+      return () => {
+        window.removeEventListener('languageChanged', handleLanguageChange);
+        window.removeEventListener('resize', handleResize);
+      };
+    }
   }, []);
 
   const scroll = (direction) => {
@@ -79,7 +136,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <div className="relative w-full py-8 bg-gray-100">
+    <div className="relative w-full ">
       {/* Section Header */}
       <div className="text-center mb-6">
         <h2 
@@ -95,7 +152,7 @@ export default function ServicesSection() {
         <>
           <button
             onClick={() => scroll('left')}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-gray-400 hover:bg-gray-500 rounded-full p-2 z-10 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 rounded-full p z-10 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Scroll left"
             disabled={!canScrollLeft()}
           >
@@ -113,7 +170,7 @@ export default function ServicesSection() {
       )}
 
       {/* Services Cards */}
-      <div className="relative px-4">
+      <div className="relative ">
         <div
           ref={scrollRef}
           className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
@@ -133,7 +190,7 @@ export default function ServicesSection() {
                 minWidth: isMobile ? '110px' : '160px',
               }}
             >
-              <Card className="h-full bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border-0 overflow-hidden">
+              <Card className="h-full rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border-0 overflow-hidden">
                 <CardContent className="p-4 text-center">
                   {/* Icon Circle */}
                   <div className="w-12 h-12 bg-[#FF6D3F] rounded-full flex items-center justify-center mx-auto mb-3">

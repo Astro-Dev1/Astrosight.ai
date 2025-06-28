@@ -1,0 +1,177 @@
+{
+  "welcome": "Welcome",
+  "wallet": "Wallet",
+  "add_money": "Add Money",
+  "view_all_transactions": "View All Transactions",
+  "language": "Language",
+  "order_history": "Order History",
+  "select_language": "Select Language",
+  "cancel": "Cancel",
+  "exit": "Exit",
+  "exit_app_title": "Exit App",
+  "exit_app_message": "Are you sure you want to exit the app?",
+  "home": "Home",
+  "compatibility": "Match",
+  "blogs": "Blogs",
+  "support": "Support",
+  "history": "History",
+  "services": "Services",
+  "account": "Account",
+  "contact": "Contact",
+  "loading": "Loading...",
+  "error": "Error",
+  "success": "Success",
+  "retry": "Retry",
+  "go_back": "Go Back",
+  "next": "Next",
+  "previous": "Previous",
+  "skip": "Skip",
+  "done": "Done",
+  "close": "Close",
+  "confirm": "Confirm",
+  "yes": "Yes",
+  "no": "No",
+  "delete": "Delete",
+  "edit": "Edit",
+  "update": "Update",
+  "remove": "Remove",
+  "add": "Add",
+  "search": "Search",
+  "filter": "Filter",
+  "sort": "Sort",
+  "refresh": "Refresh",
+  "share": "Share",
+  "copy": "Copy",
+  "paste": "Paste",
+  "cut": "Cut",
+  
+  "aries": "Aries",
+  "taurus": "Taurus", 
+  "gemini": "Gemini",
+  "cancer": "Cancer",
+  "leo": "Leo",
+  "virgo": "Virgo",
+  "libra": "Libra",
+  "scorpio": "Scorpio",
+  "sagittarius": "Sagittarius",
+  "capricorn": "Capricorn",
+  "aquarius": "Aquarius",
+  "pisces": "Pisces",
+  
+  "horoscope": {
+    "loading": "Loading...",
+    "error": "Error",
+    "invalid_sign": "Invalid or missing zodiac sign",
+    "return_home": "Return to Home",
+    "horoscope_title": "{{sign}} Horoscope",
+    "share": "Share",
+    "also_check": "Also Check",
+    "weekly": "Weekly",
+    "monthly": "Monthly", 
+    "yearly": "Yearly",
+    "loading_data": "Loading...",
+    "not_available": "Horoscope not available",
+    "career_education": "Career & Education",
+    "weekly_not_available": "Weekly horoscope not available.",
+    "monthly_not_available": "Monthly horoscope not available.",
+    "yearly_not_available": "Yearly horoscope not available.",
+    "horoscope_unavailable": "Horoscope data unavailable.",
+    "week_of": "Week of",
+    "meta": {
+      "title": "{{sign}} Horoscope | Weekly, Monthly, Yearly Predictions | AstroSight",
+      "description": "Discover your {{sign}} horoscope. Get weekly, monthly, and yearly predictions for love, career, health, and more at AstroSight.",
+      "keywords": "{{sign}} horoscope, {{sign}} zodiac, astrology, weekly horoscope, monthly horoscope, yearly horoscope",
+      "og_title": "{{sign}} Horoscope | AstroSight",
+      "og_description": "Get your personalized {{sign}} horoscope. Weekly, monthly, and yearly predictions for love, career, and more.",
+      "twitter_title": "{{sign}} Horoscope | AstroSight",
+      "twitter_description": "Explore your {{sign}} horoscope. Get insights on love, career, and more with our weekly, monthly, and yearly predictions."
+    }
+  },
+
+  "daily_overview": "Daily Overview",
+  "loading_daily_horoscope": "Calculating planetary positions and their influence on your chart...",
+  "important_times": "Important Times",
+  "auspicious_time": "Auspicious Time",
+  "inauspicious_time": "Inauspicious Time",
+  "daily_wisdom": "Daily Wisdom",
+  "detailed_predictions": "Detailed Predictions",
+  "love_relationships": "Love & Relationships",
+  "career_money": "Career & Money",
+  "health_wellness": "Health & Wellness",
+  "personal_growth": "Personal Growth",
+  "need_more_clarity": "Need More Clarity?",
+  "lucky_elements": "Lucky Elements",
+  "lucky_numbers": "Lucky Numbers",
+  "lucky_colors": "Lucky Colors",
+  "daily_timeline": "Daily Timeline",
+
+  "spiritual_blogs": "Spiritual Blogs",
+  "explore_collection": "Explore our collection of insightful articles",
+  "search_blogs": "Search blogs...",
+  "all": "All",
+  "astrology": "Astrology",
+  "meditation": "Meditation",
+  "crystals": "Crystals",
+  "spirituality": "Spirituality",
+  "numerology": "Numerology",
+  "palmistry": "Palmistry",
+  "tarot": "Tarot",
+  "no_blogs_found": "No blogs found",
+  "adjust_search_filter": "Try adjusting your search or filter to find what you're looking for.",
+  "clear_filters": "Clear Filters",
+  "load_more": "Load More",
+
+  "common": {   
+    "continue": "Continue",
+    "submitting": "Submitting...",
+    "completeProfile": "Complete Profile",
+    "step": "Step {{current}} of {{total}}",
+    "selectLanguage": "Select Language",
+    "language": "Language"
+  },
+
+  "chatbotScreen": {
+    "inputPlaceholder": "Ask something about your horoscope...",
+    "personas": {
+      "expert": {
+        "name": "Expert",
+        "description": "Detailed and technical astrological insights."
+      },
+      "balanced": {
+        "name": "Balanced",
+        "description": "A mix of depth and approachability."
+      },
+      "youth": {
+        "name": "Youth",
+        "description": "Fun and easy-to-understand responses."
+      }
+    },
+    "lowBalance": {
+      "title": "Low Balance",
+      "message": "Your wallet balance is ₹{{balance}}. Please recharge to continue asking questions.",
+      "recharge": "Recharge Now"
+    },
+    "tryAgain": "Try Again",
+    "errorMessages": {
+      "noText": "No text available to send",
+      "insufficientBalance": "Insufficient Balance"
+    },
+    "history": {
+      "title": "Chat History",
+      "empty": "No chat history yet",
+      "noHistory": "No chat history found",
+      "loadingError": "Error loading chat history. Please try again."
+    },
+    "feedback": {
+      "thanks": "Thank you for your feedback!"
+    },
+    "loadingMessages": {
+      "birthChart": "Analyzing your birth chart...",
+      "planetaryPositions": "Examining planetary positions...",
+      "houseInfluences": "Calculating house influences...",
+      "cosmicAlignments": "Interpreting cosmic alignments...",
+      "karmicConnections": "Exploring karmic connections...",
+      "dashaPeriods": "Reviewing dasha periods..."
+    }
+  }
+}

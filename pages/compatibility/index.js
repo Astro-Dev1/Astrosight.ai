@@ -3,7 +3,8 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Header from '../../components/Header';
+import CustomHeader from '../../components/CustomHeader';
+import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
 import { Card, CardContent } from "@/components/ui/card";
 import Image from 'next/image';
@@ -65,6 +66,7 @@ export default function CompatibilityPage() {
   // const [selectedSign, setSelectedSign] = useState(`&lsquo;``&lsquo;`);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isExpandedcopatibility, setIsExpandedcopatibility] = useState(false);
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   const horoscopeTypes = ["Todays", "Monthly", "Tomorrow", "Weekly"];
   const handleSignSelect = (sign) => {
@@ -76,6 +78,16 @@ export default function CompatibilityPage() {
   return (
     <>
       <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
         <link rel="icon" href="/logo.png" />
         <title>Zodiac Love Compatibility Calculator | astrosight</title>
         <meta name="description" content="Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more." />
@@ -85,17 +97,17 @@ export default function CompatibilityPage() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Zodiac Love Compatibility Calculator | astrosight" />
         <meta property="og:description" content="Explore your zodiac love compatibility and find your perfect astrological match with our free compatibility calculator." />
-        <meta property="og:url" content="https://astrosight.co/compatibility" />
-        <meta property="og:image" content="https://astrosight.co/compatibility-image.jpg" />
+        <meta property="og:url" content="https://astrosight.ai/compatibility" />
+        <meta property="og:image" content="https://astrosight.ai/compatibility-image.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Zodiac Compatibility Calculator | astrosight" />
         <meta name="twitter:description" content="Discover your astrological compatibility for love, friendship, and more with our free zodiac matching tool." />
-        <meta name="twitter:image" content="https://astrosight.co/compatibility-image.jpg" />
+        <meta name="twitter:image" content="https://astrosight.ai/compatibility-image.jpg" />
 
         {/* Canonical URL */}
-        <link rel="canonical" href="https://astrosight.co/compatibility" />
+        <link rel="canonical" href="https://astrosight.ai/compatibility" />
 
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -104,17 +116,28 @@ export default function CompatibilityPage() {
             "@type": "WebPage",
             "name": "Zodiac Love Compatibility Calculator",
             "description": "Free astrology compatibility calculator to find your perfect zodiac match.",
-            "url": "https://astrosight.co/compatibility",
+            "url": "https://astrosight.ai/compatibility",
             "provider": {
               "@type": "Organization",
               "name": "astrosight",
-              "url": "https://astrosight.co"
+              "url": "https://astrosight.ai"
             }
           })}
         </script>
       </Head>
-      <Header />
-      <div className="min-h-screen mt-16 font-serif  bg-[#f7f1e8] ">
+      
+      <CustomHeader 
+        title="Compatibility"
+        showBackButton={true}
+        showSideMenu={true}
+        onSideMenuPress={() => setSideMenuOpen(true)}
+      />
+      
+      <SideMenu 
+        isOpen={sideMenuOpen} 
+        onClose={() => setSideMenuOpen(false)}
+      />
+      <div className="min-h-screen pt-16 font-serif bg-[#f7f1e8]">
 
 
         <header className="w-full bg-gradient-to-r  rounded-3xl font-serif  from-rose-200 to-white  p-4 text-center mb-4">
@@ -152,7 +175,7 @@ export default function CompatibilityPage() {
           <h2 className="text-2xl mt-5 flex justify-center font-bold  items-center bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-8">Choose Your Zodiac Sign</h2>
 
 
-          <div className="mb-8  bg-gradient-to-r rounded-3xl font-serif  from-rose-200 to-white mt-5 rounded-2xl justify-center  items-center">
+          <div className="mb-8 bg-gradient-to-r rounded-3xl font-serif from-rose-200 to-white mt-5 justify-center items-center">
             <div className="container  mt-9 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-1">
               {zodiacSigns.map((sign) => (
                 <Card

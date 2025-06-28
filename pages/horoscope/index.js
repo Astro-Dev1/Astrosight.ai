@@ -2,14 +2,27 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
-import Layout from '../../components/Layout';
+import Script from 'next/script';
 import HoroscopePage from '../../components/Horoscopepage';
 import { fetchMyProfile } from '../../services/centralApi'; // Import the API service
-import { t } from '../../locales/i18n';
+import CustomHeader from '../../components/CustomHeader';
+import SideMenu from '../../components/SideMenu';
+
+// COMMENTED OUT FOR NOW: Translation logic
+// import enTranslations from '../../locales/en.json';
+// import hiTranslations from '../../locales/hi.json';
+// import knTranslations from '../../locales/kn.json';
+
+// Translation utilities - simple version for now
+const t = (key, fallback = key) => {
+  return fallback;
+};
 
 export default function HoroscopeIndex() {
   const [isLoading, setIsLoading] = useState(true);
   const [shouldDisplayPage, setShouldDisplayPage] = useState(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  // const [currentLanguage, setCurrentLanguage] = useState('en');
   const router = useRouter();
 
   // List of valid zodiac signs
@@ -55,24 +68,52 @@ export default function HoroscopeIndex() {
 
     checkUserProfile();
   }, [router]);
+  
+  // COMMENTED OUT: Language initialization
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const storedLanguage = localStorage.getItem('language') || 'en';
+  //     setCurrentLanguage(storedLanguage);
+      
+  //     // Listen for language changes
+  //     const handleLanguageChange = () => {
+  //       const newLanguage = localStorage.getItem('language') || 'en';
+  //       setCurrentLanguage(newLanguage);
+  //     };
+      
+  //     window.addEventListener('languageChanged', handleLanguageChange);
+      
+  //     return () => {
+  //       window.removeEventListener('languageChanged', handleLanguageChange);
+  //     };
+  //   }
+  // }, []);
 
   // Display a loading state while fetching the profile
   if (isLoading) {
     return (
-      <Layout 
-        title={t('horoscope') || 'Horoscope'}
-        showBackButton={true}
-        showSideMenu={false}
-        showWallet={true}
-        showLanguage={true}
-        showProfile={true}
-      >
-        <div className="flex flex-col min-h-screen bg-orange-50 font-inter">
+      <>
+        <CustomHeader 
+          title="Horoscope"
+          showBackButton={true}
+          showSideMenu={false}
+          showWallet={true}
+          showLanguage={false}
+          showProfile={true}
+          onSideMenuPress={() => setIsSideMenuOpen(true)}
+        />
+        <div className="flex flex-col min-h-screen bg-orange-50 font-inter pt-16">
           <main className="container mx-auto px-4 py-8 flex-grow flex items-center justify-center">
-            <p className="text-lg text-gray-700">{t('loading') || 'Loading...'}</p>
+            <p className="text-lg text-gray-700">{t('loading', 'Loading...')}</p>
           </main>
         </div>
-      </Layout>
+        
+        {/* Side Menu */}
+        <SideMenu 
+          isOpen={isSideMenuOpen} 
+          onClose={() => setIsSideMenuOpen(false)}
+        />
+      </>
     );
   }
 
@@ -82,18 +123,22 @@ export default function HoroscopeIndex() {
   }
 
   return (
-    <Layout 
-      title={t('horoscope') || 'Horoscope'}
-      showBackButton={true}
-      showSideMenu={false}
-      showWallet={true}
-      showLanguage={true}
-      showProfile={true}
-    >
+    <>
       {/* SEO Metadata */}
       <Head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
         <link rel="icon" href="/logo.png" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kohinoor+Devanagari:wght@300;400;500;600;700&display=swap" />
         <title>Daily Horoscope Predictions | Zodiac Signs & Astrology Insights | AstroSight</title>
         <meta
           name="description"
@@ -121,58 +166,68 @@ export default function HoroscopeIndex() {
         <link rel="canonical" href="https://astrosight.ai/horoscope" />
       </Head>
 
-      <div className="flex flex-col min-h-screen bg-orange-50 font-inter">
-        <main className="container mx-auto px-4 py-8 flex-grow">
+      {/* Custom Header */}
+      <CustomHeader 
+        title="Horoscope"
+        showBackButton={true}
+        showSideMenu={true}
+        showWallet={true}
+        showLanguage={false}
+        showProfile={true}
+        onSideMenuPress={() => setIsSideMenuOpen(true)}
+      />
+
+      {/* Main Content */}
+      <div className="flex flex-col min-h-screen bg-orange-50 font-inter pt-16">
+        <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-grow">
           {/* Page Header */}
           <section className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-orange-600">
-              {t('dailyHoroscopePredictions') || 'Daily Horoscope Predictions for All Zodiac Signs'}
+            <h1 className="text-3xl md:text-4xl font-bold text-orange-600 font-kohinoor">
+              Daily Horoscope Predictions for All Zodiac Signs
             </h1>
             <h2 className="text-lg md:text-xl font-semibold text-gray-700 mt-2">
-              {t('discoverAstrologicalInsights') || 'Discover Daily, Weekly, and Monthly Astrological Insights'}
+              Discover Daily, Weekly, and Monthly Astrological Insights
             </h2>
           </section>
 
           {/* Horoscope Cards */}
           <HoroscopePage />
-
-          {/* Call-to-Action Section (Commented Out) */}
-          {/* <section className="text-center mt-8">
-            <CustomLinkButton
-              headline="Discover More Astrological Insights"
-              buttonText="Explore More"
-              buttonPath="/blog"
-            />
-          </section> */}
         </main>
       </div>
 
+      {/* Side Menu */}
+      <SideMenu 
+        isOpen={isSideMenuOpen} 
+        onClose={() => setIsSideMenuOpen(false)}
+      />
+
       {/* Structured Data */}
-      <script
+      <Script
+        id="horoscope-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "AstrologicalService",
-            "name": "astrosight Daily Horoscope",
+            "name": "AstroSight Daily Horoscope",
             "description": "Get personalized daily, weekly, and monthly horoscopes for all zodiac signs.",
-            "url": "https://astrosight.co/horoscope",
+            "url": "https://astrosight.ai/horoscope",
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": "https://astrosight.co/horoscope",
+              "@id": "https://astrosight.ai/horoscope",
             },
             "provider": {
               "@type": "Organization",
-              "name": "astrosight",
+              "name": "AstroSight",
             },
             "potentialAction": {
               "@type": "ReadAction",
-              "target": "https://astrosight.co/horoscope/{zodiac_sign}",
+              "target": "https://astrosight.ai/horoscope/{zodiac_sign}",
               "query-input": "required name=zodiac_sign",
             },
           }),
         }}
       />
-    </Layout>
+    </>
   );
 }

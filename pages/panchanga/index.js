@@ -1,19 +1,24 @@
 import React from 'react';
 
-import Header from '../../components/Header';
+import CustomHeader from '../../components/CustomHeader';
+import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
 import Panchanga from '../../components/panchanga';
 import Head from 'next/head';
+import { useState } from 'react';
 // import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 // import Image from 'next/image';
 // import Link from 'next/link';
 export default function PanchangaPage() {
+  // State for side menu
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  
   // const blurDataURL = '../../public/'
   return (
     <>
       <Head>
       <link rel="icon" href="/logo.png" />
-        <title>Panchanga - Daily Hindu Calendar & Auspicious Timings | Astro Answer</title>
+        <title>Panchanga - Daily Hindu Calendar & Auspicious Timings | AstroSight</title>
         <meta name="description" content="Access daily Panchanga calculations for Tithi, Nakshatra, Yoga, Karana, and Vara. Get accurate Hindu calendar timings, muhurat, and auspicious periods for your location." />
         <meta name="keywords" content="Panchanga, Hindu calendar, Tithi, Nakshatra, Yoga, Karana, Vara, muhurat, auspicious timing, Vedic astrology, Hindu astronomy" />
 
@@ -32,6 +37,22 @@ export default function PanchangaPage() {
 
         {/* Canonical URL */}
         <link rel="canonical" href="https://astrosight.co/panchanga" />
+
+        {/* Google Tag Manager */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
 
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -57,7 +78,7 @@ export default function PanchangaPage() {
             ],
             "provider": {
               "@type": "Organization",
-              "name": "Astro Answer",
+              "name": "AstroSight",
               "url": "https://astrosight.co"
             },
             "mainEntityOfPage": {
@@ -72,15 +93,24 @@ export default function PanchangaPage() {
           })}
         </script>
       </Head>
-      <Header />
-      <div className="max-w-4xl mx-auto pt-2 bg-orange-50">
-        
+
+      <CustomHeader 
+        title="Panchanga"
+        showBackButton={true}
+        showSideMenu={true}
+        onSideMenuPress={() => setIsSideMenuOpen(true)}
+      />
+      
+      <SideMenu 
+        isOpen={isSideMenuOpen} 
+        onClose={() => setIsSideMenuOpen(false)}
+      />
+
+      <div className="max-w-7xl mx-auto pt-16 bg-orange-50">
         <main className="flex-grow">
           <Panchanga />
-
         </main>
         <Footer />
-
       </div>
     </>
   );

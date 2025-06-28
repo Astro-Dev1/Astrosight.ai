@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
@@ -11,28 +11,23 @@ import {
   faHistory,
   faCalendar,
   faNewspaper,
-  faHeart,
-  faFileAlt,
+  faHeart,  faFileAlt,
   faOm,
   faShareAlt,
   faTimes,
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { t } from '../locales/i18n';
 
-// Create translated menu items
-const getTranslatedMenuItems = () => [
-  { id: 1, title: t("home") || "Home", icon: faHome, path: "/" },
-  { id: 5, title: t("profile") || "Profile", icon: faUser, path: "/profile/page" },
-  { id: 4, title: t("wallet") || "Wallet", icon: faWallet, path: "/wallet/page" },
-  { id: 14, title: t("order_history") || "Order History", icon: faHistory, path: "/wallet/page" },
-  { id: 6, title: t("panchanga") || "Panchanga", icon: faCalendar, path: "/panchanga" },
-  { id: 2, title: t("blogs") || "Blogs", icon: faNewspaper, path: "/blog" },
-  { id: 3, title: t("compatibility") || "Compatibility", icon: faHeart, path: "/compatibility" },
-  { id: 8, title: t("Reports") || "Reports", icon: faFileAlt, badge: t("coming_soon") || "Coming Soon", path: "/reports" },
-  { id: 11, title: t("book_pooja") || "Book Pooja", icon: faOm, badge: t("coming_soon") || "Coming Soon", path: "/pooja-booking" },
-  { id: 12, title: t("refer_earn") || "Refer & Earn", icon: faShareAlt, badge: t("coming_soon") || "Coming Soon", path: "/refer-earn" },
-];
+// Import translations directly to avoid SSR issues
+import enTranslations from '../locales/en.json';
+import hiTranslations from '../locales/hi.json';
+import knTranslations from '../locales/kn.json';
+
+const translations = {
+  en: enTranslations,
+  hi: hiTranslations,
+  kn: knTranslations,
+};
 
 // App config for social links and version
 const APP_CONFIG = {
@@ -48,12 +43,12 @@ const APP_CONFIG = {
 };
 
 // Helper function to handle image source (URL string or require object)
-const getImageSource = (imageSource) => {
-  if (typeof imageSource === 'string') {
-    return imageSource;
-  }
-  return imageSource; // Already a require object or path
-};
+// const getImageSource = (imageSource) => {
+//   if (typeof imageSource === 'string') {
+//     return imageSource;
+//   }
+//   return imageSource; // Already a require object or path
+// };
 
 const SideMenu = ({ 
   isOpen, 
@@ -68,17 +63,115 @@ const SideMenu = ({
     zodiacSign: "Leo"
   },
   userProfileData = null // New prop for centralized user data
-}) => {
+}) => {  
   const router = useRouter();
-  const [userProfile, setUserProfile] = useState(currentUser);
+  // Use a lazy initializer function to set the initial state
+  const [userProfile, setUserProfile] = useState(() => ({
+    name: currentUser.name || "Guest",
+    phoneNumber: currentUser.phoneNumber || "+91-9740854522",
+    profileImage: currentUser.profileImage || "/default-profile.png",
+    zodiacSign: currentUser.zodiacSign || "Leo"
+  }));
+  const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [mounted, setMounted] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(280);
+console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
+  // Language helper functions
+  // const getLanguage = () => {
+  //   if (typeof window !== 'undefined') {
+  //     return localStorage.getItem('language') || 'en';
+  //   }
+  //   return 'en';
+  // };
 
-  // Update userProfile when currentUser prop changes
-  useEffect(() => {
-    setUserProfile(currentUser);
-  }, [currentUser]);
+  const t = (key, fallback = key) => {
+    const translation = translations[currentLanguage];
+    
+    if (!translation) {
+      return fallback;
+    }
+    
+    // Handle nested keys (e.g., "sidemenu.home")
+    const keys = key.split('.');
+    let value = translation;
+    
+    for (const k of keys) {
+      if (value && typeof value === 'object' && k in value) {
+        value = value[k];
+      } else {
+        return fallback;
+      }
+    }
+    
+    return typeof value === 'string' ? value : fallback;
+  };
 
-  // Use centralized user data when available
+  // Create translated menu items
+  const getTranslatedMenuItems = () => [
+    { id: 1, title: t("sidemenu.home") || "Home", icon: faHome, path: "/" },
+    { id: 5, title: t("sidemenu.profile") || "Profile", icon: faUser, path: "/profile/page" },
+    { id: 4, title: t("sidemenu.wallet") || "Wallet", icon: faWallet, path: "/wallet/page" },
+    { id: 14, title: t("sidemenu.order_history") || "Order History", icon: faHistory, path: "/wallet/page" },
+    { id: 6, title: t("sidemenu.panchanga") || "Panchanga", icon: faCalendar, path: "/panchanga" },
+    { id: 2, title: t("sidemenu.blogs") || "Blogs", icon: faNewspaper, path: "/blog" },
+    { id: 3, title: t("sidemenu.compatibility") || "Compatibility", icon: faHeart, path: "/compatibility" },
+    { id: 8, title: t("sidemenu.reports") || "Reports", icon: faFileAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/reports" },
+    { id: 11, title: t("sidemenu.book_pooja") || "Book Pooja", icon: faOm, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/pooja-booking" },
+    { id: 12, title: t("sidemenu.refer_earn") || "Refer & Earn", icon: faShareAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/refer-earn" },
+  ];
+  // Initialize mounted state
   useEffect(() => {
+    setMounted(true);
+    
+    if (typeof window !== 'undefined') {
+      // Only set language on initial mount
+      const initialLanguage = localStorage.getItem('language') || 'en';
+      setCurrentLanguage(initialLanguage);
+    }
+  }, []);
+  
+  // Handle window resize separately
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined') {
+        setWindowWidth(Math.min(280, window.innerWidth * 0.8));
+      }
+    };
+    
+    if (typeof window !== 'undefined') {
+      // Set initial window width
+      handleResize();
+      
+      // Add event listener for resize
+      window.addEventListener('resize', handleResize);
+      
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
+  
+  // Handle language changes separately
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      if (typeof window !== 'undefined') {
+        const newLang = localStorage.getItem('language') || 'en';
+        setCurrentLanguage(newLang);
+      }
+    };
+    
+    if (typeof window !== 'undefined') {
+      window.addEventListener('languageChanged', handleLanguageChange);
+      
+      return () => {
+        window.removeEventListener('languageChanged', handleLanguageChange);
+      };
+    }
+  }, []);
+
+  // Update userProfile when currentUser or userProfileData props change
+  useEffect(() => {
+    // Use centralized data if available, otherwise use currentUser
     if (userProfileData && userProfileData.astroProfile && userProfileData.userProfile) {
       const centralizedUserProfile = {
         name: userProfileData.astroProfile.name || currentUser.name,
@@ -88,8 +181,16 @@ const SideMenu = ({
       };
       setUserProfile(centralizedUserProfile);
       console.log('SideMenu: Using centralized user data:', centralizedUserProfile);
+    } else {
+      // Only update if the values are different to prevent infinite loop
+      if (userProfile.name !== currentUser.name || 
+          userProfile.phoneNumber !== currentUser.phoneNumber ||
+          userProfile.profileImage !== currentUser.profileImage ||
+          userProfile.zodiacSign !== currentUser.zodiacSign) {
+        setUserProfile(currentUser);
+      }
     }
-  }, [userProfileData, currentUser]);
+  }, [userProfileData]);
 
   const handleLogout = async () => {
     try {
@@ -161,14 +262,12 @@ const SideMenu = ({
       <div 
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
         onClick={onClose}
-      />
-
-      {/* Side Menu */}
+      />      {/* Side Menu */}
       <div 
         className={`fixed top-0 left-0 h-full bg-[#FFF2E2] z-50 shadow-xl transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
-        style={{ width: Math.min(280, window.innerWidth * 0.8) }}
+        style={{ width: windowWidth }}
       >
         {/* Close button */}
         <button
@@ -180,7 +279,7 @@ const SideMenu = ({
 
         <div className="flex flex-col h-full">
           {/* User Profile Section */}        
-          <div className="p-3 border-b border-gray-200 flex items-center">
+          {/* <div className="p-3 border-b border-gray-200 flex items-center">
             <Image
               src={getImageSource(userProfile.profileImage)}
               alt="Profile"
@@ -195,7 +294,7 @@ const SideMenu = ({
                 {userProfile.phoneNumber}
               </p>
             </div>
-          </div>
+          </div> */}
 
           {/* Menu Items */}
           <div className="flex-1 py-2 overflow-y-auto">
