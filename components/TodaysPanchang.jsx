@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, Moon, Star, Sunrise, Sunset, Circle, SquareAsterisk } from 'lucide-react';
 import { format } from 'date-fns';
 import { useLoadScript, Autocomplete } from '@react-google-maps/api';
 import Link from 'next/link';
@@ -101,7 +101,9 @@ const TodaysPanchang = () => {
 
   return (
     <div className="mb-6">
-      <h2 className="text-black text-xl font-semibold mb-3">Today&apos;s Panchang</h2>
+      <h2 className="text-xl font-bold text-center mb-5">
+    Today&apos;s <span className="text-[#FF6D3F]">Panchang</span>
+  </h2>
       <div className="flex flex-row items-center gap-2 mb-4">
         <Autocomplete
           onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
@@ -126,21 +128,21 @@ const TodaysPanchang = () => {
           <Button
             onClick={handlePrevDay}
             variant="outline"
-            className="bg-[#FFE5CC] hover:bg-[#FF9933] text-gray-700"
+            className="bg-[#FFE5CC] hover:bg-[#FF9933] text-gray-700 rounded-md h-10 w-10 flex items-center justify-center p-0"
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <Button
             onClick={handleToday}
             variant="outline"
-            className="bg-[#FFE5CC] hover:bg-[#FF9933] text-gray-700"
+            className="bg-[#FFE5CC] hover:bg-[#FF9933] text-gray-700 rounded-md h-10 px-4 flex items-center justify-center"
           >
             Today
           </Button>
           <Button
             onClick={handleNextDay}
             variant="outline"
-            className="bg-[#FFE5CC] hover:bg-[#FF9933] text-gray-700"
+            className="bg-[#FFE5CC] hover:bg-[#FF9933] flex-shrink-0 text-gray-700"
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
@@ -152,8 +154,8 @@ const TodaysPanchang = () => {
         <Card className="bg-white p-5 rounded-xl shadow-lg">
           <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-calendar-day text-[#FF9933]"></i>
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <Calendar className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Day</p>
@@ -161,8 +163,8 @@ const TodaysPanchang = () => {
               </div>
             </div>
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-moon text-[#FF9933]"></i>
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <Moon className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Thithi</p>
@@ -170,8 +172,8 @@ const TodaysPanchang = () => {
               </div>
             </div>
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-star text-[#FF9933]"></i>
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <Star className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Nakshatra</p>
@@ -179,8 +181,8 @@ const TodaysPanchang = () => {
               </div>
             </div>
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-sun text-[#FF9933]"></i>
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <Sunrise className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Sunrise</p>
@@ -188,35 +190,32 @@ const TodaysPanchang = () => {
               </div>
             </div>
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-sunset text-[#FF9933]"></i>
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <Sunset className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Sunset</p>
                 <p className="text-sm font-medium">{panchangaData.sunset || 'N/A'}</p>
               </div>
-            </div>
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-om text-[#FF9933]"></i>
+            </div>              <div className="flex items-center">
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <Circle className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Yoga</p>
                 <p className="text-sm font-medium">{panchangaData.yoga_1 || 'N/A'}</p>
               </div>
-            </div>
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-dharmachakra text-[#FF9933]"></i>
+            </div>              <div className="flex items-center">
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <SquareAsterisk className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Karana</p>
                 <p className="text-sm font-medium">{panchangaData.karana_1 || 'N/A'}</p>
               </div>
-            </div>
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3">
-                <i className="fas fa-om text-[#FF9933]"></i>
+            </div>              <div className="flex items-center">
+              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+                <Calendar className="h-4 w-4 text-[#FF9933]" />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Hindu Month</p>

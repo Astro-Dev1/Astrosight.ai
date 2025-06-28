@@ -133,7 +133,7 @@ const HomeMobileScreen = () => {
       titleImage="/4.png"
       showBackButton={false}
       showSideMenu={true}
-      showWallet={true}
+      showWallet={false}
       showProfile={true}
       onSideMenuPress={() => setIsSideMenuOpen(true)}
     />

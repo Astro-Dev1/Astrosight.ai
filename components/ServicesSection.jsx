@@ -139,12 +139,10 @@ export default function ServicesSection() {
     <div className="relative w-full ">
       {/* Section Header */}
       <div className="text-center mb-6">
-        <h2 
-          className="text-sm md:text-base font-semibold text-gray-600 tracking-wider uppercase"
-          style={{ fontFamily: 'Noto Sans Devanagari, system-ui, -apple-system, sans-serif' }}
-        >
-          {t('complimentaryAstrologyServices') || 'COMPLIMENTARY ASTROLOGY SERVICES'}
-        </h2>
+        
+        <h2 className="text-xl font-bold text-center mb-5">
+    COMPLIMENTARY <span className="text-[#FF6D3F]">ASTROLOGY SERVICES</span>
+  </h2>
       </div>
 
       {/* Navigation Buttons (Desktop Only) */}
@@ -193,7 +191,7 @@ export default function ServicesSection() {
               <Card className="h-full rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border-0 overflow-hidden">
                 <CardContent className="p-4 text-center">
                   {/* Icon Circle */}
-                  <div className="w-12 h-12 bg-[#FF6D3F] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 bg-[#f5ab3b] rounded-full flex items-center justify-center mx-auto mb-3">
                     <Image 
                       src={card.image} 
                       alt={card.title} 

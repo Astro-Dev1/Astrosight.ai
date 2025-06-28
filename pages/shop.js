@@ -3,7 +3,9 @@ import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import Layout from '../components/Layout';
+import CustomHeader from '../components/CustomHeader';
+import SideMenu from '../components/SideMenu';
+import Footer from '../components/Footer';
 import { t } from '../locales/i18n';
 
 const ShopPage = () => {
@@ -93,24 +95,44 @@ const ShopPage = () => {
     }
   };
 
+  // State for side menu
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+
   return (
-    <Layout 
-      title={t('spiritualShop') || 'Spiritual Shop'}
-      showBackButton={true}
-      showSideMenu={false}
-      showWallet={true}
-      showLanguage={true}
-      showProfile={true}
-    >
+    <>
       <Head>
         <title>Spiritual Shop - AstroSight | Rudraksha, Gemstones & Crystals</title>
         <meta name="description" content="Shop authentic spiritual products at AstroSight - Rudraksha beads, gemstones, healing crystals, energized bracelets, and puja items for astrological remedies." />
         <meta name="keywords" content="AstroSight shop, spiritual products, rudraksha, gemstones, healing crystals, energized bracelets, puja items, astrological remedies" />
-        <meta property="og:title" content="Spiritual Shop - AstroSight" />
-        <meta property="og:description" content="Discover authentic spiritual products at AstroSight's shop - from rudraksha and gemstones to healing crystals and energized items." />
-        <meta property="og:url" content="https://astrosight.ai/shop" />
-        <link rel="canonical" href="https://astrosight.ai/shop" />
+        
+        {/* Google Tag Manager */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
       </Head>
+      
+      <CustomHeader 
+        title={t('spiritualShop') || 'Spiritual Shop'}
+        showBackButton={true}
+        showSideMenu={true}
+        onSideMenuPress={() => setIsSideMenuOpen(true)}
+      />
+      
+      <SideMenu 
+        isOpen={isSideMenuOpen} 
+        onClose={() => setIsSideMenuOpen(false)}
+      />
       
       <div className="min-h-screen bg-[#FFF6E9]">
 
@@ -320,7 +342,8 @@ const ShopPage = () => {
           </div>
         </div>
       </div>
-    </Layout>
+      <Footer />
+    </>
   );
 };
 

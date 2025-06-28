@@ -3,7 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 // import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
+import CustomHeader from '../components/CustomHeader';
+import SideMenu from '../components/SideMenu';
+import Footer from '../components/Footer';
 import { t } from '../locales/i18n';
 import Head from 'next/head';
 
@@ -94,20 +96,44 @@ const ConsultationPage = () => {
     }
   };
 
+  // State for side menu
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+
   return (
-    <Layout 
-      title={t('consultation') || 'Consultation'}
-      showBackButton={true}
-      showSideMenu={false}
-      showWallet={true}
-      showLanguage={true}
-      showProfile={true}
-    >
+    <>
       <Head>
         <title>Expert Astrologer Consultation - AstroSight</title>
         <meta name="description" content="Connect with certified Vedic astrologers for personalized 1:1 video consultations. Get expert guidance on career, relationships, health, and life decisions." />
         <meta name="keywords" content="astrologer consultation, vedic astrology, personal astrologer, astrology reading, horoscope consultation, expert astrologer" />
+        
+        {/* Google Tag Manager */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `,
+          }}
+        />
       </Head>
+      
+      <CustomHeader 
+        title={t('consultation') || 'Consultation'}
+        showBackButton={true}
+        showSideMenu={true}
+        onSideMenuPress={() => setIsSideMenuOpen(true)}
+      />
+      
+      <SideMenu 
+        isOpen={isSideMenuOpen} 
+        onClose={() => setIsSideMenuOpen(false)}
+      />
       
       <div className="min-h-screen bg-[#FFF6E9]">
 
@@ -406,7 +432,8 @@ const ConsultationPage = () => {
         </div>
       </div>
       </div>
-    </Layout>
+      <Footer />
+    </>
   );
 };
 
