@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
@@ -174,7 +173,7 @@ const HeroSection = () => {
                 </p>
                 <div className="hidden md:flex relative -top-3 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <img
-                    src="/QR_code_for_mobile_English_Wikipedia.svg.png"
+                    src="/chat_assistant__1_-removebg-preview.png"
                     alt="QR Code for App Download"
                     width={300}
                     height={300}
@@ -222,7 +221,7 @@ const HeroSection = () => {
               </div>
             </div>
             {/* Right column - Image */}
-            <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
+            <div className="flex justify-center items-center lg:justify-end lg:items-end lg:mt-0 p-2 -mt-20 -mb-9">
               <picture>
                 <source
                   media="(min-width: 1024px)"
@@ -237,13 +236,13 @@ const HeroSection = () => {
                   height={299.88}
                 />
                 <Image
-                  src="/Untitled design (6) (1).webp"
+                  src="/chat_assistant__1_-removebg-preview.png"
                   alt="Guidance Report Preview"
-                  width={328}
-                  height={299.88}
-                  className="w-full h-[299.88px] lg:h-[516px] rounded-2xl object-cover"
+                  width={386.9}
+                  height={299}
+                  className="w-[586.9px] h-[499px] rounded-2xl object-contain mx-auto"
                   priority
-                  sizes="(max-width: 1023px) 100vw, (min-width: 1024px) 328px"
+                  sizes="386.9px"
                 />
               </picture>
             </div>
