@@ -112,7 +112,7 @@ console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
     { id: 5, title: t("sidemenu.profile") || "Profile", icon: faUser, path: "/profile/page" },
     { id: 4, title: t("sidemenu.wallet") || "Wallet", icon: faWallet, path: "/wallet/page" },
     { id: 14, title: t("sidemenu.order_history") || "Order History", icon: faHistory, path: "/wallet/page" },
-    { id: 6, title: t("sidemenu.panchanga") || "Panchanga", icon: faCalendar, path: "/panchanga" },
+    // { id: 6, title: t("sidemenu.panchanga") || "Panchanga", icon: faCalendar, path: "/panchanga" },
     { id: 2, title: t("sidemenu.blogs") || "Blogs", icon: faNewspaper, path: "/blog" },
     { id: 3, title: t("sidemenu.compatibility") || "Compatibility", icon: faHeart, path: "/compatibility" },
     { id: 8, title: t("sidemenu.reports") || "Reports", icon: faFileAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/reports" },
