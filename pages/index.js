@@ -130,7 +130,7 @@ const HomeMobileScreen = () => {
   <div>
     <CustomHeader 
       title="AstroSight"
-      titleImage="/4.png"
+      titleImage="/log.png"
       showBackButton={false}
       showSideMenu={true}
       showWallet={false}
