@@ -39,7 +39,7 @@ const HomeMobileScreen = () => {
           `
         }}></script>
         {/* Favicon */}
-        <link rel="icon" href="/logo.png" />
+        <link rel="icon" href="/4.png" type="image/png" />
   
          <script
     src={`https://www.google.com/recaptcha/api.js`}

@@ -9,7 +9,7 @@ import {
   faUser,
   faWallet,
   faHistory,
-  faCalendar,
+  // faCalendar,
   faNewspaper,
   faHeart,  faFileAlt,
   faOm,
