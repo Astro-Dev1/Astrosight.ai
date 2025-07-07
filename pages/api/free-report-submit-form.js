@@ -55,15 +55,15 @@ export default async function handler(req, res) {
           },
         });
         await sendEvent('Lead', {
+          lead_type: 'free_report',
+          currency: 'INR',
+          value: 0.00,
+          source_url: req.headers.referer
+        }, {
           email,
           phone,
           ip: req.headers['x-forwarded-for'] || req.socket.remoteAddress,
-          userAgent: req.headers['user-agent'],
-          sourceUrl: req.headers.referer
-        }, {
-          lead_type: 'free_report',
-          currency: 'INR',
-          value: 0.00
+          userAgent: req.headers['user-agent']
         });
         console.log('New form submission created:', newSubmission);
         res.status(201).json(newSubmission);
