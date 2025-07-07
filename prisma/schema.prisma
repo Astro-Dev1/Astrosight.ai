@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model form_submissions {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?
+  phone         String?
+  dateOfBirth   String?
+  timeOfBirth   String?
+  placeOfBirth  String?
+  numberOfQuestions Int?
+  questions     Json?
+  status        String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("form_submissions")
+}
+
+model order {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderNumber   String?
+  name          String?
+  email         String?
+  phone         String?
+  amount        Float?
+  status        String?
+  paymentId     String?
+  razorpayOrderId String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("orders")
+}
+
+model User {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String   @unique
+  phone         String?
+  profileImage  String?
+  role          String   @default("USER")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("users")
+}
+
+model AstroProfile {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String?  @db.ObjectId
+  name          String?
+  gender        String?
+  birthDate     String?
+  birthTime     String?
+  birthPlace    String?
+  latitude      Float?
+  longitude     Float?
+  timezone      String?
+  chartType     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("astro_profiles")
+}
+
+model Question {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String?  @db.ObjectId
+  questionText  String
+  answer        String?
+  status        String   @default("pending")
+  questionId    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("questions")
+}
+
+model Wallet {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @unique @db.ObjectId
+  balance       Float    @default(0)
+  currency      String   @default("INR")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("wallets")
+}
+
+model Transaction {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String   @db.ObjectId
+  walletId      String   @db.ObjectId
+  amount        Float
+  type          String   // "credit" or "debit"
+  description   String?
+  status        String   @default("completed")
+  razorpayPaymentId String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("transactions")
+}
