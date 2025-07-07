@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
+import SEOHead from '../../components/SEOHead';
+import JsonLdSchema from '../../components/JsonLdSchema';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -70,16 +72,52 @@ export default function Blog({ posts }) {
 
   return (
     <>
-      <CustomHeader 
-        title={ 'Blog'}
-        showBackButton={true}
+      {/* SEO Optimization */}
+      <SEOHead 
+        title="AstroSight Blog - Explore Vedic Astrology Articles and Insights"
+        description="Discover insightful Vedic astrology articles, horoscopes, planetary influences, and remedies. Learn how astrology shapes your life journey with expert guidance from AstroSight."
+        keywords="Vedic astrology, horoscopes, zodiac signs, planetary aspects, astrology remedies, birth charts, Guna Milan, astrology predictions, cosmic insights, astrology blog"
+        canonical="https://astrosight.ai/blog"
+        ogImage="https://astrosight.ai/images/blog-cover.jpg"
+        ogType="website"
       />
-      <SideMenu 
-        isOpen={sideMenuOpen}
-        onClose={() => setSideMenuOpen(false)}
+      
+      {/* JSON-LD Structured Data */}
+      <JsonLdSchema 
+        type="Blog"
+        data={{
+          name: "AstroSight Blog",
+          description: "Expert Vedic astrology articles, horoscopes, and astrological remedies",
+          url: "https://astrosight.ai/blog",
+          publisher: {
+            "@type": "Organization",
+            name: "AstroSight",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://astrosight.ai/logo.png"
+            }
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": "https://astrosight.ai/blog"
+          },
+          blogPost: posts && posts.length > 0 ? posts.slice(0, 10).map(post => ({
+            "@type": "BlogPosting",
+            "headline": post.fields?.title || "",
+            "description": post.fields?.description || "",
+            "url": `https://astrosight.ai/blog/${post.fields?.slug}`,
+            "datePublished": post.fields?.publishDate || new Date().toISOString(),
+            "author": {
+              "@type": "Organization",
+              "name": "AstroSight"
+            }
+          })) : []
+        }}
       />
+
+      {/* Third-party Scripts */}
       <Head>
-        {/* Google tag (gtag.js) */}
+        {/* Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -89,54 +127,17 @@ export default function Blog({ posts }) {
             gtag('config', 'AW-17273163672');
           `
         }}></script>
-        <link rel="icon" href="/logo.png" />
-        <title>Astro Answer Blog - Explore Vedic Astrology Articles and Insights</title>
-        <meta name="description" content="Discover insightful Vedic astrology articles, horoscopes, planetary influences, and remedies. Learn how astrology shapes your life journey with expert guidance from Astro Answer." />
-        <meta name="keywords" content="Vedic astrology, horoscopes, zodiac signs, planetary aspects, astrology remedies, birth charts, Guna Milan, astrology predictions, cosmic insights" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Astro Answer Blog - Vedic Astrology Insights and Horoscopes" />
-        <meta property="og:description" content="Explore expert articles on Vedic astrology, horoscopes, planetary influences, and life-changing astrological remedies at Astro Answer." />
-        <meta property="og:url" content="https://astrosight.co/blog" />
-        <meta property="og:image" content="https://astrosight.co/images/blog-cover.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Astro Answer Blog - Vedic Astrology Wisdom" />
-        <meta name="twitter:description" content="Dive into Vedic astrology articles, horoscopes, and cosmic insights. Discover how celestial bodies influence your life path." />
-        <meta name="twitter:image" content="https://astrosight.co/images/blog-cover.jpg" />
-        <link rel="canonical" href="https://astrosight.co/blog" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "name": "Astro Answer Blog",
-            "description": "Expert Vedic astrology articles, horoscopes, and astrological remedies.",
-            "url": "https://astrosight.co/blog",
-            "publisher": {
-              "@type": "Organization",
-              "name": "Astro Answer",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://astrosight.co/logo.png"
-              }
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://astrosight.co/blog"
-            },
-            "blogPost": currentPosts.map(post => ({
-              "@type": "BlogPosting",
-              "headline": post.fields.title,
-              "description": post.fields.description,
-              "datePublished": post.fields.publishDate,
-              "image": post.fields.coverImage ? post.fields.coverImage.fields.file.url : undefined,
-              "author": {
-                "@type": "Person",
-                "name": post.fields.author.name
-              }
-            }))
-          })}
-        </script>
       </Head>
-
+      
+      <CustomHeader 
+        title={ 'Blog'}
+        showBackButton={true}
+      />
+      <SideMenu 
+        isOpen={sideMenuOpen}
+        onClose={() => setSideMenuOpen(false)}
+      />
+      
       <div className="flex flex-col min-h-screen bg-[#FFF2E2]">
         <main className="flex-1 px-4 pb-20">
           {/* Page Title */}

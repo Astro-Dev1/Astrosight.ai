@@ -1,12 +1,14 @@
 // ../pages/blog/[slug].js
 
 import Head from 'next/head';
-import Script from 'next/script';
+// import Script from 'next/script';
 import { client } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
+import SEOHead from '../../components/SEOHead';
+import JsonLdSchema from '../../components/JsonLdSchema';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -183,180 +185,65 @@ export default function Post({ post, relatedPosts }) {
 
   const keywords = [primaryKeyword, ...(secondaryKeywords || [])].join(', ');
   const fullUrl = `https://astrosight.co/blog/${slug}`;
+  console.log(fullUrl);
   const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.co/default-blog-image.jpg';
 
   return (
     <>
-      <Head>
-        <link rel="icon" href="/logo.png" />
-        <title>{metaTitle}</title>
-        <meta name="description" content={metaDescription} />
-        <meta name="keywords" content={keywords} />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="article" />
-        <meta property="og:title" content={metaTitle} />
-        <meta property="og:description" content={metaDescription} />
-        <meta property="og:url" content={fullUrl} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="article:published_time" content={publishDate} />
-        <meta property="article:modified_time" content={post.sys.updatedAt} />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={metaTitle} />
-        <meta name="twitter:description" content={metaDescription} />
-        <meta name="twitter:image" content={imageUrl} />
-
-        {/* Canonical URL */}
-        <link rel="canonical" href={fullUrl} />
-
-        {/* Note: Google Fonts should be moved to _document.js */}
-
-        {/* Structured Data for Article */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": title,
-            "image": [imageUrl],
-            "datePublished": publishDate,
-            "dateModified": post.sys.updatedAt,
-            "author": {
-              "@type": "Organization",
-              "name": "AstroSight",
-              "url": "https://astrosight.co/about-us"
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "AstroSight",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://astrosight.co/logo.png"
-              }
-            },
-            "description": metaDescription,
-            "keywords": keywords,
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": fullUrl
-            }
-          })}
-        </script>
-
-        {/* Custom typography styles */}
-        <style jsx global>{`
-          /* Tailwind CSS classes for Medium-style typography with improved spacing */
-          
-          /* Better spacing for content */
-          .prose-medium {
-            max-width: 680px;
-            margin: 0 auto;
-          }
-          
-          .prose-medium p {
-            margin-bottom: 1.25rem;
-            line-height: 1.6;
-          }
-          
-          .prose-medium h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.875rem;
-            line-height: 1.3;
-          }
-          
-          .prose-medium h3 {
-            margin-top: 1.75rem;
-            margin-bottom: 0.75rem;
-            font-size: 1.5rem;
-            line-height: 1.3;
-          }
-          
-          /* First paragraph styling like Medium */
-          .prose-medium p:first-of-type {
-            font-size: 1.25rem;
-            line-height: 1.5;
-          }
-          
-          /* Drop caps for first paragraph if desired */
-          .drop-cap:first-letter {
-            float: left;
-            font-size: 4rem;
-            line-height: 1;
-            font-weight: 700;
-            margin-right: 0.5rem;
-            margin-top: 0.25rem;
-          }
-          
-          /* Pull quote styling */
-          .pull-quote {
-            font-size: 1.5rem;
-            font-style: italic;
-            border-left: 3px solid #ef8e38;
-            padding-left: 1.5rem;
-            margin: 1.75rem 0;
-            font-weight: 500;
-            color: #333;
-          }
-          
-          /* Image caption styling */
-          figcaption {
-            text-align: center;
-            font-size: 0.875rem;
-            color: #6b7280;
-            margin-top: 0.5rem;
-            font-style: italic;
-          }
-          
-          /* Highlighted text */
-          .highlight {
-            background-color: rgba(255, 226, 143, 0.5);
-            padding: 0 0.25rem;
-          }
-          
-          /* List styling */
-          .prose-medium ul, .prose-medium ol {
-            margin: 1.25rem 0;
-          }
-          
-          .prose-medium li {
-            margin-bottom: 0.4rem;
-          }
-          
-          /* Link styling */
-          .prose-medium a {
-            color: #f97316;
-            text-decoration: none;
-            border-bottom: 1px solid rgba(249, 115, 22, 0.3);
-            transition: border-color 0.2s ease;
-          }
-          
-          .prose-medium a:hover {
-            border-color: #f97316;
-          }
-        `}</style>
-      </Head>
-      
-      {/* Google Analytics */}
-      <Script
-        src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"
-        strategy="afterInteractive"
+      {/* SEO Optimization */}
+      <SEOHead 
+        title={metaTitle || title}
+        description={metaDescription || introduction}
+        keywords={keywords}
+        canonical={`https://astrosight.ai/blog/${slug}`}
+        ogImage={imageUrl}
+        ogType="article"
+        articlePublishedTime={publishDate}
+        articleModifiedTime={publishDate}
       />
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
+      
+      {/* JSON-LD Structured Data */}
+      <JsonLdSchema 
+        type="BlogPosting"
+        data={{
+          headline: title,
+          description: metaDescription || introduction,
+          author: {
+            "@type": "Organization",
+            name: "AstroSight",
+            url: "https://astrosight.ai"
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "AstroSight",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://astrosight.ai/logo.png"
+            }
+          },
+          datePublished: publishDate,
+          dateModified: publishDate,
+          image: imageUrl,
+          mainEntityOfPage: `https://astrosight.ai/blog/${slug}`,
+          articleSection: "Astrology",
+          keywords: keywords.split(', ')
+        }}
+      />
+
+      {/* Third-party Scripts */}
+      <Head>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'AW-17273163672');
           `
-        }}
-      />
+        }}></script>
+      </Head>
       
-      {/* Custom Header and Side Menu */}
       <CustomHeader 
         title={"Blog"} 
         showBackButton={true}
