@@ -59,7 +59,6 @@
   
   "horoscope": {
     "loading": "Loading...",
-    "error": "Error",
     "invalid_sign": "Invalid or missing zodiac sign",
     "return_home": "Return to Home",
     "horoscope_title": "{{sign}} Horoscope",
