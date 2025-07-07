@@ -10,6 +10,8 @@ import { Tabs,  TabsContent } from "@/components/ui/tabs";
 import HoroscopeCard from "../../components/Horor";
 import HoroscopePageForMW from "../../components/HoroscopePageForMW";
 import CustomHeader from "../../components/CustomHeader";
+import SEOHead from "../../components/SEOHead";
+import JsonLdSchema from "../../components/JsonLdSchema";
 // Horoscope data (unchanged from your input)
 const horoscopeData = {
   "aries": {
@@ -733,8 +735,45 @@ const HoroscopePage = () => {
 
   return (
     <>
+      {/* SEO Optimization */}
+      <SEOHead 
+        title={`${capitalizedSign} Horoscope | Daily, Weekly, Monthly Predictions`}
+        description={`Discover your ${capitalizedSign} horoscope. Get daily, weekly, and monthly predictions for love, career, health, and more at AstroSight.`}
+        keywords={`${capitalizedSign} horoscope, ${capitalizedSign} zodiac, astrology, daily horoscope, weekly horoscope, monthly horoscope, ${sign} predictions, ${sign} astrology`}
+        canonical={`https://astrosight.ai/horoscope/${sign}`}
+        ogImage={`https://astrosight.ai/images/zodiac/${signKey}.jpg`}
+        ogType="article"
+      />
+      
+      {/* JSON-LD Structured Data */}
+      <JsonLdSchema 
+        type="Article"
+        data={{
+          headline: `${capitalizedSign} Horoscope - Daily Predictions`,
+          description: `Today's horoscope for ${capitalizedSign}. Get insights into love, career, health, and more.`,
+          author: {
+            "@type": "Organization",
+            name: "AstroSight",
+            url: "https://astrosight.ai"
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "AstroSight",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://astrosight.ai/logo.png"
+            }
+          },
+          datePublished: new Date().toISOString(),
+          dateModified: new Date().toISOString(),
+          image: `https://astrosight.ai/images/zodiac/${signKey}.jpg`,
+          mainEntityOfPage: `https://astrosight.ai/horoscope/${sign}`
+        }}
+      />
+
+      {/* Third-party Scripts */}
       <Head>
-        {/* Google tag (gtag.js) */}
+        {/* Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
@@ -744,37 +783,12 @@ const HoroscopePage = () => {
             gtag('config', 'AW-17273163672');
           `
         }}></script>
-        <link rel="icon" href="/logo.png" />
+        
+        {/* Fonts */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         />
-        <title>
-          {capitalizedSign} Horoscope | Daily, Weekly, Monthly Predictions | AstroAnswer
-        </title>
-        <meta
-          name="description"
-          content={`Discover your ${capitalizedSign} horoscope. Get daily, weekly, and monthly predictions for love, career, health, and more at AstroAnswer.`}
-        />
-        <meta
-          name="keywords"
-          content={`${capitalizedSign} horoscope, ${capitalizedSign} zodiac, astrology, daily horoscope, weekly horoscope, monthly horoscope`}
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${capitalizedSign} Horoscope | AstroAnswer`} />
-        <meta
-          property="og:description"
-          content={`Get your personalized ${capitalizedSign} horoscope. Daily, weekly, and monthly predictions for love, career, and more.`}
-        />
-        <meta property="og:url" content={`https://astroanswer.co/horoscope/${sign}`} />
-        <meta property="og:image" content={`https://astroanswer.co/${signKey}.jpg`} />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content={`${capitalizedSign} Horoscope | AstroAnswer`} />
-        <meta
-          property="twitter:description"
-          content={`Explore your ${capitalizedSign} horoscope. Get insights on love, career, and more with our daily, weekly, and monthly predictions.`}
-        />
-        <link rel="canonical" href={`https://astroanswer.co/horoscope/${sign}`} />
       </Head>
 
       <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">

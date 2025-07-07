@@ -1,13 +1,15 @@
 import CustomHeader from '../components/CustomHeader'
 import SideMenu from '../components/SideMenu'
 import Footer from '../components/Footer'
+import SEOHead from '../components/SEOHead'
+import JsonLdSchema from '../components/JsonLdSchema'
 import * as React from "react"
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { PhoneCall, FileText, Users, Cog, Megaphone, Star } from 'lucide-react'
-import Head from 'next/head'
+// import Head from 'next/head'
 import Section from '../components/Section'
 import CustomLinkButton from '../components/CustomContainer'
 
@@ -116,39 +118,31 @@ export default function AboutUs() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF2E2]">
-      <Head>
-        <link rel="icon" href="/logo.png" />
-        <title>About AstroSight - Expert Vedic Astrology Team & Services</title>
-        <meta name="description" content="Meet AstroSight's expert Vedic astrologers led by Dr. Ananthapadmanabha. Learn about our mission, personalized astrology services, and approach to providing authentic astrological guidance." />
-        <meta name="keywords" content="AstroSight, Vedic astrology, Dr. Ananthapadmanabha, astrology consultation, birth chart analysis, horoscope reading, Jyotish experts, spiritual guidance, astrology services" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="About AstroSight - Expert Vedic Astrology Team" />
-        <meta property="og:description" content="Discover AstroSight's team of experienced Vedic astrologers and learn how we combine traditional wisdom with modern technology for accurate astrological guidance." />
-        <meta property="og:url" content="https://astrosight.co/about-us" />
-        <meta property="og:image" content="https://astrosight.co/images/about-cover.jpg" />
-         {/* Main Content */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="About AstroSight - Meet Our Expert Astrologers" />
-        <meta name="twitter:description" content="Learn about AstroSight's mission and meet our team of experienced Vedic astrologers providing personalized astrological guidance." />
-        <meta name="twitter:image" content="https://astrosight.co/images/about-cover.jpg" />
-        <link rel="canonical" href="https://astrosight.co/about-us" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "AboutPage",
-            "mainEntityOfPage": {"@type": "WebPage", "@id": "https://astrosight.co/about-us"},
-            "name": "About AstroSight",
-            "description": "Learn about our expert Vedic astrology team and services",
-            "publisher": {"@type": "Organization", "name": "AstroSight", "logo": {"@type": "ImageObject", "url": "https://astrosight.co/logo.png"}},
-            "employee": {"@type": "Person", "name": "Dr. Ananthapadmanabha", "jobTitle": "Chief Astrologer", "description": "Ph.D. in Vedic Astrology, honored with Rabindra Ratna Puraskar"}
-          })}
-        </script>
-      </Head>
-
-    
-
-      <main className="pt-16">{/* Content continues... */}
+    <>
+      {/* SEO Optimization */}
+      <SEOHead 
+        title="About AstroSight - Expert Vedic Astrology Team & Services"
+        description="Meet AstroSight's expert Vedic astrologers led by Dr. Ananthapadmanabha. Learn about our mission, personalized astrology services, and approach to providing authentic astrological guidance."
+        keywords="AstroSight, Vedic astrology, Dr. Ananthapadmanabha, astrology consultation, birth chart analysis, horoscope reading, Jyotish experts, spiritual guidance, astrology services"
+        canonical="https://astrosight.ai/about-us"
+        ogImage="https://astrosight.ai/images/about-cover.jpg"
+        ogType="website"
+      />
+      
+      {/* JSON-LD Structured Data */}
+      <JsonLdSchema 
+        type="AboutPage"
+        data={{
+          name: "About AstroSight",
+          description: "Learn about our expert Vedic astrology team and services",
+          mainEntityOfPage: {"@type": "WebPage", "@id": "https://astrosight.ai/about-us"},
+          publisher: {"@type": "Organization", "name": "AstroSight", "logo": {"@type": "ImageObject", "url": "https://astrosight.ai/logo.png"}},
+          employee: {"@type": "Person", "name": "Dr. Ananthapadmanabha", "jobTitle": "Chief Astrologer", "description": "Ph.D. in Vedic Astrology, honored with Rabindra Ratna Puraskar"}
+        }}
+      />
+      
+      <div className="min-h-screen bg-[#FFF2E2]">
+        <main className="pt-16">{/* Content continues... */}
      
    
   {/* Custom Header */}
@@ -344,6 +338,7 @@ export default function AboutUs() {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </>
   )
 }

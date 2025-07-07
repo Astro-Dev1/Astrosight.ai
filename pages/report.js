@@ -3,6 +3,8 @@ import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useRouter } from 'next/router';
+import SEOHead from '../components/SEOHead';
+import JsonLdSchema from '../components/JsonLdSchema';
 
 const ReportsPage = () => {
   const router = useRouter();
@@ -76,14 +78,64 @@ const ReportsPage = () => {
 
   return (
     <>
+      {/* SEO Optimization */}
+      <SEOHead 
+        title="Astrological Reports - AstroSight | Detailed Life Analysis"
+        description="Get comprehensive astrological reports from AstroSight including career analysis, relationship compatibility, marriage reports, and more personalized insights."
+        keywords="AstroSight reports, astrology reports, career analysis, relationship compatibility, marriage report, birth chart analysis, horoscope reports, vedic astrology reports"
+        canonical="https://astrosight.ai/report"
+        ogImage="https://astrosight.ai/images/reports-cover.jpg"
+        ogType="website"
+      />
+      
+      {/* JSON-LD Structured Data */}
+      <JsonLdSchema 
+        type="Service"
+        data={{
+          name: "Astrological Reports",
+          description: "Comprehensive astrological analysis and personalized reports",
+          provider: {
+            "@type": "Organization",
+            name: "AstroSight",
+            url: "https://astrosight.ai"
+          },
+          serviceType: "Astrology Service",
+          areaServed: "Worldwide",
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Astrology Reports",
+            itemListElement: [
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Career Analysis Report"
+                }
+              },
+              {
+                "@type": "Offer", 
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Relationship Compatibility Report"
+                }
+              }
+            ]
+          }
+        }}
+      />
+
+      {/* Third-party Scripts */}
       <Head>
-        <title>Astrological Reports - AstroSight | Detailed Life Analysis</title>
-        <meta name="description" content="Get comprehensive astrological reports from AstroSight including career analysis, relationship compatibility, marriage reports, and more personalized insights." />
-        <meta name="keywords" content="AstroSight reports, astrology reports, career analysis, relationship compatibility, marriage report, birth chart analysis, horoscope reports" />
-        <meta property="og:title" content="Astrological Reports - AstroSight" />
-        <meta property="og:description" content="Unlock profound insights with AstroSight's comprehensive astrological reports covering all aspects of your life." />
-        <meta property="og:url" content="https://astrosight.ai/report" />
-        <link rel="canonical" href="https://astrosight.ai/report" />
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
       </Head>
       
       <div className="min-h-screen bg-[#FFF6E9]">

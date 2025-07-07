@@ -2,20 +2,45 @@ import React from 'react';
 import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/router';
+import SEOHead from '../components/SEOHead';
+import JsonLdSchema from '../components/JsonLdSchema';
 
 const TermsAndConditionsPage = () => {
   const router = useRouter();
 
   return (
     <>
+      {/* SEO Optimization */}
+      <SEOHead 
+        title="Terms & Conditions - AstroSight | Service Agreement"
+        description="Read AstroSight's terms and conditions, service agreement, and user guidelines for our astrology platform and services."
+        keywords="AstroSight terms conditions, service agreement, astrology app terms, user guidelines, legal terms, astrology service terms"
+        canonical="https://astrosight.ai/terms-and-conditions"
+        noIndex={true}
+      />
+      
+      {/* JSON-LD Structured Data */}
+      <JsonLdSchema 
+        type="WebPage"
+        data={{
+          name: "Terms & Conditions - AstroSight",
+          description: "AstroSight's comprehensive terms and conditions outlining service agreement and user responsibilities",
+          url: "https://astrosight.ai/terms-and-conditions"
+        }}
+      />
+
+      {/* Third-party Scripts */}
       <Head>
-        <title>Terms & Conditions - AstroSight | Service Agreement</title>
-        <meta name="description" content="Read AstroSight's terms and conditions, service agreement, and user guidelines for our astrology platform and services." />
-        <meta name="keywords" content="AstroSight terms conditions, service agreement, astrology app terms, user guidelines, legal terms" />
-        <meta property="og:title" content="Terms & Conditions - AstroSight" />
-        <meta property="og:description" content="AstroSight's comprehensive terms and conditions outlining service agreement and user responsibilities." />
-        <meta property="og:url" content="https://astrosight.co/terms-and-conditions" />
-        <link rel="canonical" href="https://astrosight.co/terms-and-conditions" />
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17273163672');
+          `
+        }}></script>
       </Head>
       
       <div className="min-h-screen bg-[#FFF6E9] p-4">

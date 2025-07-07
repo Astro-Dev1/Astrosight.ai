@@ -1,0 +1,30 @@
+# Robots.txt for AstroSight
+User-agent: *
+Allow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /User/
+Disallow: /wallet/
+
+# Allow important pages
+Allow: /
+Allow: /about-us
+Allow: /horoscope/
+Allow: /blog/
+Allow: /panchanga/
+Allow: /compatibility/
+
+# Sitemap location
+Sitemap: https://astrosight.ai/sitemap.xml
