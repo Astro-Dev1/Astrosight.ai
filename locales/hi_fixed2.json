@@ -112,7 +112,6 @@
   
   "horoscope": {
     "loading": "लोड हो रहा है...",
-    "error": "त्रुटि",
     "invalid_sign": "अमान्य या अनुपस्थित राशि चिह्न",
     "return_home": "होम पर वापस जाएं",
     "horoscope_title": "{{sign}} राशिफल",
