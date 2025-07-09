@@ -165,7 +165,6 @@ const handlePhoneNumberChange = (e) => {
         orderNumber,
         language: 'kn'
       };
-
       // Step 1: Get astrology data
       console.log('Sending payload to astrology API:', payload);
       const res = await fetch('https://api.astrosight.co/free_report/process', {
@@ -199,7 +198,15 @@ const handlePhoneNumberChange = (e) => {
       if (pdfRes.ok) {
         const pdfData = await pdfRes.json();
         console.log('PDF generated successfully:', pdfData);
-        
+             const response = await fetch(`https://ycxn3ykohf.execute-api.ap-south-1.amazonaws.com//gallabox/lead/status/${form.whatsappMessageId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status:"complete" })
+      });
+handleSave()
+
         // // Step 3: Save to database
         // await fetch('/api/free-report-submit-form', {
         //   method: 'POST',
@@ -320,7 +327,7 @@ const handlePhoneNumberChange = (e) => {
             {/* Time of Birth Field */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Time of Birth <span className="text-red-500">*</span>
+                Time of Birth <span className="text-red-500">*{form.timeOfBirth}</span>
               </label>
               <input
                 type="time"
@@ -828,6 +835,8 @@ console.log('Payload for astrology API:', payload);
     <th className="py-2 px-3">Question 3</th>
     <th className="py-2 px-3">Received At</th>
     <th className="py-2 px-3">Actions</th>
+    <th className="py-2 px-3">status</th>
+
   </tr>
 </thead>
 <tbody>
@@ -854,6 +863,7 @@ console.log('Payload for astrology API:', payload);
       <td className="py-2 px-3 cursor-pointer" onClick={() => { setSelectedLead(lead); setModalOpen(true); }}>{lead.questions?.question3 || ''}</td>
       <td className="py-2 px-3 cursor-pointer" onClick={() => { setSelectedLead(lead); setModalOpen(true); }}>{lead.receivedAt ? new Date(lead.receivedAt).toLocaleString() : ''}</td>
       <td className="py-2 px-3">
+        
         <button
           onClick={(e) => handleQuickPDFGeneration(lead, e)}
           disabled={generatingPDFs.has(lead._id)}
@@ -869,6 +879,17 @@ console.log('Payload for astrology API:', payload);
           )}
         </button>
       </td>
+      <td className="py-2 px-3 cursor-pointer" onClick={() => { setSelectedLead(lead); setModalOpen(true); }}>
+        <div className="flex items-center gap-2">
+          <div className={`w-3 h-3 rounded-full ${
+            lead.status === 'complete' ? 'bg-green-500' : 
+            lead.status === 'incomplete' ? 'bg-red-500' : 
+            'bg-gray-400'
+          }`}></div>
+          <span>{lead.status}</span>
+        </div>
+      </td>
+
     </tr>
   ))}
 </tbody>

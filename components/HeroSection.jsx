@@ -163,22 +163,25 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 font-kohinoor lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column - Text content */}
             <div className="space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
-              <div className="text-3xl/7 text-[#3A3026] px-auto lg:text-[46.4px]/10 font-bold font-kohinoor" >
-                <span className="text-[#fd9474] text-3xl/7 font-kohinoor lg:text-[46.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
+              <div className="text-[32px]/8 text-[#070707] px-auto lg:text-[42.4px]/10 font-bold font-kohinoor-latin" >
+                <span className="text-[#ff6d3f]  w-full text-[32px]/8 font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
-                <p className="text-base/5 sm:text-lg md:text-sm text-gray-600 max-w-2xl mx-auto lg:mx-0">
+                  <div className="md:flex-1 md:w-1/2">
+
+                <p className="text-base/5 lg:w-1/2 sm:text-lg md:text-sm font-kohinoor-latin text-gray-600 max-w-2xl mx-auto lg:mx-0">
                   Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
                 </p>
-                <div className="hidden md:flex relative -top-3 flex-col items-center lg:items-center md:mt-0 md:ml-6">
+                <div className="hidden md:flex relative -top-14 left-14 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <Image
                     src="/qrcode.jpeg"
                     alt="QR Code for App Download"
-                    width={70}
-                    height={70}
+                    width={100}
+                    height={100}
                     className="rounded-lg"
                   />
                   <p className="text-gray-600 text-center text-[12px]">Scan to download</p>
+                </div>
                 </div>
               </div>
               <div className="flex flex-row lg:hidden items-center justify-center gap-4">
@@ -234,11 +237,11 @@ const HeroSection = () => {
                   height={299.88}
                 />
                 <Image
-                  src="/Untitled design (6) (1).webp"
+                  src="/hero.webp"
                   alt="Guidance Report Preview"
-                  width={328}
+                  width={628}
                   height={299.88}
-                  className="w-full h-[299.88px] lg:h-[516px] rounded-2xl object-cover"
+                  className="w-full h-[327.88px] lg:h-[516px] rounded-2xl object-cover"
                   priority
                   sizes="(max-width: 1023px) 100vw, (min-width: 1024px) 328px"
                 />
