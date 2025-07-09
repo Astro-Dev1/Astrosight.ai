@@ -1,13 +1,13 @@
 import CustomHeader from '../components/CustomHeader'
 import SideMenu from '../components/SideMenu'
 import Footer from '../components/Footer'
+import SEOHead from '../components/SEOHead'
 import * as React from "react"
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { PhoneCall, FileText, Users, Cog, Megaphone, Star } from 'lucide-react'
-import Head from 'next/head'
 import Section from '../components/Section'
 import CustomLinkButton from '../components/CustomContainer'
 
@@ -117,11 +117,14 @@ export default function AboutUs() {
 
   return (
     <div className="min-h-screen bg-[#FFF2E2]">
+      <SEOHead 
+        title="About AstroSight - Expert Vedic Astrology Team & Services"
+        description="Meet AstroSight's expert Vedic astrologers led by Dr. Ananthapadmanabha. Learn about our mission, personalized astrology services, and approach to providing authentic astrological guidance."
+        keywords="AstroSight, Vedic astrology, Dr. Ananthapadmanabha, astrology consultation, birth chart analysis, horoscope reading, Jyotish experts, spiritual guidance, astrology services"
+        canonical="https://astrosight.ai/about-us"
+      />
       <Head>
         <link rel="icon" href="/logo.png" />
-        <title>About AstroSight - Expert Vedic Astrology Team & Services</title>
-        <meta name="description" content="Meet AstroSight's expert Vedic astrologers led by Dr. Ananthapadmanabha. Learn about our mission, personalized astrology services, and approach to providing authentic astrological guidance." />
-        <meta name="keywords" content="AstroSight, Vedic astrology, Dr. Ananthapadmanabha, astrology consultation, birth chart analysis, horoscope reading, Jyotish experts, spiritual guidance, astrology services" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="About AstroSight - Expert Vedic Astrology Team" />
         <meta property="og:description" content="Discover AstroSight's team of experienced Vedic astrologers and learn how we combine traditional wisdom with modern technology for accurate astrological guidance." />

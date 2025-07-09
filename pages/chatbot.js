@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
+import SEOHead from "../components/SEOHead";
 import Cookies from "js-cookie";
 import CosmicBackground from "../components/CosmicBackground";
 import CosmicNavbar from "../components/CosmicNavbar";
@@ -507,6 +508,12 @@ useEffect(() => {
 
   return (
     <div className="min-h-screen cosmic-container font-serif flex flex-col">
+      <SEOHead 
+        title="AI Astrology Chat - Get Instant Vedic Guidance | AstroSight"
+        description="Chat with AI-powered Vedic astrology experts for instant guidance on love, career, health, and life decisions. Get personalized astrological insights 24/7."
+        keywords="AI astrology chat, Vedic astrology bot, instant horoscope, astrological guidance, AI astrologer, online astrology consultation"
+        canonical="https://astrosight.ai/chatbot"
+      />
       <CosmicBackground starCount={150} />
 <CosmicNavbar persona={persona} setShowHistory={setIsPersonaModalOpen} />     
  <main className="flex-1 container mx-auto  px-1 mt-20 py-6 text-black  flex flex-col ">

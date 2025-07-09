@@ -11,6 +11,7 @@ import TestimonialsSection from '../components/DailyHoroscope';
 import CustomHeader from '../components/CustomHeader';
 import SideMenu from '../components/SideMenu';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEOHead';
 import Head from 'next/head';
 import Cookies from "js-cookie";
 
@@ -27,6 +28,11 @@ const HomeMobileScreen = () => {
   }, []);
 
   return (<>
+        <SEOHead 
+          title="AstroSight - Expert Vedic Astrology Consultations & Horoscopes"
+          description="Get personalized Vedic astrology readings, accurate horoscopes, and spiritual guidance from experienced astrologers. Discover your life path through ancient astrological wisdom."
+          canonical="https://astrosight.ai"
+        />
         <Head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>

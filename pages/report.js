@@ -1,8 +1,8 @@
 import React from 'react';
-import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useRouter } from 'next/router';
+import SEOHead from '../components/SEOHead';
 
 const ReportsPage = () => {
   const router = useRouter();
@@ -76,15 +76,13 @@ const ReportsPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Astrological Reports - AstroSight | Detailed Life Analysis</title>
-        <meta name="description" content="Get comprehensive astrological reports from AstroSight including career analysis, relationship compatibility, marriage reports, and more personalized insights." />
-        <meta name="keywords" content="AstroSight reports, astrology reports, career analysis, relationship compatibility, marriage report, birth chart analysis, horoscope reports" />
-        <meta property="og:title" content="Astrological Reports - AstroSight" />
-        <meta property="og:description" content="Unlock profound insights with AstroSight's comprehensive astrological reports covering all aspects of your life." />
-        <meta property="og:url" content="https://astrosight.ai/report" />
-        <link rel="canonical" href="https://astrosight.ai/report" />
-      </Head>
+      <SEOHead
+        title="Astrological Reports - AstroSight | Detailed Life Analysis"
+        description="Get comprehensive astrological reports from AstroSight including career analysis, relationship compatibility, marriage reports, and more personalized insights."
+        keywords="AstroSight reports, astrology reports, career analysis, relationship compatibility, marriage report, birth chart analysis, horoscope reports"
+        canonical="https://astrosight.ai/report"
+        ogImage="https://astrosight.ai/images/reports.jpg"
+      />
       
       <div className="min-h-screen bg-[#FFF6E9]">
       {/* Header */}

@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { useState, useEffect } from 'react';
@@ -7,6 +6,7 @@ import HoroscopePage from '../../components/Horoscopepage';
 import { fetchMyProfile } from '../../services/centralApi'; // Import the API service
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
+import SEOHead from '../../components/SEOHead';
 
 // COMMENTED OUT FOR NOW: Translation logic
 // import enTranslations from '../../locales/en.json';
@@ -125,46 +125,13 @@ export default function HoroscopeIndex() {
   return (
     <>
       {/* SEO Metadata */}
-      <Head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17273163672');
-          `
-        }}></script>
-        <link rel="icon" href="/logo.png" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kohinoor+Devanagari:wght@300;400;500;600;700&display=swap" />
-        <title>Daily Horoscope Predictions | Zodiac Signs & Astrology Insights | AstroSight</title>
-        <meta
-          name="description"
-          content="Discover daily, weekly, and monthly horoscopes for all zodiac signs. Explore personalized astrological insights with AstroSight."
-        />
-        <meta
-          name="keywords"
-          content="daily horoscope, zodiac signs, astrology predictions, Aries horoscope, Taurus horoscope, Gemini horoscope, Cancer horoscope, Leo horoscope, Virgo horoscope, Libra horoscope, Scorpio horoscope, Sagittarius horoscope, Capricorn horoscope, Aquarius horoscope, Pisces horoscope"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Daily Horoscope Predictions | AstroSight" />
-        <meta
-          property="og:description"
-          content="Get daily, weekly, and monthly horoscope predictions for all zodiac signs. Discover your astrological insights today with AstroSight."
-        />
-        <meta property="og:url" content="https://astrosight.ai/horoscope" />
-        <meta property="og:image" content="https://astrosight.ai/horoscope-image.jpg" />
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:title" content="Daily Horoscope Predictions | AstroSight" />
-        <meta
-          property="twitter:description"
-          content="Explore personalized daily, weekly, and monthly horoscopes for all zodiac signs at AstroSight."
-        />
-        <meta property="twitter:image" content="https://astrosight.ai/horoscope-image.jpg" />
-        <link rel="canonical" href="https://astrosight.ai/horoscope" />
-      </Head>
+      <SEOHead
+        title="Daily Horoscope Predictions | Zodiac Signs & Astrology Insights"
+        description="Discover daily, weekly, and monthly horoscopes for all zodiac signs. Explore personalized astrological insights with AstroSight."
+        keywords="daily horoscope, zodiac signs, astrology predictions, Aries horoscope, Taurus horoscope, Gemini horoscope, Cancer horoscope, Leo horoscope, Virgo horoscope, Libra horoscope, Scorpio horoscope, Sagittarius horoscope, Capricorn horoscope, Aquarius horoscope, Pisces horoscope"
+        canonical="https://astrosight.ai/horoscope"
+        ogImage="https://astrosight.ai/horoscope-image.jpg"
+      />
 
       {/* Custom Header */}
       <CustomHeader 

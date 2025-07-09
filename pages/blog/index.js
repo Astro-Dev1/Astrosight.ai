@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -10,6 +9,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { fetchEntries } from '../../lib/contentful';
+import SEOHead from '../../components/SEOHead';
 // import { t } from '../../locales/i18n';
 
 const POSTS_PER_PAGE = 8;
@@ -78,64 +78,13 @@ export default function Blog({ posts }) {
         isOpen={sideMenuOpen}
         onClose={() => setSideMenuOpen(false)}
       />
-      <Head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17273163672');
-          `
-        }}></script>
-        <link rel="icon" href="/logo.png" />
-        <title>Astro Answer Blog - Explore Vedic Astrology Articles and Insights</title>
-        <meta name="description" content="Discover insightful Vedic astrology articles, horoscopes, planetary influences, and remedies. Learn how astrology shapes your life journey with expert guidance from Astro Answer." />
-        <meta name="keywords" content="Vedic astrology, horoscopes, zodiac signs, planetary aspects, astrology remedies, birth charts, Guna Milan, astrology predictions, cosmic insights" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Astro Answer Blog - Vedic Astrology Insights and Horoscopes" />
-        <meta property="og:description" content="Explore expert articles on Vedic astrology, horoscopes, planetary influences, and life-changing astrological remedies at Astro Answer." />
-        <meta property="og:url" content="https://astrosight.co/blog" />
-        <meta property="og:image" content="https://astrosight.co/images/blog-cover.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Astro Answer Blog - Vedic Astrology Wisdom" />
-        <meta name="twitter:description" content="Dive into Vedic astrology articles, horoscopes, and cosmic insights. Discover how celestial bodies influence your life path." />
-        <meta name="twitter:image" content="https://astrosight.co/images/blog-cover.jpg" />
-        <link rel="canonical" href="https://astrosight.co/blog" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "name": "Astro Answer Blog",
-            "description": "Expert Vedic astrology articles, horoscopes, and astrological remedies.",
-            "url": "https://astrosight.co/blog",
-            "publisher": {
-              "@type": "Organization",
-              "name": "Astro Answer",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://astrosight.co/logo.png"
-              }
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://astrosight.co/blog"
-            },
-            "blogPost": currentPosts.map(post => ({
-              "@type": "BlogPosting",
-              "headline": post.fields.title,
-              "description": post.fields.description,
-              "datePublished": post.fields.publishDate,
-              "image": post.fields.coverImage ? post.fields.coverImage.fields.file.url : undefined,
-              "author": {
-                "@type": "Person",
-                "name": post.fields.author.name
-              }
-            }))
-          })}
-        </script>
-      </Head>
+      <SEOHead
+        title="Astro Answer Blog - Explore Vedic Astrology Articles and Insights"
+        description="Discover insightful Vedic astrology articles, horoscopes, planetary influences, and remedies. Learn how astrology shapes your life journey with expert guidance from Astro Answer."
+        keywords="Vedic astrology, horoscopes, zodiac signs, planetary aspects, astrology remedies, birth charts, Guna Milan, astrology predictions, cosmic insights"
+        canonical="https://astrosight.ai/blog"
+        ogImage="https://astrosight.ai/images/blog-cover.jpg"
+      />
 
       <div className="flex flex-col min-h-screen bg-[#FFF2E2]">
         <main className="flex-1 px-4 pb-20">

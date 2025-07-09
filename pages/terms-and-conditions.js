@@ -1,22 +1,20 @@
 import React from 'react';
-import Head from 'next/head';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/router';
+import SEOHead from '../components/SEOHead';
 
 const TermsAndConditionsPage = () => {
   const router = useRouter();
 
   return (
     <>
-      <Head>
-        <title>Terms & Conditions - AstroSight | Service Agreement</title>
-        <meta name="description" content="Read AstroSight's terms and conditions, service agreement, and user guidelines for our astrology platform and services." />
-        <meta name="keywords" content="AstroSight terms conditions, service agreement, astrology app terms, user guidelines, legal terms" />
-        <meta property="og:title" content="Terms & Conditions - AstroSight" />
-        <meta property="og:description" content="AstroSight's comprehensive terms and conditions outlining service agreement and user responsibilities." />
-        <meta property="og:url" content="https://astrosight.co/terms-and-conditions" />
-        <link rel="canonical" href="https://astrosight.co/terms-and-conditions" />
-      </Head>
+      <SEOHead
+        title="Terms & Conditions - AstroSight | Service Agreement"
+        description="Read AstroSight's terms and conditions, service agreement, and user guidelines for our astrology platform and services."
+        keywords="AstroSight terms conditions, service agreement, astrology app terms, user guidelines, legal terms"
+        canonical="https://astrosight.ai/terms-and-conditions"
+        ogImage="https://astrosight.ai/images/terms-conditions.jpg"
+      />
       
       <div className="min-h-screen bg-[#FFF6E9] p-4">
       {/* Header */}

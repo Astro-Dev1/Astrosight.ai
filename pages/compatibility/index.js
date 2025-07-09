@@ -1,11 +1,11 @@
 // ../pages/compatibility/index.js
 
-import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
+import SEOHead from '../../components/SEOHead';
 import { Card, CardContent } from "@/components/ui/card";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -77,54 +77,13 @@ export default function CompatibilityPage() {
 
   return (
     <>
-      <Head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17273163672');
-          `
-        }}></script>
-        <link rel="icon" href="/logo.png" />
-        <title>Zodiac Love Compatibility Calculator | astrosight</title>
-        <meta name="description" content="Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more." />
-        <meta name="keywords" content="zodiac compatibility, love compatibility, astrology compatibility, horoscope matching, relationship astrology" />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Zodiac Love Compatibility Calculator | astrosight" />
-        <meta property="og:description" content="Explore your zodiac love compatibility and find your perfect astrological match with our free compatibility calculator." />
-        <meta property="og:url" content="https://astrosight.ai/compatibility" />
-        <meta property="og:image" content="https://astrosight.ai/compatibility-image.jpg" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zodiac Compatibility Calculator | astrosight" />
-        <meta name="twitter:description" content="Discover your astrological compatibility for love, friendship, and more with our free zodiac matching tool." />
-        <meta name="twitter:image" content="https://astrosight.ai/compatibility-image.jpg" />
-
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://astrosight.ai/compatibility" />
-
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Zodiac Love Compatibility Calculator",
-            "description": "Free astrology compatibility calculator to find your perfect zodiac match.",
-            "url": "https://astrosight.ai/compatibility",
-            "provider": {
-              "@type": "Organization",
-              "name": "astrosight",
-              "url": "https://astrosight.ai"
-            }
-          })}
-        </script>
-      </Head>
+      <SEOHead
+        title="Zodiac Love Compatibility Calculator | AstroSight"
+        description="Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more."
+        keywords="zodiac compatibility, love compatibility, astrology compatibility, horoscope matching, relationship astrology, astrology calculator"
+        canonical="https://astrosight.ai/compatibility"
+        ogImage="https://astrosight.ai/compatibility-image.jpg"
+      />
       
       <CustomHeader 
         title="Compatibility"
