@@ -84,12 +84,12 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>
+    <section className="font-kohinoor">
       <div className="">
         {isLoggedIn ? (
-          <div className=" text-center font-poppins lg:text-left">
+          <div className="text-center lg:text-left font-kohinoor">
             <div className="">
-              <h1 className="text-[#FF6D3F] text-center mt-2 text-2xl mb-4 font-semibold" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>Welcome <span className='text-[#070707]'>{userName}</span> </h1>
+              <h1 className="text-[#FF6D3F] text-center mt-2 text-2xl mb-4 font-semibold font-kohinoor">Welcome <span className='text-[#070707]'>{userName}</span> </h1>
             </div>
             {/* Banner Section */}
             <div className="relative  rounded-xl overflow-hidden shadow-sm">
@@ -117,7 +117,7 @@ const HeroSection = () => {
             </div>
             {/* AI Companions Section */}
             <div className="mb-6">
-              <h2 className="text-black text-xl font-semibold mt-5 mb-3" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>Our AI Companions</h2>
+              <h2 className="text-black text-xl font-semibold mt-5 mb-3 font-kohinoor">Our AI Companions</h2>
 
                 <Card className="bg-white p-8 rounded-xl shadow-lg">
                   <div className="flex justify-between mb-6">
@@ -134,7 +134,7 @@ const HeroSection = () => {
                         </Avatar>
               </Link>
 
-                        <span className="text-[#FF9960] font-medium" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>{companion.name}</span>
+                        <span className="text-[#FF9960] font-medium font-kohinoor">{companion.name}</span>
                       </div>
                     ))}
                   </div>
@@ -145,8 +145,7 @@ const HeroSection = () => {
                          value={inputValue}
                              onChange={(e) => setInputValue(e.target.value)}
                       placeholder="Ask Anything"
-                      className="w-full py-3 px-4 rounded-full bg-[#FFE5CC] text-gray-700 border-none focus:outline-none"
-                      style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}
+                      className="w-full py-3 px-4 rounded-full bg-[#FFE5CC] text-gray-700 border-none focus:outline-none font-kohinoor"
                     />
                              <Link
                 href={`/chatbot?persona=expert&&input=${inputValue}`}
@@ -161,19 +160,19 @@ const HeroSection = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 font-kohinoor lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column - Text content */}
             <div className="space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
-              <div className="text-2xl/9 text-[#3A3026] px-auto font-bold" style={{ fontFamily: 'Kohinoor Devanagari, Noto Sans Devanagari, Arial, sans-serif' }}>
-                <span className="text-[#fd9474] text-2xl font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
+              <div className="text-3xl/7 text-[#3A3026] px-auto lg:text-[46.4px]/10 font-bold font-kohinoor" >
+                <span className="text-[#fd9474] text-3xl/7 font-kohinoor lg:text-[46.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
-                <p className="text-base/5 sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
+                <p className="text-base/5 sm:text-lg md:text-sm text-gray-600 max-w-2xl mx-auto lg:mx-0">
                   Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
                 </p>
                 <div className="hidden md:flex relative -top-3 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <Image
-                    src="/QR_code_for_mobile_English_Wikipedia.svg.png"
+                    src="/qrcode.jpeg"
                     alt="QR Code for App Download"
                     width={70}
                     height={70}

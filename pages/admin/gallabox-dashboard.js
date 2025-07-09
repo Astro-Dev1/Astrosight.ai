@@ -104,6 +104,24 @@ function LeadEditModal({ lead, open, onClose, onSave, onDelete }) {
       setValidationErrors(prev => ({ ...prev, [field]: '' }));
     }
   };
+const handlePhoneNumberChange = (e) => {
+  const input = e.target;
+  const cursorPosition = input.selectionStart;
+  const oldValue = form.phoneNumber || '';
+  const newValue = e.target.value.replace(/\D/g, ''); // Remove non-digits
+  
+  // Allow up to 12 digits but warn if more than 10
+  if (newValue.length <= 12) {
+    handleInputChange('phoneNumber', newValue);
+    
+    // Restore cursor position after the value update
+    setTimeout(() => {
+      const digitDifference = newValue.length - oldValue.replace(/\D/g, '').length;
+      const newCursorPosition = Math.max(0, cursorPosition + digitDifference);
+      input.setSelectionRange(newCursorPosition, newCursorPosition);
+    }, 0);
+  }
+};
 
   // Handle nested object changes (questions)
   const handleQuestionChange = (questionKey, value) => {
@@ -271,7 +289,7 @@ function LeadEditModal({ lead, open, onClose, onSave, onDelete }) {
                   validationErrors.phoneNumber ? 'border-red-500' : 'border-gray-300'
                 }`}
                 value={form.phoneNumber || ''}
-                onChange={e => handleInputChange('phoneNumber', e.target.value.replace(/\D/g, '').slice(0, 10))}
+                onChange={handlePhoneNumberChange}
                 placeholder="Enter 10-digit mobile number"
                 maxLength={10}
               />
