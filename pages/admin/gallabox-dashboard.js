@@ -205,7 +205,10 @@ const handlePhoneNumberChange = (e) => {
         },
         body: JSON.stringify({ status:"complete" })
       });
-handleSave()
+      if (response.ok){
+        handleSave()
+      }
+
 
         // // Step 3: Save to database
         // await fetch('/api/free-report-submit-form', {
