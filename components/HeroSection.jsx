@@ -172,11 +172,11 @@ const HeroSection = () => {
                   Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
                 </p>
                 <div className="hidden md:flex relative -top-3 flex-col items-center lg:items-center md:mt-0 md:ml-6">
-                  <img
-                    src="/chat_assistant__1_-removebg-preview.png"
+                  <Image
+                    src="/QR_code_for_mobile_English_Wikipedia.svg.png"
                     alt="QR Code for App Download"
-                    width={300}
-                    height={300}
+                    width={70}
+                    height={70}
                     className="rounded-lg"
                   />
                   <p className="text-gray-600 text-center text-[12px]">Scan to download</p>
@@ -198,7 +198,7 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">Play Store</div>
                     </div>
                   </div>
-                                    <spam className="text-xs text-green-400">coming soon </spam>
+                  <span className="text-xs text-green-400">coming soon </span>
                 </Link>
                 <Link href="https://AstroSight.com/download" passHref>
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
@@ -215,13 +215,12 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">App Store</div>
                     </div>
                   </div>
-                                    <spam className="text-xs text-green-400">coming soon </spam>
-
+                  <span className="text-xs text-green-400">coming soon </span>
                 </Link>
               </div>
             </div>
             {/* Right column - Image */}
-            <div className="flex justify-center items-center lg:justify-end lg:items-end lg:mt-0 p-2 -mt-20 -mb-9">
+            <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
               <picture>
                 <source
                   media="(min-width: 1024px)"
@@ -236,13 +235,13 @@ const HeroSection = () => {
                   height={299.88}
                 />
                 <Image
-                  src="/chat_assistant__1_-removebg-preview.png"
+                  src="/Untitled design (6) (1).webp"
                   alt="Guidance Report Preview"
-                  width={386.9}
-                  height={299}
-                  className="w-[586.9px] h-[499px] rounded-2xl object-contain mx-auto"
+                  width={328}
+                  height={299.88}
+                  className="w-full h-[299.88px] lg:h-[516px] rounded-2xl object-cover"
                   priority
-                  sizes="386.9px"
+                  sizes="(max-width: 1023px) 100vw, (min-width: 1024px) 328px"
                 />
               </picture>
             </div>

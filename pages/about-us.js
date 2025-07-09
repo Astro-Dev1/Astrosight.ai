@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { PhoneCall, FileText, Users, Cog, Megaphone, Star } from 'lucide-react'
 import Section from '../components/Section'
 import CustomLinkButton from '../components/CustomContainer'
+import Head from 'next/head';
 
 // Import translations directly to avoid SSR issues
 import enTranslations from '../locales/en.json';

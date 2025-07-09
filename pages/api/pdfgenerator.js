@@ -615,7 +615,7 @@ console.log(languageto)
     "channelType": "whatsapp",
     "recipient": {
         "name": details['Name'],
-        "phone":phone
+        "phone":`91${phone}`
     },
     "whatsapp": {
         "type": "template",

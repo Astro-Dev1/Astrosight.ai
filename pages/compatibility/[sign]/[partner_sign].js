@@ -1,14 +1,15 @@
 // pages/compatibility/[sign]/[partner_sign].js
 
-import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CustomHeader from '../../../components/CustomHeader';
 import Footer from '../../../components/Footer';
+// import SEOHead from '../../../components/SEOHead';
 // import { RefreshCw } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import Head from 'next/head';
 
 // import Image from 'next/image';
 

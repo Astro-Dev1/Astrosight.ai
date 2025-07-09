@@ -1,17 +1,18 @@
 // ../pages/blog/[slug].js
 
-import Head from 'next/head';
 import Script from 'next/script';
 import { client } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
+// import SEOHead from '../../components/SEOHead';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { CalendarIcon, Clock, Tag } from 'lucide-react';
+import Head from 'next/head';
 
 // Custom rendering options for Contentful rich text - Enhanced for Medium style with better spacing
 const renderOptions = {

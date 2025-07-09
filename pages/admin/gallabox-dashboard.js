@@ -49,17 +49,77 @@ async function getCoordinatesFromPlace(placeName) {
 function LeadEditModal({ lead, open, onClose, onSave, onDelete }) {
   const [form, setForm] = useState(lead || {});
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
   
-  useEffect(() => { setForm(lead || {}); }, [lead]);
-  
-  // Handle PDF Generation
-  const handleGeneratePDF = async () => {
-    // Validate required fields
-    const requiredFields = ['name', 'dateOfBirth', 'timeOfBirth', 'placeOfBirth'];
-    const missingFields = requiredFields.filter(field => !form[field]);
+  useEffect(() => { 
+    setForm(lead || {}); 
+    setValidationErrors({});
+  }, [lead]);
+
+  // Validation function
+  const validateForm = () => {
+    const errors = {};
     
-    if (missingFields.length > 0) {
-      alert(`Missing required fields: ${missingFields.join(', ')}`);
+    // Required fields validation
+    if (!form.name || form.name.trim() === '') {
+      errors.name = 'Name is required';
+    }
+    
+    if (!form.phoneNumber || !/^[6-9]\d{9}$/.test(form.phoneNumber)) {
+      errors.phoneNumber = 'Valid 10-digit Indian mobile number is required';
+    }
+    
+    if (!form.dateOfBirth) {
+      errors.dateOfBirth = 'Date of birth is required';
+    } else {
+      const dob = new Date(form.dateOfBirth);
+      const today = new Date();
+      if (dob > today) {
+        errors.dateOfBirth = 'Date of birth cannot be in the future';
+      }
+    }
+    
+    if (!form.timeOfBirth || !/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(form.timeOfBirth)) {
+      errors.timeOfBirth = 'Valid time in HH:MM format is required';
+    }
+    
+    if (!form.placeOfBirth || form.placeOfBirth.trim() === '') {
+      errors.placeOfBirth = 'Place of birth is required';
+    }
+    
+    if (!form.gender || !['ಗಂಡು', 'ಹೆಣ್ಣು', 'Male', 'Female'].includes(form.gender)) {
+      errors.gender = 'Gender is required';
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // Handle input changes with validation
+  const handleInputChange = (field, value) => {
+    setForm(f => ({ ...f, [field]: value }));
+    
+    // Clear validation error for this field
+    if (validationErrors[field]) {
+      setValidationErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  // Handle nested object changes (questions)
+  const handleQuestionChange = (questionKey, value) => {
+    setForm(f => ({ 
+      ...f, 
+      questions: { 
+        ...f.questions, 
+        [questionKey]: value 
+      } 
+    }));
+  };
+  
+  // Handle PDF Generation with validation
+  const handleGeneratePDF = async () => {
+    if (!validateForm()) {
+      alert('Please fix the validation errors before generating PDF');
       return;
     }
 
@@ -75,13 +135,13 @@ function LeadEditModal({ lead, open, onClose, onSave, onDelete }) {
       const orderNumber = `gallabox_${now.toISOString().replace(/[-:.TZ]/g, '')}`;
       
       const payload = {
-        name: form.name,
+        name: form.name.trim(),
         dateOfBirth: form.dateOfBirth,
         timeOfBirth: form.timeOfBirth,
-        placeOfBirth: form.placeOfBirth,
+        placeOfBirth: form.placeOfBirth.trim(),
         latitude: coordinates.latitude,
         longitude: coordinates.longitude,
-        gender: form.gender === "ಗಂಡು" ? "Male" : "Female",
+        gender: form.gender === "ಗಂಡು" ? "Male" : form.gender === "ಹೆಣ್ಣು" ? "Female" : form.gender,
         timezone: 5.5,
         question: form.questions?.question1 || form.trouble || '',
         orderNumber,
@@ -147,6 +207,15 @@ function LeadEditModal({ lead, open, onClose, onSave, onDelete }) {
     }
   };
 
+  // Handle save with validation
+  const handleSave = () => {
+    if (!validateForm()) {
+      alert('Please fix the validation errors before saving');
+      return;
+    }
+    onSave(form);
+  };
+
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 p-4">
@@ -170,29 +239,201 @@ function LeadEditModal({ lead, open, onClose, onSave, onDelete }) {
         
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto p-6 pt-4">
-          <div className="space-y-2">
-            {Object.entries(form).map(([key, value]) => (
-              key !== '_id' && key !== '__v' && key !== 'receivedAt' && key !== 'createdAt' && key !== 'updatedAt' &&
-              (typeof value !== 'object' ? (
-                <div key={key}>
-                  <label className="block text-sm font-medium text-gray-700">{key}</label>
-                  <input
-                    className="w-full border rounded px-2 py-1"
-                    value={form[key] || ''}
-                    onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
-                  />
-                </div>
-              ) : null)
-            ))}
-            {/* Questions */}
-            {form.questions && (
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Questions</label>
-                <input className="w-full border rounded px-2 py-1 mb-1" value={form.questions.question1 || ''} onChange={e => setForm(f => ({ ...f, questions: { ...f.questions, question1: e.target.value } }))} placeholder="Question 1" />
-                <input className="w-full border rounded px-2 py-1 mb-1" value={form.questions.question2 || ''} onChange={e => setForm(f => ({ ...f, questions: { ...f.questions, question2: e.target.value } }))} placeholder="Question 2" />
-                <input className="w-full border rounded px-2 py-1" value={form.questions.question3 || ''} onChange={e => setForm(f => ({ ...f, questions: { ...f.questions, question3: e.target.value } }))} placeholder="Question 3" />
+          <div className="space-y-4">
+            {/* Name Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                className={`w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  validationErrors.name ? 'border-red-500' : 'border-gray-300'
+                }`}
+                value={form.name || ''}
+                onChange={e => handleInputChange('name', e.target.value)}
+                placeholder="Enter full name"
+                maxLength={100}
+              />
+              {validationErrors.name && (
+                <p className="text-red-500 text-xs mt-1">{validationErrors.name}</p>
+              )}
+            </div>
+
+            {/* Phone Number Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Phone Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                className={`w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  validationErrors.phoneNumber ? 'border-red-500' : 'border-gray-300'
+                }`}
+                value={form.phoneNumber || ''}
+                onChange={e => handleInputChange('phoneNumber', e.target.value.replace(/\D/g, '').slice(0, 10))}
+                placeholder="Enter 10-digit mobile number"
+                maxLength={10}
+              />
+              {validationErrors.phoneNumber && (
+                <p className="text-red-500 text-xs mt-1">{validationErrors.phoneNumber}</p>
+              )}
+            </div>
+
+            {/* Date of Birth Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Date of Birth <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="date"
+                className={`w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  validationErrors.dateOfBirth ? 'border-red-500' : 'border-gray-300'
+                }`}
+                value={form.dateOfBirth ? form.dateOfBirth.split('T')[0] : ''}
+                onChange={e => handleInputChange('dateOfBirth', e.target.value)}
+                max={new Date().toISOString().split('T')[0]}
+              />
+              {validationErrors.dateOfBirth && (
+                <p className="text-red-500 text-xs mt-1">{validationErrors.dateOfBirth}</p>
+              )}
+            </div>
+
+            {/* Time of Birth Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Time of Birth <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="time"
+                className={`w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  validationErrors.timeOfBirth ? 'border-red-500' : 'border-gray-300'
+                }`}
+                value={form.timeOfBirth || ''}
+                onChange={e => handleInputChange('timeOfBirth', e.target.value)}
+              />
+              {validationErrors.timeOfBirth && (
+                <p className="text-red-500 text-xs mt-1">{validationErrors.timeOfBirth}</p>
+              )}
+            </div>
+
+            {/* Place of Birth Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Place of Birth <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                className={`w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  validationErrors.placeOfBirth ? 'border-red-500' : 'border-gray-300'
+                }`}
+                value={form.placeOfBirth || ''}
+                onChange={e => handleInputChange('placeOfBirth', e.target.value)}
+                placeholder="Enter city/place of birth"
+                maxLength={100}
+              />
+              {validationErrors.placeOfBirth && (
+                <p className="text-red-500 text-xs mt-1">{validationErrors.placeOfBirth}</p>
+              )}
+            </div>
+
+            {/* Gender Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Gender <span className="text-red-500">*</span>
+              </label>
+              <select
+                className={`w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  validationErrors.gender ? 'border-red-500' : 'border-gray-300'
+                }`}
+                value={form.gender || ''}
+                onChange={e => handleInputChange('gender', e.target.value)}
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="ಗಂಡು">ಗಂಡು (Male)</option>
+                <option value="ಹೆಣ್ಣು">ಹೆಣ್ಣು (Female)</option>
+              </select>
+              {validationErrors.gender && (
+                <p className="text-red-500 text-xs mt-1">{validationErrors.gender}</p>
+              )}
+            </div>
+
+            {/* Trouble/Main Question Field */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Main Question/Trouble
+              </label>
+              <textarea
+                className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"
+                value={form.trouble || ''}
+                onChange={e => handleInputChange('trouble', e.target.value)}
+                placeholder="What is your main concern or question?"
+                rows={3}
+                maxLength={500}
+              />
+            </div>
+
+            {/* Additional Questions */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Additional Questions</label>
+              
+              <div className="space-y-2">
+                <input
+                  type="text"
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"
+                  value={form.questions?.question1 || ''}
+                  onChange={e => handleQuestionChange('question1', e.target.value)}
+                  placeholder="Question 1"
+                  maxLength={200}
+                />
+                
+                <input
+                  type="text"
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"
+                  value={form.questions?.question2 || ''}
+                  onChange={e => handleQuestionChange('question2', e.target.value)}
+                  placeholder="Question 2"
+                  maxLength={200}
+                />
+                
+                <input
+                  type="text"
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border-gray-300"
+                  value={form.questions?.question3 || ''}
+                  onChange={e => handleQuestionChange('question3', e.target.value)}
+                  placeholder="Question 3"
+                  maxLength={200}
+                />
               </div>
-            )}
+            </div>
+
+            {/* Other Fields */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Conversation ID</label>
+              <input
+                type="text"
+                className="w-full border rounded-lg px-3 py-2 bg-gray-100 focus:outline-none border-gray-300"
+                value={form.conversationId || ''}
+                onChange={e => handleInputChange('conversationId', e.target.value)}
+                placeholder="Conversation ID"
+                readOnly
+              />
+            </div>
+
+            {/* WhatsApp Message ID */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp Message ID</label>
+              <input
+                type="text"
+                className="w-full border rounded-lg px-3 py-2 bg-gray-100 focus:outline-none border-gray-300"
+                value={form.whatsappMessageId || ''}
+                onChange={e => handleInputChange('whatsappMessageId', e.target.value)}
+                placeholder="WhatsApp Message ID"
+                readOnly
+              />
+            </div>
           </div>
         </div>
         
@@ -215,7 +456,7 @@ function LeadEditModal({ lead, open, onClose, onSave, onDelete }) {
               </button>
               <button 
                 className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" 
-                onClick={() => onSave(form)}
+                onClick={handleSave}
               >
                 Save
               </button>
