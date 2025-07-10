@@ -92,7 +92,7 @@ const CustomHeader = ({
               alt="Title"
               width={160}
               height={132}
-              className="h-8 w-40 max-w-40 object-contain"
+              className="h-8 w-40 max-w-40 relative -left-9 object-contain"
             />
           ) : (
             <h1 className={`text-xl font-semibold ${textColor} ${(showBackButton || showSideMenu) ? 'ml-3' : ''}`}>

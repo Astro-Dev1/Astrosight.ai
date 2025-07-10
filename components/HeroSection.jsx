@@ -163,8 +163,8 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 font-kohinoor lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column - Text content */}
             <div className="space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
-              <div className="text-[32px]/8 text-[#070707] px-auto lg:text-[42.4px]/10 font-bold font-kohinoor-latin" >
-                <span className="text-[#ff6d3f]  w-full text-[32px]/8 font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
+              <div className="text-[30px]/9 text-[#3a3026] px-auto lg:text-[42.4px]/10 font-bold font-kohinoor-latin" >
+                <span className="text-[#ff6d3f]  w-full text-[30px] font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
                   <div className="md:flex-1 md:w-1/2">
@@ -172,15 +172,15 @@ const HeroSection = () => {
                 <p className="text-base/5 lg:w-1/2 sm:text-lg md:text-sm font-kohinoor-latin text-gray-600 max-w-2xl mx-auto lg:mx-0">
                   Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
                 </p>
-                <div className="hidden md:flex relative -top-14 left-14 flex-col items-center lg:items-center md:mt-0 md:ml-6">
+                <div className="hidden md:flex relative -top-16 left-16 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <Image
                     src="/qrcode.jpeg"
                     alt="QR Code for App Download"
-                    width={100}
-                    height={100}
+                    width={70}
+                    height={700}
                     className="rounded-lg"
                   />
-                  <p className="text-gray-600 text-center text-[12px]">Scan to download</p>
+                  <p className="text-gray-600 text-center text-[12px]">Scan to our download</p>
                 </div>
                 </div>
               </div>
@@ -200,11 +200,14 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">Play Store</div>
                     </div>
                   </div>
-                  <span className="text-xs text-green-400">coming soon </span>
                 </Link>
+                
                 <Link href="https://AstroSight.com/download" passHref>
+
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
+                    
                     <div className="mr-3">
+
                       <svg viewBox="0 0 384 512" width="20">
                         <path
                           fill="currentColor"
@@ -215,11 +218,14 @@ const HeroSection = () => {
                     <div>
                       <div className="md:text-xs text-[12px] uppercase">Download on</div>
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">App Store</div>
+
                     </div>
+
                   </div>
-                  <span className="text-xs text-green-400">coming soon </span>
+
                 </Link>
               </div>
+  
             </div>
             {/* Right column - Image */}
             <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
@@ -237,7 +243,7 @@ const HeroSection = () => {
                   height={299.88}
                 />
                 <Image
-                  src="/hero.webp"
+                  src="/hero.png"
                   alt="Guidance Report Preview"
                   width={628}
                   height={299.88}
