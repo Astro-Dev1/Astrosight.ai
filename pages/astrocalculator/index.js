@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { InternalLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
 
 const calculators = [
   {
@@ -118,8 +119,8 @@ export default function ReportIndex() {
           content="Explore our comprehensive collection of free astrology calculators including birth charts, compatibility, dasha, numerology, and more." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://astrosight.com/report" />
-        <link rel="canonical" href="https://astrosight.com/report" />
+        <meta property="og:url" content="https://astrosight.com/astrocalculator" />
+        <link rel="canonical" href="https://astrosight.com/astrocalculator" />
       </Head>
 
       <Header />
@@ -146,7 +147,7 @@ export default function ReportIndex() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {calculators.map((calculator) => (
               <div key={calculator.slug} className="relative">
-                <Link href={`/report/${calculator.slug}`}>
+                <Link href={`/astrocalculator/${calculator.slug}`}>
                   <div className={`
                     bg-white rounded-xl shadow-lg border-2 transition-all duration-300 
                     cursor-pointer transform hover:scale-105 hover:shadow-xl p-6
@@ -245,6 +246,14 @@ export default function ReportIndex() {
                 and life path.
               </p>
             </div>
+          </div>
+          
+          {/* Internal Links Section */}
+          <div className="mt-16 space-y-8">
+            <InternalLinksGrid />
+            <HoroscopeNavigation />
+            <CompatibilityLinksGrid />
+            <RecentBlogLinks />
           </div>
         </div>
       </div>

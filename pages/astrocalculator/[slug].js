@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
 
 // Calculator Components
 const BirthChartCalculator = () => {
@@ -266,6 +267,15 @@ const BirthChartCalculator = () => {
             </div>
           </div>
         </div>
+        
+        {/* Internal Links Section */}
+        <div className="mt-16 space-y-8">
+          <InternalLinksGrid />
+          <HoroscopeNavigation />
+          <CompatibilityLinksGrid />
+          <ReportLinksGrid />
+          <RecentBlogLinks />
+        </div>
       </div>
     </>
   );
@@ -506,6 +516,15 @@ const LoveCompatibilityCalculator = () => {
             </p>
           </div>
         </div>
+        
+        {/* Internal Links Section */}
+        <div className="mt-16 space-y-8">
+          <InternalLinksGrid />
+          <HoroscopeNavigation />
+          <CompatibilityLinksGrid />
+          <ReportLinksGrid />
+          <RecentBlogLinks />
+        </div>
       </div>
     </>
   );
@@ -669,6 +688,15 @@ const DashaCalculator = () => {
             </p>
           </div>
         </div>
+        
+        {/* Internal Links Section */}
+        <div className="mt-16 space-y-8">
+          <InternalLinksGrid />
+          <HoroscopeNavigation />
+          <CompatibilityLinksGrid />
+          <ReportLinksGrid />
+          <RecentBlogLinks />
+        </div>
       </div>
     </>
   );
@@ -747,6 +775,15 @@ const ComingSoonCalculator = ({ title, description }) => {
               of self-discovery and cosmic understanding.
             </p>
           </div>
+        </div>
+        
+        {/* Internal Links Section */}
+        <div className="mt-16 space-y-8">
+          <InternalLinksGrid />
+          <HoroscopeNavigation />
+          <CompatibilityLinksGrid />
+          <ReportLinksGrid />
+          <RecentBlogLinks />
         </div>
       </div>
     </>
@@ -911,11 +948,11 @@ export default function CalculatorPage() {
         <meta property="og:title" content={calculatorInfo.title} />
         <meta property="og:description" content={calculatorInfo.description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://astrosight.com/report/${slug}`} />
+        <meta property="og:url" content={`https://astrosight.com/astrocalculator/${slug}`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={calculatorInfo.title} />
         <meta name="twitter:description" content={calculatorInfo.description} />
-        <link rel="canonical" href={`https://astrosight.com/report/${slug}`} />
+        <link rel="canonical" href={`https://astrosight.com/astrocalculator/${slug}`} />
         
         {/* JSON-LD Schema */}
         <script
@@ -926,7 +963,7 @@ export default function CalculatorPage() {
               "@type": "WebApplication",
               "name": calculatorInfo.h1,
               "description": calculatorInfo.description,
-              "url": `https://astrosight.com/report/${slug}`,
+              "url": `https://astrosight.com/astrocalculator/${slug}`,
               "applicationCategory": "LifestyleApplication",
               "operatingSystem": "Web Browser",
               "offers": {

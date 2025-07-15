@@ -25,9 +25,9 @@ const cards = [
     link: '/horoscope'
   },
   {
-    title: 'Free Kundli',
+    title: 'Astro Calculator',
     image: '/free_report.png',
-    link: '#freereport'
+    link: '/astrocalculator'
   },
   {
     title: 'Compatibility',
@@ -41,9 +41,9 @@ const cards = [
     link: '/compatibility'
   },
   {
-    title: 'Chinese Horoscope',
+    title: 'Blog',
     image: '/horoscope.png',
-    link: '/horoscope/chinese'
+    link: '/Blog/chinese'
   },
   {
     title: 'Today Panchang',

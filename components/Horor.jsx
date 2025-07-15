@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faBriefcase,  faHeartbeat, faSeedling } from "@fortawesome/free-solid-svg-icons";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
 
 function HoroscopeCard({ title, date, horoscope, Todays = false, weekly = false, monthly = false }) {
   console.log(horoscope, title,date, Todays, weekly, monthly);
@@ -118,17 +117,7 @@ const categories = detailKeys.map((key, index) => {
                 ))}
               </div>
             )}
-            {/* CTA Section */}
-            <div className="mb-8 text-center">
-              <h3 className="text-black text-xl font-semibold mb-4">Need More Clarity?</h3>
-              <Link href="/guidance-report">
-                <img
-                  src="https://static.readdy.ai/image/e1ad140f06e9f805aceb1cb99df5419f/4c7505c3b6cb8812aa69af06dfa6fa85.png"
-                  alt="Ask Anything"
-                  className="w-full max-w-md rounded-xl shadow-sm hover:opacity-90 transition-opacity"
-                />
-              </Link>
-            </div>
+            
             {/* Lucky Elements */}
             <div className="mb-8">
               <h3 className="text-black text-xl font-semibold mb-4">Lucky Elements</h3>
