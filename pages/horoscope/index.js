@@ -1,200 +1,239 @@
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 import Cookies from 'js-cookie';
-import { useState, useEffect } from 'react';
-import Script from 'next/script';
-import HoroscopePage from '../../components/Horoscopepage';
-import { fetchMyProfile } from '../../services/centralApi'; // Import the API service
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
-import SEOHead from '../../components/SEOHead';
+import { fetchMyProfile } from '../../services/centralApi';
+import { InternalLinksGrid, ReportLinksGrid, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
+import Footer from '../../components/Footer';
 
-// COMMENTED OUT FOR NOW: Translation logic
-// import enTranslations from '../../locales/en.json';
-// import hiTranslations from '../../locales/hi.json';
-// import knTranslations from '../../locales/kn.json';
+const zodiacSigns = [
+  { name: 'Aries', symbol: '♈', dates: 'Mar 21 - Apr 19', image: '/zodicimg/Aries.png' },
+  { name: 'Taurus', symbol: '♉', dates: 'Apr 20 - May 20', image: '/zodicimg/Taurus.png' },
+  { name: 'Gemini', symbol: '♊', dates: 'May 21 - Jun 20', image: '/zodicimg/Gemini.png' },
+  { name: 'Cancer', symbol: '♋', dates: 'Jun 21 - Jul 22', image: '/zodicimg/Cancer.png' },
+  { name: 'Leo', symbol: '♌', dates: 'Jul 23 - Aug 22', image: '/zodicimg/Leo.png' },
+  { name: 'Virgo', symbol: '♍', dates: 'Aug 23 - Sep 22', image: '/zodicimg/Virgo.png' },
+  { name: 'Libra', symbol: '♎', dates: 'Sep 23 - Oct 22', image: '/zodicimg/libra.png' },
+  { name: 'Scorpio', symbol: '♏', dates: 'Oct 23 - Nov 21', image: '/zodicimg/scorpio.png' },
+  { name: 'Sagittarius', symbol: '♐', dates: 'Nov 22 - Dec 21', image: '/zodicimg/sagittarius.png' },
+  { name: 'Capricorn', symbol: '♑', dates: 'Dec 22 - Jan 19', image: '/zodicimg/capricorn.png' },
+  { name: 'Aquarius', symbol: '♒', dates: 'Jan 20 - Feb 18', image: '/zodicimg/aquarius.png' },
+  { name: 'Pisces', symbol: '♓', dates: 'Feb 19 - Mar 20', image: '/zodicimg/pisces.png' },
+];
 
-// Translation utilities - simple version for now
-const t = (key, fallback = key) => {
-  return fallback;
+// Zodiac Sign Card Component
+const ZodiacSignCard = ({ sign, isUserSign }) => {
+  return (
+    <Link href={`/horoscope/${sign.name.toLowerCase()}`}>
+      <div
+        className={`bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 border cursor-pointer ${
+          isUserSign ? 'border-orange-400 bg-orange-50' : 'border-orange-100'
+        }`}
+      >
+        <div className="flex flex-col items-center">
+          <Image
+            src={`/zodicimg/${sign.name}.webp`}
+            alt={`${sign.name} zodiac sign`}
+            width={80}
+            height={80}
+            className="mb-3 rounded-full"
+          />
+          <h3 className="text-xl font-semibold text-gray-800 mb-1">
+            {sign.name}
+          </h3>
+          <p className="text-3xl mb-2">{sign.symbol}</p>
+          <p className="text-sm text-gray-500">{sign.dates}</p>
+          {isUserSign && (
+            <span className="mt-2 text-xs bg-orange-500 text-white px-2 py-1 rounded-full">
+              Your Sign
+            </span>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
 };
 
 export default function HoroscopeIndex() {
   const [isLoading, setIsLoading] = useState(true);
   const [shouldDisplayPage, setShouldDisplayPage] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-  // const [currentLanguage, setCurrentLanguage] = useState('en');
+  const [userZodiacSign, setUserZodiacSign] = useState(null);
   const router = useRouter();
-
-  // List of valid zodiac signs
-  const validZodiacSigns = [
-    "aries", "taurus", "gemini", "cancer", "leo", "virgo",
-    "libra", "scorpio", "sagittarius", "capricorn", "aquarius", "pisces"
-  ];
+  console.log("Router:", router);
 
   useEffect(() => {
     const checkUserProfile = async () => {
       try {
-        // Check if user is logged in by retrieving the token
         const token = Cookies.get('token');
 
         if (!token) {
-          // User is not logged in, display the page
           setShouldDisplayPage(true);
           setIsLoading(false);
           return;
         }
 
-        // Fetch user profile using the API
         const profileResponse = await fetchMyProfile();
 
-        // Check if the response contains a zodiac sign
-        const userZodiacSign = profileResponse?.data?.astroProfile?.zodiac?.toLowerCase();
-
-        if (userZodiacSign && validZodiacSigns.includes(userZodiacSign)) {
-          // Valid zodiac sign found, redirect to Today's horoscope
-          router.push(`/horoscope/${userZodiacSign}`);
-        } else {
-          // No zodiac sign found or profile doesn't exist, display the page
-          setShouldDisplayPage(true);
-          setIsLoading(false);
+        if (profileResponse?.data?.zodiacSign) {
+          setUserZodiacSign(profileResponse.data.zodiacSign);
         }
+
+        setShouldDisplayPage(true);
+        setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching user profile:", error);
-        // On error, display the page
+        console.error('Error fetching profile:', error);
         setShouldDisplayPage(true);
         setIsLoading(false);
       }
     };
 
     checkUserProfile();
-  }, [router]);
-  
-  // COMMENTED OUT: Language initialization
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const storedLanguage = localStorage.getItem('language') || 'en';
-  //     setCurrentLanguage(storedLanguage);
-      
-  //     // Listen for language changes
-  //     const handleLanguageChange = () => {
-  //       const newLanguage = localStorage.getItem('language') || 'en';
-  //       setCurrentLanguage(newLanguage);
-  //     };
-      
-  //     window.addEventListener('languageChanged', handleLanguageChange);
-      
-  //     return () => {
-  //       window.removeEventListener('languageChanged', handleLanguageChange);
-  //     };
-  //   }
-  // }, []);
+  }, []);
 
-  // Display a loading state while fetching the profile
   if (isLoading) {
     return (
-      <>
+      <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
         <CustomHeader 
-          title="Horoscope"
+          title="Loading..."
           showBackButton={true}
-          showSideMenu={false}
-          showWallet={true}
-          showLanguage={false}
-          showProfile={true}
-          onSideMenuPress={() => setIsSideMenuOpen(true)}
         />
-        <div className="flex flex-col min-h-screen bg-orange-50 font-inter pt-16">
-          <main className="container mx-auto px-4 py-8 flex-grow flex items-center justify-center">
-            <p className="text-lg text-gray-700">{t('loading', 'Loading...')}</p>
-          </main>
+        <div className="flex-1 pt-16 flex items-center justify-center">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading horoscope...</p>
+          </div>
         </div>
-        
-        {/* Side Menu */}
-        <SideMenu 
-          isOpen={isSideMenuOpen} 
-          onClose={() => setIsSideMenuOpen(false)}
-        />
-      </>
+      </div>
     );
   }
 
-  // If the user has no profile or isn't logged in, display the page
   if (!shouldDisplayPage) {
-    return null; // This won't be reached as the router.push will redirect
+    return null;
   }
 
   return (
     <>
-      {/* SEO Metadata */}
-      <SEOHead
-        title="Daily Horoscope Predictions | Zodiac Signs & Astrology Insights"
-        description="Discover daily, weekly, and monthly horoscopes for all zodiac signs. Explore personalized astrological insights with AstroSight."
-        keywords="daily horoscope, zodiac signs, astrology predictions, Aries horoscope, Taurus horoscope, Gemini horoscope, Cancer horoscope, Leo horoscope, Virgo horoscope, Libra horoscope, Scorpio horoscope, Sagittarius horoscope, Capricorn horoscope, Aquarius horoscope, Pisces horoscope"
-        canonical="https://astrosight.ai/horoscope"
-        ogImage="https://astrosight.ai/horoscope-image.jpg"
-      />
-
-      {/* Custom Header */}
-      <CustomHeader 
-        title="Horoscope"
-        showBackButton={true}
-        showSideMenu={true}
-        showWallet={true}
-        showLanguage={false}
-        showProfile={true}
-        onSideMenuPress={() => setIsSideMenuOpen(true)}
-      />
-
-      {/* Main Content */}
-      <div className="flex flex-col min-h-screen bg-orange-50 font-inter pt-16">
-        <main className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 flex-grow">
-          {/* Page Header */}
-          <section className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-orange-600 font-kohinoor">
-              Daily Horoscope Predictions for All Zodiac Signs
-            </h1>
-            <h2 className="text-lg md:text-xl font-semibold text-gray-700 mt-2">
-              Discover Daily, Weekly, and Monthly Astrological Insights
-            </h2>
-          </section>
-
-          {/* Horoscope Cards */}
-          <HoroscopePage />
-        </main>
-      </div>
-
-      {/* Side Menu */}
-      <SideMenu 
-        isOpen={isSideMenuOpen} 
-        onClose={() => setIsSideMenuOpen(false)}
-      />
-
-      {/* Structured Data */}
-      <Script
-        id="horoscope-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "AstrologicalService",
-            "name": "AstroSight Daily Horoscope",
-            "description": "Get personalized daily, weekly, and monthly horoscopes for all zodiac signs.",
-            "url": "https://astrosight.ai/horoscope",
-            "mainEntityOfPage": {
+      <Head>
+        <title>Daily Horoscope | All Zodiac Signs | AstroSight</title>
+        <meta name="description" content="Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology." />
+        <meta name="keywords" content="horoscope, zodiac signs, daily horoscope, weekly horoscope, monthly horoscope, yearly horoscope, astrology" />
+        <meta property="og:title" content="Daily Horoscope | All Zodiac Signs | AstroSight" />
+        <meta property="og:description" content="Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://astrosight.ai/horoscope" />
+        <link rel="canonical" href="https://astrosight.ai/horoscope" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
               "@type": "WebPage",
-              "@id": "https://astrosight.ai/horoscope",
-            },
-            "provider": {
-              "@type": "Organization",
-              "name": "AstroSight",
-            },
-            "potentialAction": {
-              "@type": "ReadAction",
-              "target": "https://astrosight.ai/horoscope/{zodiac_sign}",
-              "query-input": "required name=zodiac_sign",
-            },
-          }),
-        }}
-      />
-    </>
+              "name": "Horoscope | All Zodiac Signs",
+              "description": "Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology.",
+              "url": "https://astrosight.ai/horoscope",
+              "mainEntity": {
+                "@type": "ItemList",
+                "name": "Zodiac Signs",
+                "itemListElement": zodiacSigns.map((sign, index) => ({
+                  "@type": "ListItem",
+                  "position": index + 1,
+                  "name": sign.name,
+                  "url": `https://astrosight.ai/horoscope/${sign.name.toLowerCase()}`
+                }))
+              }
+            })
+          }}
+        />
+      </Head>
+
+      <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
+        <CustomHeader 
+          title="Choose Your Zodiac Sign"
+          showBackButton={true}
+          onMenuPress={() => setIsSideMenuOpen(true)}
+        />
+
+        <SideMenu 
+          isOpen={isSideMenuOpen} 
+          onClose={() => setIsSideMenuOpen(false)} 
+        />
+
+        <div className="flex-1 pt-16">
+          <main className="px-4 pb-20 max-w-6xl mx-auto">
+            <div className="mt-8 mb-8 text-center">
+              <h1 className="text-3xl font-bold text-gray-800 mb-4">
+                Select Your Zodiac Sign
+              </h1>
+              <p className="text-gray-600 text-lg mb-4">
+                Discover your daily, weekly, monthly, and yearly horoscope predictions
+              </p>
+              <p className="text-gray-500 text-sm">
+                Click on any zodiac sign to choose your preferred horoscope period
+              </p>
+              
+              {userZodiacSign && (
+                <div className="mt-6 p-4 bg-orange-100 rounded-lg max-w-md mx-auto">
+                  <p className="text-orange-800 mb-3">
+                    Your zodiac sign: <strong>{userZodiacSign}</strong>
+                  </p>
+                  <div className="flex justify-center">
+                    <Link
+                      href={`/horoscope/${userZodiacSign.toLowerCase()}`}
+                      className="bg-orange-500 text-white px-6 py-3 rounded-full text-sm hover:bg-orange-600 transition-colors font-medium"
+                    >
+                      View Your Daily Horoscope
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+              {zodiacSigns.map((sign) => (
+                <ZodiacSignCard
+                  key={sign.name}
+                  sign={sign}
+                  isUserSign={userZodiacSign?.toLowerCase() === sign.name.toLowerCase()}
+                />
+              ))}
+            </div>
+
+            {/* About Section */}
+            <div className="bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-8">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                About Our Horoscope Predictions
+              </h2>
+              <p className="text-gray-700 mb-4">
+                Our horoscope predictions are based on authentic Vedic astrology principles, 
+                providing you with accurate insights into your daily life, relationships, 
+                career, and spiritual growth.
+              </p>
+              <p className="text-gray-700">
+                Each horoscope is carefully crafted by our expert astrologers to help you 
+                navigate life&apos;s challenges and opportunities with cosmic wisdom and guidance.
+              </p>
+            </div>
+            
+            {/* Internal Links Section */}
+            <div className="mt-12 space-y-8">
+              <InternalLinksGrid />
+              <CompatibilityLinksGrid />
+              <ReportLinksGrid />
+              <RecentBlogLinks />
+            </div>
+          </main>
+        </div>
+      </div>
+      
+<div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
+            <Footer />
+          </div>    </>
   );
 }

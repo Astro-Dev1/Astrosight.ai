@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/router';
 import SEOHead from '../components/SEOHead';
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import Footer from '../components/Footer';
 
 const PrivacyPolicyPage = () => {
   const router = useRouter();
@@ -166,7 +168,18 @@ const PrivacyPolicyPage = () => {
           </p>
         </div>
         </div>
+        
+        {/* Internal Links Section */}
+        <div className="mt-12 space-y-8">
+          <InternalLinksGrid />
+          <HoroscopeNavigation />
+          <CompatibilityLinksGrid />
+          <ReportLinksGrid />
+          <RecentBlogLinks />
+        </div>
       </div>
+      
+      <Footer />
     </>
   );
 };

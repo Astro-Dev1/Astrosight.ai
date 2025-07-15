@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../components/InternalLinksGrid';
 
 // import CustomLinkButton from '../../components/CustomContainer';
 
@@ -96,12 +97,12 @@ export default function CompatibilityPage() {
         isOpen={sideMenuOpen} 
         onClose={() => setSideMenuOpen(false)}
       />
-      <div className="min-h-screen pt-16 font-serif bg-[#f7f1e8]">
+      <div className="min-h-screen pt-16 font-serif ">
 
 
-        <header className="w-full bg-gradient-to-r  rounded-3xl font-serif  from-rose-200 to-white  p-4 text-center mb-4">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-2">Zodiac Love Compatibility Calculator</h1>
-          <h2 className="text-2xl bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-8 text-center">Discover Your Astrological Match</h2>
+        <header className="w-full  rounded-3xl   bg-gradient-to-r from-[#FF9933] to-[#FF5733]  p-6 text-center mb-4">
+          <h1 className="text-3xl font-bold text-white font-kohinoor-devanagari  mb-3">Zodiac Love Compatibility Calculator</h1>
+          <h2 className="text-2xl text-white   mb-8 font-kohinoor text-center">Discover Your Astrological Match</h2>
         </header>
 
         <div className="container mx-auto px-4 py-8 mb-8">
@@ -112,7 +113,7 @@ export default function CompatibilityPage() {
             <p className="text-lg text-gray-900 mb-4">
               Understanding your astrological compatibility can provide valuable insights into your relationships, helping you navigate the complexities of love and friendship. Whether you`&lsquo;`re curious about a potential romance or want to strengthen existing bonds, our compatibility calculator is here to guide you.
             </p>
-            <h3 className="text-2xl text-center font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-2">How to Use the Compatibility Calculator:</h3>
+            <h3 className="text-2xl text-center font-bold text-black   mb-2">How to Use the Compatibility Calculator:</h3>
             <ol className="list-decimal list-inside text-gray-900 mb-4">
               <li>Select your zodiac sign from the options below.</li>
               <li>On the next page, choose your partner`&lsquo;`s or friend`&lsquo;`s zodiac sign.</li>
@@ -131,27 +132,28 @@ export default function CompatibilityPage() {
                 />
                 </div> */}
         <div className="mb-8 bg-white rounded-2xl justify-center items-center ">
-          <h2 className="text-2xl mt-5 flex justify-center font-bold  items-center bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-8">Choose Your Zodiac Sign</h2>
+          <h2 className="text-2xl mt-5 flex justify-center font-bold  items-center text-black   mb-8">Choose Your Zodiac Sign</h2>
 
 
-          <div className="mb-8 bg-gradient-to-r rounded-3xl font-serif from-rose-200 to-white mt-5 justify-center items-center">
+          <div className="mb-8 bg-gradient-to-r rounded-3xl font-serif 
+           from-[#FF9933] to-[#FF5733] mt-5 justify-center items-center">
             <div className="container  mt-9 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-1">
               {zodiacSigns.map((sign) => (
                 <Card
                   key={sign.name}
-                  className="cursor-pointer hover:shadow-lg  mt-8 mb-5 transition-shadow bg-white bg-opacity-20 backdrop-blur-lg p-2 rounded-lg shadow-md"
+                  className="cursor-pointer hover:shadow-lg  mt-8 mb-5 transition-shadow bg-white bg-opacity-20 backdrop-blur-lg p rounded-lg shadow-md"
                   onClick={() => handleSignSelect(sign.name)}
                 >
                   <CardContent className="p-4 flex flex-col items-center">
                     <Image
-                      src={`/${sign.name.toLowerCase()}.jpg`}
+                      src={`/${sign.name}.webp`}
                       alt={`${sign.name} zodiac sign`}
                       width={96}
                       height={96}
                       className="rounded-full mb-2"
                     />
-                    <h3 className="text-2xl font-semibold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">{sign.name}</h3>
-                    <p className="text-xm bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">{sign.dates}</p>
+                    <h3 className="text-2xl font-semibold text-black  ">{sign.name}</h3>
+                    <p className="text-xm text-black  ">{sign.dates}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -166,7 +168,7 @@ export default function CompatibilityPage() {
           className="flex justify-between items-center cursor-pointer"
           onClick={() => setIsBestExpanded(!isBestExpanded)}
         >
-          <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">Best Compatibility Matches</h2>
+          <h2 className="text-xl font-bold text-black  ">Best Compatibility Matches</h2>
           {isBestExpanded ? (
             <FaChevronUp className="text-gray-900 text-xl" />
           ) : (
@@ -197,7 +199,7 @@ export default function CompatibilityPage() {
           className="flex justify-between items-center cursor-pointer"
           onClick={() => setIsWorstExpanded(!isWorstExpanded)}
         >
-          <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">Worst Compatibility Matches</h2>
+          <h2 className="text-xl font-bold text-black  ">Worst Compatibility Matches</h2>
           {isWorstExpanded ? (
             <FaChevronUp className="text-gray-900 text-xl" />
           ) : (
@@ -225,7 +227,7 @@ export default function CompatibilityPage() {
             className="flex justify-between items-center cursor-pointer"
             onClick={() => setIsExpandedcopatibility(!isExpandedcopatibility)}
           >
-            <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">More Compatibility</h2>
+            <h2 className="text-xl font-bold text-black  ">More Compatibility</h2>
             {isExpandedcopatibility ? (
               <FaChevronUp className="text-gray-900 text-xl" />
             ) : (
@@ -257,7 +259,7 @@ export default function CompatibilityPage() {
             className="flex justify-between items-center cursor-pointer"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">Explore More Horoscopes</h2>
+            <h2 className="text-xl font-bold text-black  ">Explore More Horoscopes</h2>
             {isExpanded ? (
               <FaChevronUp className="text-gray-900 text-xl" />
             ) : (
@@ -283,7 +285,7 @@ export default function CompatibilityPage() {
           )}
         </section>
         <section className="mt-10  p-6 rounded-lg">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  -900 mb-4 text-center">
+          <h2 className="text-3xl font-bold text-black  -900 mb-4 text-center">
             Get Your Personalized Guidance Report
           </h2>
           <p className="text-center mb-4">
@@ -293,7 +295,25 @@ export default function CompatibilityPage() {
             </Link>
           </p>
         </section>
-        <Footer />
+
+        {/* Internal Link Components */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* All Compatibility Combinations */}
+          <CompatibilityLinksGrid />
+          
+          {/* All Horoscope Navigation */}
+          <HoroscopeNavigation />
+          
+          {/* Report Links */}
+          <ReportLinksGrid />
+          
+          {/* Recent Blog Links */}
+          <RecentBlogLinks limit={15} />
+        </section>
+
+        <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
 
       </div>
     </>

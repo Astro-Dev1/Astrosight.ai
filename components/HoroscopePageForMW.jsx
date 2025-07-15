@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import Link from "next/link";
-import LanguageSelector from "./LanguageSelector";
 
 // Import translations directly to avoid SSR issues
 import enTranslations from '../locales/en.json';
 import hiTranslations from '../locales/hi.json';
 import knTranslations from '../locales/kn.json';
+import { getDailyHoroscope } from '../services/centralApi'; // Adjust path as needed
 
 const translations = {
   en: enTranslations,
@@ -63,9 +63,32 @@ const HoroscopePage = ({ sign }) => {
   console.log(currentDate)
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+ const [language, setLanguage] = useState('en');
+  setLanguage(en)
+  // Create translation function
+  const t = (key, params = {}) => {
+    const keys = key.split('.');
+    let value = translations[language];
+    
+    for (const k of keys) {
+      value = value?.[k];
+    }
+    
+    if (typeof value === 'string' && params) {
+      return value.replace(/\{\{(\w+)\}\}/g, (match, param) => params[param] || match);
+    }
+    
+    return value || key;
+  };
+
 
   useEffect(() => {
+    console.log('HoroscopePageForMW: useEffect triggered with sign:', sign);
+    console.log('HoroscopePageForMW: capitalizedSign:', capitalizedSign);
+    console.log('HoroscopePageForMW: validSigns:', validSigns);
+    
     if (!sign || !validSigns.includes(capitalizedSign)) {
+      console.error('HoroscopePageForMW: Invalid sign detected');
       setError(t('horoscope.invalid_sign'));
       setIsLoading(false);
       return;
@@ -76,6 +99,7 @@ const HoroscopePage = ({ sign }) => {
 
     const fetchHoroscopes = async () => {
       try {
+        console.log('HoroscopePageForMW: Starting fetchHoroscopes');
         // Fetch weekly horoscope for main section
         await fetchWeeklyHoroscope();
         setCurrentDate(
@@ -90,6 +114,7 @@ const HoroscopePage = ({ sign }) => {
           fetchMonthlyHoroscope(true),
           fetchYearlyHoroscope(true),
         ]);
+        console.log('HoroscopePageForMW: All horoscopes fetched successfully');
       } catch (err) {
         console.error("Error in fetchHoroscopes:", err);
         setError(err.message);
@@ -100,116 +125,138 @@ const HoroscopePage = ({ sign }) => {
     };
 
     fetchHoroscopes();
-  }, [sign]);
+  }, [sign, language, capitalizedSign]);
+const fetchWeeklyHoroscope = async (forAlsoCheck = false) => {
+  try {
+    const currentDate = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const params = {
+      type: 'weekly',
+      lang: (language === "hi" ? "hn" : language),
+      sign: capitalizedSign.toLowerCase(),
+      date: currentDate
+    };
 
-  const fetchWeeklyHoroscope = async (forAlsoCheck = false) => {
-    const today = new Date();
-
-    const weekStart = format(startOfWeek(today), 'yyyy-MM-dd');
-    const weekEnd = format(endOfWeek(today), 'yyyy-MM-dd');
-
-    try {
-      const response = await fetch(`/api/horoscopes/weekly-horoscopes-${weekStart}.json`);
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      const data = await response.json();
-      const horoscopeData =
-        data.weekStart === weekStart && data.weekEnd === weekEnd
-          ? data.horoscopes[capitalizedSign] || { text: [t('horoscope.weekly_not_available')] }
-          : { text: [t('horoscope.weekly_not_available')] };
-      console.log("Weekly horoscope:", horoscopeData);
-
+    console.log('fetchWeeklyHoroscope: Calling API with params:', params);
+    const response = await getDailyHoroscope(params);
+    
+    if (response.success && response.data) {
+      console.log("Weekly horoscope response:", response.data);
+      
       const formattedData = {
-        ...horoscopeData,
-        dateRange: `${format(startOfWeek(today, { weekStartsOn: 1 }), "d MMM")} - ${format(
-          endOfWeek(today, { weekStartsOn: 1 }),
+        ...response.data.horoscope,
+        dateRange: `${format(startOfWeek(new Date(), { weekStartsOn: 1 }), "d MMM")} - ${format(
+          endOfWeek(new Date(), { weekStartsOn: 1 }),
           "d MMM"
         )}`,
       };
-console.log("Formatted weekly horoscope data:", formattedData);
+      
+      console.log("Formatted weekly horoscope data:", formattedData);
+      
       if (forAlsoCheck) {
         setWeeklyHoroscope(formattedData);
       } else {
         setHoroscope(formattedData);
       }
-    } catch (error) {
-      console.error("Error fetching weekly horoscope:", error);
-      const fallbackData = {
-        text: [t('horoscope.weekly_not_available')],
-        dateRange: `${format(startOfWeek(today, { weekStartsOn: 1 }), "d MMM")} - ${format(
-          endOfWeek(today, { weekStartsOn: 1 }),
-          "d MMM"
-        )}`,
-      };
-      if (forAlsoCheck) {
-        setWeeklyHoroscope(fallbackData);
-      } else {
-        setHoroscope(fallbackData);
-      }
+    } else {
+      throw new Error('Weekly horoscope not available');
     }
-  };
+  } catch (error) {
+    console.error("Error fetching weekly horoscope:", error);
+    const fallbackData = {
+      text: [t('horoscope.weekly_not_available')],
+      dateRange: `${format(startOfWeek(new Date(), { weekStartsOn: 1 }), "d MMM")} - ${format(
+        endOfWeek(new Date(), { weekStartsOn: 1 }),
+        "d MMM"
+      )}`,
+    };
+    
+    if (forAlsoCheck) {
+      setWeeklyHoroscope(fallbackData);
+    } else {
+      setHoroscope(fallbackData);
+    }
+  }
+};
 
-  const fetchMonthlyHoroscope = async (forAlsoCheck = false) => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
+const fetchMonthlyHoroscope = async (forAlsoCheck = false) => {
+  try {
+    const currentDate = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const params = {
+      type: 'monthly',
+      lang: (language === "hi" ? "hn" : language),
+      sign: capitalizedSign.toLowerCase(),
+      date: currentDate
+    };
 
-    try {
-      const response = await fetch(`/api/horoscopes/monthly-horoscopes-${year}-${month}.json`);
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      const data = await response.json();
-      const horoscopeData =
-        data?.[`${year}-${month}`]?.[capitalizedSign] || { text: [t('horoscope.monthly_not_available')] };
-      console.log("Monthly horoscope:", horoscopeData);
-
+    const response = await getDailyHoroscope(params);
+    
+    if (response.success && response.data) {
+      console.log("Monthly horoscope:", response.data);
+      
       const formattedData = {
-        ...horoscopeData,
-        dateRange: format(today, "MMMM yyyy"),
+        ...response.data.horoscope,
+        dateRange: format(new Date(), "MMMM yyyy"),
       };
-console.log("Formatted monthly horoscope data:", formattedData);
+      
+      console.log("Formatted monthly horoscope data:", formattedData);
+      
       if (forAlsoCheck) {
         setMonthlyHoroscope(formattedData);
       }
-    } catch (error) {
-      console.error("Error fetching monthly horoscope:", error);
-      const fallbackData = {
-        text: [t('horoscope.monthly_not_available')],
-        dateRange: format(today, "MMMM yyyy"),
-      };
-      if (forAlsoCheck) {
-        setMonthlyHoroscope(fallbackData);
-      }
+    } else {
+      throw new Error('Monthly horoscope not available');
     }
-  };
+  } catch (error) {
+    console.error("Error fetching monthly horoscope:", error);
+    const fallbackData = {
+      text: [t('horoscope.monthly_not_available')],
+      dateRange: format(new Date(), "MMMM yyyy"),
+    };
+    
+    if (forAlsoCheck) {
+      setMonthlyHoroscope(fallbackData);
+    }
+  }
+};
 
-  const fetchYearlyHoroscope = async (forAlsoCheck = false) => {
-    const year = new Date().getFullYear();
+const fetchYearlyHoroscope = async (forAlsoCheck = false) => {
+  try {
+    const currentDate = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    const params = {
+      type: 'yearly',
+      lang: (language === "hi" ? "hn" : language),
+      sign: capitalizedSign.toLowerCase(),
+      date: currentDate
+    };
 
-    try {
-      const response = await fetch(`/api/horoscopes/yearly-horoscopes-${year}.json`);
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      const data = await response.json();
-      const horoscopeData = data?.[year]?.[capitalizedSign] || { text: [t('horoscope.yearly_not_available')] };
-      console.log("Yearly horoscope:", horoscopeData);
-
+    const response = await getDailyHoroscope(params);
+    
+    if (response.success && response.data) {
+      console.log("Yearly horoscope:", response.data);
+      
       const formattedData = {
-        ...horoscopeData,
-        dateRange: year.toString(),
+        ...response.data.horoscope,
+        dateRange: new Date().getFullYear().toString(),
       };
 
       if (forAlsoCheck) {
         setYearlyHoroscope(formattedData);
       }
-    } catch (error) {
-      console.error("Error fetching yearly horoscope:", error);
-      const fallbackData = {
-        text: ["Yearly horoscope unavailable."],
-        dateRange: year.toString(),
-      };
-      if (forAlsoCheck) {
-        setYearlyHoroscope(fallbackData);
-      }
+    } else {
+      throw new Error('Yearly horoscope not available');
     }
-  };
+  } catch (error) {
+    console.error("Error fetching yearly horoscope:", error);
+    const fallbackData = {
+      text: [t('horoscope.yearly_not_available')],
+      dateRange: new Date().getFullYear().toString(),
+    };
+    
+    if (forAlsoCheck) {
+      setYearlyHoroscope(fallbackData);
+    }
+  }
+};
 
   // const capitalizeFirstLetter = (string) =>
   //   string ? string.charAt(0).toUpperCase() + string.slice(1) : "";
@@ -281,35 +328,72 @@ console.log("Formatted monthly horoscope data:", formattedData);
       </Head>
 
       <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
-        {/* Header */}
-        <header className="fixed top-0 w-full bg-[#FF9960] z-50 px-4 py-4 flex justify-between items-center shadow-sm">
-          <Link href="/" className="text-white cursor-pointer">
-            <i className="fas fa-arrow-left text-xl"></i>
-          </Link>
-          <div className="text-white font-bold text-xl">{t('horoscope.horoscope_title', { sign: t(capitalizedSign.toLowerCase()) })}</div>
-          <div className="flex items-center space-x-3">
-            <LanguageSelector variant="header" />
-            <button className="text-white cursor-pointer">
-              <i className="fas fa-share-alt text-xl"></i>
-            </button>
-          </div>
-        </header>
-
         {/* Main Content */}
-        <div className="flex-1 pt-16 h-[calc(100vh-64px)]">
-          <main className="px-4 pb-20 max-w-5xl mx-auto">
-            {/* Zodiac Sign Section */}
-    
+        <div className="flex-1 h-[calc(100vh-64px)]">
+          <main className="px-4 pb-20 max-w-5xl mx-auto">{/* Zodiac Sign Section */}
+            <div className="bg-white p-6 rounded-xl shadow-lg mb-6">
+              <div className="flex items-center space-x-4 mb-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-2xl">
+                    {capitalizedSign.charAt(0)}
+                  </span>
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-800">
+                    {t(`signs.${capitalizedSign.toLowerCase()}`, capitalizedSign)}
+                  </h1>
+                  <p className="text-gray-600 text-sm">{currentDate}</p>
+                </div>
+              </div>
+            </div>
 
             {/* Weekly Horoscope Content */}
-          
-
-
-   
-
-       
-
-      
+            <div className="bg-white p-6 rounded-xl shadow-lg mb-6">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">
+                {t('horoscope.weekly_horoscope')}
+              </h2>
+              {horoscope ? (
+                <div className="space-y-4">
+                  <div className="text-center mb-4">
+                    <p className="text-gray-500 text-sm">{horoscope.dateRange}</p>
+                  </div>
+                  {horoscope.sections && typeof horoscope.sections === 'object' ? (
+                    <div className="space-y-4">
+                      {Object.entries(horoscope.sections).map(([sectionKey, sectionValue]) => (
+                        <div key={sectionKey} className="border-l-4 border-orange-400 pl-4">
+                          <h3 className="font-semibold text-gray-700 mb-2">
+                            {t(`horoscope.sections.${sectionKey.toLowerCase().replace(/ & /g, '_').replace(/ /g, '_')}`, sectionKey)}:
+                          </h3>
+                          <p className="text-gray-600 text-sm">{sectionValue}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : horoscope.text ? (
+                    <div className="space-y-3">
+                      {Array.isArray(horoscope.text) 
+                        ? horoscope.text.map((paragraph, index) => (
+                            <p key={index} className="text-gray-600 text-sm leading-relaxed">
+                              {paragraph}
+                            </p>
+                          ))
+                        : (
+                            <p className="text-gray-600 text-sm leading-relaxed">
+                              {horoscope.text}
+                            </p>
+                          )
+                      }
+                    </div>
+                  ) : (
+                    <p className="text-gray-500 text-sm">{t('horoscope.no_content_available')}</p>
+                  )}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500 mx-auto"></div>
+                  <p className="text-gray-500 mt-2">{t('horoscope.loading')}</p>
+                </div>
+              )}
+            </div>
 
             {/* Also Check Section */}
             <div className="mb-20">
@@ -357,11 +441,18 @@ console.log("Formatted monthly horoscope data:", formattedData);
                       <p className="text-gray-500">{yearlyHoroscope?.dateRange || t('horoscope.loading_data')}</p>
                     </div>
                     <div className="space-y-4 text-gray-700">
-                      {(yearlyHoroscope?.text || [t('horoscope.yearly_not_available')]).map((paragraph, index) => (
-                        <p key={index} className="text-sm">
-                          {paragraph}
-                        </p>
-                      ))}
+                      {Array.isArray(yearlyHoroscope?.text) 
+                        ? yearlyHoroscope.text.map((paragraph, index) => (
+                            <p key={index} className="text-sm">
+                              {paragraph}
+                            </p>
+                          ))
+                        : (
+                            <p className="text-sm">
+                              {yearlyHoroscope?.text || t('horoscope.yearly_not_available')}
+                            </p>
+                          )
+                      }
                     </div>
                   </div>
                 </div>

@@ -10,6 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Head from 'next/head';
+import { InternalLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, HoroscopeBySignNavigation, RecentBlogLinks } from '../../../components/InternalLinksGrid';
 
 // import Image from 'next/image';
 
@@ -48,12 +49,12 @@ const CompatibilityBar = ({ type, percentage }) => (
 // ZodiacSign Component
 const ZodiacSign = ({ sign }) => (
   <Image
-    src={`/${sign.toLowerCase()}.jpg`}
+    src={`/zodicimg/${sign.toLowerCase()}.webp`}
     alt={sign}
     width={200}
     height={200}
     objectFit="cover"
-    className="rounded-full"
+    className=""
   />
 
 );
@@ -67,6 +68,7 @@ export default function CompatibilityResultsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [animate, setAnimate] = useState(false);
+  
   // const [userSign, setUserSign] = useState('Leo');
   // const [partnerSign, setPartnerSign] = useState('Leo');
   const fetchCompatibilityData = async () => {
@@ -143,8 +145,8 @@ export default function CompatibilityResultsPage() {
 
   const capitalizedSign = sign ? sign.charAt(0).toUpperCase() + sign.slice(1) : '';
   const capitalizedPartnerSign = partner_sign ? partner_sign.charAt(0).toUpperCase() + partner_sign.slice(1) : '';
-  const pageTitle = `${capitalizedSign} and ${capitalizedPartnerSign} Compatibility | Zodiac Love Match | AstroAnswer`;
-  const pageDescription = `Discover the compatibility between ${capitalizedSign} and ${capitalizedPartnerSign} in love, friendship, and more. Get insights into your zodiac love match with AstroAnswer's detailed astrology compatibility analysis.`;
+  const pageTitle = `${capitalizedSign} and ${capitalizedPartnerSign} Compatibility | Zodiac Love Match | AstroSight`;
+  const pageDescription = `Discover the compatibility between ${capitalizedSign} and ${capitalizedPartnerSign} in love, friendship, and more. Get insights into your zodiac love match with AstroSight's detailed astrology compatibility analysis.`;
   // const capitalizeFirstLetter = (string) =>
   //   string ? string.charAt(0).toUpperCase() + string.slice(1) : "";
   
@@ -170,17 +172,17 @@ export default function CompatibilityResultsPage() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content={`https://astroanswer.co/compatibility/${sign}/${partner_sign}`} />
-        <meta property="og:image" content={`https://astroanswer.co/compatibility-${sign}-${partner_sign}.jpg`} />
+        <meta property="og:url" content={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} />
+        <meta property="og:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
-        <meta name="twitter:image" content={`https://astroanswer.co/compatibility-${sign}-${partner_sign}.jpg`} />
+        <meta name="twitter:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} />
 
         {/* Canonical URL */}
-        <link rel="canonical" href={`https://astroanswer.co/compatibility/${sign}/${partner_sign}`} />
+        <link rel="canonical" href={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} />
 
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -189,13 +191,13 @@ export default function CompatibilityResultsPage() {
             "@type": "WebPage",
             "name": pageTitle,
             "description": pageDescription,
-            "url": `https://astroanswer.co/compatibility/${sign}/${partner_sign}`,
+            "url": `https://astrosight.ai/compatibility/${sign}/${partner_sign}`,
             "mainEntity": {
               "@type": "Article",
               "name": `${capitalizedSign} and ${capitalizedPartnerSign} Zodiac Compatibility`,
               "author": {
                 "@type": "Organization",
-                "name": "AstroAnswer"
+                "name": "AstroSight"
               },
               "datePublished": new Date().toISOString().split('T')[0],
               "dateModified": new Date().toISOString().split('T')[0],
@@ -216,48 +218,52 @@ export default function CompatibilityResultsPage() {
 
       <div className="min-h-screen font-serif bg-[#FFF5E6] ">
         <CustomHeader title={`${capitalizedSign} & ${capitalizedPartnerSign}`} showBackButton={true} />
-        <div className="w-full bg-gradient-to-r rounded-3xl font-serif from-rose-200 to-white p-4 text-center mb-4 mt-16">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-2">Zodiac Compatibility</h1>
-          <h1 className="text-2xl bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent">
+        <div className="w-full  rounded-3xl font-serif bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-4 text-center mb-4 mt-16">
+          <h1 className="text-4xl font-bold text-white font-kohinoor-devanagari mb-2">Zodiac Compatibility</h1>
+          <h1 className="text-2xl text-white">
             {capitalizedSign} & {capitalizedPartnerSign}
           </h1>
         </div>
 
         <main className="container mx-auto px-4 py-8">
           {/* Zodiac Signs Display */}
-          <div className="flex flex-col-2 md:flex-row items-center justify-center gap-2 md:space-y-0 md:space-x-8 mb-8">
-            <ZodiacSign sign={capitalizedSign} />
-            <div className="w-1 h-16 bg-orange-300  items-center justify-center rounded-full " /> 
+          <div className="flex flex-row items-center justify-between mb-8 px-2">
+            <div className="flex-1 flex justify-center">
+              <ZodiacSign sign={capitalizedSign} />
+            </div>
 
-            <ZodiacSign sign={capitalizedPartnerSign} />
+          
+            <div className="flex-1 flex justify-center">
+              <ZodiacSign sign={capitalizedPartnerSign} />
+            </div>
           </div>
 
           {/* Compatibility Cards */}
           <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-1000 ${animate ? 'opacity-100' : 'opacity-0'}`}>
             {/* Love Compatibility Card */}
             <div className="bg-white rounded-lg shadow-lg md:shadow-xl p-6">
-              <h3 className="text-2xl text-center font-semibold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-4">Love Compatibility</h3>
+              <h3 className="text-2xl text-center font-semibold text-black mb-4">Love Compatibility</h3>
               <CompatibilityBar type="Love" percentage={compatibility.love.score} />
               <p className="text-lg text-gray-700 mt-2">{compatibility.love.text}</p>
             </div>
 
             {/* Sexual Compatibility Card */}
             <div className="bg-white rounded-lg shadow-lg md:shadow-xl p-6">
-              <h3 className="text-2xl text-center font-semibold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-4">Sexual Compatibility</h3>
+              <h3 className="text-2xl text-center font-semibold text-black mb-4">Sexual Compatibility</h3>
               <CompatibilityBar type="Sexual" percentage={compatibility.sexual.score} />
               <p className="text-lg text-gray-700 mt-2">{compatibility.sexual.text}</p>
             </div>
 
             {/* Friendship Compatibility Card */}
             <div className="bg-white rounded-lg shadow-lg md:shadow-xl p-6 mb-10">
-              <h3 className="text-2xl text-center font-semibold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-4">Friendship Compatibility</h3>
+              <h3 className="text-2xl text-center font-semibold text-black mb-4">Friendship Compatibility</h3>
               <CompatibilityBar type="Friendship" percentage={compatibility.friendship.score} />
               <p className="text-lg text-gray-700 mt-2">{compatibility.friendship.text}</p>
             </div>
 
             {/* Compatibility Description Card */}
             <div className="bg-white rounded-lg shadow-lg md:shadow-xl p-6 mb-10">
-              <h3 className="text-2xl text-center font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-4">Compatibility Insight</h3>
+              <h3 className="text-2xl text-center font-bold text-black mb-4">Compatibility Insight</h3>
               <div className="border-l-4 border-orange-500 pl-4">
                 <p className="text-lg text-gray-700 leading-relaxed italic">{compatibility.description}</p>
               </div>
@@ -348,7 +354,7 @@ export default function CompatibilityResultsPage() {
         className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent">
+        <h2 className="text-2xl font-bold text-black">
           Explore More Compatibility
         </h2>
         {/* Toggle Icon */}
@@ -372,14 +378,14 @@ export default function CompatibilityResultsPage() {
                   {/* Zodiac Images */}
                   <div className="flex items-center gap-1">
                     <Image
-                      src={`/${sign.toLowerCase()}.jpg`} // Replace with actual image paths
+                      src={`/zodicimg/${sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase() }.webp`} // Replace with actual image paths
                       alt={`${sign} compatibility`}
                       width={60}
                       height={60}
                       className="rounded-full"
                     />
                     <Image
-                      src={`/${partnerSign.toLowerCase()}.jpg`} // Replace with actual image paths
+                      src={`/zodicimg/${partnerSign.charAt(0).toUpperCase() + partnerSign.slice(1).toLowerCase()}.webp`} // Replace with actual image paths
                       alt={`${partnerSign} compatibility`}
                       width={60}
                       height={60}
@@ -387,7 +393,7 @@ export default function CompatibilityResultsPage() {
                     />
                   </div>
                   {/* Compatibility Text */}
-                  <span className="text-sm bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent font-semibold mt-2">
+                  <span className="text-sm text-black font-semibold mt-2">
                     {sign.charAt(0).toUpperCase() + sign.slice(1)} &{" "}
                     {partnerSign.charAt(0).toUpperCase() + partnerSign.slice(1)}
                   </span>
@@ -399,7 +405,7 @@ export default function CompatibilityResultsPage() {
       )}
     </div>
     <section className="mt-10  p-6 rounded-lg">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-4 text-center">
+          <h2 className="text-3xl font-bold text-black mb-4 text-center">
             Get Your Personalized Guidance Report
           </h2>
           <p className="text-center mb-4">
@@ -410,7 +416,28 @@ export default function CompatibilityResultsPage() {
           </p>
         </section>
 
-        <Footer />
+        {/* Internal Link Components */}
+        {/* Compatibility Links for Current Sign */}
+        <InternalLinksGrid sign={sign} />
+        
+        {/* All Compatibility Combinations */}
+        <CompatibilityLinksGrid currentSign={sign} currentPartnerSign={partner_sign} />
+        
+        {/* Horoscope Links for Current Sign */}
+        <HoroscopeBySignNavigation currentSign={sign} />
+        
+        {/* Horoscope Links for Partner Sign */}
+        <HoroscopeBySignNavigation currentSign={partner_sign} />
+        
+        {/* All Horoscope Navigation */}
+        <HoroscopeNavigation />
+        
+        {/* Recent Blog Links */}
+        <RecentBlogLinks limit={15} />
+
+        <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
 
         {/* Refresh Button */}
 

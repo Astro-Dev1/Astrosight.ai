@@ -16,6 +16,8 @@ import CustomHeader from "../../components/CustomHeader";
 import SideMenu from "../../components/SideMenu";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faSave } from "@fortawesome/free-solid-svg-icons";
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
+import Footer from '../../components/Footer';
 const GOOGLE_MAPS_API_KEY ="AIzaSyDxEVirHNpI2wclTjIe5k6yIvGPToy59jw"|| "";
 
 const ProfilePage = () => {
@@ -478,6 +480,17 @@ const ProfilePage = () => {
           <span className="text-xs mt-1">Remedies</span>
         </button>
       </div> */}
+      
+      {/* Internal Links Section */}
+      <div className="mt-12 space-y-8 px-4 max-w-4xl mx-auto">
+        <InternalLinksGrid />
+        <HoroscopeNavigation />
+        <CompatibilityLinksGrid />
+        <ReportLinksGrid />
+        <RecentBlogLinks />
+      </div>
+      
+      <Footer />
     </div></>
   );
 };

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
+import Footer from '../../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -10,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { fetchEntries } from '../../lib/contentful';
 import SEOHead from '../../components/SEOHead';
+import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid } from '../../components/InternalLinksGrid';
 // import { t } from '../../locales/i18n';
 
 const POSTS_PER_PAGE = 8;
@@ -86,10 +88,10 @@ export default function Blog({ posts }) {
         ogImage="https://astrosight.ai/images/blog-cover.jpg"
       />
 
-      <div className="flex flex-col min-h-screen bg-[#FFF2E2]">
-        <main className="flex-1 px-4 pb-20">
+      <div className="flex flex-col min-h-screen ">
+        <main className="flex-1 px-4 mt-16 pb-20">
           {/* Page Title */}
-          <div className="mb-6">
+          <div className="mb-6 text-center font-kohinoor-latin">
             <h1 className="text-2xl font-bold text-gray-900">{ 'Spiritual Blogs'}</h1>
             <p className="text-gray-600">{ 'Explore our collection of insightful articles'}</p>
           </div>
@@ -243,7 +245,23 @@ export default function Blog({ posts }) {
               <i className="fas fa-arrow-up"></i>
             </button>
           )}
+
+          {/* Internal Link Components */}
+          <section className="mt-8">
+            {/* All Compatibility Combinations */}
+            <CompatibilityLinksGrid />
+            
+            {/* All Horoscope Navigation */}
+            <HoroscopeNavigation />
+            
+            {/* Report Links */}
+            <ReportLinksGrid />
+          </section>
         </main>
+
+        <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
       </div>
     </>
   );

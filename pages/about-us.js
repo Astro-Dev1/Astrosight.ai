@@ -11,6 +11,7 @@ import { PhoneCall, FileText, Users, Cog, Megaphone, Star } from 'lucide-react'
 import Section from '../components/Section'
 import CustomLinkButton from '../components/CustomContainer'
 import Head from 'next/head';
+import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../components/InternalLinksGrid';
 
 // Import translations directly to avoid SSR issues
 import enTranslations from '../locales/en.json';
@@ -291,8 +292,25 @@ export default function AboutUs() {
       </div>
       </main>
 
+      {/* Internal Link Components */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* All Compatibility Combinations */}
+        <CompatibilityLinksGrid />
+        
+        {/* All Horoscope Navigation */}
+        <HoroscopeNavigation />
+        
+        {/* Report Links */}
+        <ReportLinksGrid />
+        
+        {/* Recent Blog Links */}
+        <RecentBlogLinks limit={15} />
+      </section>
+
       {/* Footer */}
-      <Footer />
+      <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+        <Footer />
+      </div>
 
       {/* Language Modal */}
       {isLanguageModalOpen && (

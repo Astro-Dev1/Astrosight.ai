@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { CalendarIcon, Clock, Tag } from 'lucide-react';
 import Head from 'next/head';
+import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
 
 // Custom rendering options for Contentful rich text - Enhanced for Medium style with better spacing
 const renderOptions = {
@@ -519,9 +520,25 @@ export default function Post({ post, relatedPosts }) {
   </section>
 )}
 
+        {/* Internal Link Components */}
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* All Compatibility Combinations */}
+          <CompatibilityLinksGrid />
+          
+          {/* All Horoscope Navigation */}
+          <HoroscopeNavigation />
+          
+          {/* Report Links */}
+          <ReportLinksGrid />
+          
+          {/* Recent Blog Links */}
+          <RecentBlogLinks limit={20} />
+        </section>
 
         {/* Footer */}
-        <Footer />
+        <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
       </div>
     </>
   );

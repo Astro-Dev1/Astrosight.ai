@@ -797,7 +797,7 @@ class PDFGenerator {
               apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmY5YmY3Mzg2ZjRjN2Q2Mjc3NmQ4NyIsIm5hbWUiOiJBc3Ryb2Fuc3dlciIsImFwcE5hbWUiOiJBaVNlbnN5IiwiY2xpZW50SWQiOiI2NzUxNzdjZWQ1ZWUyNTBjMGFiYzVjZmQiLCJhY3RpdmVQbGFuIjoiRlJFRV9GT1JFVkVSIiwiaWF0IjoxNzM1MzY3NjcxfQ.3A-UGOowPvyoMJO8Xems7PTBDsAFDrcqjifEO3rAlV0",
               campaignName: languageto,
               destination: phone,
-              userName: 'Astroanswer',
+              userName: 'AstroSight',
               templateParams: [],
               source: 'new-landing-page form',
               media: {
@@ -1025,13 +1025,13 @@ const kundliExamples = [
       { "type": "heading", "text": "Disclaimer", "size": 24, "align": "left", "color": "white", "position": [75, 88] },
 
       // Section 1: Personality
-      { "type": "paragraph", "text": "\n \nThis report is prepared using Vedic astrology principles based on the information you provide. While we strive for accuracy, please be aware that predictions are interpretations and may be subject to human or technical errors. AstroAnswer does not guarantee specific outcomes or success, and the insights provided should not be considered a substitute for professional advice from licensed practitioners, such as medical doctors, lawyers, or financial advisors. For health-related concerns, we strongly recommend consulting a qualified medical professional.\n \n You acknowledge that the accuracy of the insights depends on the correctness of the data you provide, and any decisions made based on this report are solely your responsibility. Emotional intent can influence the effectiveness of suggested remedies, so it is essential to approach them with a positive mindset. AstroAnswer disclaims all liability for any outcomes arising from the use of this report. By proceeding, you agree to use this guidance as a supplementary tool rather than a sole basis for decision-making.", "size": 12, "align": "left", "width": 485, "lineGap": 5, "color": "#000000" },
+      { "type": "paragraph", "text": "\n \nThis report is prepared using Vedic astrology principles based on the information you provide. While we strive for accuracy, please be aware that predictions are interpretations and may be subject to human or technical errors. AstroSight does not guarantee specific outcomes or success, and the insights provided should not be considered a substitute for professional advice from licensed practitioners, such as medical doctors, lawyers, or financial advisors. For health-related concerns, we strongly recommend consulting a qualified medical professional.\n \n You acknowledge that the accuracy of the insights depends on the correctness of the data you provide, and any decisions made based on this report are solely your responsibility. Emotional intent can influence the effectiveness of suggested remedies, so it is essential to approach them with a positive mindset. AstroSight disclaims all liability for any outcomes arising from the use of this report. By proceeding, you agree to use this guidance as a supplementary tool rather than a sole basis for decision-making.", "size": 12, "align": "left", "width": 485, "lineGap": 5, "color": "#000000" },
 
       // Section 2: Strengths
       {
         "type": "text",
         'type1': 'logo',
-        "text": "astroanswer.co",
+        "text": "astrosight.ai",
         "position": [230, 750], // Position at bottom of page
         "size": 10,
         "align": "center",
@@ -1039,7 +1039,7 @@ const kundliExamples = [
         "link": "https://wa.link/lilays"  // Optional: add link to website
       },
       // Bottom decoration - website or logo
-      // { "type": "paragraph", "text": "astroanswer.co ", "size": 12, "align": "center","link": "https://wa.link/lilays", "color": "#000000" }
+      // { "type": "paragraph", "text": "astrosight.ai ", "size": 12, "align": "center","link": "https://wa.link/lilays", "color": "#000000" }
     ]
   }
 ];
@@ -1144,7 +1144,7 @@ export default async function handler(req, res) {
     // Save PDF
     await generator.savePDF(filePath, jsondata['phone'], jsondata["page_4"]['answer']);
 
-    // const pdfUrl = `astroanswer.co/generated/${filename}`;
+    // const pdfUrl = `astrosight.ai/generated/${filename}`;
     // console.log(jsondata['phone'])
     // console.log(pdfUrl)
 
@@ -1707,7 +1707,7 @@ function createBirthDetailsComparisonPage(mergedData, backgroundPath = "WhatsApp
       {
         type: "text",
         type1: "logo",
-        text: "astroanswer.co",
+        text: "astrosight.ai",
         position: [230, 754],
         size: 10,
         align: "center",

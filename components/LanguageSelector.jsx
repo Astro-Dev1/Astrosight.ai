@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { t, setLanguage, getLanguage, useForceUpdate } from '../locales/i18n';
 
-const LanguageSelector = ({ className = '', variant = 'default' }) => {
+const LanguageSelector = ({ className = '', variant = 'default', onLanguageChange }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState(getLanguage());
-  const forceUpdate = useForceUpdate();
+  const [currentLang, setCurrentLang] = useState("en");
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
@@ -13,15 +11,26 @@ const LanguageSelector = ({ className = '', variant = 'default' }) => {
   ];
 
   const handleLanguageChange = (langCode) => {
-    setLanguage(langCode);
     setCurrentLang(langCode);
     setIsOpen(false);
-    forceUpdate();
+    
+    // Call parent component's callback if provided
+    if (onLanguageChange) {
+      onLanguageChange(langCode);
+    }
+    
+    // Store in localStorage for persistence
+    localStorage.setItem('selectedLanguage', langCode);
+    
     // Force re-render of parent components
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: langCode }));
   };
 
   useEffect(() => {
+    // Load saved language from localStorage
+    const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+    setCurrentLang(savedLang);
+    
     const handleClickOutside = (event) => {
       if (isOpen && !event.target.closest('.language-selector')) {
         setIsOpen(false);
@@ -48,7 +57,7 @@ const LanguageSelector = ({ className = '', variant = 'default' }) => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={getButtonStyles()}
-        aria-label={t('select_language')}
+        aria-label="Select Language"
       >
         <span>{languages.find(l => l.code === currentLang)?.flag}</span>
         <span className="text-sm">{languages.find(l => l.code === currentLang)?.code.toUpperCase()}</span>

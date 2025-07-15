@@ -167,17 +167,17 @@ const HeroSection = () => {
                 <span className="text-[#ff6d3f]  w-full text-[30px] font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
-                  <div className="md:flex-1 md:w-1/2">
+                  <div className="md:flex-1 md:w-1/2 gap-4">
 
                 <p className="text-base/5 lg:w-1/2 sm:text-lg md:text-sm font-kohinoor-latin text-gray-600 max-w-2xl mx-auto lg:mx-0">
                   Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
                 </p>
-                <div className="hidden md:flex relative -top-16 left-16 flex-col items-center lg:items-center md:mt-0 md:ml-6">
+                <div className="hidden md:flex relative -top-16 left-28 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <Image
                     src="/qrcode.jpeg"
                     alt="QR Code for App Download"
-                    width={70}
-                    height={700}
+                    width={60}
+                    height={60}
                     className="rounded-lg"
                   />
                   <p className="text-gray-600 text-center text-[12px]">Scan to our download</p>
@@ -185,7 +185,7 @@ const HeroSection = () => {
                 </div>
               </div>
               <div className="flex flex-row lg:hidden items-center justify-center gap-4">
-                <Link href="https://AstroSight.com/download" passHref>
+                <Link href="https://play.google.com/store/apps/details?id=com.astrosight" passHref>
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
                     <div className="mr-3">
                       <svg viewBox="30 336.7 120.9 129.2" width="20">
@@ -202,7 +202,7 @@ const HeroSection = () => {
                   </div>
                 </Link>
                 
-                <Link href="https://AstroSight.com/download" passHref>
+                <Link href="/" passHref>
 
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
                     
@@ -216,7 +216,7 @@ const HeroSection = () => {
                       </svg>
                     </div>
                     <div>
-                      <div className="md:text-xs text-[12px] uppercase">Download on</div>
+                      <div className="md:text-xs text-[12px] uppercase">coming soon</div>
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">App Store</div>
 
                     </div>

@@ -14,6 +14,7 @@ import Footer from '../components/Footer';
 import SEOHead from '../components/SEOHead';
 import Head from 'next/head';
 import Cookies from "js-cookie";
+import { ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
 
 const HomeMobileScreen = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -138,9 +139,9 @@ const HomeMobileScreen = () => {
       title="AstroSight"
       titleImage="/log.png"
       showBackButton={false}
+      isHomePage={true} 
       showSideMenu={true}
       showWallet={false}
-      showProfile={true}
       onSideMenuPress={() => setIsSideMenuOpen(true)}
     />
     
@@ -149,7 +150,7 @@ const HomeMobileScreen = () => {
       onClose={() => setIsSideMenuOpen(false)}
     />
     
-    <div className=" bg-orange-50 font-poppins min-h-screen pt-16"> {/* Added pt-16 for header spacing */}
+    <div className=" bg font-poppins min-h-screen pt-16"> {/* Added pt-16 for header spacing */}
  
         <section className="bg-white w-full pt-7 animate-pulse">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
@@ -169,6 +170,21 @@ const HomeMobileScreen = () => {
           </div>
         </section> 
 
+        {/* Internal Link Components */}
+        <section className=" w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            {/* All Compatibility Combinations */}
+            <CompatibilityLinksGrid />
+            
+            {/* All Horoscope Navigation */}
+            <HoroscopeNavigation />
+            
+            {/* Recent Blog Links */}
+            <RecentBlogLinks limit={20} />
+            <ReportLinksGrid/>
+          </div>
+        </section> 
+
         {/* <section className="animate-pulse w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <CompanionsSection />
@@ -183,7 +199,7 @@ const HomeMobileScreen = () => {
           </section>
         )}
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />
           </div>
         

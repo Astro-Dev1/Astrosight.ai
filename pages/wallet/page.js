@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, Bell, RefreshCw, Tag, Gift, PlusCircle, CheckCircle, Home, Search, Ticket, Wallet, User } from "lucide-react";
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
+import Footer from '../../components/Footer';
 
 const WalletPage = () => {
   const router = useRouter();
@@ -391,7 +393,16 @@ const WalletPage = () => {
         </Button>
       </div>
 
+      {/* Internal Links Section */}
+      <div className="mt-12 mb-20 space-y-8 px-4 max-w-4xl mx-auto">
+        <InternalLinksGrid />
+        <HoroscopeNavigation />
+        <CompatibilityLinksGrid />
+        <ReportLinksGrid />
+        <RecentBlogLinks />
+      </div>
       
+      <Footer />
     </div>
   );
 };

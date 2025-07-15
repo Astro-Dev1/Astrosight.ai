@@ -9,6 +9,8 @@ import ChatMessage from "../components/ChatMessage";
 import { motion } from "framer-motion";
 import { Send, Sparkles, User, ThumbsUp, ThumbsDown } from "lucide-react";
 import { fetchMyProfile, processQuestion, updateQuestion, likeDislike } from "../services/centralApi";
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import Footer from '../components/Footer';
 // import { set } from "date-fns";
 
 const Chatbot = () => {
@@ -651,6 +653,17 @@ useEffect(() => {
           </motion.div>
         </motion.div>
       )}
+      
+      {/* Internal Links Section */}
+      <div className="mt-12 space-y-8 px-4 max-w-4xl mx-auto">
+        <InternalLinksGrid />
+        <HoroscopeNavigation />
+        <CompatibilityLinksGrid />
+        <ReportLinksGrid />
+        <RecentBlogLinks />
+      </div>
+      
+      <Footer />
     </div>
   );
 };
