@@ -291,7 +291,7 @@ const HoroscopePage = () => {
             {/* Zodiac Sign Section */}
             <div className="mt-6 mb-8 flex flex-col items-center">
               <Image
-                src={`/zodicimg/${capitalizedSign.toLowerCase()}.webp`}
+                src={`/zodicimg/${capitalizedSign}.webp`}
                 width={150}
                 height={150}
                 alt={`${capitalizedSign} Symbol`}
