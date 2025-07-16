@@ -209,7 +209,7 @@ export const ReportLinksGrid = ({ currentSign }) => {
         {calculators.map((calculator) => (
           <Link
             key={calculator.slug}
-            href={`/report/${calculator.slug}${currentSign ? '?sign=' + currentSign.toLowerCase() : ''}`}
+            href={`/astrocalculator /${calculator.slug}${currentSign ? '?sign=' + currentSign.toLowerCase() : ''}`}
             className={`hover:underline transition-colors ${
               calculator.available 
                 ? 'hover:text-orange-700' 

@@ -45,6 +45,84 @@ const calculators = [
     color: 'red',
     available: false
   },
+    {
+    slug: 'sun-sign-calculator',
+    title: 'Sun Sign Calculator',
+    description: 'Discover your zodiac sign instantly with detailed traits',
+    icon: '☀️',
+    color: 'orange',
+    available: true
+  },
+    {
+    slug: 'mangal-dosha-calculator',
+    title: 'Mangal Dosha Calculator',
+    description: 'Check for Manglik Dosha and its effects on marriage',
+    icon: '♂️',
+    color: 'red',
+    available: true
+  },
+    {
+    slug: 'marriage-compatibility-calculator',
+    title: 'Marriage Compatibility Calculator',
+    description: 'Check marriage compatibility using traditional Guna Milan system',
+    icon: '💑',
+    color: 'pink',
+    available: true
+  },
+  {
+  slug: 'kaal-sarp-dosh-calculator',
+  title: 'Kaal Sarp Dosh Calculator',
+  description: 'Check your birth chart for Kaal Sarp Dosh and get remedies.',
+  icon: '🐍',
+  color: 'green',
+  available: true
+},
+{
+  slug: 'rashi-calculator',
+  title: 'Rashi Calculator',
+  description: 'Find your Vedic Moon sign (Rashi) and its meaning instantly',
+  icon: '🌓',
+  color: 'purple',
+  available: true
+},{
+  slug: 'flames-calculator',
+  title: 'FLAMES Calculator',
+  description: 'Find your relationship status using the classic FLAMES game',
+  icon: '🔥',
+  color: 'orange',
+  available: true
+},{
+  slug: 'yantra-calculator',
+  title: 'Yantra Calculator',
+  description: 'Find your ideal Vedic Yantra for success, protection, and spiritual growth.',
+  icon: '🧿',
+  color: 'cyan',
+  available: true
+},
+{
+  slug: 'moon-sign-calculator',
+  title: 'Moon Sign Calculator',
+  description: 'Find your Vedic Moon sign instantly and discover your emotional nature, strengths, and compatibility.',
+  icon: '🌙',
+  color: 'blue',
+  available: true
+},
+{
+  slug: 'transit-chart-calculator',
+  title: 'Transit Chart Calculator',
+  description: 'See current planetary transits and their effects on your birth chart instantly.',
+  icon: '🪐',
+  color: 'indigo',
+  available: true
+},
+{
+  slug: 'name-numerology-calculator',
+  title: 'Name Numerology Calculator',
+  description: 'Discover your numerology number from your name using the Pythagorean system. Get instant insights into your personality and destiny.',
+  icon: '🔢',
+  color: 'green',
+  available: true
+},
   {
     slug: 'palm-reading',
     title: 'Palm Reading',

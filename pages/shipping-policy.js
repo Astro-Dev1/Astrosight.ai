@@ -90,7 +90,7 @@ const TermsAndConditions = () => {
       <div className="max-w-4xl mx-auto p-6 mt-8">
         <Section title="Shipping Policy">
           <p className="text-lg text-orange-700">
-            At AstroAnswer, we pride ourselves on delivering celestial insights directly to you,
+            At AstroSight, we pride ourselves on delivering celestial insights directly to you,
             without any physical shipping required. Our services are entirely digital, ensuring that
             you receive your astrological guidance swiftly and conveniently.
           </p>

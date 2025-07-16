@@ -9,7 +9,7 @@ export default function Contact() {
   const [openIndex, setOpenIndex] = useState(null);
   const faqData = [
     {
-      question: "How do I book AstroAnswer’s services?",
+      question: "How do I book AstroSight services?",
       answer: (
         <>
           You can book our services from their respective pages. <br />
