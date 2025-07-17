@@ -18,7 +18,7 @@ export const InternalLinksGrid = ({ sign="aries" }) => {
         Explore More Compatibility
       </h2>
 
-      <div className="flex flex-wrap gap-1 text-sm text-orange-500 justify-center">
+      <div className="flex flex-wrap gap-1 text-sm text-gray-400 ">
         {zodiacSigns.map((partnerSign) => (
           <Link
             key={`${sign}-${partnerSign}`}
@@ -41,7 +41,7 @@ console.log(sign)
       <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
         Explore Horoscope by Sign & Periods 
       </h2>
-      <div className="flex flex-wrap gap-1 text-sm text-orange-500 ">
+      <div className="flex flex-wrap gap-1 text-sm text-gray-400 ">
         {zodiacSigns.map((zodiacSign) =>
           types.map((type) => (
             <Link
@@ -64,7 +64,7 @@ export const CompatibilityLinksGrid = ({ currentSign, currentPartnerSign }) => {
       <h2 className="text-lg font-bold  text-orange-600 text-center">
         Explore All Compatibility Combinations
       </h2>
-      <div className="flex flex-wrap gap-1 text-sm text-orange-500">
+      <div className="flex flex-wrap gap-1 text-sm text-gray-400">
         {zodiacSigns.map((sign) =>
           zodiacSigns.map((partnerSign) => {
             // Skip the current combination
@@ -96,7 +96,7 @@ export const HoroscopeBySignNavigation = ({ currentSign }) => {
       <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
         Explore {capitalizeFirstLetter(currentSign)} Horoscope
       </h2>
-      <div className="flex flex-wrap gap-2 text-sm text-orange-500 justify-center">
+      <div className="flex flex-wrap gap-2 text-sm text-gray-400 ">
         {types.map((type) => (
           <Link
             key={`${currentSign}-${type}`}
@@ -158,7 +158,7 @@ export const RecentBlogLinks = ({ limit = 20 }) => {
       <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
         Recent Blog Articles
       </h2>
-      <div className="flex flex-wrap gap-2 text-sm text-orange-500 justify-center">
+      <div className="flex flex-wrap gap-2 text-sm text-gray-400 ">
         {blogPosts.length > 0 ? (
           blogPosts.map((post) => (
             <Link
@@ -205,7 +205,7 @@ export const ReportLinksGrid = ({ currentSign }) => {
       <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
         Astrology Calculators & Reports
       </h2>
-      <div className="flex flex-wrap gap-2 text-sm text-orange-500 justify-center">
+      <div className="flex flex-wrap gap-2 text-sm text-gray-400 ">
         {calculators.map((calculator) => (
           <Link
             key={calculator.slug}
