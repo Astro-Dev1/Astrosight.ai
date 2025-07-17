@@ -49,7 +49,7 @@ const CompatibilityBar = ({ type, percentage }) => (
 // ZodiacSign Component
 const ZodiacSign = ({ sign }) => (
   <Image
-    src={`/zodicimg/${sign.toLowerCase()}.webp`}
+    src={`/zodicimg/${sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase()}.webp`}
     alt={sign}
     width={200}
     height={200}
@@ -216,7 +216,7 @@ export default function CompatibilityResultsPage() {
         </script>
       </Head>
 
-      <div className="min-h-screen font-serif bg-[#FFF5E6] ">
+      <div className="min-h-screen font-serif bg-[#FFF5E6] max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <CustomHeader title={`${capitalizedSign} & ${capitalizedPartnerSign}`} showBackButton={true} />
         <div className="w-full  rounded-3xl font-serif bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-4 text-center mb-4 mt-16">
           <h1 className="text-4xl font-bold text-white font-kohinoor-devanagari mb-2">Zodiac Compatibility</h1>

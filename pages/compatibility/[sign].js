@@ -252,7 +252,7 @@ export default function PartnerSignPage() {
         </script>
       </Head>
 
-      <div className="flex flex-col  bg-[#FFF2E2] relative font-kohinoor-latin ">
+      <div className="flex flex-col  bg-[#FFF2E2] relative font-kohinoor-latin max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
         {/* Header */}
         <CustomHeader 
           title={`${capitalizedSign} Compatibility`}

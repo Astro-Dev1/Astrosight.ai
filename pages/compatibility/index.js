@@ -97,7 +97,7 @@ export default function CompatibilityPage() {
         isOpen={sideMenuOpen} 
         onClose={() => setSideMenuOpen(false)}
       />
-      <div className="min-h-screen pt-16 font-serif ">
+      <div className="min-h-screen pt-16 font-serif max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
 
 
         <header className="w-full  rounded-3xl   bg-gradient-to-r from-[#FF9933] to-[#FF5733]  p-6 text-center mb-4">

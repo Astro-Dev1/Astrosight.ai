@@ -25,7 +25,7 @@ export const InternalLinksGrid = ({ sign="aries" }) => {
             href={`/compatibility/${sign}/${partnerSign.toLowerCase()}`}
             className="hover:underline"
           >
-            {capitalizeFirstLetter(sign)} & {capitalizeFirstLetter(partnerSign)} 
+           |{capitalizeFirstLetter(sign)} & {capitalizeFirstLetter(partnerSign)}|
           </Link>
         ))}
       </div>
@@ -41,7 +41,7 @@ console.log(sign)
       <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
         Explore Horoscope by Sign & Periods 
       </h2>
-      <div className="flex flex-wrap gap-1 text-sm text-orange-500 justify-center">
+      <div className="flex flex-wrap gap-1 text-sm text-orange-500 ">
         {zodiacSigns.map((zodiacSign) =>
           types.map((type) => (
             <Link
@@ -49,7 +49,7 @@ console.log(sign)
               href={`/horoscope/${zodiacSign.toLowerCase()}/${type.toLowerCase()==='daily' ? '' : type.toLowerCase()}`}
               className="hover:underline"
             >
-              {zodiacSign} {type.charAt(0).toUpperCase() + type.slice(1)} 
+             |{zodiacSign} {type.charAt(0).toUpperCase() + type.slice(1)}|
             </Link>
           ))
         )}
@@ -60,11 +60,11 @@ console.log(sign)
 
 export const CompatibilityLinksGrid = ({ currentSign, currentPartnerSign }) => {
   return (
-    <div className="w-full bg-white shadow justify-between rounded-lg ">
+    <div className="w-full bg-white shadow  rounded-lg mt-8">
       <h2 className="text-lg font-bold  text-orange-600 text-center">
         Explore All Compatibility Combinations
       </h2>
-      <div className="flex flex-wrap gap-1 text-xs text-orange-500">
+      <div className="flex flex-wrap gap-1 text-sm text-orange-500">
         {zodiacSigns.map((sign) =>
           zodiacSigns.map((partnerSign) => {
             // Skip the current combination
@@ -76,9 +76,9 @@ export const CompatibilityLinksGrid = ({ currentSign, currentPartnerSign }) => {
               <Link
                 key={`${sign}-${partnerSign}`}
                 href={`/compatibility/${sign.toLowerCase()}/${partnerSign.toLowerCase()}`}
-                className="hover:underline hover:text-orange-700 transition-colors p-1 text-center"
+                className="hover:underline "
               >
-                {sign} & {partnerSign}
+               |{sign} & {partnerSign}|
               </Link>
             );
           })
@@ -103,7 +103,7 @@ export const HoroscopeBySignNavigation = ({ currentSign }) => {
             href={`/horoscope/${currentSign.toLowerCase()}${type !== 'daily' ? '/' + type : ''}`}
             className="hover:underline"
           >
-            {capitalizeFirstLetter(currentSign)} {capitalizeFirstLetter(type)} Horoscope
+           |{capitalizeFirstLetter(currentSign)} {capitalizeFirstLetter(type)} Horoscope |
           </Link>
         ))}
       </div>
@@ -167,7 +167,7 @@ export const RecentBlogLinks = ({ limit = 20 }) => {
               className="hover:underline"
               title={post.title}
             >
-              {post.title.length > 50 ? `${post.title.substring(0, 50)}...` : post.title}
+             |{post.title.length > 50 ? `${post.title.substring(0, 50)}...` : post.title}|
             </Link>
           ))
         ) : (
@@ -217,7 +217,7 @@ export const ReportLinksGrid = ({ currentSign }) => {
             }`}
             title={calculator.available ? calculator.name : `${calculator.name} (Coming Soon)`}
           >
-            {calculator.name}
+           |{calculator.name}|
             {!calculator.available && ' (Coming Soon)'}
           </Link>
         ))}
