@@ -216,7 +216,7 @@ const CustomHeader = ({
     }`}>
       Home
     </Link>
-    <Link href="/compatablity" className={`font-medium transition-colors flex items-center gap-2 ${
+    <Link href="/compatibility" className={`font-medium transition-colors flex items-center gap-2 ${
       router.pathname === '/compatibility' 
         ? 'text-orange-600' 
         : 'text-gray-800 hover:text-orange-600'
