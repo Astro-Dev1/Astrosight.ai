@@ -1,4 +1,3 @@
-import { MetadataRoute } from 'next';
 
 // This is a placeholder for a function that would fetch your dynamic content.
 // Replace this with your actual data fetching logic (e.g., from a database or CMS).
@@ -12,8 +11,8 @@ async function getDynamicPosts() {
   ];
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = 'https://astrosight.ai';
+export default async function sitemap() { 
+   const siteUrl = 'https://astrosight.ai';
 
   // Get dynamic routes, like blog posts
   const posts = await getDynamicPosts();
