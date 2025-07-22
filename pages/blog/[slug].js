@@ -185,7 +185,7 @@ export default function Post({ post, relatedPosts }) {
 
   const keywords = [primaryKeyword, ...(secondaryKeywords || [])].join(', ');
   const fullUrl = `https://astrosight.ai/blog/${slug}`;
-  const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.co/default-blog-image.jpg';
+  const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.ai/default-blog-image.jpg';
 
   return (
     <>
@@ -193,7 +193,7 @@ export default function Post({ post, relatedPosts }) {
         title={metaTitle}
         description={metaDescription}
         keywords={keywords}
-        canonical={canonical}
+        // canonical={canonical}
         ogImage={ogImage}
         publishDate={publishDate}
         modifiedDate={post.sys.updatedAt}
@@ -220,7 +220,7 @@ export default function Post({ post, relatedPosts }) {
         <meta name="twitter:image" content={imageUrl} />
 
         {/* Canonical URL */}
-        <link rel="canonical" href={fullUrl} />
+        {/* <link rel="canonical" href={fullUrl} /> */}
 
         {/* Note: Google Fonts should be moved to _document.js */}
 
@@ -236,14 +236,14 @@ export default function Post({ post, relatedPosts }) {
             "author": {
               "@type": "Organization",
               "name": "AstroSight",
-              "url": "https://astrosight.co/about-us"
+              "url": "https://astrosight.ai/about-us"
             },
             "publisher": {
               "@type": "Organization",
               "name": "AstroSight",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://astrosight.co/logo.png"
+                "url": "https://astrosight.ai/logo.png"
               }
             },
             "description": metaDescription,
