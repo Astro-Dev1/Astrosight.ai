@@ -100,7 +100,7 @@ export default function CompatibilityPage() {
       <div className="min-h-screen pt-16 font-serif max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
 
 
-        <header className="w-full  rounded-3xl   bg-gradient-to-r from-[#FF9933] to-[#FF5733]  p-6 text-center mb-4">
+        <header className="w-full  rounded-3xl     p-6 text-center mb-4">
           <h1 className="text-3xl font-bold text-white font-kohinoor-devanagari  mb-3">Zodiac Love Compatibility Calculator</h1>
           <h2 className="text-2xl text-white   mb-8 font-kohinoor text-center">Discover Your Astrological Match</h2>
         </header>
