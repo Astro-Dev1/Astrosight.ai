@@ -184,7 +184,7 @@ export default function Post({ post, relatedPosts }) {
   const readingTime = calculateReadingTime([ bodyContent]);
 
   const keywords = [primaryKeyword, ...(secondaryKeywords || [])].join(', ');
-  const fullUrl = `https://astrosight.co/blog/${slug}`;
+  const fullUrl = `https://astrosight.ai/blog/${slug}`;
   const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.co/default-blog-image.jpg';
 
   return (
