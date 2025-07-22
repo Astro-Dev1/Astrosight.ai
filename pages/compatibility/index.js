@@ -64,7 +64,7 @@ export default function CompatibilityPage() {
       "Aries & Virgo",
     ];
   // const blurDataURL = '../../public/'
-  // const [selectedSign, setSelectedSign] = useState(`&lsquo;``&lsquo;`);
+  // const [selectedSign, setSelectedSign] = useState(&lsquo;&lsquo;);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isExpandedcopatibility, setIsExpandedcopatibility] = useState(false);
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
@@ -97,30 +97,30 @@ export default function CompatibilityPage() {
         isOpen={sideMenuOpen} 
         onClose={() => setSideMenuOpen(false)}
       />
-      <div className="min-h-screen pt-16 font-serif max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
+      <div className="min-h-screen pt-14 font-serif max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
 
 
-        <header className="w-full  rounded-3xl     p-6 text-center mb-4">
-          <h1 className="text-3xl font-bold text-white font-kohinoor-devanagari  mb-3">Zodiac Love Compatibility Calculator</h1>
-          <h2 className="text-2xl text-white   mb-8 font-kohinoor text-center">Discover Your Astrological Match</h2>
+        <header className="w-full  rounded-3xl     p-1 mt-3 text-center ">
+          <h1 className="text-3xl font-bold text-black font-kohinoor-devanagari">Zodiac Love Compatibility Calculator</h1>
+          <h2 className="text-2xl text-black    font-kohinoor text-center">Discover Your Astrological Match</h2>
         </header>
 
-        <div className="container mx-auto px-4 py-8 mb-8">
+        <div className="container mx-auto px-0 py-8 ">
           <section className="mb-10 text-justify bg-white bg-opacity-50 backdrop-blur-lg p-8 rounded-lg shadow-md">
             <p className="text-lg text-gray-900 mb-4">
-              Welcome to astrosight `&lsquo;` s Zodiac Love Compatibility Calculator! Unlock the secrets of your relationships through the wisdom of the stars. Our free compatibility tool helps you explore how well you match with other zodiac signs in love, friendship, and more.
+              Welcome to astrosight&lsquo;s Zodiac Love Compatibility Calculator! Unlock the secrets of your relationships through the wisdom of the stars. Our free compatibility tool helps you explore how well you match with other zodiac signs in love, friendship, and more.
             </p>
             <p className="text-lg text-gray-900 mb-4">
-              Understanding your astrological compatibility can provide valuable insights into your relationships, helping you navigate the complexities of love and friendship. Whether you`&lsquo;`re curious about a potential romance or want to strengthen existing bonds, our compatibility calculator is here to guide you.
+              Understanding your astrological compatibility can provide valuable insights into your relationships, helping you navigate the complexities of love and friendship. Whether you&lsquo;re curious about a potential romance or want to strengthen existing bonds, our compatibility calculator is here to guide you.
             </p>
-            <h3 className="text-2xl text-center font-bold text-black   mb-2">How to Use the Compatibility Calculator:</h3>
+            <h3 className="text-2xl text-center font-bold text-black   ">How to Use the Compatibility Calculator:</h3>
             <ol className="list-decimal list-inside text-gray-900 mb-4">
               <li>Select your zodiac sign from the options below.</li>
-              <li>On the next page, choose your partner`&lsquo;`s or friend`&lsquo;`s zodiac sign.</li>
+              <li>On the next page, choose your partner&lsquo;s or friend&lsquo;s zodiac sign.</li>
               <li>Discover your compatibility score and detailed insights about your relationship dynamics.</li>
             </ol>
             <p className="text-lg text-gray-900 mb-4">
-              Remember, while astrology can offer guidance, it doesn`&lsquo;`t determine the success of a relationship. Open communication, mutual respect, and understanding are key to any strong connection.
+              Remember, while astrology can offer guidance, it doesn&lsquo;t determine the success of a relationship. Open communication, mutual respect, and understanding are key to any strong connection.
             </p>
           </section>
         </div>
@@ -135,8 +135,7 @@ export default function CompatibilityPage() {
           <h2 className="text-2xl mt-5 flex justify-center font-bold  items-center text-black   mb-8">Choose Your Zodiac Sign</h2>
 
 
-          <div className="mb-8 bg-gradient-to-r rounded-3xl font-serif 
-           from-[#FF9933] to-[#FF5733] mt-5 justify-center items-center">
+          <div className="mb-8  rounded-3xl  mt-5 justify-center items-center">
             <div className="container  mt-9 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-1">
               {zodiacSigns.map((sign) => (
                 <Card
@@ -284,17 +283,7 @@ export default function CompatibilityPage() {
             </div>
           )}
         </section>
-        <section className="mt-10  p-6 rounded-lg">
-          <h2 className="text-3xl font-bold text-black  -900 mb-4 text-center">
-            Get Your Personalized Guidance Report
-          </h2>
-          <p className="text-center mb-4">
-            Discover detailed insights and remedies tailored just for you.
-            <Link href="/guidance-report" className="text-blue-600 underline">
-              Click here to get your personalized report now!
-            </Link>
-          </p>
-        </section>
+        
 
         {/* Internal Link Components */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

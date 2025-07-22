@@ -23,7 +23,7 @@ const CustomHeader = ({
   showWallet = false,
   showLanguage = false,
   rightIcon = null,
-  titleImage = null,
+  titleImage = "/log.png",
   isHomePage = false,
   onNotificationPress = () => console.log("Notifications pressed"),
   // onSideMenuPress = () => console.log("Side menu pressed"),
