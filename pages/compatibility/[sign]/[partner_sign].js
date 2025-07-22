@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CustomHeader from '../../../components/CustomHeader';
 import Footer from '../../../components/Footer';
-// import SEOHead from '../../../components/SEOHead';
+import SEOHead from '../../../components/SEOHead';
 // import { RefreshCw } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -152,6 +152,18 @@ export default function CompatibilityResultsPage() {
   
   return (
     <>
+    <SEOHead
+  title={`${pageTitle} Compatibility `}
+  description={`Discover ${pageDescription}'s love compatibility with other zodiac signs.  your astrological match, emotional connection, and relationship insights.`}
+  keywords={`${capitalizedSign} compatibility, best match for ${capitalizedSign}, ${capitalizedSign} love horoscope, zodiac compatibility ${capitalizedSign}, astrology partner match`}
+  canonical={`https://astrosight.ai/compatibility/${sign}`}
+  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+  ogType="article"
+  articleAuthor="AstroSight Team"
+  articlePublishedTime={null} // Add if you track publish date
+  articleModifiedTime={new Date().toISOString()} // Optional
+/>
+
       <Head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>

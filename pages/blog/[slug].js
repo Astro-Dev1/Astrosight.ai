@@ -6,7 +6,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
-// import SEOHead from '../../components/SEOHead';
+import SEOHead from '../../components/SEOHead';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -189,6 +189,15 @@ export default function Post({ post, relatedPosts }) {
 
   return (
     <>
+         <SEOHead
+        title={metaTitle}
+        description={metaDescription}
+        keywords={keywords}
+        canonical={canonical}
+        ogImage={ogImage}
+        publishDate={publishDate}
+        modifiedDate={post.sys.updatedAt}
+      />
       <Head>
         <link rel="icon" href="/logo.png" />
         <title>{metaTitle}</title>
@@ -418,6 +427,12 @@ export default function Post({ post, relatedPosts }) {
                     <Tag className="w-5 h-5 mr-2" />
                     {primaryKeyword}
                   </span>
+                )}
+                {/* Author link */}
+                {post.fields.author && post.fields.author.fields && (
+                  <Link href={`/blog/${encodeURIComponent(post.fields.author.fields.name)}`} className="flex items-center hover:underline">
+                    <span className="ml-2">By {post.fields.author.fields.name}</span>
+                  </Link>
                 )}
               </div>
 

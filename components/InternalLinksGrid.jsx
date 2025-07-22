@@ -34,8 +34,8 @@ export const InternalLinksGrid = ({ sign="aries" }) => {
 };
 
 export const HoroscopeNavigation = ({ sign }) => {
-  const types = ["daily", "weekly", "monthly"];
-console.log(sign)
+  console.log("Sign:", sign);
+  const types = ["today", "weekly", "monthly","yearly"];
   return (
     <div className="w-full bg-white shadow  rounded-lg mt-8">
       <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
@@ -46,7 +46,7 @@ console.log(sign)
           types.map((type) => (
             <Link
               key={`${type}-${zodiacSign}`}
-              href={`/horoscope/${zodiacSign.toLowerCase()}/${type.toLowerCase()==='daily' ? '' : type.toLowerCase()}`}
+              href={`/horoscope/${type}-horoscope/${zodiacSign.toLowerCase()}`}
               className="hover:underline"
             >
              |{zodiacSign} {type.charAt(0).toUpperCase() + type.slice(1)}|

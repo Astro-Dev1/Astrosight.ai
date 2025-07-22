@@ -6,19 +6,21 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Star,  TrendingUp, Heart, Briefcase, Activity, Gift, Send } from 'lucide-react';
-import CustomHeader from "../../components/CustomHeader";
-import LanguageSelector from "../../components/LanguageSelector";
-import { getDailyHoroscope } from "../../services/centralApi";
-import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
-import Footer from '../../components/Footer';
+import SEOHead from "../../../components/SEOHead";
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+import { Star, Heart, Briefcase, Activity, TrendingUp, Gift } from 'lucide-react';
+import CustomHeader from "../../../components/CustomHeader";
+import LanguageSelector from "../../../components/LanguageSelector";
+import { getDailyHoroscope } from "../../../services/centralApi";
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../../components/InternalLinksGrid';
+import Footer from '../../../components/Footer';
+import DailySignArticle from '../../../components/DailySignArticle';
 
 // Import translations for SSR compatibility
-import enTranslations from '../../locales/en.json';
-import hiTranslations from '../../locales/hi.json';
-import knTranslations from '../../locales/kn.json';
+import enTranslations from '../../../locales/en.json';
+import hiTranslations from '../../../locales/hi.json';
+import knTranslations from '../../../locales/kn.json';
 
 const translations = {
   en: enTranslations,
@@ -27,39 +29,36 @@ const translations = {
 };
 
 // AI Companions data
-const aiCompanions = [
-  {
-    id: 1,
-    name: 'Jaimini',
-    type: 'Expert',
-    imageUrl: '/ai-avatars/jaimini.png', // Update with actual path
-    persona: 'expert',
-  },
-  {
-    id: 2,
-    name: 'Avi',
-    type: 'Youth',
-    imageUrl: '/ai-avatars/avi.png', // Update with actual path
-    persona: 'youth',
-  },
-  {
-    id: 3,
-    name: 'Auro',
-    type: 'Balanced',
-    imageUrl: '/ai-avatars/auro.png', // Update with actual path
-    persona: 'balanced',
-  },
-];
+// const aiCompanions = [
+//   {
+//     id: 1,
+//     name: 'Jaimini',
+//     type: 'Expert',
+//     persona: 'expert',
+//   },
+//   {
+//     id: 2,
+//     name: 'Avi',
+//     type: 'Youth',
+//     persona: 'youth',
+//   },
+//   {
+//     id: 3,
+//     name: 'Auro',
+//     type: 'Balanced',
+//     persona: 'balanced',
+//   },
+// ];
 
 // Period selection component - now navigates to different URLs
-const PeriodSelector = ({ currentPeriod = 'daily', sign }) => {
+const PeriodSelector = ({ currentPeriod = 'weekly', sign }) => {
   const router = useRouter();
   
   const periods = [
-    { id: 'daily', name: 'Daily', icon: '📅', path: `/horoscope/${sign}` },
-    { id: 'weekly', name: 'Weekly', icon: '📊', path: `/horoscope/${sign}/weekly` },
-    { id: 'monthly', name: 'Monthly', icon: '🗓️', path: `/horoscope/${sign}/monthly` },
-    { id: 'yearly', name: 'Yearly', icon: '🔮', path: `/horoscope/${sign}/yearly` },
+    { id: 'daily', name: 'Daily', icon: '📅', path: `/horoscope/today-horoscope/${sign}` },
+    { id: 'weekly', name: 'Weekly', icon: '📊', path: `/horoscope/weekly-horoscope/${sign}` },
+    { id: 'monthly', name: 'Monthly', icon: '🗓️', path: `/horoscope/monthly-horoscope/${sign}` },
+    { id: 'yearly', name: 'Yearly', icon: '🔮', path: `/horoscope/yearly-horoscope/${sign}` },
   ];
 
   const handlePeriodClick = (path) => {
@@ -68,15 +67,15 @@ const PeriodSelector = ({ currentPeriod = 'daily', sign }) => {
 
   return (
     <div className="flex justify-center mb-6">
-      <div className="grid grid-cols-4 gap-2 p-2 bg-white/70 rounded-lg backdrop-blur-sm">
+      <div className="grid grid-cols-4 gap-2 p-2 bg-white/90 rounded-lg backdrop-blur-sm">
         {periods.map((period) => (
           <button
             key={period.id}
             onClick={() => handlePeriodClick(period.path)}
-            className={`flex flex-col items-center p-3 rounded-lg transition-all duration-200 ${
+            className={`flex flex-col items-center p-3 text-black rounded-lg transition-all duration-200 ${
               currentPeriod === period.id
                 ? 'bg-[#FF9933] text-black'
-                : 'text-black/80 hover:bg-white/10 hover:text-black'
+                : 'text-black hover:bg-white/10 hover:text-black'
             }`}
           >
             <span className="text-2xl mb-1">{period.icon}</span>
@@ -89,45 +88,44 @@ const PeriodSelector = ({ currentPeriod = 'daily', sign }) => {
 };
 
 // Progress Bar Component
-const ProgressBar = ({ label, value, color = "bg-gray-500" }) => {
+const ProgressBar = ({ label, value, color = "bg-[#FF9933]" }) => {
   return (
     <div className="mb-4">
-      <div className="flex justify-between text-white text-sm mb-1">
+      <div className="flex justify-between text-black text-sm mb-1">
         <span>{label}</span>
         <span>{value}%</span>
       </div>
-      <div className="w-full bg-white/90 rounded-full h-2">
+      <div className="w-full bg-white/20 rounded-full h-2">
         <div 
-          className={`h-2 rounded-3xl ${color}`}
+          className={`h-2 rounded-full ${color}`}
           style={{ width: `${value}%` }}
         ></div>
       </div>
     </div>
   );
 };
+const  fetchZodiacOverview=(async (sign, period = "weekly", language = "en") =>{
+  const capitalizedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
+  const today = new Date();
+  console.log(period)
+  const formattedDate = today.toISOString().split('T')[0];
 
-// Star Rating Component
-const StarRating = ({ rating, label, color = "text-yellow-400" }) => {
-  return (
-    <div className="flex items-center justify-between p-3 bg-white/10 rounded-lg backdrop-blur-sm">
-      <span className="text-black font-medium">{label}</span>
-      <div className="flex items-center space-x-1">
-        {[1, 2, 3, 4, 5].map((star) => (
-          <Star
-            key={star}
-            className={`w-4 h-4 ${star <= (rating || 0) ? color + ' fill-current' : 'text-gray-400'}`}
-          />
-        ))}
-        <span className="text-black ml-2 text-sm">{rating}/5</span>
-      </div>
-    </div>
-  );
-};
-console.log(StarRating)
-const HoroscopePage = () => {
+  const response = await getDailyHoroscope({
+    type: "weekly",
+    lang: language === 'hi' ? 'hn' : language,
+    sign: capitalizedSign,
+    date: formattedDate
+  });
+
+  if (response && response.success && response.data && response.data.horoscope) {
+    return response.data.horoscope.Overall || response.data.horoscope.text || "";
+  }
+  return "";
+})
+const HoroscopePeriodPage = () => {
   const router = useRouter();
-  const { sign } = router.query;
-  
+  const { sign, period } = router.query;
+  console.log('sign:', sign, 'period:', period);
   const [horoscope, setHoroscope] = useState({});
   const [currentDate, setCurrentDate] = useState("");
   const [loading, setLoading] = useState(true);
@@ -139,21 +137,13 @@ const HoroscopePage = () => {
     return 'en';
   });
   const [selectedTab, setSelectedTab] = useState('dos');
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
+  // Add signOverviews state for async loading of overviews
+  const [signOverviews, setSignOverviews] = useState({});
 
   const capitalizedSign = sign ? sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase() : "";
   const signKey = sign?.toLowerCase();
-
-  // Determine current period from URL
-  const getCurrentPeriod = () => {
-    const path = router.asPath;
-    if (path.includes('/weekly')) return 'weekly';
-    if (path.includes('/monthly')) return 'monthly';
-    if (path.includes('/yearly')) return 'yearly';
-    return 'daily';
-  };
-
-  const currentPeriod = getCurrentPeriod();
+  const currentPeriod =  'weekly';
 
   // Translation function
   const t = (key, defaultValue = key) => {
@@ -177,7 +167,34 @@ const HoroscopePage = () => {
       fetchDailyHoroscope();
       setCurrentDate(format(new Date(), "MMMM d, yyyy"));
     }
-  }, [sign, language]);
+  }, [sign, language, period]);
+
+  // Async load all sign overviews for "Choose Another Sign" section
+  useEffect(() => {
+    let isMounted = true;
+    const fetchAllOverviews = async () => {
+      const signs = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+      const promises = signs.map(async (zodiac) => {
+        if (zodiac === capitalizedSign) {
+          // Current sign, use main horoscope
+          return [zodiac, horoscope?.Overall || horoscope?.text || ""];
+        }
+        try {
+          const overview = await fetchZodiacOverview(zodiac, "daily", language);
+          return [zodiac, overview || "Unavailable"];
+        } catch {
+          return [zodiac, "Unavailable"];
+        }
+      });
+      const results = await Promise.all(promises);
+      if (isMounted) {
+        const overviewsObj = Object.fromEntries(results);
+        setSignOverviews(overviewsObj);
+      }
+    };
+    fetchAllOverviews();
+    return () => { isMounted = false; };
+  }, [capitalizedSign, horoscope, language]);
 
   useEffect(() => {
     const handleLanguageChange = (event) => {
@@ -199,7 +216,7 @@ const HoroscopePage = () => {
       const formattedDate = format(today, 'yyyy-MM-dd');
       
       const response = await getDailyHoroscope({
-        type: 'daily',
+        type: "weekly", // Fetch actual period-specific data (daily, weekly, monthly, yearly)
         lang: language === 'hi' ? 'hn' : language,
         sign: capitalizedSign,
         date: formattedDate
@@ -208,27 +225,44 @@ const HoroscopePage = () => {
       if (response && response.success && response.data) {
         setHoroscope(response.data.horoscope);
       } else {
+        // Fallback data based on period
+        const periodText = period === 'weekly' ? 'this week' : 
+                          period === 'monthly' ? 'this month' : 
+                          period === 'yearly' ? 'this year' : 'today';
         setHoroscope({
-          "Overall": `Today brings new opportunities for ${capitalizedSign}. Stay focused on your goals and trust your intuition.`,
-          "Daily Wisdom & Suggestions": "Embrace the day with positivity and openness to new experiences.",
+          "text": `${periodText.charAt(0).toUpperCase() + periodText.slice(1)} brings new opportunities for ${capitalizedSign}. Stay focused on your goals and trust your intuition.`,
+          "sections": {
+            "Love & Relationship": `Your relationships show positive energy ${periodText}. Focus on communication and understanding.`,
+            "Health & Wellness": `Take care of your physical and mental health ${periodText}. Balance is key.`,
+            "Career & Education": `Professional opportunities may arise ${periodText}. Stay prepared and confident.`,
+            "Money & Finances": `Financial planning is important ${periodText}. Make wise decisions.`
+          }
         });
       }
     } catch (error) {
-      console.error('Error fetching daily horoscope:', error);
+      console.error(`Error fetching ${period} horoscope:`, error);
       setError(error.message);
+      // Fallback data based on period
+      const periodText = period === 'weekly' ? 'this week' : 
+                        period === 'monthly' ? 'this month' : 
+                        period === 'yearly' ? 'this year' : 'today';
       setHoroscope({
-        "Overall": `Today brings new opportunities for ${capitalizedSign}. Stay focused on your goals and trust your intuition.`,
-        "Daily Wisdom & Suggestions": "Embrace the day with positivity and openness to new experiences.",
+        "text": `${periodText.charAt(0).toUpperCase() + periodText.slice(1)} brings new opportunities for ${capitalizedSign}. Stay focused on your goals and trust your intuition.`,
+        "sections": {
+          "Love & Relationship": `Your relationships show positive energy ${periodText}. Focus on communication and understanding.`,
+          "Health & Wellness": `Take care of your physical and mental health ${periodText}. Balance is key.`,
+          "Career & Education": `Professional opportunities may arise ${periodText}. Stay prepared and confident.`,
+          "Money & Finances": `Financial planning is important ${periodText}. Make wise decisions.`
+        }
       });
     } finally {
       setLoading(false);
     }
   };
 
-  const handleAiCompanionPress = (persona, input) => {
-    // Navigate to chatbot page with persona and input
-    router.push(`/chatbot?persona=${persona}&input=${encodeURIComponent(input || `Tell me more about ${capitalizedSign} for today`)}`);
-  };
+  // const handleAiCompanionPress = (persona, input) => {
+  //   router.push(`/chatbot?persona=${persona}&input=${encodeURIComponent(input || `Tell me more about ${capitalizedSign} for today`)}`);
+  // };
 
   if (!sign) {
     return <div className="text-center py-10">Loading...</div>;
@@ -251,17 +285,34 @@ const HoroscopePage = () => {
     );
   }
 
-  const detailedPredictions = horoscope?.['Detailed Predictions'];
+  const detailedPredictions = horoscope?.['Detailed Predictions'] || horoscope?.sections;
   const luckyElements = horoscope?.lucky_elements;
   const dailyTimeline = horoscope?.daily_timeline || [];
   const personalizedRecommendations = horoscope?.personalized_recommendations;
+  const importantDates = horoscope?.importantDates;
+  const tipOfThePeriod = horoscope?.tipOfTheMonth;
 
+  // Define zodiacSigns array at the top level of the component
+  // const zodiacSigns = [
+  //   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
+  // ];
   return (
     <>
+      <SEOHead
+      title={`${capitalizedSign} ${currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight`}
+      description={`Discover ${capitalizedSign}'s ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`}
+      keywords={`${capitalizedSign} ${currentPeriod} horoscope, zodiac ${currentPeriod} predictions, astrology ${currentPeriod} insights`}
+      canonical={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'weekly' ? '/' + currentPeriod : ''}`}
+      ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+      ogType="article"
+      articleAuthor="AstroSight Team"
+      articlePublishedTime={null} // Add if you track publish date
+      articleModifiedTime={new Date().toISOString()} // Optional
+    />
       <Head>
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
-        <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'daily' ? '/' + currentPeriod : ''}`} />
+        <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'weekly' ? '/' + currentPeriod : ''}`} />
       </Head>
 
       {error && (
@@ -290,6 +341,9 @@ const HoroscopePage = () => {
 
             {/* Zodiac Sign Section */}
             <div className="mt-6 mb-8 flex flex-col items-center">
+              <h1 className="text-2xl text-center font-bold text-black mb-2">
+                {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} {capitalizedSign} Horoscope
+              </h1>
               <Image
                 src={`/zodicimg/${capitalizedSign}.webp`}
                 width={150}
@@ -308,14 +362,14 @@ const HoroscopePage = () => {
 
             {/* Daily Content - Same for all periods */}
             {/* Daily Overview Card */}
-            <Card className="bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-5 rounded-xl shadow-lg mb-6 border-0">
+            <Card className="bg-white p-5 rounded-xl shadow-lg mb-6 border border-gray-200">
               <h3 className="text-black text-xl font-semibold mb-3">
                 {currentPeriod === 'daily' ? t('daily_overview', 'Daily Overview') : 
                  currentPeriod === 'weekly' ? 'Weekly Overview' :
                  currentPeriod === 'monthly' ? 'Monthly Overview' : 'Yearly Overview'}
               </h3>
               <p className="text-black leading-relaxed text-sm">
-                {horoscope?.Overall || horoscope?.["Daily Wisdom & Suggestions"] || t('no_overview', "No overview available.")}
+                {horoscope?.text || horoscope?.Overall || horoscope?.["Daily Wisdom & Suggestions"] || t('no_overview', "No overview available.")}
               </p>
             </Card>
 
@@ -324,14 +378,14 @@ const HoroscopePage = () => {
               <div className="mb-6">
                 <div className="flex gap-3">
                   {horoscope?.['Auspicious Time'] && (
-                    <Card className="flex-1 bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-4 rounded-xl border-0">
+                    <Card className="bg-white p-4 rounded-xl border border-gray-200">
                       <h4 className="text-black font-semibold mb-1">{t('auspicious_time', 'Auspicious Time')}</h4>
                       <p className="text-black text-sm">{horoscope['Auspicious Time']}</p>
                     </Card>
                   )}
                   {horoscope?.['Inauspicious Time'] && (
-                    <Card className="flex-1 bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-4 rounded-xl border-0">
-                      <h4 className="text-black font-semibold mb-1">{t('inauspicious_time', 'Inauspicious Time')}</h4>
+                    <Card className="flex-1 bg-white p-4 rounded-xl border border-gray-200">
+                      <h4 className="text-black font-semibbold mb-1">{t('inauspicious_time', 'Inauspicious Time')}</h4>
                       <p className="text-black text-sm">{horoscope['Inauspicious Time']}</p>
                     </Card>
                   )}
@@ -341,7 +395,7 @@ const HoroscopePage = () => {
 
             {/* Daily Wisdom */}
             {horoscope?.['Daily Wisdom & Suggestions'] && (
-              <Card className="bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-5 rounded-xl shadow-lg mb-6 border-0">
+              <Card className="bg-white p-5 rounded-xl shadow-lg mb-6 border border-gray-200">
                 <h3 className="text-black text-lg font-semibold mb-3">{t('daily_wisdom', 'Daily Wisdom')}</h3>
                 <p className="text-black leading-relaxed text-sm">
                   {horoscope['Daily Wisdom & Suggestions']}
@@ -355,24 +409,31 @@ const HoroscopePage = () => {
                 <h3 className="text-black text-xl font-semibold mb-4">{t('detailed_predictions', 'Detailed Predictions')}</h3>
                 {Object.entries(detailedPredictions).map(([key, detail]) => {
                   const iconMap = {
-                    'Love & Relationships': { icon: Heart, color: 'from-pink-600 to-red-600' },
-                    'Career & Money': { icon: Briefcase, color: 'from-blue-600 to-indigo-600' },
-                    'Health & Wellness': { icon: Activity, color: 'from-green-600 to-teal-600' },
-                    'Personal Growth': { icon: TrendingUp, color: 'from-purple-600 to-indigo-600' },
+                    'Love & Relationships': { icon: Heart },
+                    'Love & Relationship': { icon: Heart },
+                    'Career & Money': { icon: Briefcase },
+                    'Career & Education': { icon: Briefcase },
+                    'Health & Wellness': { icon: Activity },
+                    'Personal Growth': { icon: TrendingUp },
+                    'Money & Finances': { icon: TrendingUp },
                   };
-                  const config = iconMap[key] || { icon: Star, color: 'from-gray-600 to-gray-700' };
+                  const config = iconMap[key] || { icon: Star };
                   const IconComponent = config.icon;
-                  
+                  // Handle both old structure (detail.Text) and new structure (detail as string)
+                  const detailText = typeof detail === 'string' ? detail : detail?.Text;
+                  const percentage = detail?.percentage || 75; // Default percentage if not provided
                   return (
-                    <Card key={key} className={`bg-gradient-to-r from-[#FF9933] to-[#FF5733] rounded-xl shadow-sm mb-3 p-4 border-0`}>
+                    <Card key={key} className={`bg-white rounded-xl shadow-sm mb-3 p-4 border border-gray-200`}>
                       <div className="flex items-center mb-3">
-                        <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mr-3">
-                          <IconComponent className="w-5 h-5 text-white" />
+                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-3">
+                          <IconComponent className="w-5 h-5 text-gray-700" />
                         </div>
-                        <h4 className="font-medium text-white">{key}</h4>
+                        <h4 className="font-medium text-black">{key}</h4>
                       </div>
-                      <p className="text-white/90 text-sm mb-3">{detail.Text}</p>
-                      <ProgressBar className="text-white" label="Compatibility" value={parseInt(detail.percentage)} />
+                      <p className="text-black text-sm mb-3">{detailText}</p>
+                      {typeof detail === 'object' && detail?.percentage && (
+                        <ProgressBar label="Compatibility" value={parseInt(percentage)} />
+                      )}
                     </Card>
                   );
                 })}
@@ -380,7 +441,7 @@ const HoroscopePage = () => {
             )}
 
             {/* AI Companions Section */}
-            <div className="mb-8">
+            {/* <div className="mb-8">
               <h3 className="text-black text-xl font-semibold mb-4">{t('need_more_clarity', 'Need More Clarity?')}</h3>
               <Card className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
                 <div className="flex justify-around mb-6">
@@ -413,7 +474,7 @@ const HoroscopePage = () => {
                   </Button>
                 </div>
               </Card>
-            </div>
+            </div> */}
 
             {/* Lucky Elements */}
             {luckyElements && (
@@ -421,14 +482,14 @@ const HoroscopePage = () => {
                 <h3 className="text-black text-xl font-semibold mb-4">{t('lucky_elements', 'Lucky Elements')}</h3>
                 <div className="flex gap-3">
                   {luckyElements.lucky_numbers && (
-                    <Card className="flex-1 bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-4 rounded-xl shadow-sm border-0">
+                    <Card className="flex-1 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
                       <div className="flex items-center justify-center mb-3">
-                        <Gift className="w-6 h-6 text-black" />
+                        <Gift className="w-6 h-6 text-gray-700" />
                       </div>
                       <h4 className="font-medium text-black mb-2 text-center">{t('lucky_numbers', 'Lucky Numbers')}</h4>
                       <div className="flex flex-wrap justify-center gap-2">
                         {luckyElements.lucky_numbers.map(num => (
-                          <Badge key={num} className="bg-white/20 text-black border-0">
+                          <Badge key={num} className="bg-gray-100 text-black border-0">
                             {num}
                           </Badge>
                         ))}
@@ -436,16 +497,16 @@ const HoroscopePage = () => {
                     </Card>
                   )}
                   {luckyElements.lucky_colors && (
-                    <Card className="flex-1 bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-4 rounded-xl shadow-sm border-0">
+                    <Card className="flex-1 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
                       <div className="flex items-center justify-center mb-3">
-                        <Gift className="w-6 h-6 text-white" />
+                        <Gift className="w-6 h-6 text-gray-700" />
                       </div>
-                      <h4 className="font-medium text-white mb-2 text-center">{t('lucky_colors', 'Lucky Colors')}</h4>
+                      <h4 className="font-medium text-black mb-2 text-center">{t('lucky_colors', 'Lucky Colors')}</h4>
                       <div className="flex flex-wrap justify-center gap-3 mt-2">
                         {luckyElements.lucky_colors.map((color, index) => (
                           <div 
                             key={index} 
-                            className="h-8 w-8 rounded-full shadow-sm border-2 border-white"
+                            className="h-8 w-8 rounded-full shadow-sm border-2 border-gray-200"
                             style={{ backgroundColor: color.toLowerCase() }}
                           />
                         ))}
@@ -460,7 +521,7 @@ const HoroscopePage = () => {
             {dailyTimeline.length > 0 && (
               <div className="mb-8">
                 <h3 className="text-black text-xl font-semibold mb-4">{t('daily_timeline', 'Daily Timeline')}</h3>
-                <Card className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
+                <Card className="bg-white backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
                   {dailyTimeline.map((item, index) => (
                     <div key={index} className={`mb-4 flex ${index === dailyTimeline.length - 1 ? 'mb-0' : ''}`}>
                       <div className="flex flex-col items-center mr-4">
@@ -486,7 +547,7 @@ const HoroscopePage = () => {
             {personalizedRecommendations && (
               <div className="mb-8">
                 <h3 className="text-black text-xl font-semibold mb-4">Personalized Recommendations</h3>
-                <Card className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
+                <Card className="bg-white backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
                   <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
                     <TabsList className="grid w-full grid-cols-2 bg-white/20">
                       <TabsTrigger value="dos" className="data-[state=active]:bg-[#FF9933] data-[state=active]:text-black">Do&apos;s</TabsTrigger>
@@ -524,9 +585,69 @@ const HoroscopePage = () => {
                 </Card>
               </div>
             )}
+
+            {/* Important Dates */}
+            {importantDates && importantDates.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-black text-xl font-semibold mb-4">Important Dates</h3>
+                <Card className="bg-white p-5 rounded-xl shadow-lg border border-gray-200">
+                  <div className="flex flex-wrap gap-3 justify-center">
+                    {importantDates.map((date, index) => (
+                      <div key={index} className="bg-gray-100 rounded-lg px-4 py-2">
+                        <span className="text-black font-semibold text-lg">{date}</span>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </div>
+            )}
+
+            {/* Tip of the Period */}
+            {tipOfThePeriod && (
+              <div className="mb-8">
+                <h3 className="text-black text-xl font-semibold mb-4">
+                  {currentPeriod === 'monthly' ? 'Tip of the Month' : 
+                   currentPeriod === 'yearly' ? 'Tip of the Year' :
+                   currentPeriod === 'weekly' ? 'Tip of the Week' : 'Daily Tip'}
+                </h3>
+                <Card className="bg-white p-5 rounded-xl shadow-lg border border-gray-200">
+                  <p className="text-black leading-relaxed text-sm font-medium">
+                    {tipOfThePeriod}
+                  </p>
+                </Card>
+              </div>
+            )}
             
             {/* Internal Links Section */}
-            <div className="mt-12 space-y-8">
+            {/* Choose Other Signs Section */}
+            <div className="mt-12   space-y-8">
+              <div className="mb-8 ">
+                <h3 className="text-black text-xl font-semibold mb-4 text-center">Choose Another Sign</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"].map((zodiac) => (
+                    <div
+                      key={zodiac}
+                      className="flex items-center bg-white rounded-xl shadow-sm border border-gray-200 p-2 md:p-4 hover:shadow-lg transition-all duration-200 cursor-pointer gap-3 md:gap-4 w-full md:w-auto mb-3 md:mb-0"
+                      onClick={() => router.push(`/horoscope/monthly-horoscope/${zodiac.toLowerCase()}`)}
+                      style={{ maxWidth: '500px' }}
+                    >
+                      <Image
+                        src={`/zodicimg/${zodiac}.webp`}
+                        width={50}
+                        height={50}
+                        alt={`${zodiac} Symbol`}
+                        className="rounded-full border-2 border-gray-200 flex-shrink-0"
+                      />
+                      <div className="flex flex-col flex-1">
+                        <span className="text-black text-base md:text-lg font-semibold mb-1">{zodiac} Monthly Horoscope</span>
+                        <span className="text-gray-700 text-xs md:text-sm block">
+                          {zodiac === capitalizedSign ? (horoscope?.Overall || horoscope?.text || "") : signOverviews?.[zodiac] || "Loading..."}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <InternalLinksGrid sign={sign} />
               <HoroscopeNavigation />
               <CompatibilityLinksGrid />
@@ -536,11 +657,14 @@ const HoroscopePage = () => {
           </div>
         </div>
       </div>
-      
+      <div className="bg-white  mx-auto px-4 sm:px-6 lg:px-4">
+
+                        <DailySignArticle sign={capitalizedSign} />
+</div> 
 <div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />
           </div>    </>
   );
 };
 
-export default HoroscopePage;
+export default HoroscopePeriodPage;

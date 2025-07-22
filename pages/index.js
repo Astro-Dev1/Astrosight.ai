@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 import BlogsSection from '../components/BlogsSection';
-// import CompanionsSection from '../components/TodaysPanchang';
+import CompanionsSection from '../components/TodaysPanchang';
 import TestimonialsSection from '../components/DailyHoroscope';
 import CustomHeader from '../components/CustomHeader';
 import SideMenu from '../components/SideMenu';
@@ -185,11 +185,11 @@ const HomeMobileScreen = () => {
           </div>
         </section> 
 
-        {/* <section className="animate-pulse w-full">
+        <section className="animate-pulse w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <CompanionsSection />
           </div>
-        </section> */}
+        </section>
 
         {isLoggedIn && (
           <section className="bg-white animate-pulse w-full">

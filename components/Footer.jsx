@@ -148,7 +148,7 @@ export default function Footer() {
 
       {/* Footer Bottom */}
       <div className="text-center mt-8 text-sm text-white">
-        <p>&copy; 2025 Powered by TheNewsism. All Rights Reserved.</p>
+        <p>&copy; 2025 Powered by AstroSight. All Rights Reserved.</p>
       </div>
     </footer>
   );

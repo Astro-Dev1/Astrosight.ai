@@ -88,7 +88,7 @@ export default function Blog({ posts }) {
         ogImage="https://astrosight.ai/images/blog-cover.jpg"
       />
 
-      <div className="flex flex-col min-h-screen ">
+      <div className="flex flex-col min-h-screen w-full max-w-7xl mx-auto">
         <main className="flex-1 px-4 mt-16 pb-20">
           {/* Page Title */}
           <div className="mb-6 text-center font-kohinoor-latin">
@@ -129,46 +129,51 @@ export default function Blog({ posts }) {
 
           {/* Blog Grid */}
           {currentPosts.length > 0 ? (
-            <div className="grid gap-5 mb-8">
+            <div className="grid gap-5 mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {currentPosts.map((post) => (
-<Link key={post.sys.id} href={post.fields.slug ? `/blog/${post.fields.slug}` : `/blog/${post.fields.slug}`}>
-                  <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                    <div className="flex flex-col">
-                      <div className="h-48 overflow-hidden">
-                        <Image
-                          src={post.fields.coverImage?.fields?.file?.url || '/images/default-blog-image.jpg'}
-                          alt={post.fields.title}
-                          width={500}
-                          height={200}
-                          className="w-full h-full object-cover object-top transition-transform hover:scale-105 duration-300"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <div className="flex justify-between items-center mb-2">
-                          <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs">
-                            {post.fields.category}
-                          </Badge>
-                          <div className="flex items-center text-gray-500 text-xs">
-                            <i className="far fa-clock mr-1"></i>
-                            <span>{post.fields.readTime}</span>
-                          </div>
-                        </div>
-                        <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">{post.fields.title}</h3>
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.fields.description}</p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center">
-                            <Avatar className="h-6 w-6 mr-2">
-                              <AvatarImage src={post.fields.author.avatar} alt={post.fields.author.name} />
-                              <AvatarFallback>{post.fields.author.name[0]}</AvatarFallback>
-                            </Avatar>
-                            <span className="text-xs text-gray-700">{post.fields.author.name}</span>
-                          </div>
-                          <span className="text-xs text-gray-500">{post.fields.publishDate}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
+<div key={post.sys.id}>
+  <Link href={post.fields.slug ? `/blog/${post.fields.slug}` : `/blog/${post.fields.slug}`}
+    className="block group">
+    <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+      <div className="flex flex-col">
+        <div className="h-48 overflow-hidden">
+          <Image
+            src={post.fields.coverImage?.fields?.file?.url || '/images/default-blog-image.jpg'}
+            alt={post.fields.title}
+            width={500}
+            height={200}
+            className="w-full h-full object-cover object-top transition-transform group-hover:scale-105 duration-300"
+          />
+        </div>
+        <div className="p-4">
+          <div className="flex justify-between items-center mb-2">
+            <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs">
+              {post.fields.category}
+            </Badge>
+            <div className="flex items-center text-gray-500 text-xs">
+              <i className="far fa-clock mr-1"></i>
+              <span>{post.fields.readTime}</span>
+            </div>
+          </div>
+          <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">{post.fields.title}</h3>
+          <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.fields.description}</p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Avatar className="h-6 w-6 mr-2">
+                <AvatarImage src={post.fields.author.avatar} alt={post.fields.author.name} />
+                <AvatarFallback>{post.fields.author.name[0]}</AvatarFallback>
+              </Avatar>
+              <Link href={`/blog/${encodeURIComponent(post.fields.author.name)}`} className="text-xs text-gray-700 hover:underline" onClick={e => e.stopPropagation()}>
+                {post.fields.author.name}
+              </Link>
+            </div>
+            <span className="text-xs text-gray-500">{post.fields.publishDate}</span>
+          </div>
+        </div>
+      </div>
+    </Card>
+  </Link>
+</div>
               ))}
             </div>
           ) : (

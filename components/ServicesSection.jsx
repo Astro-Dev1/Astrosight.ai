@@ -22,7 +22,7 @@ const cards = [
   {
     title: "Today's Horoscope",
     image: '/horoscope.png',
-    link: '/horoscope'
+    link: '/horoscope/today-horoscope'
   },
   {
     title: 'Astro Calculator',
@@ -35,15 +35,16 @@ const cards = [
     link: '/compatibility',
     icon: '�'
   },
-  {
-    title: 'Kundli Matching',
+{
+    title: 'Compatibility',
     image: '/compatibility.png',
-    link: '/compatibility'
+    link: '/compatibility',
+    icon: '�'
   },
   {
-    title: 'Blog',
-    image: '/horoscope.png',
-    link: '/Blog/chinese'
+    title: 'Festivals',
+    image: '/free_report.png',
+    link: '/festivals'
   },
   {
     title: 'Today Panchang',

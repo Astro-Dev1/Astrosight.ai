@@ -169,9 +169,8 @@ const HeroSection = () => {
               <div className="md:flex md:flex-row md:items-start md:justify-between">
                   <div className="md:flex-1 md:w-1/2 gap-4">
 
-                <p className="text-base/5 lg:w-1/2 sm:text-lg md:text-sm font-kohinoor-latin text-gray-600 max-w-2xl mx-auto lg:mx-0">
-                  Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
-                </p>
+                <p className="text-base/4 lg:w-1/2 sm:text-lg md:text-sm font-kohinoor-latin text-gray-600 max-w-2xl mx-auto lg:mx-0">
+Where Ancient Wisdom Meets AI: Unlock Your Cosmic Blueprint and Discover Answers to Life&apos;s Burning Questions                </p>
                 <div className="hidden md:flex relative -top-16 left-28 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <Image
                     src="/qrcode.jpeg"

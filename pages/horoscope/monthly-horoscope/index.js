@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
-import CustomHeader from '../../components/CustomHeader';
-import SideMenu from '../../components/SideMenu';
-import { fetchMyProfile } from '../../services/centralApi';
-import { InternalLinksGrid, ReportLinksGrid, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
-import Footer from '../../components/Footer';
+import CustomHeader from '../../../components/CustomHeader';
+import SideMenu from '../../../components/SideMenu';
+import { fetchMyProfile } from '../../../services/centralApi';
+import { InternalLinksGrid, ReportLinksGrid, CompatibilityLinksGrid, RecentBlogLinks } from '../../../components/InternalLinksGrid';
+import Footer from '../../../components/Footer';
 
 const zodiacSigns = [
   { name: 'Aries', symbol: '♈', dates: 'Mar 21 - Apr 19', image: '/zodicimg/Aries.png' },
@@ -25,33 +25,49 @@ const zodiacSigns = [
   { name: 'Pisces', symbol: '♓', dates: 'Feb 19 - Mar 20', image: '/zodicimg/pisces.png' },
 ];
 
-// Zodiac Sign Card Component
-const ZodiacSignCard = ({ sign, isUserSign }) => {
+// Zodiac Sign Card Component with async overview
+import { getDailyHoroscope } from '../../../services/centralApi';
+import SEOHead from '../../../components/SEOHead';
+const ZodiacSignCard = ({ sign, isUserSign, overview }) => {
+  // Helper to trim or expand overview to ~160 chars
+  const getPreview = (text) => {
+    if (!text) return '';
+    if (text.length > 160) return text.slice(0, 160) + '...';
+    return text;
+  };
   return (
-    <Link href={`/horoscope/${sign.name.toLowerCase()}`}>
+    <Link href={`/horoscope/monthly-horoscope/${sign.name.toLowerCase()}`}>
       <div
-        className={`bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all duration-300 hover:scale-105 border cursor-pointer ${
+        className={`bg-white grid-cols-1 rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 border cursor-pointer ${
           isUserSign ? 'border-orange-400 bg-orange-50' : 'border-orange-100'
         }`}
       >
-        <div className="flex flex-col items-center">
+        <div className="flex flex-row items-center gap-4">
           <Image
             src={`/zodicimg/${sign.name}.webp`}
             alt={`${sign.name} zodiac sign`}
-            width={80}
-            height={80}
-            className="mb-3 rounded-full"
+            width={60}
+            height={60}
+            className="rounded-full flex-shrink-0"
           />
-          <h3 className="text-xl font-semibold text-gray-800 mb-1">
-            {sign.name}
-          </h3>
-          <p className="text-3xl mb-2">{sign.symbol}</p>
-          <p className="text-sm text-gray-500">{sign.dates}</p>
-          {isUserSign && (
-            <span className="mt-2 text-xs bg-orange-500 text-white px-2 py-1 rounded-full">
-              Your Sign
-            </span>
-          )}
+          <div className="flex flex-col items-start flex-1 min-w-0 text-left">
+            <div className="flex items-center gap-2 mb-1">
+              <h3 className="text-lg font-semibold text-gray-800 mb-0">{sign.name}</h3>
+              <span className="text-2xl">{sign.symbol}</span>
+            </div>
+            <p className="text-xs text-gray-500 mb-1">{sign.dates}</p>
+            <div className="w-full">
+              {overview && (
+                <span className="text-xs text-gray-700 block" title={overview}>{getPreview(overview)}</span>
+              )}
+              {!overview && (
+                <span className="text-xs text-gray-400 block">Loading...</span>
+              )}
+            </div>
+            {isUserSign && (
+              <span className="mt-1 text-xs bg-orange-500 text-white px-2 py-1 rounded-full">Your Sign</span>
+            )}
+          </div>
         </div>
       </div>
     </Link>
@@ -63,26 +79,22 @@ export default function HoroscopeIndex() {
   const [shouldDisplayPage, setShouldDisplayPage] = useState(false);
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const [userZodiacSign, setUserZodiacSign] = useState(null);
-  const router = useRouter();
-  console.log("Router:", router);
-
+  const [signOverviews, setSignOverviews] = useState({});
+  // const router = useRouter();
+  // Fetch user profile as before
   useEffect(() => {
     const checkUserProfile = async () => {
       try {
         const token = Cookies.get('token');
-
         if (!token) {
           setShouldDisplayPage(true);
           setIsLoading(false);
           return;
         }
-
         const profileResponse = await fetchMyProfile();
-
         if (profileResponse?.data?.zodiacSign) {
           setUserZodiacSign(profileResponse.data.zodiacSign);
         }
-
         setShouldDisplayPage(true);
         setIsLoading(false);
       } catch (error) {
@@ -91,8 +103,38 @@ export default function HoroscopeIndex() {
         setIsLoading(false);
       }
     };
-
     checkUserProfile();
+  }, []);
+
+  // Fetch daily overviews for all signs
+  useEffect(() => {
+    let isMounted = true;
+    const fetchAllOverviews = async () => {
+      const promises = zodiacSigns.map(async (sign) => {
+        try {
+          const today = new Date();
+          const formattedDate = today.toISOString().split('T')[0];
+          const response = await getDailyHoroscope({
+            type: 'daily',
+            lang: 'en',
+            sign: sign.name,
+            date: formattedDate
+          });
+          if (response && response.success && response.data && response.data.horoscope) {
+            return [sign.name, response.data.horoscope.Overall || response.data.horoscope.text || ""];
+          }
+          return [sign.name, "Unavailable"];
+        } catch {
+          return [sign.name, "Unavailable"];
+        }
+      });
+      const results = await Promise.all(promises);
+      if (isMounted) {
+        setSignOverviews(Object.fromEntries(results));
+      }
+    };
+    fetchAllOverviews();
+    return () => { isMounted = false; };
   }, []);
 
   if (isLoading) {
@@ -118,6 +160,48 @@ export default function HoroscopeIndex() {
 
   return (
     <>
+    
+  {/* SEO Meta Tags */}
+  <SEOHead
+    title="Monthly Horoscope for All Zodiac Signs"
+    description="Get your monthly horoscope predictions for all 12 zodiac signs. Explore love, career, health and guidance based on authentic Vedic astrology."
+    keywords="monthly horoscope, zodiac signs, astrology forecast, Vedic predictions, monthly zodiac reading"
+    canonical="https://astrosight.ai/horoscope/monthly-horoscope"
+    ogImage="https://astrosight.ai/images/og-zodiac-grid.jpg"
+    ogType="website"
+  />
+
+  {/* Embedded JSON-LD structured data */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Monthly Horoscope for All Zodiac Signs",
+        "url": "https://astrosight.ai/horoscope/monthly-horoscope",
+        "description": "Free monthly horoscope forecasts for Aries, Taurus, Gemini and all zodiac signs. Get accurate insights based on Vedic astrology.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "AstroSight",
+          "url": "https://astrosight.ai"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": zodiacSigns.map((sign, i) => ({
+            "@type": "ListItem",
+            "position": i + 1,
+            "name": sign.name,
+            "url": `https://astrosight.ai/horoscope/monthly-horoscope/${sign.name.toLowerCase()}`
+          }))
+        }
+      })
+    }}
+  />
+
+  {/* Main content continues... */}
+
+
       <Head>
         <title>Daily Horoscope | All Zodiac Signs | AstroSight</title>
         <meta name="description" content="Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology." />
@@ -125,15 +209,15 @@ export default function HoroscopeIndex() {
         <meta property="og:title" content="Daily Horoscope | All Zodiac Signs | AstroSight" />
         <meta property="og:description" content="Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://astrosight.ai/horoscope" />
-        <link rel="canonical" href="https://astrosight.ai/horoscope" />
+        <meta property="og:url" content="https://astrosight.ai/horoscope/monthly-horoscope" />
+        <link rel="canonical" href="https://astrosight.ai/horoscope/monthly-horoscope" />
         
         {/* Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context": "https://schema.org",
+              "@context": "https://schema.org", 
               "@type": "WebPage",
               "name": "Horoscope | All Zodiac Signs",
               "description": "Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology.",
@@ -184,23 +268,24 @@ export default function HoroscopeIndex() {
                     Your zodiac sign: <strong>{userZodiacSign}</strong>
                   </p>
                   <div className="flex justify-center">
-                    <Link
-                      href={`/horoscope/${userZodiacSign.toLowerCase()}`}
-                      className="bg-orange-500 text-white px-6 py-3 rounded-full text-sm hover:bg-orange-600 transition-colors font-medium"
-                    >
-                      View Your Daily Horoscope
-                    </Link>
+              <Link
+                href={`/horoscope/today-horoscope/${userZodiacSign.toLowerCase()}`}
+                className="bg-orange-500 text-white px-6 py-3 rounded-full text-sm hover:bg-orange-600 transition-colors font-medium"
+              >
+                View Your Daily Horoscope
+              </Link>
                   </div>
                 </div>
               )}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
               {zodiacSigns.map((sign) => (
                 <ZodiacSignCard
                   key={sign.name}
                   sign={sign}
                   isUserSign={userZodiacSign?.toLowerCase() === sign.name.toLowerCase()}
+                  overview={signOverviews[sign.name]}
                 />
               ))}
             </div>

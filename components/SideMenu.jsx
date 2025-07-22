@@ -215,7 +215,11 @@ console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
 
   const handleLogout = async () => {
     try {
-      localStorage.removeItem('userToken');
+      // Remove token from cookies instead of localStorage
+      if (typeof window !== 'undefined') {
+        const Cookies = (await import('js-cookie')).default;
+        Cookies.remove('token');
+      }
       localStorage.removeItem('userData');
       onClose();
       router.push('/User/login');

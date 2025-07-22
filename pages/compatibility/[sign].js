@@ -4,6 +4,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import SEOHead from "../../components/SEOHead";
 import { Card } from "@/components/ui/card";
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -251,6 +252,17 @@ export default function PartnerSignPage() {
           })}
         </script>
       </Head>
+<SEOHead
+  title={`${capitalizedSign} Compatibility | Choose Partner's Zodiac`}
+  description={`Discover ${capitalizedSign}'s love compatibility with other zodiac signs. Select your partner sign to reveal your astrological match, emotional connection, and relationship insights.`}
+  keywords={`${capitalizedSign} compatibility, best match for ${capitalizedSign}, ${capitalizedSign} love horoscope, zodiac compatibility ${capitalizedSign}, astrology partner match`}
+  canonical={`https://astrosight.ai/compatibility/${sign}`}
+  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+  ogType="article"
+  articleAuthor="AstroSight Team"
+  articlePublishedTime={null} // Add if you track publish date
+  articleModifiedTime={new Date().toISOString()} // Optional
+/>
 
       <div className="flex flex-col  bg-[#FFF2E2] relative font-kohinoor-latin max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
         {/* Header */}

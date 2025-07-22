@@ -59,8 +59,10 @@
     "subtitle": "Your Personal Astrology Guide",
     "description": "Discover your destiny with expert Vedic astrology consultations, daily horoscopes, and personalized spiritual guidance.",
     "cta": "Start Your Journey"
-  },  "services": {
+  },  
+  "services": {
     "title": "Our Services",
+    "blog":"Blog",
     "subtitle": "Comprehensive Astrology Solutions",
     "todayshoroscope": "Today's Horoscope",
     "astrocalculator": "Astro Calculator",
