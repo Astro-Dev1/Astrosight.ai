@@ -194,7 +194,7 @@ export default function Post({ post, relatedPosts }) {
         description={metaDescription}
         keywords={keywords}
         // canonical={canonical}
-        ogImage={ogImage}
+        // ogImage={ogImage}
         publishDate={publishDate}
         modifiedDate={post.sys.updatedAt}
       />
