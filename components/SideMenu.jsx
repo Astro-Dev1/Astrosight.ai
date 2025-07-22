@@ -113,7 +113,7 @@ console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
     { id: 1, title: t("sidemenu.home") || "Home", icon: faHome, path: "/" },
     { id: 2, title: t("sidemenu.blogs") || "Blogs", icon: faNewspaper, path: "/blog" },
     { id: 3, title: t("sidemenu.compatibility") || "Compatibility", icon: faHeart, path: "/compatibility" },
-    { id: 6, title: t("sidemenu.horoscope") || "Horoscope", icon: faNewspaper, path: "/horoscope" },
+    { id: 6, title: t("sidemenu.horoscope") || "Horoscope", icon: faNewspaper, path: "/horoscope/today-horoscope" },
     { id: 7, title: t("sidemenu.panchanga") || "Panchanga", icon: faNewspaper, path: "/panchanga" },
         { id: 8, title: t("sidemenu.reports") || "Reports", icon: faFileAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/reports" },
 
