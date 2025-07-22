@@ -7,9 +7,9 @@ import SEOHead from "../../../components/SEOHead";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Star, Heart, Briefcase, Activity, TrendingUp, Gift, Send } from 'lucide-react';
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+import { Star, Heart, Briefcase, Activity, TrendingUp, Gift } from 'lucide-react';
 import CustomHeader from "../../../components/CustomHeader";
 import LanguageSelector from "../../../components/LanguageSelector";
 import { getDailyHoroscope } from "../../../services/centralApi";
@@ -135,7 +135,7 @@ const HoroscopePeriodPage = () => {
     return 'en';
   });
   const [selectedTab, setSelectedTab] = useState('dos');
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
   // Add signOverviews state for async loading of overviews
   const [signOverviews, setSignOverviews] = useState({});
 
@@ -258,9 +258,9 @@ const HoroscopePeriodPage = () => {
     }
   };
 
-  const handleAiCompanionPress = (persona, input) => {
-    router.push(`/chatbot?persona=${persona}&input=${encodeURIComponent(input || `Tell me more about ${capitalizedSign} for today`)}`);
-  };
+  // const handleAiCompanionPress = (persona, input) => {
+  //   router.push(`/chatbot?persona=${persona}&input=${encodeURIComponent(input || `Tell me more about ${capitalizedSign} for today`)}`);
+  // };
 
   if (!sign) {
     return <div className="text-center py-10">Loading...</div>;
@@ -340,7 +340,7 @@ const HoroscopePeriodPage = () => {
             {/* Zodiac Sign Section */}
             <div className="mt-6 mb-8 flex flex-col items-center">
               <h1 className="text-2xl font-bold text-black mb-2">
-                {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} {capitalizedSign} Horoscope
+              {capitalizedSign}  {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)}  Horoscope
               </h1>
               <Image
                 src={`/zodicimg/${capitalizedSign}.webp`}

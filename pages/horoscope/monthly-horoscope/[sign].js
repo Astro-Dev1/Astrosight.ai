@@ -341,7 +341,7 @@ const HoroscopePeriodPage = () => {
             {/* Zodiac Sign Section */}
             <div className="mt-6 mb-8 flex flex-col items-center">
               <h1 className="text-2xl font-bold text-black mb-2">
-                {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} {capitalizedSign} Horoscope
+              {capitalizedSign}  {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)}  Horoscope
               </h1>
               <Image
                 src={`/zodicimg/${capitalizedSign}.webp`}
