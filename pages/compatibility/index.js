@@ -311,11 +311,12 @@ export default function CompatibilityPage() {
           <RecentBlogLinks limit={15} />
         </section>
 
-        <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
-          <Footer />
-        </div>
+        
 
       </div>
+      <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
     </>
   );
 }
