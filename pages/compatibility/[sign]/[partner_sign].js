@@ -145,7 +145,7 @@ export default function CompatibilityResultsPage() {
 
   const capitalizedSign = sign ? sign.charAt(0).toUpperCase() + sign.slice(1) : '';
   const capitalizedPartnerSign = partner_sign ? partner_sign.charAt(0).toUpperCase() + partner_sign.slice(1) : '';
-  const pageTitle = `${capitalizedSign} and ${capitalizedPartnerSign} Compatibility | Zodiac Love Match | AstroSight`;
+  const pageTitle = `Zodiac Compatibility${capitalizedSign} and ${capitalizedPartnerSign} Compatibility | Zodiac Love Match | AstroSight`;
   const pageDescription = `Discover the compatibility between ${capitalizedSign} and ${capitalizedPartnerSign} in love, friendship, and more. Get insights into your zodiac love match with AstroSight's detailed astrology compatibility analysis.`;
   // const capitalizeFirstLetter = (string) =>
   //   string ? string.charAt(0).toUpperCase() + string.slice(1) : "";
