@@ -214,7 +214,7 @@ const HoroscopePeriodPage = () => {
       const formattedDate = format(today, 'yyyy-MM-dd');
       
       const response = await getDailyHoroscope({
-        type: "daiily", // Fetch actual period-specific data (daily, weekly, monthly, yearly)
+        type: "daily", // Fetch actual period-specific data (daily, weekly, monthly, yearly)
         lang: language === 'hi' ? 'hn' : language,
         sign: capitalizedSign,
         date: formattedDate
