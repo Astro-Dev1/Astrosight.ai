@@ -28,26 +28,26 @@ const translations = {
 };
 
 // AI Companions data
-const aiCompanions = [
-  {
-    id: 1,
-    name: 'Jaimini',
-    type: 'Expert',
-    persona: 'expert',
-  },
-  {
-    id: 2,
-    name: 'Avi',
-    type: 'Youth',
-    persona: 'youth',
-  },
-  {
-    id: 3,
-    name: 'Auro',
-    type: 'Balanced',
-    persona: 'balanced',
-  },
-];
+// const aiCompanions = [
+//   {
+//     id: 1,
+//     name: 'Jaimini',
+//     type: 'Expert',
+//     persona: 'expert',
+//   },
+//   {
+//     id: 2,
+//     name: 'Avi',
+//     type: 'Youth',
+//     persona: 'youth',
+//   },
+//   {
+//     id: 3,
+//     name: 'Auro',
+//     type: 'Balanced',
+//     persona: 'balanced',
+//   },
+// ];
 
 // Period selection component - now navigates to different URLs
 const PeriodSelector = ({ currentPeriod = 'monthly', sign }) => {
@@ -73,7 +73,7 @@ const PeriodSelector = ({ currentPeriod = 'monthly', sign }) => {
             onClick={() => handlePeriodClick(period.path)}
             className={`flex flex-col items-center p-3 text-black rounded-lg transition-all duration-200 ${
               currentPeriod === period.id
-                ? 'bg-[#FF9933] text-white'
+                ? 'bg-[#FF9933] text-black'
                 : 'text-black hover:bg-white/10 hover:text-black'
             }`}
           >
@@ -90,7 +90,7 @@ const PeriodSelector = ({ currentPeriod = 'monthly', sign }) => {
 const ProgressBar = ({ label, value, color = "bg-[#FF9933]" }) => {
   return (
     <div className="mb-4">
-      <div className="flex justify-between text-white text-sm mb-1">
+      <div className="flex justify-between text-black text-sm mb-1">
         <span>{label}</span>
         <span>{value}%</span>
       </div>
@@ -276,7 +276,7 @@ const HoroscopePeriodPage = () => {
         <div className="flex-1 pt-16 flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
-            <p className="text-white">Loading your horoscope...</p>
+            <p className="text-black">Loading your horoscope...</p>
           </div>
         </div>
       </div>
@@ -349,7 +349,7 @@ const HoroscopePeriodPage = () => {
                 alt={`${capitalizedSign} Symbol`}
                 className="mb-3 rounded-full"
               />
-              <p className="text-white/80 text-sm">{currentDate}</p>
+              <p className="text-black/80 text-sm">{currentDate}</p>
             </div>
 
             {/* Period Selector */}
@@ -439,8 +439,8 @@ const HoroscopePeriodPage = () => {
             )}
 
             {/* AI Companions Section */}
-            <div className="mb-8">
-              <h3 className="text-white text-xl font-semibold mb-4">{t('need_more_clarity', 'Need More Clarity?')}</h3>
+            {/* <div className="mb-8">
+              <h3 className="text-black text-xl font-semibold mb-4">{t('need_more_clarity', 'Need More Clarity?')}</h3>
               <Card className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
                 <div className="flex justify-around mb-6">
                   {aiCompanions.map((companion) => (
@@ -450,7 +450,7 @@ const HoroscopePeriodPage = () => {
                       onClick={() => handleAiCompanionPress(companion.persona, inputValue)}
                     >
                       <div className="h-20 w-20 rounded-full bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center mb-2">
-                        <span className="text-white font-bold text-lg">{companion.name[0]}</span>
+                        <span className="text-black font-bold text-lg">{companion.name[0]}</span>
                       </div>
                       <span className="text-orange-300 font-medium text-center text-xs">{companion.name}</span>
                     </button>
@@ -461,18 +461,18 @@ const HoroscopePeriodPage = () => {
                     placeholder={t('ask_anything', 'Ask anything...')}
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    className="w-full pr-12 bg-white/20 border-white/30 text-white placeholder:text-white/60"
+                    className="w-full pr-12 bg-white/20 border-white/30 text-black placeholder:text-black/60"
                   />
                   <Button
                     size="sm"
-                    className="absolute right-1 top-1 bottom-1 bg-[#FF9933] hover:bg-[#FF7700] text-white"
+                    className="absolute right-1 top-1 bottom-1 bg-[#FF9933] hover:bg-[#FF7700] text-black"
                     onClick={() => handleAiCompanionPress('expert', inputValue)}
                   >
                     <Send className="w-4 h-4" />
                   </Button>
                 </div>
               </Card>
-            </div>
+            </div> */}
 
             {/* Lucky Elements */}
             {luckyElements && (
@@ -518,8 +518,8 @@ const HoroscopePeriodPage = () => {
             {/* Daily Timeline */}
             {dailyTimeline.length > 0 && (
               <div className="mb-8">
-                <h3 className="text-white text-xl font-semibold mb-4">{t('daily_timeline', 'Daily Timeline')}</h3>
-                <Card className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
+                <h3 className="text-black  text-xl font-semibold mb-4">{t('daily_timeline', 'Daily Timeline')}</h3>
+                <Card className="bg-white backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
                   {dailyTimeline.map((item, index) => (
                     <div key={index} className={`mb-4 flex ${index === dailyTimeline.length - 1 ? 'mb-0' : ''}`}>
                       <div className="flex flex-col items-center mr-4">
@@ -532,8 +532,8 @@ const HoroscopePeriodPage = () => {
                         )}
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-white">{item?.time || ''}</p>
-                        <p className="text-sm text-white/80">{item?.activity || ''}</p>
+                        <p className="text-sm font-medium text-black">{item?.time || ''}</p>
+                        <p className="text-sm text-black/80">{item?.activity || ''}</p>
                       </div>
                     </div>
                   ))}
@@ -544,12 +544,12 @@ const HoroscopePeriodPage = () => {
             {/* Personalized Recommendations */}
             {personalizedRecommendations && (
               <div className="mb-8">
-                <h3 className="text-white text-xl font-semibold mb-4">Personalized Recommendations</h3>
-                <Card className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
+                <h3 className="text-black text-xl font-semibold mb-4">Personalized Recommendations</h3>
+                <Card className="bg-white backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
                   <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
                     <TabsList className="grid w-full grid-cols-2 bg-white/20">
-                      <TabsTrigger value="dos" className="data-[state=active]:bg-[#FF9933] data-[state=active]:text-white">Do&apos;s</TabsTrigger>
-                      <TabsTrigger value="donts" className="data-[state=active]:bg-[#FF9933] data-[state=active]:text-white">Don&apos;ts</TabsTrigger>
+                      <TabsTrigger value="dos" className="data-[state=active]:bg-[#FF9933] data-[state=active]:text-black">Do&apos;s</TabsTrigger>
+                      <TabsTrigger value="donts" className="data-[state=active]:bg-[#FF9933] data-[state=active]:text-black">Don&apos;ts</TabsTrigger>
                     </TabsList>
                     <TabsContent value="dos" className="mt-4">
                       {personalizedRecommendations.dos && (
@@ -559,7 +559,7 @@ const HoroscopePeriodPage = () => {
                               <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
                                 <span className="text-green-400 text-sm">✓</span>
                               </div>
-                              <p className="text-white/90 text-sm flex-1">{tip}</p>
+                              <p className="text-black/90 text-sm flex-1">{tip}</p>
                             </div>
                           ))}
                         </div>
@@ -573,7 +573,7 @@ const HoroscopePeriodPage = () => {
                               <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
                                 <span className="text-red-400 text-sm">✕</span>
                               </div>
-                              <p className="text-white/90 text-sm flex-1">{tip}</p>
+                              <p className="text-black/90 text-sm flex-1">{tip}</p>
                             </div>
                           ))}
                         </div>
