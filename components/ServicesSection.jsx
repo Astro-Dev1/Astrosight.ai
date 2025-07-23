@@ -35,12 +35,7 @@ const cards = [
     link: '/compatibility',
     icon: '�'
   },
-{
-    title: 'Compatibility',
-    image: '/compatibility.png',
-    link: '/compatibility',
-    icon: '�'
-  },
+
   {
     title: 'Festivals',
     image: '/free_report.png',
