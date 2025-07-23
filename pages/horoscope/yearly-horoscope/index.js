@@ -39,9 +39,8 @@ const ZodiacSignCard = ({ sign, isUserSign, overview }) => {
   return (
     <Link href={`/horoscope/yearly-horoscope/${sign.name.toLowerCase()}`}>
       <div
-        className={`bg-white grid-cols-1 rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 border cursor-pointer ${
-          isUserSign ? 'border-orange-400 bg-orange-50' : 'border-orange-100'
-        }`}
+        className={`bg-white grid-cols-1 rounded-xl shadow-lg p-4 hover:shadow-xl transition-all duration-300 hover:scale-105 border cursor-pointer ${isUserSign ? 'border-orange-400 bg-orange-50' : 'border-orange-100'
+          }`}
       >
         <div className="flex flex-row items-center gap-4">
           <Image
@@ -141,7 +140,7 @@ export default function HoroscopeIndex() {
   if (isLoading) {
     return (
       <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
-        <CustomHeader 
+        <CustomHeader
           title="Loading..."
           showBackButton={true}
         />
@@ -160,47 +159,48 @@ export default function HoroscopeIndex() {
   }
 
   return (
-    <><>
-  {/* SEO Meta Tags */}
-  <SEOHead
-    title="Yearly Horoscope for All Zodiac Signs"
-    description="Get your yearly horoscope predictions for all 12 zodiac signs. Explore love, career, health and guidance based on authentic Vedic astrology."
-    keywords="yearly horoscope, zodiac signs, astrology forecast, Vedic predictions, yearly zodiac reading"
-    canonical="https://astrosight.ai/horoscope/yearly-horoscope"
-    ogImage="https://astrosight.ai/images/og-zodiac-grid.jpg"
-    ogType="website"
-  />
+    <>
+      <>
+        {/* SEO Meta Tags */}
+        <SEOHead
+          title="Yearly Horoscope for All Zodiac Signs"
+          description="Get your yearly horoscope predictions for all 12 zodiac signs. Explore love, career, health and guidance based on authentic Vedic astrology."
+          keywords="yearly horoscope, zodiac signs, astrology forecast, Vedic predictions, yearly zodiac reading"
+          canonical="https://astrosight.ai/horoscope/yearly-horoscope"
+          ogImage="https://astrosight.ai/images/og-zodiac-grid.jpg"
+          ogType="website"
+        />
 
-  {/* Embedded JSON-LD structured data */}
-  <script
-    type="application/ld+json"
-    dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Yearly Horoscope for All Zodiac Signs",
-        "url": "https://astrosight.ai/horoscope/yearly-horoscope",
-        "description": "Free yearly horoscope forecasts for Aries, Taurus, Gemini and all zodiac signs. Get accurate insights based on Vedic astrology.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "AstroSight",
-          "url": "https://astrosight.ai"
-        },
-        "mainEntity": {
-          "@type": "ItemList",
-          "itemListElement": zodiacSigns.map((sign, i) => ({
-            "@type": "ListItem",
-            "position": i + 1,
-            "name": sign.name,
-            "url": `https://astrosight.ai/horoscope/yearly-horoscope/${sign.name.toLowerCase()}`
-          }))
-        }
-      })
-    }}
-  />
+        {/* Embedded JSON-LD structured data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "Yearly Horoscope for All Zodiac Signs",
+              "url": "https://astrosight.ai/horoscope/yearly-horoscope",
+              "description": "Free yearly horoscope forecasts for Aries, Taurus, Gemini and all zodiac signs. Get accurate insights based on Vedic astrology.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "AstroSight",
+                "url": "https://astrosight.ai"
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": zodiacSigns.map((sign, i) => ({
+                  "@type": "ListItem",
+                  "position": i + 1,
+                  "name": sign.name,
+                  "url": `https://astrosight.ai/horoscope/yearly-horoscope/${sign.name.toLowerCase()}`
+                }))
+              }
+            })
+          }}
+        />
 
-  {/* Main content continues... */}
-</>
+        {/* Main content continues... */}
+      </>
 
       <Head>
         <title>Yearly Horoscope | All Zodiac Signs | AstroSight</title>
@@ -238,15 +238,15 @@ export default function HoroscopeIndex() {
       </Head>
 
       <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
-        <CustomHeader 
+        <CustomHeader
           title="Choose Your Zodiac Sign"
           showBackButton={true}
           onMenuPress={() => setIsSideMenuOpen(true)}
         />
 
-        <SideMenu 
-          isOpen={isSideMenuOpen} 
-          onClose={() => setIsSideMenuOpen(false)} 
+        <SideMenu
+          isOpen={isSideMenuOpen}
+          onClose={() => setIsSideMenuOpen(false)}
         />
 
         <div className="flex-1 pt-16">
@@ -261,19 +261,19 @@ export default function HoroscopeIndex() {
               <p className="text-gray-500 text-sm">
                 Click on any zodiac sign to choose your preferred horoscope period
               </p>
-              
+
               {userZodiacSign && (
                 <div className="mt-6 p-4 bg-orange-100 rounded-lg max-w-md mx-auto">
                   <p className="text-orange-800 mb-3">
                     Your zodiac sign: <strong>{userZodiacSign}</strong>
                   </p>
                   <div className="flex justify-center">
-              <Link
-                href={`/horoscope/today-horoscope/${userZodiacSign.toLowerCase()}`}
-                className="bg-orange-500 text-white px-6 py-3 rounded-full text-sm hover:bg-orange-600 transition-colors font-medium"
-              >
-                View Your Daily Horoscope
-              </Link>
+                    <Link
+                      href={`/horoscope/today-horoscope/${userZodiacSign.toLowerCase()}`}
+                      className="bg-orange-500 text-white px-6 py-3 rounded-full text-sm hover:bg-orange-600 transition-colors font-medium"
+                    >
+                      View Your Daily Horoscope
+                    </Link>
                   </div>
                 </div>
               )}
@@ -296,16 +296,16 @@ export default function HoroscopeIndex() {
                 About Our Horoscope Predictions
               </h2>
               <p className="text-gray-700 mb-4">
-                Our horoscope predictions are based on authentic Vedic astrology principles, 
-                providing you with accurate insights into your daily life, relationships, 
+                Our horoscope predictions are based on authentic Vedic astrology principles,
+                providing you with accurate insights into your daily life, relationships,
                 career, and spiritual growth.
               </p>
               <p className="text-gray-700">
-                Each horoscope is carefully crafted by our expert astrologers to help you 
+                Each horoscope is carefully crafted by our expert astrologers to help you
                 navigate life&apos;s challenges and opportunities with cosmic wisdom and guidance.
               </p>
             </div>
-            
+
             {/* Internal Links Section */}
             <div className="mt-12 space-y-8">
               <InternalLinksGrid />
@@ -316,9 +316,9 @@ export default function HoroscopeIndex() {
           </main>
         </div>
       </div>
-      
-<div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
-            <Footer />
-          </div>    </>
+
+      <div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
+        <Footer />
+      </div>    </>
   );
 }

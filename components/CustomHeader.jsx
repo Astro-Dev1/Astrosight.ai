@@ -111,13 +111,14 @@ const CustomHeader = ({
               <FontAwesomeIcon icon={faBars} className="w-6 h-6" style={{ color: iconColor }} />
             </button>
             {titleImage ? (
-              <Image
-                src={"/log.png"}
-                alt="Logo"
-                width={120}
-                height={40}
+              <Link href="/">
+                <Image
+                  src={"/log.png"}
+                  alt="Logo"
+                  width={120}
+                  height={40}
                 className="h-8 w-auto object-contain"
-              />
+              /></Link>
             ) : (
                 
               <h1 className={`text-lg font-semibold ${textColor} ml-1`}>
@@ -174,13 +175,14 @@ const CustomHeader = ({
             <>
               <div className="flex items-center gap-3">
                 {titleImage ? (
+                   <Link href="/" >
                   <Image
                     src={"/log.png"}
                     alt="Logo"
                     width={160}
                     height={40}
                     className="h-8 w-auto object-contain"
-                  />
+                  /></Link>
                 ) : (
                   <h1 className={`text-xl font-semibold ${textColor}`}>AstroSight</h1>
                 )}

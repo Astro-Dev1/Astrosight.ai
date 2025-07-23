@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 // import { Input } from "@/components/ui/input";
 import { Star, Heart, Briefcase, Activity, TrendingUp, Gift } from 'lucide-react';
 import CustomHeader from "../../../components/CustomHeader";
-import LanguageSelector from "../../../components/LanguageSelector";
+// import LanguageSelector from "../../../components/LanguageSelector";
 import { getDailyHoroscope } from "../../../services/centralApi";
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../../components/InternalLinksGrid';
 import Footer from '../../../components/Footer';
@@ -331,12 +331,12 @@ const HoroscopePeriodPage = () => {
         <div className="flex-1 pt-16">
           <div className="px-4 pb-20 max-w-5xl mx-auto">
             {/* Language Selector */}
-            <div className="mt-4 mb-6 flex justify-end">
+            {/* <div className="mt-4 mb-6 flex justify-end">
               <LanguageSelector 
                 variant="default"
                 onLanguageChange={setLanguage}
               />
-            </div>
+            </div> */}
 
             {/* Zodiac Sign Section */}
             <div className="mt-6 mb-8 flex flex-col items-center">

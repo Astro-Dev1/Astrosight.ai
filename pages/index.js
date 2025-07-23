@@ -169,7 +169,11 @@ const HomeMobileScreen = () => {
             <BlogsSection />
           </div>
         </section> 
-
+      <section className="animate-pulse w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <CompanionsSection />
+          </div>
+        </section>
         {/* Internal Link Components */}
         <section className=" w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
@@ -185,11 +189,7 @@ const HomeMobileScreen = () => {
           </div>
         </section> 
 
-        <section className="animate-pulse w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <CompanionsSection />
-          </div>
-        </section>
+  
 
         {isLoggedIn && (
           <section className="bg-white animate-pulse w-full">
