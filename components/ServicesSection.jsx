@@ -3,7 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+// import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 // Import translations directly to avoid SSR issues
@@ -108,31 +108,31 @@ export default function ServicesSection() {
     }
   }, []);
 
-  const scroll = (direction) => {
-    const container = scrollRef.current;
-    if (!container) return;
+  // const scroll = (direction) => {
+  //   const container = scrollRef.current;
+  //   if (!container) return;
     
-    const cardWidth = isMobile ? 120 : 180; // Smaller cards for mobile 3-card view
-    const scrollAmount = direction === 'left' ? -cardWidth * 2 : cardWidth * 2;
+  //   const cardWidth = isMobile ? 120 : 180; // Smaller cards for mobile 3-card view
+  //   const scrollAmount = direction === 'left' ? -cardWidth * 2 : cardWidth * 2;
     
-    container.scrollBy({
-      left: scrollAmount,
-      behavior: 'smooth',
-    });
-  };
+  //   container.scrollBy({
+  //     left: scrollAmount,
+  //     behavior: 'smooth',
+  //   });
+  // };
 
-  const canScrollLeft = () => {
-    return scrollRef.current?.scrollLeft > 0;
-  };
+  // const canScrollLeft = () => {
+  //   return scrollRef.current?.scrollLeft > 0;
+  // };
 
-  const canScrollRight = () => {
-    if (!scrollRef.current) return false;
-    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-    return scrollLeft < scrollWidth - clientWidth - 10;
-  };
+  // const canScrollRight = () => {
+  //   if (!scrollRef.current) return false;
+  //   const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+  //   return scrollLeft < scrollWidth - clientWidth - 10;
+  // };
 
   return (
-    <div className="relative w-full ">
+    <div className="relative w-full justify-center items-center">
       {/* Section Header */}
       <div className="text-center mb-6">
         
@@ -142,7 +142,7 @@ export default function ServicesSection() {
       </div>
 
       {/* Navigation Buttons (Desktop Only) */}
-      {!isMobile && (
+      {/* {!isMobile && (
         <>
           <button
             onClick={() => scroll('left')}
@@ -161,13 +161,13 @@ export default function ServicesSection() {
             <ChevronRight className="text-white w-4 h-4" />
           </button>
         </>
-      )}
+      )} */}
 
       {/* Services Cards */}
       <div className="relative ">
         <div
           ref={scrollRef}
-          className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+          className="flex justify-center gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
           style={{ 
             scrollbarWidth: 'none', 
             msOverflowStyle: 'none',
@@ -184,7 +184,7 @@ export default function ServicesSection() {
                 minWidth: isMobile ? '110px' : '160px',
               }}
             >
-              <Card className="h-full rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border-0 overflow-hidden">
+              <Card className="h-full rounded-xl shadow-lg hover:shadow-md  transition-all duration-200 border-b-4 border-b-orange-500 overflow-hidden">
                 <CardContent className="p-4 text-center">
                   {/* Icon Circle */}
                   <div className="w-12 h-12 bg-[#f5ab3b] rounded-full flex items-center justify-center mx-auto mb-3">
@@ -212,7 +212,7 @@ export default function ServicesSection() {
       </div>
 
       {/* Dot indicators */}
-      <div className="flex justify-center mt-4 space-x-1">
+      {/* <div className="flex justify-center mt-4 space-x-1">
         {Array.from({ length: isMobile ? Math.ceil(cards.length / 3) : Math.ceil(cards.length / 4) }).map((_, index) => (
           <div
             key={index}
@@ -221,7 +221,7 @@ export default function ServicesSection() {
             }`}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

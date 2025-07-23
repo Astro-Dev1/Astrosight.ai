@@ -158,14 +158,14 @@ const HomeMobileScreen = () => {
           </div>
         </section>
 
-        <section className="bg-[#FFF2E2] w-full animate-pulse relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <section className="bg-white w-full animate-pulse relative z-10">
+          <div className="max-w-7xl mx-auto justify-center sm:px-6  py-3">
             <ServicesSection />
           </div>
         </section>
 
         <section className="bg-white animate-pulse w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8 py-10">
             <BlogsSection />
           </div>
         </section> 
