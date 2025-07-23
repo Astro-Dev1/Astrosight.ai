@@ -24,11 +24,7 @@ const cards = [
     image: '/horoscope.png',
     link: '/horoscope/today-horoscope'
   },
-  {
-    title: 'Astro Calculator',
-    image: '/free_report.png',
-    link: '/astrocalculator'
-  },
+ 
   {
     title: 'Compatibility',
     image: '/compatibility.png',

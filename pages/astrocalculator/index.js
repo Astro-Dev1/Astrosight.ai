@@ -225,7 +225,7 @@ export default function ReportIndex() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {calculators.map((calculator) => (
               <div key={calculator.slug} className="relative">
-                <Link href={`/astrocalculator/${calculator.slug}`}>
+                <Link href={`/${calculator.slug}`}>
                   <div className={`
                     bg-white rounded-xl shadow-lg border-2 transition-all duration-300 
                     cursor-pointer transform hover:scale-105 hover:shadow-xl p-6

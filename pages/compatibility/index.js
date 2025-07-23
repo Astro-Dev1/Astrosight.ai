@@ -107,19 +107,19 @@ export default function CompatibilityPage() {
 
         <div className="container mx-auto px-0 py-8 ">
           <section className="mb-10 text-justify bg-white bg-opacity-50 backdrop-blur-lg p-8 rounded-lg shadow-md">
-            <p className="text-lg text-gray-900 mb-4">
+            <p className="text-lg text-gray-900 mb-2">
               Welcome to astrosight&lsquo;s Zodiac Love Compatibility Calculator! Unlock the secrets of your relationships through the wisdom of the stars. Our free compatibility tool helps you explore how well you match with other zodiac signs in love, friendship, and more.
             </p>
-            <p className="text-lg text-gray-900 mb-4">
+            <p className="text-lg text-gray-900 mb-2">
               Understanding your astrological compatibility can provide valuable insights into your relationships, helping you navigate the complexities of love and friendship. Whether you&lsquo;re curious about a potential romance or want to strengthen existing bonds, our compatibility calculator is here to guide you.
             </p>
             <h3 className="text-2xl text-center font-bold text-black   ">How to Use the Compatibility Calculator:</h3>
-            <ol className="list-decimal list-inside text-gray-900 mb-4">
+            <ol className="list-decimal list-inside text-gray-900 ">
               <li>Select your zodiac sign from the options below.</li>
               <li>On the next page, choose your partner&lsquo;s or friend&lsquo;s zodiac sign.</li>
               <li>Discover your compatibility score and detailed insights about your relationship dynamics.</li>
             </ol>
-            <p className="text-lg text-gray-900 mb-4">
+            <p className="text-lg text-gray-900 ">
               Remember, while astrology can offer guidance, it doesn&lsquo;t determine the success of a relationship. Open communication, mutual respect, and understanding are key to any strong connection.
             </p>
           </section>
@@ -131,8 +131,8 @@ export default function CompatibilityPage() {
                   buttonPath="/panchanga"
                 />
                 </div> */}
-        <div className="mb-8 bg-white rounded-2xl justify-center items-center ">
-          <h2 className="text-2xl mt-5 flex justify-center font-bold  items-center text-black   mb-8">Choose Your Zodiac Sign</h2>
+        <div className=" bg-white rounded-2xl justify-center items-center ">
+          <h2 className="text-2xl  flex justify-center font-bold  items-center text-black   ">Choose Your Zodiac Sign</h2>
 
 
           <div className="mb-8  rounded-3xl  mt-5 justify-center items-center">
@@ -140,7 +140,7 @@ export default function CompatibilityPage() {
               {zodiacSigns.map((sign) => (
                 <Card
                   key={sign.name}
-                  className="cursor-pointer hover:shadow-lg  mt-8 mb-5 transition-shadow bg-white bg-opacity-20 backdrop-blur-lg p rounded-lg shadow-md"
+                  className="cursor-pointer hover:shadow-lg    transition-shadow bg-white bg-opacity-20 border-b-8 rounded-3xl border-orange-400 backdrop-blur-lg p  shadow-md"
                   onClick={() => handleSignSelect(sign.name)}
                 >
                   <CardContent className="p-4 flex flex-col items-center">
@@ -149,7 +149,7 @@ export default function CompatibilityPage() {
                       alt={`${sign.name} zodiac sign`}
                       width={96}
                       height={96}
-                      className="rounded-full mb-2"
+                      className=" mb-2"
                     />
                     <h3 className="text-2xl font-semibold text-black  ">{sign.name}</h3>
                     <p className="text-xm text-black  ">{sign.dates}</p>
