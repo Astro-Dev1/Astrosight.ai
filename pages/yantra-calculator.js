@@ -1,6 +1,7 @@
 import { Calculator, Star,  Clock, MapPin, User, Calendar, Shield, Heart, TrendingUp } from 'lucide-react';
 import React, { useState } from 'react';
 // import Head from 'next/head';
+import SEOHead from '../components/SEOHead';
 import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
 import {
@@ -10,6 +11,7 @@ import {
   CompatibilityLinksGrid,
   RecentBlogLinks
 } from '../components/InternalLinksGrid';
+// import SEOHead from '../components/SEOHead';
 const YantraCalculator = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -70,7 +72,38 @@ const YantraCalculator = () => {
     }
   ];
 
-  return (
+  return (<>
+  <SEOHead
+  title="Yantra Calculator – Find Your Personalized Spiritual Remedy | AstroSight"
+  description="Discover which sacred yantra best supports your energy. Use our birth-chart-based Yantra Calculator to find the divine diagram that aligns with your cosmic purpose."
+  keywords="yantra calculator, personalized yantra, vedic yantra for career, chandra yantra, shree yantra, baglamukhi yantra, mahayantra for protection, astrological remedy tool"
+  canonical="https://astrosight.ai/yantra-calculator"
+  ogImage="https://astrosight.ai/images/yantra-og.jpg"
+  ogType="article"
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Yantra Calculator – Personalized Vedic Remedy",
+      "description": "Choose the right yantra for health, career, protection or peace, based on your Vedic birth chart using our free online calculator.",
+      "url": "https://astrosight.ai/yantra-calculator",
+      "publisher": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "url": "https://astrosight.ai",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://astrosight.ai/log.png"
+        }
+      },"image": "https://astrosight.ai/images/yantra-og.jpg"
+      
+    })
+  }}
+/>
+
     <div className="min-h-screen ">
       {/* Calculator Form */}
       <CustomHeader/>
@@ -355,7 +388,7 @@ const YantraCalculator = () => {
       <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
                 <Footer />
               </div>
-    </div>
+    </div></>
   );
 };
 

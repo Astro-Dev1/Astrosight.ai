@@ -3,7 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/router';
-
+import SEOHead from '../components/SEOHead';
+import Link from 'next/link';
 const ShopPage = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
@@ -92,7 +93,48 @@ const ShopPage = () => {
     }
   };
 
-  return (
+  return (<>
+  <SEOHead
+  title="AstroSight Spiritual Shop – Rudraksha, Gemstones & Yantras"
+  description="Explore AstroSight's spiritual shop with authentic rudrakshas, Vedic gemstones, energized bracelets, yantras & puja essentials. Certified & energetically aligned with your birth chart."
+  keywords="rudraksha, Vedic gemstones, yantra shop online, spiritual shop India, healing crystals, energized bracelets, astrology store, puja items, buy yantra, remedy products"
+  canonical="https://astrosight.ai/shop"
+  ogImage="https://astrosight.ai/images/astroshop-og.jpg"
+  ogType="website"
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "AstroSight Spiritual Shop",
+      "description": "Explore AstroSight's spiritual product offerings — Rudrakshas, Yantras, Gemstones, Crystals, and Puja Samagri — aligned with your Vedic astrology profile.",
+      "url": "https://astrosight.ai/shop",
+      "logo": "https://astrosight.ai/logo.png",
+      "image": "https://astrosight.ai/images/astroshop-og.jpg",
+      "sameAs": [
+        "https://www.facebook.com/astrosight",
+        "https://www.instagram.com/astrosight",
+        "https://twitter.com/astrosight"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Delhi",
+        "addressRegion": "Delhi",
+        "postalCode": "110001",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+91 12345 67890",
+        "contactType": "Customer Support",
+        "email": "shop@astrosight.ai"
+      }
+    })
+  }}
+/>
+
     <div className="min-h-screen bg-[#FFF6E9]">
       {/* Header */}
       <div className="bg-white shadow-sm sticky top-0 z-10">
@@ -302,18 +344,18 @@ const ShopPage = () => {
           </h4>
           <p className="text-gray-600 mb-4">Our spiritual product experts are here to help you choose the right items</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="mailto:shop@astrosight.ai" className="text-[#FF9D42] font-medium hover:underline">
+            <Link href="/shop" className="text-[#FF9D42] font-medium hover:underline">
               <i className="fas fa-envelope mr-2" />
-              shop@astrosight.ai
-            </a>
-            <a href="tel:+911234567890" className="text-[#FF9D42] font-medium hover:underline">
+              admin@astrosight.ai
+            </Link>
+            <Link href="tel:+919964128377" className="text-[#FF9D42] font-medium hover:underline">
               <i className="fas fa-phone mr-2" />
-              +91 12345 67890
-            </a>
+               +91 9964128377
+            </Link>
           </div>
         </div>
       </div>
-    </div>
+    </div></>
   );
 };
 

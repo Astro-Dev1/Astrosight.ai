@@ -71,8 +71,8 @@ const HomeMobileScreen = () => {
           property="og:description"
           content="Transform your life with expert Vedic astrology consultations. Get accurate readings, personalized guidance, and spiritual solutions."
         />
-        <meta property="og:url" content="https://astrosight.ai.co" />
-        <meta property="og:image" content="https://astrosight.ai.co/images/home-cover.jpg" />
+        <meta property="og:url" content="https://astrosight.ai" />
+        <meta property="og:image" content="https://astrosight.ai/images/home-cover.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -81,10 +81,10 @@ const HomeMobileScreen = () => {
           name="twitter:description"
           content="Experience transformative Vedic astrology readings with professional consultations and spiritual guidance."
         />
-        <meta name="twitter:image" content="https://astrosight.ai.co/images/home-cover.jpg" />
+        <meta name="twitter:image" content="https://astrosight.ai/images/home-cover.jpg" />
         <meta name="facebook-domain-verification" content="v1wzt5pr5bady8hkk5foyu029cgxpr" />
         {/* Canonical URL */}
-        <link rel="canonical" href="https://astrosight.ai.co" />
+        <link rel="canonical" href="https://astrosight.ai" />
 
         {/* Structured Data for Homepage */}
         <script type="application/ld+json">
@@ -93,10 +93,10 @@ const HomeMobileScreen = () => {
             "@type": "Organization",
             name: "Astro Sight",
             description: "Professional Vedic astrology services and consultations",
-            url: "https://astrosight.ai.co",
+            url: "https://astrosight.ai",
             logo: {
               "@type": "ImageObject",
-              url: "https://astrosight.ai.co/logo.png",
+              url: "https://astrosight.ai/logo.png",
             },
             sameAs: [
               "https://facebook.com/astrosight.ai",
@@ -105,7 +105,7 @@ const HomeMobileScreen = () => {
             ],
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": "https://astrosight.ai.co",
+              "@id": "https://astrosight.ai",
             },
           })}
         </script>
@@ -159,7 +159,7 @@ const HomeMobileScreen = () => {
         </section>
 
         <section className="bg-white w-full animate-pulse relative z-10">
-          <div className="max-w-7xl mx-auto justify-center sm:px-6  py-3">
+          <div className="max-w-7xl mx-auto justify-center sm:px-6 lg:px-80 py-3">
             <ServicesSection />
           </div>
         </section>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
-
+import SEOHead from '../components/SEOHead';
 
 const LoveCompatibilityCalculator = () => {
   const [formData, setFormData] = useState({
@@ -30,6 +30,37 @@ const LoveCompatibilityCalculator = () => {
 
   return (
     <>
+    <SEOHead
+  title="Love Compatibility Calculator – Vedic Astrology Matching | AstroSight"
+  description="Check your love and relationship compatibility using authentic Vedic astrology. Enter birth details of both partners to reveal emotional bonding, communication styles, and long-term potential."
+  keywords="love compatibility calculator, astrology compatibility, relationship matching, Vedic love analysis, romantic compatibility by date of birth, synastry chart calculator"
+  canonical="https://astrosight.ai/love-compatibility-calculator"
+  ogImage="https://astrosight.ai/images/love-compatibility-og.jpg"
+  ogType="article"
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Love Compatibility Calculator",
+      "description": "Discover your relationship potential based on Vedic astrology. Safe, free and based on partner’s full birth chart. Great for love, friendship or business compatibility.",
+      "url": "https://astrosight.ai/love-compatibility-calculator",
+      "publisher": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "url": "https://astrosight.ai",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://astrosight.ai/log.png"
+        }
+      },
+      "image": "https://astrosight.ai/images/love-compatibility-og.jpg"
+    })
+  }}
+/>
+
       <CustomHeader />
       <div>
         <div className="max-w-4xl mx-auto px-4 py-8">

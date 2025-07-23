@@ -173,19 +173,21 @@ const HoroscopePeriodPage = () => {
     let isMounted = true;
     const fetchAllOverviews = async () => {
       const signs = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
-      const promises = signs.map(async (zodiac) => {
-        if (zodiac === capitalizedSign) {
+    const results = [];
+
+      for (const sign of signs) {
+        if (sign === capitalizedSign) {
           // Current sign, use main horoscope
-          return [zodiac, horoscope?.Overall || horoscope?.text || ""];
+          results.push([sign, horoscope?.Overall || horoscope?.text || ""]);
+          continue;
         }
         try {
-          const overview = await fetchZodiacOverview(zodiac, "monthly", language);
-          return [zodiac, overview || "Unavailable"];
+          const overview = await fetchZodiacOverview(sign, "monthly", language);
+          results.push([sign, overview || "Unavailable"]);
         } catch {
-          return [zodiac, "Unavailable"];
+          results.push([sign, "Unavailable"]);
         }
-      });
-      const results = await Promise.all(promises);
+      }
       if (isMounted) {
         const overviewsObj = Object.fromEntries(results);
         setSignOverviews(overviewsObj);

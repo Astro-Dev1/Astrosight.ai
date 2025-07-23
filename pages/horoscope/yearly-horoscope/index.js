@@ -107,35 +107,36 @@ export default function HoroscopeIndex() {
   }, []);
 
   // Fetch daily overviews for all signs
-  useEffect(() => {
-    let isMounted = true;
-    const fetchAllOverviews = async () => {
-      const promises = zodiacSigns.map(async (sign) => {
-        try {
-          const today = new Date();
-          const formattedDate = today.toISOString().split('T')[0];
-          const response = await getDailyHoroscope({
-            type: 'daily',
-            lang: 'en',
-            sign: sign.name,
-            date: formattedDate
-          });
-          if (response && response.success && response.data && response.data.horoscope) {
-            return [sign.name, response.data.horoscope.Overall || response.data.horoscope.text || ""];
-          }
-          return [sign.name, "Unavailable"];
-        } catch {
-          return [sign.name, "Unavailable"];
+ useEffect(() => {
+  let isMounted = true;
+  const fetchAllOverviews = async () => {
+    const results = [];
+    for (const sign of zodiacSigns) {
+      try {
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        const response = await getDailyHoroscope({
+          type: 'yearly',
+          lang: 'en',
+          sign: sign.name,
+          date: formattedDate
+        });
+        if (response && response.success && response.data && response.data.horoscope) {
+          results.push([sign.name, response.data?.horoscope?.Overall || response.data?.horoscope?.text || ""]);
+        } else {
+          results.push([sign.name, "Unavailable"]);
         }
-      });
-      const results = await Promise.all(promises);
-      if (isMounted) {
-        setSignOverviews(Object.fromEntries(results));
+      } catch {
+        results.push([sign.name, "Unavailable"]);
       }
-    };
-    fetchAllOverviews();
-    return () => { isMounted = false; };
-  }, []);
+    }
+    if (isMounted) {
+      setSignOverviews(Object.fromEntries(results));
+    }
+  };
+  fetchAllOverviews();
+  return () => { isMounted = false; };
+}, []);
 
   if (isLoading) {
     return (
@@ -219,7 +220,7 @@ export default function HoroscopeIndex() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "name": "Horoscope | All Zodiac Signs",
+              "name": "Yearly Horoscope | All Zodiac Signs",
               "description": "Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology.",
               "url": "https://astrosight.ai/horoscope/yearly-horoscope",
               "mainEntity": {
@@ -253,9 +254,10 @@ export default function HoroscopeIndex() {
           <main className="px-4 pb-20 max-w-6xl mx-auto">
             <div className="mt-8 mb-8 text-center">
               <h1 className="text-3xl font-bold text-gray-800 mb-4">
-                Select Your Zodiac Sign
+                Yearly Horoscope
               </h1>
               <p className="text-gray-600 text-lg mb-4">
+                Select Your Zodiac Sign
                 Discover your daily, weekly, monthly, and yearly horoscope predictions
               </p>
               <p className="text-gray-500 text-sm">

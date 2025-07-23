@@ -106,35 +106,36 @@ export default function HoroscopeIndex() {
   }, []);
 
   // Fetch daily overviews for all signs
-  useEffect(() => {
-    let isMounted = true;
-    const fetchAllOverviews = async () => {
-      const promises = zodiacSigns.map(async (sign) => {
-        try {
-          const today = new Date();
-          const formattedDate = today.toISOString().split('T')[0];
-          const response = await getDailyHoroscope({
-            type: 'daily',
-            lang: 'en',
-            sign: sign.name,
-            date: formattedDate
-          });
-          if (response && response.success && response.data && response.data.horoscope) {
-            return [sign.name, response.data.horoscope.Overall || response.data.horoscope.text || ""];
-          }
-          return [sign.name, "Unavailable"];
-        } catch {
-          return [sign.name, "Unavailable"];
+ useEffect(() => {
+  let isMounted = true;
+  const fetchAllOverviews = async () => {
+    const results = [];
+    for (const sign of zodiacSigns) {
+      try {
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        const response = await getDailyHoroscope({
+          type: 'daily',
+          lang: 'en',
+          sign: sign.name,
+          date: formattedDate
+        });
+        if (response && response.success && response.data && response.data.horoscope) {
+          results.push([sign.name, response.data?.horoscope?.Overall || response.data?.horoscope?.text || ""]);
+        } else {
+          results.push([sign.name, "Unavailable"]);
         }
-      });
-      const results = await Promise.all(promises);
-      if (isMounted) {
-        setSignOverviews(Object.fromEntries(results));
+      } catch {
+        results.push([sign.name, "Unavailable"]);
       }
-    };
-    fetchAllOverviews();
-    return () => { isMounted = false; };
-  }, []);
+    }
+    if (isMounted) {
+      setSignOverviews(Object.fromEntries(results));
+    }
+  };
+  fetchAllOverviews();
+  return () => { isMounted = false; };
+}, []);
 
   if (isLoading) {
     return (
@@ -162,7 +163,7 @@ export default function HoroscopeIndex() {
       <>
         {/* SEO Meta Tags */}
         <SEOHead
-          title="today Horoscope for All Zodiac Signs"
+          title="Today Horoscope for All Zodiac Signs"
           description="Get your today horoscope predictions for all 12 zodiac signs. Explore love, career, health and guidance based on authentic Vedic astrology."
           keywords="today horoscope, zodiac signs, astrology forecast, Vedic predictions, monthly zodiac reading"
           canonical="https://astrosight.ai/horoscope/today-horoscope"
@@ -177,7 +178,7 @@ export default function HoroscopeIndex() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "name": "today Horoscope for All Zodiac Signs",
+              "name": "Today Horoscope for All Zodiac Signs",
               "url": "https://astrosight.ai/horoscope/today-horoscope",
               "description": "Free monthly horoscope forecasts for Aries, Taurus, Gemini and all zodiac signs. Get accurate insights based on Vedic astrology.",
               "publisher": {
@@ -203,7 +204,7 @@ export default function HoroscopeIndex() {
 
       <Head>
         <title>Daily Horoscope | All Zodiac Signs | AstroSight</title>
-        <meta name="description" content="Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology." />
+        <meta name="description" content="Get your Today or daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology." />
         <meta name="keywords" content="horoscope, zodiac signs, daily horoscope, weekly horoscope, monthly horoscope, yearly horoscope, astrology" />
         <meta property="og:title" content="Daily Horoscope | All Zodiac Signs | AstroSight" />
         <meta property="og:description" content="Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology." />
@@ -218,8 +219,8 @@ export default function HoroscopeIndex() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "name": "Horoscope | All Zodiac Signs",
-              "description": "Get your daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology.",
+              "name": "Today Horoscope | All Zodiac Signs",
+              "description": "Get your Today or daily, weekly, monthly and yearly horoscope for all zodiac signs. Free astrology predictions based on Vedic astrology.",
               "url": "https://astrosight.ai/horoscope/today-horoscope",
               "mainEntity": {
                 "@type": "ItemList",
@@ -236,7 +237,7 @@ export default function HoroscopeIndex() {
         />
       </Head>
 
-      <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-inter">
+      <div className="flex flex-col min-h-screen bg-white relative pb-16 font-inter">
         <CustomHeader
           title="Choose Your Zodiac Sign"
           showBackButton={true}
@@ -252,9 +253,10 @@ export default function HoroscopeIndex() {
           <main className="px-4 pb-20 max-w-6xl mx-auto">
             <div className="mt-8 mb-8 text-center">
               <h1 className="text-3xl font-bold text-gray-800 mb-4">
-                Select Your Zodiac Sign
+                Today Horoscope
               </h1>
               <p className="text-gray-600 text-lg mb-4">
+                Select Your Zodiac Sign
                 Discover your daily, weekly, monthly, and yearly horoscope predictions
               </p>
               <p className="text-gray-500 text-sm">

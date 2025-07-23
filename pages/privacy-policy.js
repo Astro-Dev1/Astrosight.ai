@@ -155,9 +155,9 @@ const PrivacyPolicyPage = () => {
               If you have any questions about this privacy policy or our practices, please contact us at:
             </p>
             <div className="bg-[#FFF6E9] p-4 rounded-lg">
-              <p><strong>Email:</strong> support@astrosight.com</p>
-              <p><strong>Address:</strong> [Your Company Address]</p>
-              <p><strong>Phone:</strong> [Your Contact Number]</p>
+              <p><strong>Email:</strong>admin@astrosight.ai </p>
+              <p><strong>Address:</strong> 769, Purnapragnya Layout, Poornapragna Housing Society L, Poornapragna Housing Society Layout, Bengaluru, Karnataka 560061, India</p>
+              <p><strong>Phone:</strong>+91 9964128377 </p>
             </div>
           </div>
         </section>

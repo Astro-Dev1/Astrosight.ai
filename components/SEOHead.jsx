@@ -63,8 +63,10 @@ const SEOHead = ({
 
       {/* Favicons and Icons */}
       <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-      <link rel="icon" type="image/png" href="/4.png" sizes="192x192" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/4.png" />
+      <link rel="icon" href="/4.png" type="image/png" />
+
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="192x192" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico" />
       <link rel="manifest" href="/manifest.json" />
 
       {/* Additional SEO Tags */}

@@ -1,6 +1,7 @@
 import { Calculator, Star,  Clock, MapPin, User, Calendar } from 'lucide-react';
 import React, { useState } from 'react';
 // import Head from 'next/head';
+import SEOHead from '../components/SEOHead';
 import Link from 'next/link';
 import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
@@ -65,7 +66,38 @@ const SunSignCalculator = () => {
     }
   ];
 
-  return (
+  return (<>
+  <SEOHead
+  title="Sun Sign Calculator – Discover Your Zodiac Sun Sign | AstroSight"
+  description="Find your sun sign based on date of birth using AstroSight's free zodiac sun sign calculator. Learn the traits and meaning of your sign through Vedic and Western astrology."
+  keywords="sun sign calculator, zodiac sign calculator, find my sun sign, vedic astrology sun sign, western zodiac finder, birth chart analysis, horoscope sign by date of birth"
+  canonical="https://astrosight.ai/sun-sign-calculator"
+  ogImage="https://astrosight.ai/images/sun-sign-og.jpg"
+  ogType="article"
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Sun Sign Calculator",
+      "url": "https://astrosight.ai/sun-sign-calculator",
+      "description": "Find your zodiac sun sign using your date of birth. Powered by accurate Vedic and Western astrology guidance.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "url": "https://astrosight.ai",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://astrosight.ai/log.png"
+        }
+      },
+      "image": "https://astrosight.ai/images/sun-sign-og.jpg"
+    })
+  }}
+/>
+
     <div className="min-h-screen ">
       {/* Header */}
   <CustomHeader/>
@@ -352,6 +384,7 @@ const SunSignCalculator = () => {
     <div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />
           </div>    </div>
+          </>
   );
 };
 
