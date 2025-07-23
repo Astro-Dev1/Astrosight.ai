@@ -7,15 +7,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 
 // Import translations directly to avoid SSR issues
-import enTranslations from '../locales/en.json';
-import hiTranslations from '../locales/hi.json';
-import knTranslations from '../locales/kn.json';
+// import enTranslations from '../locales/en.json';
+// import hiTranslations from '../locales/hi.json';
+// import knTranslations from '../locales/kn.json';
 
-const translations = {
-  en: enTranslations,
-  hi: hiTranslations,
-  kn: knTranslations,
-};
+// const translations = {
+//   en: enTranslations,
+//   hi: hiTranslations,
+//   kn: knTranslations,
+// };
 
 // Service cards matching the exact design from screenshot
 const cards = [
@@ -24,7 +24,11 @@ const cards = [
     image: '/horoscope.png',
     link: '/horoscope/today-horoscope'
   },
- 
+  {
+    title: 'Astro Calculator',
+    image: '/free_report.png',
+    link: '/astrocalculator'
+  },
   {
     title: 'Compatibility',
     image: '/compatibility.png',
@@ -47,37 +51,37 @@ const cards = [
 export default function ServicesSection() {
   const scrollRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('en');
+  // const [currentLanguage, setCurrentLanguage] = useState('en');
 
   // Language helper functions
-  const getLanguage = () => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('language') || 'en';
-    }
-    return 'en';
-  };
+  // const getLanguage = () => {
+  //   if (typeof window !== 'undefined') {
+  //     return localStorage.getItem('language') || 'en';
+  //   }
+  //   return 'en';
+  // };
 
-  const t = (key, fallback = key) => {
-    const translation = translations[currentLanguage];
+  // const t = (key, fallback = key) => {
+  //   const translation = translations[currentLanguage];
     
-    if (!translation) {
-      return fallback;
-    }
+  //   if (!translation) {
+  //     return fallback;
+  //   }
     
-    // Handle nested keys (e.g., "services.title")
-    const keys = key.split('.');
-    let value = translation;
+  //   // Handle nested keys (e.g., "services.title")
+  //   const keys = key.split('.');
+  //   let value = translation;
     
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k];
-      } else {
-        return fallback;
-      }
-    }
+  //   for (const k of keys) {
+  //     if (value && typeof value === 'object' && k in value) {
+  //       value = value[k];
+  //     } else {
+  //       return fallback;
+  //     }
+  //   }
     
-    return typeof value === 'string' ? value : fallback;
-  };
+  //   return typeof value === 'string' ? value : fallback;
+  // };
 
   useEffect(() => {
     const handleResize = () => {
@@ -85,20 +89,20 @@ export default function ServicesSection() {
     };
     
     // Initialize language
-    setCurrentLanguage(getLanguage());
+    // setCurrentLanguage(getLanguage());
     
     // Listen for language changes
-    const handleLanguageChange = () => {
-      setCurrentLanguage(getLanguage());
-    };
+    // const handleLanguageChange = () => {
+    //   setCurrentLanguage(getLanguage());
+    // };
     
     if (typeof window !== 'undefined') {
-      window.addEventListener('languageChanged', handleLanguageChange);
+      // window.addEventListener('languageChanged', handleLanguageChange);
       handleResize();
       window.addEventListener('resize', handleResize);
       
       return () => {
-        window.removeEventListener('languageChanged', handleLanguageChange);
+        // window.removeEventListener('languageChanged', handleLanguageChange);
         window.removeEventListener('resize', handleResize);
       };
     }
@@ -198,7 +202,7 @@ export default function ServicesSection() {
                     className="text-xs md:text-sm font-medium text-gray-700 leading-tight"
                     style={{ fontFamily: 'Noto Sans Devanagari, system-ui, -apple-system, sans-serif' }}
                   >
-                    {t(`services.${card.title.toLowerCase().replace(/[^a-z0-9]/g, '')}`) || card.title}
+                    { card.title}
                   </h3>
                 </CardContent>
               </Card>
