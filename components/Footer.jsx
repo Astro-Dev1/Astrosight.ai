@@ -1,6 +1,8 @@
 import Link from 'next/link';
 
 export default function Footer() {
+    const types = ["daily", "weekly", "monthly", "yearly"];
+
   return (
     <footer className=" justify-center font-serif py-8">
       {/* About Section */}
@@ -38,16 +40,11 @@ export default function Footer() {
               'pisces',
             ].map((sign) => (
               <div key={sign}>
-                
-                <Link href={`/horoscope/monthly-horoscope/${sign}`} className="hover:underline text-white">
-                  {sign.charAt(0).toUpperCase() + sign.slice(1)} monthly Horoscope
-                </Link><Link href={`/horoscope/today-horoscope/${sign}`} className="hover:underline text-white">
-                  {sign.charAt(0).toUpperCase() + sign.slice(1)} daily Horoscope
-                </Link><Link href={`/horoscope/yearly-horoscope/${sign}`} className="hover:underline text-white">
-                  {sign.charAt(0).toUpperCase() + sign.slice(1)} yearly Horoscope
-                </Link><Link href={`/horoscope/weekly-horoscope/${sign}`} className="hover:underline text-white">
-                  {sign.charAt(0).toUpperCase() + sign.slice(1)} weekly Horoscope
-                </Link>
+                {types.map((type) => (
+                  <Link key={type} href={`/horoscope/${type}-horoscope${sign}`} className="hover:underline text-white">
+                    {sign.charAt(0).toUpperCase() + sign.slice(1)} {type.charAt(0).toUpperCase() + type.slice(1)} Horoscope <br />
+                  </Link>
+                ))}
               </div>
             ))}
           </div>
