@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import SEOHead from '../components/SEOHead';
 
 const DashaCalculator = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +27,37 @@ const DashaCalculator = () => {
 
   return (
     <>
+     <SEOHead
+        title="Dasha Calculator – Vedic Astrology Planetary Periods & Predictions | AstroSight"
+        description="Calculate your Vimshottari Dasha planetary periods and gain insights into life phases, karmic patterns, and forecasts with AstroSight’s free, accurate Dasha Calculator."
+        keywords="dasha calculator, vimshottari dasha, planetary periods calculator, vedic astrology, mahadasha predictions, antardasha, karmic periods, birth chart timing"
+        canonical="https://astrosight.ai/dasha-calculator"
+        ogImage="https://astrosight.ai/images/dasha-calculator-og.jpg"
+        ogType="article"
+      />
+        {/* JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Dasha Calculator – Vedic Astrology Planetary Periods & Predictions",
+            "url": "https://astrosight.ai/dasha-calculator",
+            "description": "Calculate your Vimshottari Dasha planetary periods and gain insights into life phases, karmic patterns, and forecasts with AstroSight’s free, accurate Dasha Calculator.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "AstroSight",
+              "url": "https://astrosight.ai",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://astrosight.ai/logo.png"
+              }
+            },
+            "image": "https://astrosight.ai/images/dasha-calculator-og.jpg"
+          })
+        }}
+      />
       <CustomHeader />
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -392,7 +424,9 @@ const DashaCalculator = () => {
             <RecentBlogLinks />
           </div>
         </div>
-      <Footer />
+    <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+                   <Footer />
+                 </div>
     </>
   );
 };

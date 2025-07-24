@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import SEOHead from '../components/SEOHead';
 
 const BirthChartCalculator = () => {
   const [formData, setFormData] = useState({
@@ -27,6 +28,36 @@ const BirthChartCalculator = () => {
 
   return (
     <>
+      <SEOHead
+        title="Birth Chart Calculator – Free Vedic & Western Astrology Natal Chart | AstroSight"
+        description="Generate your detailed free birth chart with accurate planetary positions, houses, dasha periods, and personalized insights using trusted Vedic astrology methods."
+        keywords="birth chart calculator, vedic natal chart, free kundli generator, astrology birth chart, vedic astrology reading, planetary positions, dasha periods, nakshatra analysis"
+        canonical="https://astrosight.ai/birth-chart-calculator"
+        ogImage="https://astrosight.ai/images/birth-chart-og.jpg"
+        ogType="article"
+      />
+        <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Birth Chart Calculator – Free Vedic & Western Astrology Natal Chart",
+            "url": "https://astrosight.ai/birth-chart-calculator",
+            "description": "Generate your detailed free birth chart with accurate planetary positions, houses, dasha periods, and personalized insights using trusted Vedic astrology methods.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "AstroSight",
+              "url": "https://astrosight.ai",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://astrosight.ai/logo.png"
+              }
+            },
+            "image": "https://astrosight.ai/images/birth-chart-og.jpg"
+          })
+        }}
+      />
       <CustomHeader />
       <div>
         <div className="max-w-4xl mx-auto px-4 py-8">

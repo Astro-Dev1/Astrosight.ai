@@ -78,7 +78,7 @@ const calculators = [
   available: true
 },
 {
-  slug: 'rashi-calculator',
+  slug: 'rashi-sign-calculator',
   title: 'Rashi Calculator',
   description: 'Find your Vedic Moon sign (Rashi) and its meaning instantly',
   icon: '🌓',

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import SEOHead from '../components/SEOHead';
 
 const KaalSarpDoshCalculator = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +27,37 @@ const KaalSarpDoshCalculator = () => {
 
   return (
     <>
+       <SEOHead
+        title="Kaal Sarp Dosh Calculator - Free Vedic Astrology Analysis | AstroSight"
+        description="Check if you have Kaal Sarp Dosh in your birth chart with our free Vedic astrology calculator. Understand its effects and get personalized remedies for spiritual growth and life balance."
+        keywords="Kaal Sarp Dosh calculator, free kaal sarp dosh check, vedic astrology dosh analysis, birth chart karmic dosha, rahu ketu dosha remedies"
+        canonical="https://astrosight.ai/kaal-sarp-dosh-calculator"
+        ogImage="https://astrosight.ai/images/kaal-sarp-dosh-og.jpg"
+        ogType="article"
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Kaal Sarp Dosh Calculator",
+            "url": "https://astrosight.ai/kaal-sarp-dosh-calculator",
+            "description": "Free calculator to detect Kaal Sarp Dosh in your birth chart using authentic Vedic astrology. Learn effects and remedial measures for karmic alignment.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "AstroSight",
+              "url": "https://astrosight.ai",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://astrosight.ai/log.png"
+              }
+            },
+            "image": "https://astrosight.ai/images/kaal-sarp-dosh-og.jpg"
+          })
+        }}
+      />
       <CustomHeader />
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="bg-white rounded-lg shadow-lg p-8">

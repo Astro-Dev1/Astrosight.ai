@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import CustomHeader from '../components/CustomHeader';
 import Footer from '../components/Footer';
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import SEOHead from '../components/SEOHead';
 
 const FlamesCalculator = () => {
   const [formData, setFormData] = useState({
@@ -124,6 +125,37 @@ const FlamesCalculator = () => {
 
   return (
     <>
+    <SEOHead
+  title="FLAMES Calculator – Fun Name Compatibility Game | AstroSight"
+  description="Play the nostalgic FLAMES game to know if you're Friends, Lovers, Affectionate, Married, Enemies, or Siblings. Enter your name & your partner’s and discover what your letters reveal!"
+  keywords="flames calculator, relationship game, name compatibility, fun love test, online flames game, childhood love game, partner name matching"
+  canonical="https://astrosight.ai/flames-calculator"
+  ogImage="https://astrosight.ai/images/flames-og.jpg"
+  ogType="website"
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "FLAMES Calculator – Name Compatibility Game",
+      "url": "https://astrosight.ai/flames-calculator",
+      "description": "Try the legendary FLAMES game with a digital twist. Just enter your and your partner’s name to see your friendship or love result. Fun, fast, and nostalgic!",
+      "publisher": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "url": "https://astrosight.ai",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://astrosight.ai/log.png"
+        }
+      },
+      "image": "https://astrosight.ai/images/flames-og.jpg"
+    })
+  }}
+/>
+
     <div className="min-h-screen bg-gradient-to-br from-pink-50 to-red-50">
       {/* Calculator Form */}
       <CustomHeader/>
