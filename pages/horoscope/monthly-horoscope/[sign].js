@@ -6,11 +6,11 @@ import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Star, Heart, Briefcase, Activity, TrendingUp, Gift, Send } from 'lucide-react';
+// import { Button } from "@/components/ui/button";
+// import { Input } from "@/components/ui/input";
+import { Star, Heart, Briefcase, Activity, TrendingUp, Gift,  } from 'lucide-react';
 import CustomHeader from "../../../components/CustomHeader";
-import LanguageSelector from "../../../components/LanguageSelector";
+// import LanguageSelector from "../../../components/LanguageSelector";
 import { getDailyHoroscope } from "../../../services/centralApi";
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../../components/InternalLinksGrid';
 import Footer from '../../../components/Footer';
@@ -28,26 +28,26 @@ const translations = {
 };
 
 // AI Companions data
-const aiCompanions = [
-  {
-    id: 1,
-    name: 'Jaimini',
-    type: 'Expert',
-    persona: 'expert',
-  },
-  {
-    id: 2,
-    name: 'Avi',
-    type: 'Youth',
-    persona: 'youth',
-  },
-  {
-    id: 3,
-    name: 'Auro',
-    type: 'Balanced',
-    persona: 'balanced',
-  },
-];
+// const aiCompanions = [
+//   {
+//     id: 1,
+//     name: 'Jaimini',
+//     type: 'Expert',
+//     persona: 'expert',
+//   },
+//   {
+//     id: 2,
+//     name: 'Avi',
+//     type: 'Youth',
+//     persona: 'youth',
+//   },
+//   {
+//     id: 3,
+//     name: 'Auro',
+//     type: 'Balanced',
+//     persona: 'balanced',
+//   },
+// ];
 
 // Period selection component - now navigates to different URLs
 const PeriodSelector = ({ currentPeriod = 'monthly', sign }) => {
@@ -135,7 +135,7 @@ const HoroscopePeriodPage = () => {
     return 'en';
   });
   const [selectedTab, setSelectedTab] = useState('dos');
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
   // Add signOverviews state for async loading of overviews
   const [signOverviews, setSignOverviews] = useState({});
 
@@ -260,9 +260,9 @@ const HoroscopePeriodPage = () => {
     }
   };
 
-  const handleAiCompanionPress = (persona, input) => {
-    router.push(`/chatbot?persona=${persona}&input=${encodeURIComponent(input || `Tell me more about ${capitalizedSign} for today`)}`);
-  };
+  // const handleAiCompanionPress = (persona, input) => {
+  //   router.push(`/chatbot?persona=${persona}&input=${encodeURIComponent(input || `Tell me more about ${capitalizedSign} for today`)}`);
+  // };
 
   if (!sign) {
     return <div className="text-center py-10">Loading...</div>;
@@ -321,12 +321,12 @@ const HoroscopePeriodPage = () => {
         <div className="flex-1 pt-16">
           <div className="px-4 pb-20 max-w-5xl mx-auto">
             {/* Language Selector */}
-            <div className="mt-4 mb-6 flex justify-end">
+            {/* <div className="mt-4 mb-6 flex justify-end">
               <LanguageSelector 
                 variant="default"
                 onLanguageChange={setLanguage}
               />
-            </div>
+            </div> */}
 
             {/* Zodiac Sign Section */}
             <div className="mt-6 mb-8 flex flex-col items-center">
@@ -430,7 +430,7 @@ const HoroscopePeriodPage = () => {
             )}
 
             {/* AI Companions Section */}
-            <div className="mb-8">
+            {/* <div className="mb-8">
               <h3 className="text-white text-xl font-semibold mb-4">{t('need_more_clarity', 'Need More Clarity?')}</h3>
               <Card className="bg-white/10 backdrop-blur-sm p-5 rounded-xl shadow-lg border-0">
                 <div className="flex justify-around mb-6">
@@ -463,7 +463,7 @@ const HoroscopePeriodPage = () => {
                   </Button>
                 </div>
               </Card>
-            </div>
+            </div> */}
 
             {/* Lucky Elements */}
             {luckyElements && (
