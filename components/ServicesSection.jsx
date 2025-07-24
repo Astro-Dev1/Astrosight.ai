@@ -167,7 +167,7 @@ export default function ServicesSection() {
       <div className="relative ">
         <div
           ref={scrollRef}
-          className="flex justify-center gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+          className="flex justify-start lg:justify-center gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
           style={{ 
             scrollbarWidth: 'none', 
             msOverflowStyle: 'none',

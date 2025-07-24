@@ -10,6 +10,8 @@ import { fetchMyProfile } from '../../../services/centralApi';
 import { InternalLinksGrid, ReportLinksGrid, CompatibilityLinksGrid, RecentBlogLinks } from '../../../components/InternalLinksGrid';
 import Footer from '../../../components/Footer';
 import SEOHead from '../../../components/SEOHead';
+import TodayHoroscopeArticle from '../../../components/TodayHoroscopeArticle';
+
 const zodiacSigns = [
   { name: 'Aries', symbol: '♈', dates: 'Mar 21 - Apr 19', image: '/zodicimg/Aries.png' },
   { name: 'Taurus', symbol: '♉', dates: 'Apr 20 - May 20', image: '/zodicimg/Taurus.png' },
@@ -306,6 +308,7 @@ Weekly Horoscope
               </p>
             </div>
 
+<TodayHoroscopeArticle />
             {/* Internal Links Section */}
             <div className="mt-12 space-y-8">
               <InternalLinksGrid />

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { InternalLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
-
+import {AstrologyCalculatorsArticle} from '../../components/DailySignArticle';
 const calculators = [
   {
     slug: 'birth-chart-calculator',
@@ -325,7 +325,7 @@ export default function ReportIndex() {
               </p>
             </div>
           </div>
-          
+          <AstrologyCalculatorsArticle/>
           {/* Internal Links Section */}
           <div className="mt-16 space-y-8">
             <InternalLinksGrid />

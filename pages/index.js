@@ -15,6 +15,7 @@ import SEOHead from '../components/SEOHead';
 import Head from 'next/head';
 import Cookies from "js-cookie";
 import { ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import { OnlineAstrologyArticle } from '../components/DailySignArticle';
 
 const HomeMobileScreen = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -159,7 +160,7 @@ const HomeMobileScreen = () => {
         </section>
 
         <section className="bg-white w-full animate-pulse relative z-10">
-          <div className="max-w-7xl mx-auto justify-center sm:px-6 lg:px-80 py-3">
+          <div className="max-w-7xl mx-auto justify-center  sm:px-6 lg:px-8 py-3">
             <ServicesSection />
           </div>
         </section>
@@ -173,6 +174,12 @@ const HomeMobileScreen = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <CompanionsSection />
           </div>
+        </section>
+              <section className="animate-pulse w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <OnlineAstrologyArticle/>
+        </div>
         </section>
         {/* Internal Link Components */}
         <section className=" w-full">

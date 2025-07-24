@@ -15,7 +15,7 @@ import CustomHeader from "../../../components/CustomHeader";
 import { getDailyHoroscope } from "../../../services/centralApi";
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../../components/InternalLinksGrid';
 import Footer from '../../../components/Footer';
-import DailySignArticle from '../../../components/DailySignArticle';
+import {DailyHoroscopeFull} from '../../../components/DailySignArticle';
 
 // Import translations for SSR compatibility
 import enTranslations from '../../../locales/en.json';
@@ -661,7 +661,7 @@ const HoroscopePeriodPage = () => {
       </div>
       <div className="bg-white  mx-auto px-4 sm:px-6 lg:px-4">
 
-                        <DailySignArticle sign={capitalizedSign} />
+                        <DailyHoroscopeFull sign={capitalizedSign} />
 </div> 
 <div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />

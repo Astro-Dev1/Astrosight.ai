@@ -201,12 +201,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+    font-family:  Arial, sans-serif;
   }
   
   /* Apply Devanagari font to common elements */
   h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label {
-    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+    font-family:  Arial, sans-serif;
   }
 }
 * {

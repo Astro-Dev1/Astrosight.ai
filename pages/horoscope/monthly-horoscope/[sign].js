@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import SEOHead from "../../../components/SEOHead";
 import Head from "next/head";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -11,11 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Star, Heart, Briefcase, Activity, TrendingUp, Gift, Send } from 'lucide-react';
 import CustomHeader from "../../../components/CustomHeader";
-// import LanguageSelector from "../../../components/LanguageSelector";
+import LanguageSelector from "../../../components/LanguageSelector";
 import { getDailyHoroscope } from "../../../services/centralApi";
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../../components/InternalLinksGrid';
 import Footer from '../../../components/Footer';
-import DailySignArticle from '../../../components/DailySignArticle';
+import {MonthlyHoroscopeFull} from '../../../components/DailySignArticle';
 
 // Import translations for SSR compatibility
 import enTranslations from '../../../locales/en.json';
@@ -169,7 +168,7 @@ const HoroscopePeriodPage = () => {
   }, [sign, language, period]);
 
   // Async load all sign overviews for "Choose Another Sign" section
-  useEffect(() => {
+ useEffect(() => {
     let isMounted = true;
     const fetchAllOverviews = async () => {
       const signs = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
@@ -299,18 +298,6 @@ const HoroscopePeriodPage = () => {
   // ];
   return (
     <>
-    <SEOHead
-  title={`${capitalizedSign} ${currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight`}
-  description={`Discover ${capitalizedSign}'s ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`}
-  keywords={`${capitalizedSign} ${currentPeriod} horoscope, zodiac ${currentPeriod} predictions, astrology ${currentPeriod} insights`}
-  canonical={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'monthly' ? '/' + currentPeriod : ''}`}
-  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
-  ogType="article"
-  articleAuthor="AstroSight Team"
-  articlePublishedTime={null} // Add if you track publish date
-  articleModifiedTime={new Date().toISOString()} // Optional
-/>
-
       <Head>
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
@@ -334,17 +321,17 @@ const HoroscopePeriodPage = () => {
         <div className="flex-1 pt-16">
           <div className="px-4 pb-20 max-w-5xl mx-auto">
             {/* Language Selector */}
-            {/* <div className="mt-4 mb-6 flex justify-end">
+            <div className="mt-4 mb-6 flex justify-end">
               <LanguageSelector 
                 variant="default"
                 onLanguageChange={setLanguage}
               />
-            </div> */}
+            </div>
 
             {/* Zodiac Sign Section */}
             <div className="mt-6 mb-8 flex flex-col items-center">
               <h1 className="text-2xl font-bold text-black mb-2">
-              {capitalizedSign}  {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)}  Horoscope
+                {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} {capitalizedSign} Horoscope
               </h1>
               <Image
                 src={`/zodicimg/${capitalizedSign}.webp`}
@@ -649,6 +636,10 @@ const HoroscopePeriodPage = () => {
                     </div>
                   ))}
                 </div>
+                <div className="bg-white  mx-auto px-4 sm:px-6 lg:px-4">
+
+                        <MonthlyHoroscopeFull sign={capitalizedSign} />
+</div> 
               </div>
               <InternalLinksGrid sign={sign} />
               <HoroscopeNavigation />
@@ -659,10 +650,7 @@ const HoroscopePeriodPage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white  mx-auto px-4 sm:px-6 lg:px-4">
-
-                        <DailySignArticle sign={capitalizedSign} />
-</div> 
+      
 <div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />
           </div>    </>

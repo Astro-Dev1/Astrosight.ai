@@ -6,6 +6,7 @@ import Footer from '../../components/Footer';
 import Panchanga from '../../components/panchanga';
 import { useState } from 'react';
 import SEOHead from '../../components/SEOHead';
+import {TodayPanchangArticle} from '../../components/DailySignArticle';
 // import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 // import Image from 'next/image';
 // import Link from 'next/link';
@@ -40,6 +41,7 @@ export default function PanchangaPage() {
         <main className="flex-grow">
           <Panchanga />
         </main>
+        <TodayPanchangArticle/>
         <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
           <Footer />
         </div>

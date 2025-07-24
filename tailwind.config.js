@@ -31,13 +31,13 @@ module.exports = {
     			kohinoor: [
     				'Kohinoor Devanagari Local',
     				'Kohinoor Local',
-    				'Noto Sans Devanagari',
+    				
     				'Arial',
     				'sans-serif'
     			],
     			'kohinoor-devanagari': [
     				'Kohinoor Devanagari Local',
-    				'Noto Sans Devanagari',
+    				
     				'Arial',
     				'sans-serif'
     			],

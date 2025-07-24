@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../components/InternalLinksGrid';
-
+import {CompatibilityCalculatorArticle} from '../../components/DailySignArticle';
 // import CustomLinkButton from '../../components/CustomContainer';
 
 const zodiacSigns = [
@@ -284,7 +284,7 @@ export default function CompatibilityPage() {
           )}
         </section>
         
-
+<CompatibilityCalculatorArticle/>
         {/* Internal Link Components */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* All Compatibility Combinations */}
