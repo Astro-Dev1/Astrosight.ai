@@ -27,7 +27,7 @@ const cards = [
   {
     title: 'Astro Calculator',
     image: '/free_report.png',
-    link: '/astrologyarticles'
+    link: '/astrology-calculators-articles'
   },
   {
     title: 'Compatibility',
