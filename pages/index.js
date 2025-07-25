@@ -97,16 +97,16 @@ const HomeMobileScreen = () => {
             url: "https://astrosight.ai",
             logo: {
               "@type": "ImageObject",
-              url: "https://astrosight.ai/logo.png",
+              url: "https://astrosight.ai/logo.png"
             },
             sameAs: [
               "https://facebook.com/astrosight.ai",
               "https://twitter.com/astrosight.ai",
-              "https://instagram.com/astrosight.ai",
+              "https://instagram.com/astrosight.ai"
             ],
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": "https://astrosight.ai",
+              "@id": "https://astrosight.ai"
             },
           })}
         </script>
