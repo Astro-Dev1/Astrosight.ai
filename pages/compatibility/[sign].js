@@ -237,28 +237,32 @@ export default function PartnerSignPage() {
           rel="canonical"
           href={`https://astrosight.ai/compatibility/${sign}`}
         />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": `${capitalizedSign} Zodiac Compatibility Calculator`,
-            "description": `Explore ${capitalizedSign}s love compatibility with other zodiac signs.`,
-            "url": `https://astrosight.ai/compatibility/${sign}`,
-            "provider": {
-              "@type": "Organization",
-              "name": "AstroSight",
-              "url": "https://astrosight.ai"
-            },
-                          "datePublished": new Date().toISOString().split('T')[0],
-              "dateModified": new Date().toISOString().split('T')[0],
-              "about": [
-                {
-                  "@type": "Thing",
-                  "name": capitalizedSign
-                }
-              ]
-          })}
-        </script>
+    <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": `${capitalizedSign} Zodiac Compatibility Calculator`,
+      "description": `Explore ${capitalizedSign}s love compatibility with other zodiac signs.`,
+      "url": `https://astrosight.ai/compatibility/${sign}`,
+      "provider": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "url": "https://astrosight.ai"
+      },
+      "datePublished": new Date().toISOString().split('T')[0],
+      "dateModified": new Date().toISOString().split('T')[0],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": capitalizedSign
+        }
+      ]
+    }),
+  }}
+/>
+
       </Head>
 <SEOHead
   title={`${capitalizedSign} Compatibility | Choose Partner's Zodiac`}
