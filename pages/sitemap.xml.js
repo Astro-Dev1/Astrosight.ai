@@ -152,17 +152,19 @@ export async function getServerSideProps({ res }) {
     getXmlUrl({ url: siteUrl, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/about-us`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/contact`, lastModified: new Date() }),
-    getXmlUrl({ url: `${siteUrl}/astrocalculator`, lastModified: new Date() }),
-    getXmlUrl({ url: `${siteUrl}/horoscope/`, lastModified: new Date() }),
+    getXmlUrl({ url: `${siteUrl}/astrology-calculators-articles`, lastModified: new Date() }),
+    getXmlUrl({ url: `${siteUrl}/horoscope/today-horoscope`, lastModified: new Date() }),
+    getXmlUrl({ url: `${siteUrl}/horoscope/weekly-horoscope`, lastModified: new Date() }),
+    getXmlUrl({ url: `${siteUrl}/horoscope/monthly-horoscope`, lastModified: new Date() }),
+    getXmlUrl({ url: `${siteUrl}/horoscope/yearly-horoscope`, lastModified: new Date() }),
+        getXmlUrl({ url: `${siteUrl}/panchanga/`, lastModified: new Date() }),
+    getXmlUrl({ url: `${siteUrl}/compatibility/`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/privacy-policy`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/shop`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/shipping-policy`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/blog`, lastModified: new Date() }),
         getXmlUrl({ url: `${siteUrl}/terms-and-conditions`, lastModified: new Date() }),
             getXmlUrl({ url: `${siteUrl}/festival-calendar`, lastModified: new Date() }),
-
-
-
   ];
 
   // Combine all

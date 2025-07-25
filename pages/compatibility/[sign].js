@@ -247,7 +247,7 @@ export default function PartnerSignPage() {
             "provider": {
               "@type": "Organization",
               "name": "AstroSight",
-              "url": "https://astrosight.ai",
+              "url": "https://astrosight.ai"
             },
                           "datePublished": new Date().toISOString().split('T')[0],
               "dateModified": new Date().toISOString().split('T')[0],
