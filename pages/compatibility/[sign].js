@@ -242,7 +242,7 @@ export default function PartnerSignPage() {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": `${capitalizedSign} Zodiac Compatibility Calculator`,
-            "description": `Explore ${capitalizedSign}'s love compatibility with other zodiac signs.`,
+            "description": `Explore ${capitalizedSign}s love compatibility with other zodiac signs.`,
             "url": `https://astrosight.ai/compatibility/${sign}`,
             "provider": {
               "@type": "Organization",
