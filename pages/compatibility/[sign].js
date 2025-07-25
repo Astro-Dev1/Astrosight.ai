@@ -249,6 +249,14 @@ export default function PartnerSignPage() {
               "name": "AstroSight",
               "url": "https://astrosight.ai",
             },
+                          "datePublished": new Date().toISOString().split('T')[0],
+              "dateModified": new Date().toISOString().split('T')[0],
+              "about": [
+                {
+                  "@type": "Thing",
+                  "name": capitalizedSign
+                }
+              ]
           })}
         </script>
       </Head>
