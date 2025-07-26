@@ -39,7 +39,7 @@ const cards = [
   {
     title: 'Festivals',
     image: '/free_report.png',
-    link: '/festivals'
+    link: '/festival-calendar'
   },
   {
     title: 'Today Panchang',
