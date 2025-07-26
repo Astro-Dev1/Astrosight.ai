@@ -187,6 +187,7 @@ export const RecentBlogLinks = ({ limit = 20 }) => {
 };
 
 export const ReportLinksGrid = ({ currentSign }) => {
+  console.log(currentSign)
   const calculators = [
     { slug: 'birth-chart-calculator', name: 'Birth Chart Calculator', available: true },
     { slug: 'love-compatibility-calculator', name: 'Love Compatibility Calculator', available: true },
