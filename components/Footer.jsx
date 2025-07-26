@@ -41,7 +41,7 @@ export default function Footer() {
             ].map((sign) => (
               <div key={sign}>
                 {types.map((type) => (
-                  <Link key={type} href={`/horoscope/${type}-horoscope${sign}`} className="hover:underline text-white">
+                  <Link key={type} href={`/horoscope/${type}-horoscope/${sign}`} className="hover:underline text-white">
                     {sign.charAt(0).toUpperCase() + sign.slice(1)} {type.charAt(0).toUpperCase() + type.slice(1)} Horoscope <br />
                   </Link>
                 ))}
