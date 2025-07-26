@@ -210,7 +210,7 @@ export const ReportLinksGrid = ({ currentSign }) => {
         {calculators.map((calculator) => ( 
           <Link
             key={calculator.slug}
-            href={`/${calculator.slug}$`}
+            href={`/${calculator.slug}`}
             className={`hover:underline transition-colors ${
               calculator.available 
                 ? 'hover:text-orange-700' 
