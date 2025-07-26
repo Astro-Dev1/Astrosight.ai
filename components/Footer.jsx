@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export default function Footer() {
-    const types = ["daily", "weekly", "monthly", "yearly"];
+    const types = ["today", "weekly", "monthly", "yearly"];
 
   return (
     <footer className=" justify-center font-serif py-8">
