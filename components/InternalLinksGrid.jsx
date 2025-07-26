@@ -191,13 +191,13 @@ export const ReportLinksGrid = ({ currentSign }) => {
     { slug: 'birth-chart-calculator', name: 'Birth Chart Calculator', available: true },
     { slug: 'love-compatibility-calculator', name: 'Love Compatibility Calculator', available: true },
     { slug: 'dasha-calculator', name: 'Dasha Calculator', available: true },
-    { slug: 'numerology-calculator', name: 'Numerology Calculator', available: false },
-    { slug: 'kundali-matching', name: 'Kundali Matching', available: false },
-    { slug: 'palm-reading', name: 'Palm Reading', available: false },
-    { slug: 'tarot-reading', name: 'Tarot Reading', available: false },
-    { slug: 'gemstone-recommendation', name: 'Gemstone Recommendation', available: false },
-    { slug: 'muhurat-calculator', name: 'Muhurat Calculator', available: false },
-    { slug: 'career-astrology', name: 'Career Astrology', available: false }
+    { slug: 'kaal-sarp-dosh-calculator', name: 'Kaal Sarp Dosh Calculator', available: true },
+    { slug: 'kundali-matching', name: 'Kundali Matching', available: true },
+    { slug: 'sun-sign-calculator', name: 'Sun Sign Calculator', available: true },
+    { slug: 'moon-sign-calculator', name: 'Moon Sign Calculator', available: true },
+    { slug: 'mangal-dosha-calculator', name: 'Mangal Dosha Calculator', available: true },
+    { slug: 'marriage-compatibility-calculator', name: 'Marriage Compatibility Calculator', available: true },
+    { slug: 'yantra-calculator', name: 'Yantra Calculator', available: true }
   ];
 
   return (
@@ -206,10 +206,10 @@ export const ReportLinksGrid = ({ currentSign }) => {
         Astrology Calculators & Reports
       </h2>
       <div className="flex flex-wrap gap-2 text-sm text-gray-400 ">
-        {calculators.map((calculator) => (
+        {calculators.map((calculator) => ( 
           <Link
             key={calculator.slug}
-            href={`/astrocalculator /${calculator.slug}${currentSign ? '?sign=' + currentSign.toLowerCase() : ''}`}
+            href={`/${calculator.slug}$`}
             className={`hover:underline transition-colors ${
               calculator.available 
                 ? 'hover:text-orange-700' 
