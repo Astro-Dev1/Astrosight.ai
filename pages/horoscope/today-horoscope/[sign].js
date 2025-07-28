@@ -105,12 +105,13 @@ const ProgressBar = ({ label, value, color = "bg-[#FF9933]" }) => {
   );
 };
 const  fetchZodiacOverview=(async (sign, period = "daily", language = "en") =>{
+  console.log(`Fetching ${period} overview for ${sign} in ${language}`);
   const capitalizedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
   const today = new Date();
   const formattedDate = today.toISOString().split('T')[0];
 
   const response = await getDailyHoroscope({
-    type: period,
+    type: "daily",
     lang: language === 'hi' ? 'hn' : language,
     sign: capitalizedSign,
     date: formattedDate
@@ -313,7 +314,7 @@ const HoroscopePeriodPage = () => {
       <Head>
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
-        <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'daily' ? '/' + currentPeriod : ''}`} />
+        <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'Today' ? '/' + currentPeriod : ''}`} />
       </Head>
 
       {error && (
