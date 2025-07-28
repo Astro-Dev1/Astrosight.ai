@@ -65,26 +65,7 @@ const calculators = [
   slug: 'name-numerology-calculator',
 
 },
-  {
-    slug: 'palm-reading',
   
-  },
-  {
-    slug: 'tarot-reading',
- 
-  },
-  {
-    slug: 'gemstone-recommendation',
-
-  },
-  {
-    slug: 'muhurat-calculator',
-
-  },
-  {
-    slug: 'career-astrology',
-
-  }
 ];
 async function getDynamicPosts() {
   // Replace with your actual blog fetching logic

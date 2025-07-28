@@ -123,46 +123,7 @@ const calculators = [
   color: 'green',
   available: true
 },
-  {
-    slug: 'palm-reading',
-    title: 'Palm Reading',
-    description: 'Discover your future through palmistry',
-    icon: '🤚',
-    color: 'yellow',
-    available: false
-  },
-  {
-    slug: 'tarot-reading',
-    title: 'Tarot Reading',
-    description: 'Get insights with interactive tarot cards',
-    icon: '🃏',
-    color: 'indigo',
-    available: false
-  },
-  {
-    slug: 'gemstone-recommendation',
-    title: 'Gemstone Recommendation',
-    description: 'Find your perfect gemstone based on your chart',
-    icon: '💎',
-    color: 'cyan',
-    available: false
-  },
-  {
-    slug: 'muhurat-calculator',
-    title: 'Muhurat Calculator',
-    description: 'Find auspicious times for important events',
-    icon: '📅',
-    color: 'orange',
-    available: false
-  },
-  {
-    slug: 'career-astrology',
-    title: 'Career Astrology',
-    description: 'Discover your ideal career path through astrology',
-    icon: '💼',
-    color: 'teal',
-    available: false
-  }
+  
 ];
 
 const colorClasses = {
