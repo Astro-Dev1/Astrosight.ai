@@ -193,7 +193,7 @@ export default function Post({ post, relatedPosts }) {
         title={metaTitle}
         description={metaDescription}
         keywords={keywords}
-        // canonical={canonical}
+        canonical={`https://astrosight.ai/blog/${slug}`}
         // ogImage={ogImage}
         publishDate={publishDate}
         modifiedDate={post.sys.updatedAt}
