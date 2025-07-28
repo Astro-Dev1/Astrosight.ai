@@ -76,7 +76,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export default function CompatibilityResultsPage({ compatibility, sign, partner_sign }){
+export default function CompatibilityResultsPage({ compatibility1, sign, partner_sign }){
     const router = useRouter();
   const { sign, partner_sign } = router.query;
   const [compatibility, setCompatibility] = useState(null);
@@ -154,7 +154,7 @@ export default function CompatibilityResultsPage({ compatibility, sign, partner_
     </div>
   );
 
-  if (!compatibility) return (
+  if (!compatibility1) return (
     <div className="min-h-screen flex items-center justify-center bg-[#FFF5E6]">
       <p className="text-xl text-gray-700">No compatibility data available</p>
     </div>
@@ -162,8 +162,8 @@ export default function CompatibilityResultsPage({ compatibility, sign, partner_
 
   const capitalizedSign = sign ? sign.charAt(0).toUpperCase() + sign.slice(1) : '';
   const capitalizedPartnerSign = partner_sign ? partner_sign.charAt(0).toUpperCase() + partner_sign.slice(1) : '';
-  const pageTitle = `Zodiac Compatibility${capitalizedSign} and ${capitalizedPartnerSign} Compatibility | Zodiac Love Match | AstroSight`;
-  const pageDescription = `Discover the compatibility between ${capitalizedSign} and ${capitalizedPartnerSign} in love, friendship, and more. Get insights into your zodiac love match with AstroSight's detailed astrology compatibility analysis.`;
+  const pageTitle = `Zodiac Compatibility${capitalizedSign1} and ${capitalizedPartnerSign} Compatibility | Zodiac Love Match | AstroSight`;
+  const pageDescription = `Discover the compatibility between ${capitalizedSign1} and ${capitalizedPartnerSign} in love, friendship, and more. Get insights into your zodiac love match with AstroSight's detailed astrology compatibility analysis.`;
   // const capitalizeFirstLetter = (string) =>
   //   string ? string.charAt(0).toUpperCase() + string.slice(1) : "";
   
