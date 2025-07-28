@@ -51,11 +51,11 @@ const translations = {
 // ];
 
 // Period selection component - now navigates to different URLs
-const PeriodSelector = ({ currentPeriod = 'monthly', sign }) => {
+const PeriodSelector = ({ currentPeriod = 'daily', sign }) => {
   const router = useRouter();
   
   const periods = [
-    { id: 'daily', name: 'Daily', icon: '📅', path: `/horoscope/today-horoscope/${sign}` },
+    { id: 'daily', name: 'Today', icon: '📅', path: `/horoscope/today-horoscope/${sign}` },
     { id: 'weekly', name: 'Weekly', icon: '📊', path: `/horoscope/weekly-horoscope/${sign}` },
     { id: 'monthly', name: 'Monthly', icon: '🗓️', path: `/horoscope/monthly-horoscope/${sign}` },
     { id: 'yearly', name: 'Yearly', icon: '🔮', path: `/horoscope/yearly-horoscope/${sign}` },
@@ -143,7 +143,7 @@ const HoroscopePeriodPage = () => {
 
   const capitalizedSign = sign ? sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase() : "";
   const signKey = sign?.toLowerCase();
-  const currentPeriod =  'daily';
+  const currentPeriod =  'Today';
 
   // Translation function
   const t = (key, defaultValue = key) => {
@@ -304,8 +304,8 @@ const HoroscopePeriodPage = () => {
   title={`${capitalizedSign} ${currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight`}
   description={`Discover ${capitalizedSign}'s ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`}
   keywords={`${capitalizedSign} ${currentPeriod} horoscope, zodiac ${currentPeriod} predictions, astrology ${currentPeriod} insights`}
-  canonical={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'daily' ? '/' + currentPeriod : ''}`}
-  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+  canonical={`https://astrosight.ai/horoscope/${currentPeriod !== 'Today' ? '/' + currentPeriod : ''}`}
+  ogImage={`https://astrosight.ai/zodiacImages/${sign?.charAt(0).toUpperCase() + sign.slice(1)}.png`}
   ogType="article"
   articleAuthor="AstroSight Team"
   articlePublishedTime={null} // Add if you track publish date
