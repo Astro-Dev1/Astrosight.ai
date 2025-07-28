@@ -164,14 +164,14 @@ const HeroSection = () => {
             {/* Left column - Text content */}
             <div className="space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
               <div className="text-[30px]/9 text-[#3a3026] px-auto lg:text-[42.4px]/10 font-bold font-kohinoor-latin" >
-                <span className="text-[#ff6d3f]  w-full text-[30px] font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
+                <span className="text-[#cf4526]  w-full text-[30px] font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
                   <div className="md:flex-1 md:w-1/2 gap-4">
 
                 <p className="text-base/4 lg:w-1/2 sm:text-lg md:text-sm font-kohinoor-latin text-gray-600 max-w-2xl mx-auto lg:mx-0">
 Where Ancient Wisdom Meets AI: Unlock Your Cosmic Blueprint and Discover Answers to Life&apos;s Burning Questions                </p>
-                <div className="hidden md:flex relative -top-16 left-28 flex-col items-center lg:items-center md:mt-0 md:ml-6">
+                <div className="hidden lg:flex  relative -top-16 left-28 flex-col items-center lg:items-center md:mt-0 md:ml-6">
                   <Image
                     src="/qrcode.jpeg"
                     alt="QR Code for App Download"

@@ -20,9 +20,41 @@ export default function BlogsSection() {
 
   return (
     <section className=" px-0 ">
-  <h2 className="text-xl font-bold text-center mb-5">
-    Latest <span className="text-[#FF6D3F]">Blogs</span>
+  
+  <div className="text-center mb-6">
+              <div className="flex items-start p-3 justify-center md:gap-[18px] gap-[9px]">
+        
+        {/* Left pattern image */}
+        <Image
+          alt="Heading pattern"
+          src="/hed.png"
+          width={250}
+          height={250}
+          loading="lazy"
+          decoding="async"
+          className="md:w-10 w-[40px] md:h-[40px] h-[30px] -rotate-90"
+          style={{ color: 'transparent' }}
+        />
+        
+        {/* Heading text */}
+<h2 className="text-2xl font-bold font-kohinoor lg:text-[36px] text-center mb-5">
+    Latest <span className="text-[#cf4526] font-kohinoor">Blogs</span>
   </h2>
+  
+        {/* Right pattern image rotated 180 degrees */}
+        <Image
+          alt="Heading pattern"
+          src="/hed.png"
+          width={250}
+          height={250}
+          loading="lazy"
+          decoding="async"
+          className="md:w-10 w-[40px] md:h-[40px] h-[30px] rotate-90"
+          style={{ color: 'transparent' }}
+        />
+      </div>
+  
+        </div>
     {/* Chevron Buttons (Desktop Only) */}
  
 

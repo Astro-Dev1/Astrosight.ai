@@ -7,7 +7,7 @@ import {  Calendar, Moon, Star, Sunrise, Sunset, Circle, SquareAsterisk } from '
 import { format } from 'date-fns';
 import { useLoadScript, Autocomplete } from '@react-google-maps/api';
 import Link from 'next/link';
-
+import Image from 'next/image';
 const libraries = ['places'];
 
 const TodaysPanchang = () => {
@@ -101,10 +101,42 @@ const TodaysPanchang = () => {
 
   return (
     <div className="mb-6">
-      <h2 className="text-xl font-bold text-center mb-5">
-        Today&apos;s <span className="text-[#FF6D3F]">Panchang</span>
+      
+      <div className="text-center mb-6">
+            <div className="flex items-start p-auto justify-center md:gap-[18px] gap-[9px]">
+      
+      {/* Left pattern image */}
+      <Image
+        alt="Heading pattern"
+        src="/hed.png"
+        width={250}
+        height={250}
+        loading="lazy"
+        decoding="async"
+        className="md:w-10 w-[40px] md:h-[40px] h-[30px] -rotate-90"
+        style={{ color: 'transparent' }}
+      />
+      
+      {/* Heading text */}
+      <h2 className="text-2xl font-bold font-kohinoor lg:text-[36px] text-center mb-5">
+        Today&apos;s <span className="text-[#cf4526] font-kohinoor">Panchang</span>
       </h2>
-      <div className="flex flex-row items-center gap-0 mb-4">
+
+      {/* Right pattern image rotated 180 degrees */}
+      <Image
+        alt="Heading pattern"
+        src="/hed.png"
+        width={250}
+        height={250}
+        loading="lazy"
+        decoding="async"
+        className="md:w-10 w-[40px] md:h-[40px] h-[30px] rotate-90"
+        style={{ color: 'transparent' }}
+      />
+    </div>
+
+      </div>
+      <div className="flex flex-row items-center gap-3 mb-4">
         <div className="flex-1">
           <Autocomplete
             onLoad={(autocomplete) => (autocompleteRef.current = autocomplete)}
@@ -155,7 +187,7 @@ const TodaysPanchang = () => {
         data-readdy="true"
       >
         <Card className="bg-white p-5 rounded-xl shadow-lg">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-3  gap-1">
             <div className="flex items-center">
               <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
                 <Calendar className="h-4 w-4 text-[#FF9933]" />
@@ -227,13 +259,15 @@ const TodaysPanchang = () => {
 
             </div>
             <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
-                <Calendar className="h-4 w-4 text-[#FF9933]" />
-              </div>
+  <div className="w-8 h-8 rounded-full bg-[#FFE5CC] flex items-center justify-center mr-3 flex-shrink-0">
+    <Calendar className="h-4 w-4 text-[#FF9933]" />
+  </div>
+  <div>
+    <p className="text-sm text-gray-500">Amanta Month</p>
+    <p className="text-sm font-medium">{panchangaData.amanta_month || 'N/A'}</p>
+  </div>
+</div>
 
-              <p className="text-sm text-gray-500">Amanta Month</p>
-              <p className="text-sm font-medium">{panchangaData.amanta_month|| 'N/A'}</p>
-            </div>
           </div>
         </Card>
       </Link>

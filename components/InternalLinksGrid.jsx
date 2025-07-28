@@ -13,8 +13,8 @@ const capitalizeFirstLetter = (str) =>
 
 export const InternalLinksGrid = ({ sign="aries" }) => {
   return (
-    <div className="w-full bg-white shadow  rounded-lg mt-8">
-      <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
+    <div className="">
+      <h2 className="text-lg font-bold mb-4 text-[#cf4526] text-center">
         Explore More Compatibility
       </h2>
 
@@ -37,8 +37,8 @@ export const HoroscopeNavigation = ({ sign }) => {
   console.log("Sign:", sign);
   const types = ["today", "weekly", "monthly","yearly"];
   return (
-    <div className="w-full bg-white shadow  rounded-lg mt-8">
-      <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
+    <div className="">
+      <h2 className="text-lg font-bold mb-4 text-[#cf4526] text-center">
         Explore Horoscope by Sign & Periods 
       </h2>
       <div className="flex flex-wrap gap-1 text-sm text-gray-400 ">
@@ -60,8 +60,8 @@ export const HoroscopeNavigation = ({ sign }) => {
 
 export const CompatibilityLinksGrid = ({ currentSign, currentPartnerSign }) => {
   return (
-    <div className="w-full bg-white shadow  rounded-lg mt-8">
-      <h2 className="text-lg font-bold  text-orange-600 text-center">
+    <div className="">
+      <h2 className="text-lg font-bold  text-[#cf4526] text-center">
         Explore All Compatibility Combinations
       </h2>
       <div className="flex flex-wrap gap-1 text-sm text-gray-400">
@@ -92,8 +92,8 @@ export const HoroscopeBySignNavigation = ({ currentSign }) => {
   const types = ["daily", "weekly", "monthly", "yearly"];
 
   return (
-    <div className="w-full bg-white shadow p-4 rounded-lg mt-8">
-      <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
+    <div className="">
+      <h2 className="text-lg font-bold mb-4 text-[#cf4526] text-center">
         Explore {capitalizeFirstLetter(currentSign)} Horoscope
       </h2>
       <div className="flex flex-wrap gap-2 text-sm text-gray-400 ">
@@ -144,8 +144,8 @@ export const RecentBlogLinks = ({ limit = 20 }) => {
 
   if (loading) {
     return (
-      <div className="w-full bg-white shadow p-4 rounded-lg mt-8">
-        <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
+      <div className="">
+        <h2 className="text-lg font-bold mb-4 text-[#cf4526] text-center">
           Recent Blog Articles
         </h2>
         <div className="text-center text-gray-500">Loading latest articles...</div>
@@ -154,8 +154,8 @@ export const RecentBlogLinks = ({ limit = 20 }) => {
   }
 
   return (
-    <div className="w-full bg-white shadow p-4 rounded-lg mt-8">
-      <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
+    <div className="">
+      <h2 className="text-lg font-bold mb-4 text-[#cf4526] text-center">
         Recent Blog Articles
       </h2>
       <div className="flex flex-wrap gap-2 text-sm text-gray-400 ">
@@ -177,7 +177,7 @@ export const RecentBlogLinks = ({ limit = 20 }) => {
       <div className="mt-4 text-center">
         <Link
           href="/blog"
-          className="text-orange-600 hover:text-orange-800 font-medium"
+          className="text-[#cf4526] hover:text-orange-800 font-medium"
         >
           View All Articles →
         </Link>
@@ -202,8 +202,8 @@ export const ReportLinksGrid = ({ currentSign }) => {
   ];
 
   return (
-    <div className="w-full bg-white shadow p-4 rounded-lg mt-8">
-      <h2 className="text-lg font-bold mb-4 text-orange-600 text-center">
+    <div className="">
+      <h2 className="text-lg font-bold mb-4 text-[#cf4526] text-center">
         Astrology Calculators & Reports
       </h2>
       <div className="flex flex-wrap gap-2 text-sm text-gray-400 ">
@@ -226,7 +226,7 @@ export const ReportLinksGrid = ({ currentSign }) => {
       <div className="mt-4 text-center">
         <Link
           href="/report"
-          className="text-orange-600 hover:text-orange-800 font-medium"
+          className="text-[#cf4526] hover:text-orange-800 font-medium"
         >
           View All Calculators →
         </Link>

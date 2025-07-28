@@ -1,4 +1,5 @@
 // components/DailyHoroscopeFull.jsx
+import Image from 'next/image';
 import React from 'react';
 
 const dailyArticles = {
@@ -4909,7 +4910,7 @@ export const TodayPanchangArticle = ({ article=panchangArticles.today_panchang }
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 font-inter text-gray-900">
       {/* Main Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center text-[#f46434]">{h1}</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-[#cf4526]">{h1}</h1>
 
       {/* Intro Quote */}
       {intro_quote && (
@@ -4929,7 +4930,7 @@ export const TodayPanchangArticle = ({ article=panchangArticles.today_panchang }
       {sections &&
         sections.map((section, i) => (
           <section key={i} className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6 text-[#f46434] border-b border-orange-400 pb-1">
+            <h2 className="text-2xl font-semibold mb-6 text-[#cf4526] border-b border-orange-400 pb-1">
               {section.h2}
             </h2>
 
@@ -4951,7 +4952,7 @@ export const TodayPanchangArticle = ({ article=panchangArticles.today_panchang }
                 {/* Auspicious Timings */}
                 {section.panchang_details.auspicious_timings && (
                   <div>
-                    <h3 className="font-semibold mt-4 mb-2 text-[#f46434]">Auspicious Timings</h3>
+                    <h3 className="font-semibold mt-4 mb-2 text-[#cf4526]">Auspicious Timings</h3>
                     <ul className="list-disc list-inside">
                       {section.panchang_details.auspicious_timings.map((item, idx) => (
                         <li key={idx}>
@@ -4965,7 +4966,7 @@ export const TodayPanchangArticle = ({ article=panchangArticles.today_panchang }
                 {/* Inauspicious Timings */}
                 {section.panchang_details.inauspicious_timings && (
                   <div>
-                    <h3 className="font-semibold mt-4 mb-2 text-[#f46434]">Inauspicious Timings</h3>
+                    <h3 className="font-semibold mt-4 mb-2 text-[#cf4526]">Inauspicious Timings</h3>
                     <ul className="list-disc list-inside">
                       {section.panchang_details.inauspicious_timings.map((item, idx) => (
                         <li key={idx}>
@@ -4979,7 +4980,7 @@ export const TodayPanchangArticle = ({ article=panchangArticles.today_panchang }
                 {/* Special Yogas */}
                 {section.panchang_details.special_yogs && (
                   <div>
-                    <h3 className="font-semibold mt-4 mb-2 text-[#f46434]">Special Yogas</h3>
+                    <h3 className="font-semibold mt-4 mb-2 text-[#cf4526]">Special Yogas</h3>
                     <ul className="list-disc list-inside">
                       {section.panchang_details.special_yogs.map((yog, idx) => (
                         <li key={idx}>{yog}</li>
@@ -5027,7 +5028,7 @@ export const CompatibilityCalculatorArticle = ({ data=compatibility_calculator.c
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 font-inter text-gray-900">
       {/* Main Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center text-[#f46434]">{h1}</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-[#cf4526]">{h1}</h1>
 
       {/* Intro Quote */}
       {intro_quote && (
@@ -5048,7 +5049,7 @@ export const CompatibilityCalculatorArticle = ({ data=compatibility_calculator.c
         sections.map((section, i) => (
           <section key={i} className="mb-12">
             {/* Section Heading */}
-            <h2 className="text-2xl font-semibold mb-6 text-[#f46434] border-b border-orange-400 pb-1">
+            <h2 className="text-2xl font-semibold mb-6 text-[#cf4526] border-b border-orange-400 pb-1">
               {section.h2}
             </h2>
 
@@ -5104,7 +5105,7 @@ const AstrologyArticle = ({ data }) => {
       {/* Sections */}
       {data.sections.map((section, i) => (
         <section key={i} className="mb-10">
-          <h2 className="text-2xl font-semibold text-[#f46434] border-b pb-1 mb-4">{section.h2}</h2>
+          <h2 className="text-2xl font-semibold text-[#cf4526] border-b pb-1 mb-4">{section.h2}</h2>
 
           {/* If the section has a direct content string */}
           {section.content && (
@@ -5174,9 +5175,41 @@ export const OnlineAstrologyArticle = ({ article= homepageArticles.homepage_arti
   }
 
   return (
-    <article className="max-w-7xl font-kohinoor-latin mx-auto px-4 py-12 font-inter text-gray-900">
+    <article className="max-w-7xl font-kohinoor mx-auto px-1 py-12 font-inter text-gray-900">
       {/* Main Title */}
-      <h2 className="text-4xl text-orange-600 font-bold mb-6 text-center">{article.h1}</h2>
+<div className="text-center mb-6">
+            <div className="flex items-start  justify-center md:gap-[18px] gap-[9px]">
+      
+      {/* Left pattern image */}
+      <Image
+        alt="Heading pattern"
+        src="/hed.png"
+        width={250}
+        height={250}
+        loading="lazy"
+        decoding="async"
+        className="md:w-10 w-[40px] md:h-[40px] h-[30px] -rotate-90"
+        style={{ color: 'transparent' }}
+      />
+      
+      {/* Heading text */}
+            <h2 className="text-3xl lg:text-[36px] text-[#cf4526] font-kohinoor  font-bold mb-6 text-center">{article.h1}</h2>
+
+
+      {/* Right pattern image rotated 180 degrees */}
+      <Image
+        alt="Heading pattern"
+        src="/hed.png"
+        width={250}
+        height={250}
+        loading="lazy"
+        decoding="async"
+        className="md:w-10 w-[40px] md:h-[40px] h-[30px] rotate-90"
+        style={{ color: 'transparent' }}
+      />
+    </div>
+
+      </div>
 
       {/* Intro Quote */}
       {article.intro_quote && (
@@ -5195,7 +5228,7 @@ export const OnlineAstrologyArticle = ({ article= homepageArticles.homepage_arti
       {/* Sections */}
       {article.sections.map((section, idx) => (
         <section key={idx} className="mb-12">
-          <h2 className="text-2xl font-semibold text-[#f46434] border-b-2 border-orange-400 pb-2 mb-6">
+          <h2 className="text-2xl font-semibold text-[#cf4526] border-b-2 border-orange-400 pb-2 mb-6">
             {section.h2}
           </h2>
 
@@ -5283,7 +5316,7 @@ export const AstrologyCalculatorsArticle = ({ data=astrologyArticles.astrology_c
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 font-inter text-gray-900">
       {/* Main Title */}
-      <h2 className="text-4xl font-bold mb-6 text-center text-[#f46434]">{h1}</h2>
+      <h2 className="text-4xl font-bold mb-6 text-center text-[#cf4526]">{h1}</h2>
 
       {/* Intro Quote */}
       {intro_quote && (
@@ -5304,7 +5337,7 @@ export const AstrologyCalculatorsArticle = ({ data=astrologyArticles.astrology_c
         sections.map((section, idx) => (
           <section key={idx} className="mb-12">
             {/* Section Heading */}
-            <h2 className="text-2xl font-semibold mb-6 text-[#f46434] border-b border-orange-400 pb-1">
+            <h2 className="text-2xl font-semibold mb-6 text-[#cf4526] border-b border-orange-400 pb-1">
               {section.h2}
             </h2>
 
