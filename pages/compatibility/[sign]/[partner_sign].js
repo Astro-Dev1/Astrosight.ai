@@ -58,9 +58,26 @@ const ZodiacSign = ({ sign }) => (
   />
 
 );
+export async function getServerSideProps(context) {
+  const { sign, partner_sign } = context.params;
 
-export default function CompatibilityResultsPage() {
-  const router = useRouter();
+  try {
+    const res = await fetch(`https://astrosight.ai/api/compatibility/${sign}/${sign}-${partner_sign}.json`);
+    if (!res.ok) throw new Error('Compatibility data not found');
+    const compatibility = await res.json();
+
+    return {
+      props: { compatibility, sign, partner_sign },
+    };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
+}
+
+export default function CompatibilityResultsPage({ compatibility, sign, partner_sign }){
+    const router = useRouter();
   const { sign, partner_sign } = router.query;
   const [compatibility, setCompatibility] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
