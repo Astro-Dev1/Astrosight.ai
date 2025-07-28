@@ -157,8 +157,9 @@ export default function CompatibilityResultsPage() {
   title={`${pageTitle} Compatibility `}
   description={`Discover ${pageDescription}'s love compatibility with other zodiac signs.  your astrological match, emotional connection, and relationship insights.`}
   keywords={`${capitalizedSign} compatibility, best match for ${capitalizedSign}, ${capitalizedSign} love horoscope, zodiac compatibility ${capitalizedSign}, astrology partner match`}
-  canonical={`https://astrosight.ai/compatibility/${sign}`}
-  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+canonical={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`}
+ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`} // You can expand ogImage for both signs or choose one
+
   ogType="article"
   articleAuthor="AstroSight Team"
   articlePublishedTime={null} // Add if you track publish date
