@@ -225,35 +225,39 @@ export default function Post({ post, relatedPosts }) {
         {/* Note: Google Fonts should be moved to _document.js */}
 
         {/* Structured Data for Article */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": title,
-            "image": [imageUrl],
-            "datePublished": publishDate,
-            "dateModified": post.sys.updatedAt,
-            "author": {
-              "@type": "Organization",
-              "name": "AstroSight",
-              "url": "https://astrosight.ai/about-us"
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "AstroSight",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://astrosight.ai/logo.png"
-              }
-            },
-            "description": metaDescription,
-            "keywords": keywords,
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": fullUrl
-            }
-          })}
-        </script>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title || "",
+      "image": [imageUrl || ""],
+      "datePublished": publishDate || "",
+      "dateModified": post?.sys?.updatedAt || "",
+      "author": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "url": "https://astrosight.ai/about-us",
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://astrosight.ai/log.png",
+        },
+      },
+      "description": metaDescription || "",
+      "keywords": keywords || "",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": fullUrl || "",
+      },
+    }),
+  }}
+></script>
+
 
         {/* Custom typography styles */}
         <style jsx global>{`

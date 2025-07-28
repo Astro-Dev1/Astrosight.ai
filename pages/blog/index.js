@@ -12,6 +12,7 @@ import { Badge } from '@/components/ui/badge';
 import { fetchEntries } from '../../lib/contentful';
 import SEOHead from '../../components/SEOHead';
 import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid } from '../../components/InternalLinksGrid';
+import Head from 'next/head';
 // import { t } from '../../locales/i18n';
 
 const POSTS_PER_PAGE = 8;
@@ -80,13 +81,48 @@ export default function Blog({ posts }) {
         isOpen={sideMenuOpen}
         onClose={() => setSideMenuOpen(false)}
       />
-      <SEOHead
-        title="Astro Answer Blog - Explore Vedic Astrology Articles and Insights"
-        description="Discover insightful Vedic astrology articles, horoscopes, planetary influences, and remedies. Learn how astrology shapes your life journey with expert guidance from Astro Answer."
-        keywords="Vedic astrology, horoscopes, zodiac signs, planetary aspects, astrology remedies, birth charts, Guna Milan, astrology predictions, cosmic insights"
-        canonical="https://astrosight.ai/blog"
-        ogImage="https://astrosight.ai/images/blog-cover.jpg"
-      />
+<SEOHead
+  title="AstroSight Blog - Explore Astrological Wisdom and Insights"
+  description="Discover insightful blogs on Vedic astrology, zodiac signs, planetary influences, and spiritual guidance at AstroSight."
+  keywords="Vedic astrology, astrology blogs, zodiac signs, spiritual insights, horoscope articles"
+  canonical="https://astrosight.ai/blog"
+  ogImage="https://astrosight.ai/images/blog-cover.jpg"
+  ogType="website"
+  articleAuthor="AstroSight Team"
+  articlePublishedTime={null}  // or a date-string if applicable
+  articleModifiedTime={new Date().toISOString()}  // update as needed
+/>
+  <Head>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "AstroSight Blog",
+          "url": "https://astrosight.ai/blog",
+          "description": "Insightful blogs on Vedic astrology, zodiac signs, planetary influences, and spiritual guidance.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "AstroSight",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://astrosight.ai/logo.png"
+            }
+          },
+          "image": "https://astrosight.ai/images/blog-cover.jpg",
+          "inLanguage": "en",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://astrosight.ai/blog"
+          },
+          "datePublished": new Date().toISOString().split('T')[0],
+          "dateModified": new Date().toISOString().split('T')[0]
+        }),
+      }}
+    />
+  </Head>
+
 
       <div className="flex flex-col min-h-screen w-full max-w-7xl mx-auto">
         <main className="flex-1 px-4 mt-16 pb-20">

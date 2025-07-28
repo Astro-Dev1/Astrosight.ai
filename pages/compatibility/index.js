@@ -7,11 +7,13 @@ import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
 import SEOHead from '../../components/SEOHead';
 import { Card, CardContent } from "@/components/ui/card";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../components/InternalLinksGrid';
 import {CompatibilityCalculatorArticle} from '../../components/DailySignArticle';
+import Head from 'next/head';
 // import CustomLinkButton from '../../components/CustomContainer';
 
 const zodiacSigns = [
@@ -97,6 +99,38 @@ export default function CompatibilityPage() {
         isOpen={sideMenuOpen} 
         onClose={() => setSideMenuOpen(false)}
       />
+      <Head>
+  {/* ...other meta and SEOHead... */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Zodiac Love Compatibility Calculator | AstroSight",
+        "headline": "Zodiac Love Compatibility Calculator",
+        "description": "Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more.",
+        "url": "https://astrosight.ai/compatibility",
+        "provider": {
+          "@type": "Organization",
+          "name": "AstroSight",
+          "url": "https://astrosight.ai"
+        },
+        "image": "https://astrosight.ai/compatibility-image.jpg",
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Zodiac Compatibility"
+          }
+        ],
+        "inLanguage": "en",
+        "datePublished": new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0]
+      }),
+    }}
+  />
+</Head>
+
       <div className="min-h-screen pt-14 font-serif max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
 
 

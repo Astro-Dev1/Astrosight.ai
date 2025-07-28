@@ -24,6 +24,56 @@ export default function PanchangaPage() {
         canonical="https://astrosight.ai/panchanga"
         ogImage="https://astrosight.ai/images/panchanga-cover.jpg"
       />
+      
+
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "url": pageUrl,
+              "name": pageTitle,
+              "description": pageDescription,
+              "publisher": {
+                "@type": "Organization",
+                "name": "AstroSight",
+                "url": "https://astrosight.ai",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://astrosight.ai/logo.png"
+                }
+              },
+              "image": "https://astrosight.ai/images/panchanga-cover.jpg",
+              "datePublished": publishedDate,
+              "dateModified": modifiedDate,
+              "inLanguage": "en",
+              "mainEntity": {
+                "@type": "Article",
+                "headline": pageTitle,
+                "description": pageDescription,
+                "image": "https://astrosight.ai/images/panchanga-cover.jpg",
+                "author": {
+                  "@type": "Person",
+                  "name": "AstroSight Team"
+                },
+                "publisher": {
+                  "@type": "Organization",
+                  "name": "AstroSight",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://astrosight.ai/logo.png"
+                  }
+                },
+                "datePublished": publishedDate,
+                "dateModified": modifiedDate,
+                "inLanguage": "en"
+              }
+            }),
+          }}
+        />
+      </Head>
 
       <CustomHeader 
         title="Panchanga"
