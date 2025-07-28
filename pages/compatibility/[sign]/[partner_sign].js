@@ -152,9 +152,21 @@ export default function CompatibilityResultsPage() {
   
   return (
     <>
-    <Head>
-        {/* Google tag (gtag.js) */}
-        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+    
+    <SEOHead
+  title={`${pageTitle} Compatibility `}
+  description={`Discover ${pageDescription}'s love compatibility with other zodiac signs.  your astrological match, emotional connection, and relationship insights.`}
+  keywords={`${capitalizedSign} compatibility, best match for ${capitalizedSign}, ${capitalizedSign} love horoscope, zodiac compatibility ${capitalizedSign}, astrology partner match`}
+  canonical={`https://astrosight.ai/compatibility/${sign}`}
+  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+  ogType="article"
+  articleAuthor="AstroSight Team"
+  articlePublishedTime={null} // Add if you track publish date
+  articleModifiedTime={new Date().toISOString()} // Optional
+/>
+
+     <Head>
+         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -164,28 +176,53 @@ export default function CompatibilityResultsPage() {
           `
         }}></script>
         <link rel="icon" href="/logo.png" />
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <meta name="keywords" content={`${capitalizedSign} ${capitalizedPartnerSign} compatibility, zodiac love match, astrology compatibility, horoscope compatibility`} /> */}
-
-        {/* Open Graph / Facebook */}
-        {/* <meta property="og:type" content="website" />
-        <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} /> */}
-        {/* <meta property="og:url" content={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} /> */}
-        {/* <meta property="og:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} /> */}
-
-        {/* Twitter */}
-        {/* <meta name="twitter:card" content="summary_large_image" /> */}
-        {/* <meta name="twitter:title" content={pageTitle} /> */}
-        {/* <meta name="twitter:description" content={pageDescription} /> */}
-        {/* <meta name="twitter:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} /> */}
-
-        {/* Canonical URL */}
-        {/* <link rel="canonical" href={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} /> */}
-
-        {/* Structured Data */}
-        <script
+        <title>
+          {`${capitalizedSign} Compatibility | Choose Partner's Zodiac | AstroSight`}
+        
+        </title>
+        <meta
+          name="description"
+          content={`Discover ${capitalizedSign}'s love compatibility with other zodiac signs. Select your partner's sign to reveal your astrological match and relationship insights.`}
+        />
+        <meta
+          name="keywords"
+          content={`${capitalizedSign} compatibility, zodiac love match, astrology relationships, ${capitalizedSign} partner compatibility`}
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content={`${capitalizedSign} Zodiac Compatibility | Choose Partner's Sign`}
+        />
+        <meta
+          property="og:description"
+          content={`Explore ${capitalizedSign}'s romantic compatibility with other zodiac signs. Find your perfect astrological match!`}
+        />
+        <meta
+          property="og:url"
+          content={`https://astrosight.ai/compatibility/${sign}`}
+        />
+        <meta
+          property="og:image"
+          content={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content={`${capitalizedSign} Love Compatibility | AstroSight`}
+        />
+        <meta
+          name="twitter:description"
+          content={`Discover how ${capitalizedSign} matches with other zodiac signs in love and relationships. Choose your partner's sign now!`}
+        />
+        <meta
+          name="twitter:image"
+          content={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+        />
+        <link
+          rel="canonical"
+          href={`https://astrosight.ai/compatibility/${sign}`}
+        />
+       <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
     __html: JSON.stringify({
@@ -212,20 +249,7 @@ export default function CompatibilityResultsPage() {
   }}
 />
 
-      </Head>
-    <SEOHead
-  title={`${pageTitle} Compatibility `}
-  description={`Discover ${pageDescription}'s love compatibility with other zodiac signs.  your astrological match, emotional connection, and relationship insights.`}
-  keywords={`${capitalizedSign} compatibility, best match for ${capitalizedSign}, ${capitalizedSign} love horoscope, zodiac compatibility ${capitalizedSign}, astrology partner match`}
-  canonical={`https://astrosight.ai/compatibility/${sign}`}
-  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
-  ogType="article"
-  articleAuthor="AstroSight Team"
-  articlePublishedTime={null} // Add if you track publish date
-  articleModifiedTime={new Date().toISOString()} // Optional
-/>
-
-      
+      </Head> 
 
       <div className="min-h-screen font-serif bg-[#FFF5E6] max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <CustomHeader title={`${capitalizedSign} & ${capitalizedPartnerSign}`} showBackButton={true} />
