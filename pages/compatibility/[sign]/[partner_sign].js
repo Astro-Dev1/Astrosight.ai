@@ -154,7 +154,7 @@ export default function CompatibilityResultsPage() {
     <>
     <Head>
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
         <script dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
@@ -166,23 +166,23 @@ export default function CompatibilityResultsPage() {
         <link rel="icon" href="/logo.png" />
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta name="keywords" content={`${capitalizedSign} ${capitalizedPartnerSign} compatibility, zodiac love match, astrology compatibility, horoscope compatibility`} />
+        <meta name="keywords" content={`${capitalizedSign} ${capitalizedPartnerSign} compatibility, zodiac love match, astrology compatibility, horoscope compatibility`} /> */}
 
         {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
+        {/* <meta property="og:type" content="website" />
         <meta property="og:title" content={pageTitle} />
-        <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} />
-        <meta property="og:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} />
+        <meta property="og:description" content={pageDescription} /> */}
+        {/* <meta property="og:url" content={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} /> */}
+        {/* <meta property="og:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} /> */}
 
         {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:description" content={pageDescription} />
-        <meta name="twitter:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} />
+        {/* <meta name="twitter:card" content="summary_large_image" /> */}
+        {/* <meta name="twitter:title" content={pageTitle} /> */}
+        {/* <meta name="twitter:description" content={pageDescription} /> */}
+        {/* <meta name="twitter:image" content={`https://astrosight.ai/compatibility-${sign}-${partner_sign}.jpg`} /> */}
 
         {/* Canonical URL */}
-        <link rel="canonical" href={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} />
+        {/* <link rel="canonical" href={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} /> */}
 
         {/* Structured Data */}
         <script
