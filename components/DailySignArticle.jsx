@@ -5094,7 +5094,7 @@ const AstrologyArticle = ({ data }) => {
   return (
     <article className="max-w-3xl mx-auto px-4 py-10 font-inter text-black">
       {/* Page Title */}
-      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">{data.h1}</h1>
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">{data.h1}</h2>
 
       {/* Intro Paragraph */}
       {data.intro && (
@@ -5176,7 +5176,7 @@ export const OnlineAstrologyArticle = ({ article= homepageArticles.homepage_arti
   return (
     <article className="max-w-7xl font-kohinoor-latin mx-auto px-4 py-12 font-inter text-gray-900">
       {/* Main Title */}
-      <h1 className="text-4xl text-orange-600 font-bold mb-6 text-center">{article.h1}</h1>
+      <h2 className="text-4xl text-orange-600 font-bold mb-6 text-center">{article.h1}</h2>
 
       {/* Intro Quote */}
       {article.intro_quote && (
@@ -5231,7 +5231,7 @@ export const TodayHoroscopeArticle = () => {
   return (
     <article className="max-w-4xl mx-auto px-4 py-10 font-inter text-gray-800">
       {/* Slug-based H1 */}
-      <h1 className="text-3xl font-bold mb-4 text-center">{article.h1}</h1>
+      <h2 className="text-3xl font-bold mb-4 text-center">{article.h1}</h2>
 
       {/* Intro Quote */}
       <blockquote className="italic text-lg text-gray-700 mb-6">{article.intro_quote}</blockquote>
@@ -5283,7 +5283,7 @@ export const AstrologyCalculatorsArticle = ({ data=astrologyArticles.astrology_c
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 font-inter text-gray-900">
       {/* Main Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center text-[#f46434]">{h1}</h1>
+      <h2 className="text-4xl font-bold mb-6 text-center text-[#f46434]">{h1}</h2>
 
       {/* Intro Quote */}
       {intro_quote && (

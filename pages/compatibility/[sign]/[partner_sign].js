@@ -9,7 +9,7 @@ import SEOHead from '../../../components/SEOHead';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import Head from 'next/head';
+// import Head from 'next/head';
 import { InternalLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, HoroscopeBySignNavigation, RecentBlogLinks } from '../../../components/InternalLinksGrid';
 
 // import Image from 'next/image';
@@ -164,7 +164,7 @@ export default function CompatibilityResultsPage() {
   articlePublishedTime={null} // Add if you track publish date
   articleModifiedTime={new Date().toISOString()} // Optional
 />
-
+{/* 
      <Head>
          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
         <script dangerouslySetInnerHTML={{
@@ -249,7 +249,7 @@ export default function CompatibilityResultsPage() {
   }}
 />
 
-      </Head> 
+      </Head>  */}
 
       <div className="min-h-screen font-serif bg-[#FFF5E6] max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <CustomHeader title={`${capitalizedSign} & ${capitalizedPartnerSign}`} showBackButton={true} />
