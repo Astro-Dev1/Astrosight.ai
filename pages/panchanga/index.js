@@ -7,6 +7,8 @@ import Panchanga from '../../components/panchanga';
 import { useState } from 'react';
 import SEOHead from '../../components/SEOHead';
 import {TodayPanchangArticle} from '../../components/DailySignArticle';
+import Head from 'next/head';
+
 // import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 // import Image from 'next/image';
 // import Link from 'next/link';
