@@ -304,7 +304,7 @@ const HoroscopePeriodPage = () => {
   title={`${capitalizedSign} ${currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight`}
   description={`Discover ${capitalizedSign}'s ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`}
   keywords={`${capitalizedSign} ${currentPeriod} horoscope, zodiac ${currentPeriod} predictions, astrology ${currentPeriod} insights`}
-  canonical={`https://astrosight.ai/horoscope/${currentPeriod !== 'Today' ? '/' + currentPeriod : ''}`}
+  canonical={`https://astrosight.ai//horoscope/today-horoscope/${sign}`}
   ogImage={`https://astrosight.ai/zodiacImages/${sign?.charAt(0).toUpperCase() + sign.slice(1)}.png`}
   ogType="article"
   articleAuthor="AstroSight Team"
@@ -312,9 +312,43 @@ const HoroscopePeriodPage = () => {
   articleModifiedTime={new Date().toISOString()} // Optional
 />
       <Head>
+        
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
         <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'Today' ? '/' + currentPeriod : ''}`} />
+      <Head>
+  {/* ...other meta, SEOHead etc... */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": `${capitalizedSign} ${currentPeriod} Horoscope | AstroSight`,
+        "headline": `${capitalizedSign} ${currentPeriod} Horoscope`,
+        "description": `Discover ${capitalizedSign}'s ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`,
+        "url": `https://astrosight.ai/horoscope/today-horoscope/${sign}`,
+        "provider": {
+          "@type": "Organization",
+          "name": "AstroSight",
+          "url": "https://astrosight.ai"
+        },
+        // Optional:
+        "image": `https://astrosight.ai/zodiacImages/${capitalizedSign}.png`,
+        "datePublished": new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0],
+        "about": [
+          {
+            "@type": "Thing",
+            "name": capitalizedSign
+          }
+        ],
+        "inLanguage": language || "en"
+      }),
+    }}
+  />
+</Head>
+
       </Head>
 
       {error && (

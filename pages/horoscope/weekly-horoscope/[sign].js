@@ -315,6 +315,38 @@ const HoroscopePeriodPage = () => {
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
         <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'weekly' ? '/' + currentPeriod : ''}`} />
+        <Head>
+  {/* ...any other meta or SEO tags... */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": `${capitalizedSign} Weekly Horoscope | AstroSight`,
+        "headline": `${capitalizedSign} Weekly Horoscope`,
+        "description": `Discover ${capitalizedSign}'s weekly horoscope. Get predictions for love, career, health, and more at AstroSight.`,
+        "url": `https://astrosight.ai/horoscope/weekly-horoscope/${sign}`,
+        "provider": {
+          "@type": "Organization",
+          "name": "AstroSight",
+          "url": "https://astrosight.ai"
+        },
+        "image": `https://astrosight.ai/zodiacImages/${signKey}.png`,
+        "datePublished": new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0],
+        "about": [
+          {
+            "@type": "Thing",
+            "name": capitalizedSign
+          }
+        ],
+        "inLanguage": language || "en",
+      }),
+    }}
+  />
+</Head>
+
       </Head>
 
       {error && (

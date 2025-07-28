@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { Badge } from "@/components/ui/badge";
 // import { Button } from "@/components/ui/button";
 // import { Input } from "@/components/ui/input";
@@ -20,6 +21,7 @@ import {MonthlyHoroscopeFull} from '../../../components/DailySignArticle';
 import enTranslations from '../../../locales/en.json';
 import hiTranslations from '../../../locales/hi.json';
 import knTranslations from '../../../locales/kn.json';
+import SEOHead from "../../../components/SEOHead";
 
 const translations = {
   en: enTranslations,
@@ -298,10 +300,53 @@ const HoroscopePeriodPage = () => {
   // ];
   return (
     <>
+        <SEOHead
+      title={`${capitalizedSign} ${currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight`}
+      description={`Discover ${capitalizedSign}'s ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`}
+      keywords={`${capitalizedSign} ${currentPeriod} horoscope, zodiac ${currentPeriod} predictions, astrology ${currentPeriod} insights`}
+      canonical={`https://astrosight.ai//horoscope/monthly-horoscope/${sign}`}
+      ogImage={`https://astrosight.ai/zodiacImages/${sign?.charAt(0).toUpperCase() + sign.slice(1)}.png`}
+      ogType="article"
+      articleAuthor="AstroSight Team"
+      articlePublishedTime={null} // Add if you track publish date
+      articleModifiedTime={new Date().toISOString()} // Optional
+    />
       <Head>
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
         <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'daily' ? '/' + currentPeriod : ''}`} />
+        <Head>
+  {/* ...existing meta/SEO tags... */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": `${capitalizedSign} Monthly Horoscope | AstroSight`,
+        "headline": `${capitalizedSign} Monthly Horoscope`,
+        "description": `Discover ${capitalizedSign}'s monthly horoscope. Get predictions for love, career, health, and more at AstroSight.`,
+        "url": `https://astrosight.ai/horoscope/monthly-horoscope/${sign}`,
+        "provider": {
+          "@type": "Organization",
+          "name": "AstroSight",
+          "url": "https://astrosight.ai"
+        },
+        "image": `https://astrosight.ai/zodiacImages/${capitalizedSign}.png`,
+        "datePublished": new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0],
+        "about": [
+          {
+            "@type": "Thing",
+            "name": capitalizedSign
+          }
+        ],
+        "inLanguage": language || "en"
+      }),
+    }}
+  />
+</Head>
+
       </Head>
 
       {error && (
