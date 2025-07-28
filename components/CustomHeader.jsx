@@ -157,7 +157,7 @@ const CustomHeader = ({
               </button>
             ) : (
               <button
-                onClick={handleProfilePress}
+                // onClick={handleProfilePress}
                 className="bg-orange-500 hover:bg-orange-600 text-white font-medium px-4 py-1.5 rounded-lg transition-colors text-sm"
               >
                 Login
