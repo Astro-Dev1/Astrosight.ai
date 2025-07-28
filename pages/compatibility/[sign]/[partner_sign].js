@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import CustomHeader from '../../../components/CustomHeader';
 import Footer from '../../../components/Footer';
-import SEOHead from '../../../components/SEOHead';
+// import SEOHead from '../../../components/SEOHead';
 // import { RefreshCw } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-// import Head from 'next/head';
+import Head from 'next/head';
 import { InternalLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, HoroscopeBySignNavigation, RecentBlogLinks } from '../../../components/InternalLinksGrid';
 
 // import Image from 'next/image';
@@ -153,7 +153,7 @@ export default function CompatibilityResultsPage() {
   return (
     <>
     
-    <SEOHead
+    {/* <SEOHead
   title={`${pageTitle} Compatibility `}
   description={`Discover ${pageDescription}'s love compatibility with other zodiac signs.  your astrological match, emotional connection, and relationship insights.`}
   keywords={`${capitalizedSign} compatibility, best match for ${capitalizedSign}, ${capitalizedSign} love horoscope, zodiac compatibility ${capitalizedSign}, astrology partner match`}
@@ -163,8 +163,8 @@ export default function CompatibilityResultsPage() {
   articleAuthor="AstroSight Team"
   articlePublishedTime={null} // Add if you track publish date
   articleModifiedTime={new Date().toISOString()} // Optional
-/>
-{/* 
+/> */}
+
      <Head>
          <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
         <script dangerouslySetInnerHTML={{
@@ -249,7 +249,7 @@ export default function CompatibilityResultsPage() {
   }}
 />
 
-      </Head>  */}
+      </Head> 
 
       <div className="min-h-screen font-serif bg-[#FFF5E6] max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <CustomHeader title={`${capitalizedSign} & ${capitalizedPartnerSign}`} showBackButton={true} />
