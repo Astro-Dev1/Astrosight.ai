@@ -315,8 +315,7 @@ const HoroscopePeriodPage = () => {
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
         <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'weekly' ? '/' + currentPeriod : ''}`} />
-        <Head>
-  {/* ...any other meta or SEO tags... */}
+        
   <script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
@@ -347,7 +346,7 @@ const HoroscopePeriodPage = () => {
   />
 </Head>
 
-      </Head>
+      
 
       {error && (
         <div className="fixed top-20 left-4 right-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded z-50">
