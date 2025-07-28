@@ -55,7 +55,7 @@ const PeriodSelector = ({ currentPeriod = 'daily', sign }) => {
   const router = useRouter();
   
   const periods = [
-    { id: 'daily', name: 'Today', icon: '📅', path: `/horoscope/today-horoscope/${sign}` },
+    { id: 'today', name: 'Today', icon: '📅', path: `/horoscope/today-horoscope/${sign}` },
     { id: 'weekly', name: 'Weekly', icon: '📊', path: `/horoscope/weekly-horoscope/${sign}` },
     { id: 'monthly', name: 'Monthly', icon: '🗓️', path: `/horoscope/monthly-horoscope/${sign}` },
     { id: 'yearly', name: 'Yearly', icon: '🔮', path: `/horoscope/yearly-horoscope/${sign}` },
@@ -105,13 +105,12 @@ const ProgressBar = ({ label, value, color = "bg-[#FF9933]" }) => {
   );
 };
 const  fetchZodiacOverview=(async (sign, period = "daily", language = "en") =>{
-  console.log(`Fetching ${period} overview for ${sign} in ${language}`);
   const capitalizedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
   const today = new Date();
   const formattedDate = today.toISOString().split('T')[0];
 
   const response = await getDailyHoroscope({
-    type: "daily",
+    type: period,
     lang: language === 'hi' ? 'hn' : language,
     sign: capitalizedSign,
     date: formattedDate
@@ -143,7 +142,7 @@ const HoroscopePeriodPage = () => {
 
   const capitalizedSign = sign ? sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase() : "";
   const signKey = sign?.toLowerCase();
-  const currentPeriod =  'Today';
+  const currentPeriod =  'today';
 
   // Translation function
   const t = (key, defaultValue = key) => {
@@ -185,7 +184,7 @@ const HoroscopePeriodPage = () => {
         try {
           const overview = await fetchZodiacOverview(sign, "daily", language);
           results.push([sign, overview || "Unavailable"]);
-        } catch {
+        } catch { 
           results.push([sign, "Unavailable"]);
         }
       }
@@ -316,9 +315,10 @@ const HoroscopePeriodPage = () => {
         <title>{capitalizedSign} {currentPeriod.charAt(0).toUpperCase() + currentPeriod.slice(1)} Horoscope | AstroSight</title>
         <meta name="description" content={`Discover your ${capitalizedSign} ${currentPeriod} horoscope. Get predictions for love, career, health, and more at AstroSight.`} />
         <link rel="canonical" href={`https://astrosight.ai/horoscope/${sign}${currentPeriod !== 'Today' ? '/' + currentPeriod : ''}`} />
-      <Head>
+      
   {/* ...other meta, SEOHead etc... */}
-  <script
+  
+<script
     type="application/ld+json"
     dangerouslySetInnerHTML={{
       __html: JSON.stringify({
@@ -347,7 +347,6 @@ const HoroscopePeriodPage = () => {
       }),
     }}
   />
-</Head>
 
       </Head>
 
