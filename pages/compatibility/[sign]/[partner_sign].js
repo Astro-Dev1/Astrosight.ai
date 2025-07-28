@@ -166,62 +166,7 @@ export default function CompatibilityResultsPage() {
 />
 
      <Head>
-         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17273163672');
-          `
-        }}></script>
-        <link rel="icon" href="/logo.png" />
-        <title>
-          {`${capitalizedSign} Compatibility | Choose Partner's Zodiac | AstroSight`}
         
-        </title>
-        <meta
-          name="description"
-          content={`Discover ${capitalizedSign}'s love compatibility with other zodiac signs. Select your partner's sign to reveal your astrological match and relationship insights.`}
-        />
-        <meta
-          name="keywords"
-          content={`${capitalizedSign} compatibility, zodiac love match, astrology relationships, ${capitalizedSign} partner compatibility`}
-        />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:title"
-          content={`${capitalizedSign} Zodiac Compatibility | Choose Partner's Sign`}
-        />
-        <meta
-          property="og:description"
-          content={`Explore ${capitalizedSign}'s romantic compatibility with other zodiac signs. Find your perfect astrological match!`}
-        />
-        <meta
-          property="og:url"
-          content={`https://astrosight.ai/compatibility/${sign}`}
-        />
-        <meta
-          property="og:image"
-          content={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content={`${capitalizedSign} Love Compatibility | AstroSight`}
-        />
-        <meta
-          name="twitter:description"
-          content={`Discover how ${capitalizedSign} matches with other zodiac signs in love and relationships. Choose your partner's sign now!`}
-        />
-        <meta
-          name="twitter:image"
-          content={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
-        />
-        <link
-          rel="canonical"
-          href={`https://astrosight.ai/compatibility/${sign}`}
-        />
        <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
