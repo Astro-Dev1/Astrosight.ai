@@ -197,35 +197,33 @@ export default function CompatibilityResultsPage() {
         <link rel="canonical" href={`https://astrosight.ai/compatibility/${sign}/${partner_sign}`} />
 
         {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": pageTitle,
-            "description": pageDescription,
-            "url": `https://astrosight.ai/compatibility/${sign}/${partner_sign}`,
-            "mainEntity": {
-              "@type": "Article",
-              "name": `${capitalizedSign} and ${capitalizedPartnerSign} Zodiac Compatibility`,
-              "author": {
-                "@type": "Organization",
-                "name": "AstroSight"
-              },
-              "datePublished": new Date().toISOString().split('T')[0],
-              "dateModified": new Date().toISOString().split('T')[0],
-              "about": [
-                {
-                  "@type": "Thing",
-                  "name": capitalizedSign
-                },
-                {
-                  "@type": "Thing",
-                  "name": capitalizedPartnerSign
-                }
-              ]
-            }
-          })}
-        </script>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": pageTitle,
+      "description": pageDescription,
+      "url": `https://astrosight.ai/compatibility/${sign}/${partner_sign}`,
+      "mainEntity": {
+        "@type": "Article",
+        "name": `${capitalizedSign} and ${capitalizedPartnerSign} Zodiac Compatibility`,
+        "author": {
+          "@type": "Organization",
+          "name": "AstroSight"
+        },
+        "datePublished": new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0],
+        "about": [
+          { "@type": "Thing", "name": capitalizedSign },
+          { "@type": "Thing", "name": capitalizedPartnerSign }
+        ]
+      }
+    }),
+  }}
+/>
+
       </Head>
 
       <div className="min-h-screen font-serif bg-[#FFF5E6] max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

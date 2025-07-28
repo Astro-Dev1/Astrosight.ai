@@ -29,53 +29,54 @@ export default function PanchangaPage() {
       
 
       <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebPage",
-              "url": pageUrl,
-              "name": pageTitle,
-              "description": pageDescription,
-              "publisher": {
-                "@type": "Organization",
-                "name": "AstroSight",
-                "url": "https://astrosight.ai",
-                "logo": {
-                  "@type": "ImageObject",
-                  "url": "https://astrosight.ai/logo.png"
-                }
-              },
-              "image": "https://astrosight.ai/images/panchanga-cover.jpg",
-              "datePublished": publishedDate,
-              "dateModified": modifiedDate,
-              "inLanguage": "en",
-              "mainEntity": {
-                "@type": "Article",
-                "headline": pageTitle,
-                "description": pageDescription,
-                "image": "https://astrosight.ai/images/panchanga-cover.jpg",
-                "author": {
-                  "@type": "Person",
-                  "name": "AstroSight Team"
-                },
-                "publisher": {
-                  "@type": "Organization",
-                  "name": "AstroSight",
-                  "logo": {
-                    "@type": "ImageObject",
-                    "url": "https://astrosight.ai/logo.png"
-                  }
-                },
-                "datePublished": publishedDate,
-                "dateModified": modifiedDate,
-                "inLanguage": "en"
-              }
-            }),
-          }}
-        />
-      </Head>
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "url": "https://astrosight.ai/panchanga",
+        "name":  "Daily Panchanga - AstroSight",
+        "description": "Check today's Panchanga – Tithi, Nakshatra, Yoga, and more on AstroSight.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "AstroSight",
+          "url": "https://astrosight.ai",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://astrosight.ai/logo.png"
+          }
+        },
+        "image": "https://astrosight.ai/images/panchanga-cover.jpg",
+       "datePublished": new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0],
+        "inLanguage": "en",
+        "mainEntity": {
+          "@type": "Article",
+          "headline":  "Daily Panchanga - AstroSight",
+          "description":  "Get accurate Panchanga updates – Tithi, Nakshatra, Yoga, Karana, and more.",
+          "image": "https://astrosight.ai/images/panchanga-cover.jpg",
+          "author": {
+            "@type": "Person",
+            "name": "AstroSight Team"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "AstroSight",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://astrosight.ai/logo.png"
+            }
+          },
+          "datePublished": new Date().toISOString().split('T')[0],
+          "dateModified": new Date().toISOString().split('T')[0],
+          "inLanguage": "en"
+        }
+      }),
+    }}
+  />
+</Head>
+
 
       <CustomHeader 
         title="Panchanga"
