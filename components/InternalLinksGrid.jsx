@@ -225,7 +225,7 @@ export const ReportLinksGrid = ({ currentSign }) => {
       </div>
       <div className="mt-4 text-center">
         <Link
-          href="/report"
+          href="/astrology-calculators-articles"
           className="text-[#cf4526] hover:text-orange-800 font-medium"
         >
           View All Calculators →
