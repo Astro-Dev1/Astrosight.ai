@@ -143,10 +143,10 @@ export default function ReportIndex() {
   return (
     <>
       <Head>
-        <title>Astrology Calculators | Free Tools | AstroSight</title>
+        <title>Astrology Calculators Tools| Free Tools | AstroSight</title>
         <meta 
           name="description" 
-          content="Explore our comprehensive collection of free astrology calculators including birth charts, compatibility, dasha, numerology, and more. Get instant astrological insights." 
+          content=" Astrology Calculators Tools Explore our comprehensive collection of free astrology calculators including birth charts, compatibility, dasha, numerology, and more. Get instant astrological insights." 
         />
         <meta 
           name="keywords" 
@@ -165,7 +165,7 @@ export default function ReportIndex() {
       <Header />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-orange-300 to-orange-500 text-white py-16">
+        <div className="bg-gradient-to-r from-orange-300  text-white py-16">
           <div className="max-w-6xl mx-auto px-4 text-center">
             <h1 className="text-4xl mt-3 md:text-5xl font-bold mb-6">
               AstroSight Calculators & Tools
