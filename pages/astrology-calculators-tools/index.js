@@ -37,14 +37,7 @@ const calculators = [
     color: 'green',
     available: false
   },
-  {
-    slug: 'kundali-matching',
-    title: 'Kundali Matching',
-    description: 'Traditional marriage compatibility analysis',
-    icon: '💍',
-    color: 'red',
-    available: false
-  },
+
     {
     slug: 'sun-sign-calculator',
     title: 'Sun Sign Calculator',
