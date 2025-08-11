@@ -34,6 +34,7 @@ export const InternalLinksGrid = ({ sign="aries" }) => {
 };
 
 export const HoroscopeNavigation = ({ sign }) => {
+  console.log(sign)
   const types = ["today", "weekly", "monthly","yearly"];
   return (
     <div className="w-full bg-white shadow  rounded-lg mt-8">
