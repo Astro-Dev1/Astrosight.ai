@@ -199,10 +199,8 @@ export default function Blog({ posts }) {
                 <AvatarImage src={post.fields.author} alt={post.fields.author.name} />
                 <AvatarFallback>{post.fields.author.name[0]}</AvatarFallback>
               </Avatar>
-              <Link href={`/blog/${encodeURIComponent(post.fields.author.name)}`} className="text-xs text-gray-700 hover:underline" onClick={e => e.stopPropagation()}>
                 {post.fields.author.name}
 
-              </Link>
             </div>
             <span className="text-xs text-gray-500">{post.fields.publishDate}</span>
           </div>
