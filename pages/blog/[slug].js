@@ -176,6 +176,7 @@ export default function Post({ post, relatedPosts }) {
     primaryKeyword,
     secondaryKeywords,
     slug,
+    author,
     // internalLinks,
     coverImage,
   } = post.fields;
@@ -237,7 +238,7 @@ export default function Post({ post, relatedPosts }) {
       "dateModified": post?.sys?.updatedAt || "",
       "author": {
         "@type": "Organization",
-        "name": "AstroSight",
+        "name": author.fields.name,
         "url": "https://astrosight.ai/about-us",
       },
       "publisher": {
@@ -461,6 +462,42 @@ export default function Post({ post, relatedPosts }) {
                 {documentToReactComponents(conclusion, renderOptions)}
               </div>
             </div>
+                        {/* Author Section */}
+            {author && (
+              <div className="mt-12 items-center juustify-center pt-8 border-t border-gray-200">
+                <div className="flex items-center juustify-center space-x-4">
+                  <div className="flex-shrink-0">
+                    {author.fields.profileImage ? (
+                      <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                        <Image justify center
+                          src={`https:${author.fields.profileImage.fields.file.url}`}
+                          alt={author.fields.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-xl">
+                          {author.fields.name.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-serif text-lg font-semibold text-gray-900 mb-1">
+                      Written by {author.fields.name}
+                    </h3>
+                    {author.fields.bio && (
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {author.fields.bio}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
 {/* Related Posts */}
 <section className="bg-orange-50 py-12 mt-12">
           <div className="container mx-auto px-4">
@@ -642,7 +679,27 @@ try{
   const sanitizeContentfulEntry = (item) => {
     // Process internalLinks if they exist
     const internalLinksToProcess = item.fields.internalLinks || [];
-    
+    // Process author information
+    const sanitizedAuthor = item.fields.author ? {
+      fields: {
+        name: item.fields.author || 'AstroSight Team', // Direct string access
+        bio: item.fields.authorProfile?.fields?.bio || '',
+        profileImage: item.fields.authorProfile?.fields?.profileImage ? {
+          fields: {
+            file: {
+              url: item.fields.authorProfile.fields.profileImage.fields.file.url
+            },
+            title: item.fields.authorProfile.fields.profileImage.fields.title || ''
+          }
+        } : null
+      }
+    } : {
+      fields: {
+        name: 'AstroSight Team',
+        bio: 'Expert astrologers and spiritual guides at AstroSight',
+        profileImage: null
+      }
+    };
     // Process internalLinks
     let sanitizedInternalLinks = internalLinksToProcess.map(link => {
       // Handle both direct entries and references
@@ -669,7 +726,10 @@ try{
         primaryKeyword: item.fields.primaryKeyword || '',
         secondaryKeywords: item.fields.secondaryKeywords || [],
         internalLinks: sanitizedInternalLinks,
+                author: sanitizedAuthor, // Add author field
+
         coverImage: item.fields.coverImage
+        
           ? {
             fields: {
               file: {

@@ -196,11 +196,12 @@ export default function Blog({ posts }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <Avatar className="h-6 w-6 mr-2">
-                <AvatarImage src={post.fields.author.avatar} alt={post.fields.author.name} />
+                <AvatarImage src={post.fields.author} alt={post.fields.author.name} />
                 <AvatarFallback>{post.fields.author.name[0]}</AvatarFallback>
               </Avatar>
               <Link href={`/blog/${encodeURIComponent(post.fields.author.name)}`} className="text-xs text-gray-700 hover:underline" onClick={e => e.stopPropagation()}>
                 {post.fields.author.name}
+
               </Link>
             </div>
             <span className="text-xs text-gray-500">{post.fields.publishDate}</span>
@@ -327,9 +328,9 @@ export async function getStaticProps() {
           : new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
         readTime: post.fields.readTime || '5 min',
         author: {
-          name: post.fields.author?.fields?.name || 'Unknown Author',
-          avatar: post.fields.author?.fields?.avatar?.fields?.file?.url
-            ? `https:${post.fields.author.fields.avatar.fields.file.url}`
+          name: post.fields.author|| 'Unknown Author',
+          avatar: post.fields.authorProfile?.fields?.profileImage?.fields?.file?.url
+            ? `https:${post.fields.authorProfile.fields.profileImage.fields.file}`
             : '/images/default-avatar.jpg',
         },
         coverImage: {
