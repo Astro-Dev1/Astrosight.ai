@@ -574,12 +574,13 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params }) {
   // Fetch the main blog post with increased include depth
+try{  
   const { items } = await client.getEntries({
     content_type: 'astroanswerBlog',
     'fields.slug': params.slug,
@@ -692,7 +693,14 @@ export async function getStaticProps({ params }) {
       post: sanitizedPost,
       relatedPosts: sanitizedRelatedPosts,
     },
-    revalidate: 10,
-  };
+    revalidate: 60,
+};
+}
+ catch (error) {
+    console.error('Error fetching blog post:', error);      
+    return {
+      notFound: true,
+    };
+  }
 }
 
