@@ -193,7 +193,6 @@ export const ReportLinksGrid = ({ currentSign }) => {
     { slug: 'love-compatibility-calculator', name: 'Love Compatibility Calculator', available: true },
     { slug: 'dasha-calculator', name: 'Dasha Calculator', available: true },
     { slug: 'kaal-sarp-dosh-calculator', name: 'Kaal Sarp Dosh Calculator', available: true },
-    { slug: 'kundali-matching', name: 'Kundali Matching', available: true },
     { slug: 'sun-sign-calculator', name: 'Sun Sign Calculator', available: true },
     { slug: 'moon-sign-calculator', name: 'Moon Sign Calculator', available: true },
     { slug: 'mangal-dosha-calculator', name: 'Mangal Dosha Calculator', available: true },
