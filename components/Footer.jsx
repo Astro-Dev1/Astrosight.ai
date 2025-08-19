@@ -134,8 +134,8 @@ export default function Footer() {
               </Link>
             </div>
             <div>
-              <Link href="/guidance-report" className="hover:underline font-kohinoor   text-white">
-                Guidance Report
+              <Link href="/refund-and-return-policy" className="hover:underline font-kohinoor   text-white">
+                Refund and Return Policy
               </Link>
             </div>
           </div>
