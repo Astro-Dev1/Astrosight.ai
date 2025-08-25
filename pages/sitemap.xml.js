@@ -133,7 +133,7 @@ export async function getServerSideProps({ res }) {
     getXmlUrl({ url: siteUrl, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/about-us`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/contact`, lastModified: new Date() }),
-    getXmlUrl({ url: `${siteUrl}/astrology-calculators-articles`, lastModified: new Date() }),
+    getXmlUrl({ url: `${siteUrl}/astrology-calculators-tools`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/horoscope/today-horoscope`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/horoscope/weekly-horoscope`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/horoscope/monthly-horoscope`, lastModified: new Date() }),
