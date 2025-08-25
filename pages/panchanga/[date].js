@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
+import Footer from '../../components/Footer';
 
 export default function Panchanga({ data }) {
   const router = useRouter()
@@ -10,10 +12,21 @@ export default function Panchanga({ data }) {
   }
 
   return (
-    <div className="container mx-auto py-12">
+    <div className="container mx-auto py-12 bg-[#FFF2E2] min-h-screen">
       <h1 className="text-4xl font-bold mb-6">Panchanga for {date}</h1>
       {/* Display Panchanga details */}
       <pre>{JSON.stringify(data, null, 2)}</pre>
+      
+      {/* Internal Links Section */}
+      <div className="mt-12 space-y-8">
+        <InternalLinksGrid />
+        <HoroscopeNavigation />
+        <CompatibilityLinksGrid />
+        <ReportLinksGrid />
+        <RecentBlogLinks />
+      </div>
+      
+      <Footer />
     </div>
   )
 }

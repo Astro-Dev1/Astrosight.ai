@@ -1,16 +1,19 @@
 // ../pages/compatibility/index.js
 
-import Head from 'next/head';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
+import SEOHead from '../../components/SEOHead';
 import { Card, CardContent } from "@/components/ui/card";
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-
+import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../../components/InternalLinksGrid';
+import {CompatibilityCalculatorArticle} from '../../components/DailySignArticle';
+import Head from 'next/head';
 // import CustomLinkButton from '../../components/CustomContainer';
 
 const zodiacSigns = [
@@ -63,7 +66,7 @@ export default function CompatibilityPage() {
       "Aries & Virgo",
     ];
   // const blurDataURL = '../../public/'
-  // const [selectedSign, setSelectedSign] = useState(`&lsquo;``&lsquo;`);
+  // const [selectedSign, setSelectedSign] = useState(&lsquo;&lsquo;);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isExpandedcopatibility, setIsExpandedcopatibility] = useState(false);
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
@@ -77,54 +80,13 @@ export default function CompatibilityPage() {
 
   return (
     <>
-      <Head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17273163672');
-          `
-        }}></script>
-        <link rel="icon" href="/logo.png" />
-        <title>Zodiac Love Compatibility Calculator | astrosight</title>
-        <meta name="description" content="Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more." />
-        <meta name="keywords" content="zodiac compatibility, love compatibility, astrology compatibility, horoscope matching, relationship astrology" />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Zodiac Love Compatibility Calculator | astrosight" />
-        <meta property="og:description" content="Explore your zodiac love compatibility and find your perfect astrological match with our free compatibility calculator." />
-        <meta property="og:url" content="https://astrosight.ai/compatibility" />
-        <meta property="og:image" content="https://astrosight.ai/compatibility-image.jpg" />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zodiac Compatibility Calculator | astrosight" />
-        <meta name="twitter:description" content="Discover your astrological compatibility for love, friendship, and more with our free zodiac matching tool." />
-        <meta name="twitter:image" content="https://astrosight.ai/compatibility-image.jpg" />
-
-        {/* Canonical URL */}
-        <link rel="canonical" href="https://astrosight.ai/compatibility" />
-
-        {/* Structured Data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Zodiac Love Compatibility Calculator",
-            "description": "Free astrology compatibility calculator to find your perfect zodiac match.",
-            "url": "https://astrosight.ai/compatibility",
-            "provider": {
-              "@type": "Organization",
-              "name": "astrosight",
-              "url": "https://astrosight.ai"
-            }
-          })}
-        </script>
-      </Head>
+      <SEOHead
+        title="Zodiac Love Compatibility Calculator | AstroSight"
+        description="Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more."
+        keywords="zodiac compatibility, love compatibility, astrology compatibility, horoscope matching, relationship astrology, astrology calculator"
+        canonical="https://astrosight.ai/compatibility"
+        ogImage="https://astrosight.ai/compatibility-image.jpg"
+      />
       
       <CustomHeader 
         title="Compatibility"
@@ -137,30 +99,62 @@ export default function CompatibilityPage() {
         isOpen={sideMenuOpen} 
         onClose={() => setSideMenuOpen(false)}
       />
-      <div className="min-h-screen pt-16 font-serif bg-[#f7f1e8]">
+      <Head>
+  {/* ...other meta and SEOHead... */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Zodiac Love Compatibility Calculator | AstroSight",
+        "headline": "Zodiac Love Compatibility Calculator",
+        "description": "Discover your zodiac love compatibility with our free astrology compatibility calculator. Find out how well you match with other signs for romance, friendship, and more.",
+        "url": "https://astrosight.ai/compatibility",
+        "provider": {
+          "@type": "Organization",
+          "name": "AstroSight",
+          "url": "https://astrosight.ai"
+        },
+        "image": "https://astrosight.ai/compatibility-image.jpg",
+        "about": [
+          {
+            "@type": "Thing",
+            "name": "Zodiac Compatibility"
+          }
+        ],
+        "inLanguage": "en",
+        "datePublished": new Date().toISOString().split('T')[0],
+        "dateModified": new Date().toISOString().split('T')[0]
+      }),
+    }}
+  />
+</Head>
+
+      <div className="min-h-screen pt-14 font-serif max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
 
 
-        <header className="w-full bg-gradient-to-r  rounded-3xl font-serif  from-rose-200 to-white  p-4 text-center mb-4">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-2">Zodiac Love Compatibility Calculator</h1>
-          <h2 className="text-2xl bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-8 text-center">Discover Your Astrological Match</h2>
+        <header className="w-full  rounded-3xl     p-1 mt-3 text-center ">
+          <h1 className="text-3xl font-bold text-black font-kohinoor-devanagari">Zodiac Love Compatibility Calculator</h1>
+          <h2 className="text-2xl text-black    font-kohinoor text-center">Discover Your Astrological Match</h2>
         </header>
 
-        <div className="container mx-auto px-4 py-8 mb-8">
+        <div className="container mx-auto px-0 py-8 ">
           <section className="mb-10 text-justify bg-white bg-opacity-50 backdrop-blur-lg p-8 rounded-lg shadow-md">
-            <p className="text-lg text-gray-900 mb-4">
-              Welcome to astrosight `&lsquo;` s Zodiac Love Compatibility Calculator! Unlock the secrets of your relationships through the wisdom of the stars. Our free compatibility tool helps you explore how well you match with other zodiac signs in love, friendship, and more.
+            <p className="text-lg text-gray-900 mb-2">
+              Welcome to astrosight&lsquo;s Zodiac Love Compatibility Calculator! Unlock the secrets of your relationships through the wisdom of the stars. Our free compatibility tool helps you explore how well you match with other zodiac signs in love, friendship, and more.
             </p>
-            <p className="text-lg text-gray-900 mb-4">
-              Understanding your astrological compatibility can provide valuable insights into your relationships, helping you navigate the complexities of love and friendship. Whether you`&lsquo;`re curious about a potential romance or want to strengthen existing bonds, our compatibility calculator is here to guide you.
+            <p className="text-lg text-gray-900 mb-2">
+              Understanding your astrological compatibility can provide valuable insights into your relationships, helping you navigate the complexities of love and friendship. Whether you&lsquo;re curious about a potential romance or want to strengthen existing bonds, our compatibility calculator is here to guide you.
             </p>
-            <h3 className="text-2xl text-center font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-2">How to Use the Compatibility Calculator:</h3>
-            <ol className="list-decimal list-inside text-gray-900 mb-4">
+            <h3 className="text-2xl text-center font-bold text-black   ">How to Use the Compatibility Calculator:</h3>
+            <ol className="list-decimal list-inside text-gray-900 ">
               <li>Select your zodiac sign from the options below.</li>
-              <li>On the next page, choose your partner`&lsquo;`s or friend`&lsquo;`s zodiac sign.</li>
+              <li>On the next page, choose your partner&lsquo;s or friend&lsquo;s zodiac sign.</li>
               <li>Discover your compatibility score and detailed insights about your relationship dynamics.</li>
             </ol>
-            <p className="text-lg text-gray-900 mb-4">
-              Remember, while astrology can offer guidance, it doesn`&lsquo;`t determine the success of a relationship. Open communication, mutual respect, and understanding are key to any strong connection.
+            <p className="text-lg text-gray-900 ">
+              Remember, while astrology can offer guidance, it doesn&lsquo;t determine the success of a relationship. Open communication, mutual respect, and understanding are key to any strong connection.
             </p>
           </section>
         </div>
@@ -171,28 +165,28 @@ export default function CompatibilityPage() {
                   buttonPath="/panchanga"
                 />
                 </div> */}
-        <div className="mb-8 bg-white rounded-2xl justify-center items-center ">
-          <h2 className="text-2xl mt-5 flex justify-center font-bold  items-center bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent   mb-8">Choose Your Zodiac Sign</h2>
+        <div className=" bg-white rounded-2xl justify-center items-center ">
+          <h2 className="text-2xl  flex justify-center font-bold  items-center text-black   ">Choose Your Zodiac Sign</h2>
 
 
-          <div className="mb-8 bg-gradient-to-r rounded-3xl font-serif from-rose-200 to-white mt-5 justify-center items-center">
+          <div className="mb-8  rounded-3xl  mt-5 justify-center items-center">
             <div className="container  mt-9 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-1">
               {zodiacSigns.map((sign) => (
                 <Card
                   key={sign.name}
-                  className="cursor-pointer hover:shadow-lg  mt-8 mb-5 transition-shadow bg-white bg-opacity-20 backdrop-blur-lg p-2 rounded-lg shadow-md"
+                  className="cursor-pointer hover:shadow-lg    transition-shadow bg-white bg-opacity-20 border-b-8 rounded-3xl border-orange-400 backdrop-blur-lg p  shadow-md"
                   onClick={() => handleSignSelect(sign.name)}
                 >
                   <CardContent className="p-4 flex flex-col items-center">
                     <Image
-                      src={`/${sign.name.toLowerCase()}.jpg`}
+                      src={`/${sign.name}.webp`}
                       alt={`${sign.name} zodiac sign`}
                       width={96}
                       height={96}
-                      className="rounded-full mb-2"
+                      className=" mb-2"
                     />
-                    <h3 className="text-2xl font-semibold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">{sign.name}</h3>
-                    <p className="text-xm bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">{sign.dates}</p>
+                    <h3 className="text-2xl font-semibold text-black  ">{sign.name}</h3>
+                    <p className="text-xm text-black  ">{sign.dates}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -207,7 +201,7 @@ export default function CompatibilityPage() {
           className="flex justify-between items-center cursor-pointer"
           onClick={() => setIsBestExpanded(!isBestExpanded)}
         >
-          <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">Best Compatibility Matches</h2>
+          <h2 className="text-xl font-bold text-black  ">Best Compatibility Matches</h2>
           {isBestExpanded ? (
             <FaChevronUp className="text-gray-900 text-xl" />
           ) : (
@@ -238,7 +232,7 @@ export default function CompatibilityPage() {
           className="flex justify-between items-center cursor-pointer"
           onClick={() => setIsWorstExpanded(!isWorstExpanded)}
         >
-          <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">Worst Compatibility Matches</h2>
+          <h2 className="text-xl font-bold text-black  ">Worst Compatibility Matches</h2>
           {isWorstExpanded ? (
             <FaChevronUp className="text-gray-900 text-xl" />
           ) : (
@@ -266,7 +260,7 @@ export default function CompatibilityPage() {
             className="flex justify-between items-center cursor-pointer"
             onClick={() => setIsExpandedcopatibility(!isExpandedcopatibility)}
           >
-            <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">More Compatibility</h2>
+            <h2 className="text-xl font-bold text-black  ">More Compatibility</h2>
             {isExpandedcopatibility ? (
               <FaChevronUp className="text-gray-900 text-xl" />
             ) : (
@@ -298,7 +292,7 @@ export default function CompatibilityPage() {
             className="flex justify-between items-center cursor-pointer"
             onClick={() => setIsExpanded(!isExpanded)}
           >
-            <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  ">Explore More Horoscopes</h2>
+            <h2 className="text-xl font-bold text-black  ">Explore More Horoscopes</h2>
             {isExpanded ? (
               <FaChevronUp className="text-gray-900 text-xl" />
             ) : (
@@ -323,20 +317,29 @@ export default function CompatibilityPage() {
             </div>
           )}
         </section>
-        <section className="mt-10  p-6 rounded-lg">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent  -900 mb-4 text-center">
-            Get Your Personalized Guidance Report
-          </h2>
-          <p className="text-center mb-4">
-            Discover detailed insights and remedies tailored just for you.
-            <Link href="/guidance-report" className="text-blue-600 underline">
-              Click here to get your personalized report now!
-            </Link>
-          </p>
+        
+<CompatibilityCalculatorArticle/>
+        {/* Internal Link Components */}
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* All Compatibility Combinations */}
+          <CompatibilityLinksGrid />
+          
+          {/* All Horoscope Navigation */}
+          <HoroscopeNavigation />
+          
+          {/* Report Links */}
+          <ReportLinksGrid />
+          
+          {/* Recent Blog Links */}
+          <RecentBlogLinks limit={15} />
         </section>
-        <Footer />
+
+        
 
       </div>
+      <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
     </>
   );
 }

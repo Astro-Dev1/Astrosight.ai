@@ -2,6 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Local Kohinoor Devanagari Fonts */
+@font-face {
+  font-family: 'Kohinoor Devanagari Local';
+  src: url('/kohinoor-devanagari_freefontdownload_org/kohinoor-devanagari.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kohinoor Local';
+  src: url('/kohinoor-font-family-1751929957-0/KohinoorLatin-Book-BF63c76513e60f1.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kohinoor Local';
+  src: url('/kohinoor-font-family-1751929957-0/KohinoorLatin-Medium-BF63c76513dba4c.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kohinoor Local';
+  src: url('/kohinoor-font-family-1751929957-0/KohinoorLatin-Bold-BF63c76513f09da.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Font utility classes */
+.font-kohinoor {
+  font-family: 'Kohinoor Devanagari Local', 'Kohinoor Local', 'Noto Sans Devanagari', Arial, sans-serif;
+}
+
+.font-kohinoor-devanagari {
+  font-family: 'Kohinoor Devanagari Local', 'Noto Sans Devanagari', Arial, sans-serif;
+}
+
+.font-kohinoor-latin {
+  font-family: 'Kohinoor Local', Arial, sans-serif;
+}
+
+/* Add fallback font class for testing */
+.kohinoor-test {
+  font-family: 'Kohinoor Devanagari Local', 'Kohinoor Local', 'Noto Sans Devanagari', Arial, sans-serif !important;
+}
+
 /* Import Devanagari Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kohinoor+Devanagari:wght@300;400;500;600;700&display=swap');
@@ -150,12 +201,12 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+    font-family:  Arial, sans-serif;
   }
   
   /* Apply Devanagari font to common elements */
   h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label {
-    font-family: 'Noto Sans Devanagari', Arial, sans-serif;
+    font-family:  Arial, sans-serif;
   }
 }
 * {

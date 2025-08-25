@@ -1,17 +1,19 @@
 // ../pages/blog/[slug].js
 
-import Head from 'next/head';
 import Script from 'next/script';
 import { client } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
+import SEOHead from '../../components/SEOHead';
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { CalendarIcon, Clock, Tag } from 'lucide-react';
+import Head from 'next/head';
+import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
 
 // Custom rendering options for Contentful rich text - Enhanced for Medium style with better spacing
 const renderOptions = {
@@ -174,6 +176,7 @@ export default function Post({ post, relatedPosts }) {
     primaryKeyword,
     secondaryKeywords,
     slug,
+    author,
     // internalLinks,
     coverImage,
   } = post.fields;
@@ -182,11 +185,20 @@ export default function Post({ post, relatedPosts }) {
   const readingTime = calculateReadingTime([ bodyContent]);
 
   const keywords = [primaryKeyword, ...(secondaryKeywords || [])].join(', ');
-  const fullUrl = `https://astrosight.co/blog/${slug}`;
-  const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.co/default-blog-image.jpg';
+  const fullUrl = `https://astrosight.ai/blog/${slug}`;
+  const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.ai/default-blog-image.jpg';
 
   return (
     <>
+         <SEOHead
+        title={metaTitle}
+        description={metaDescription}
+        keywords={keywords}
+        canonical={`https://astrosight.ai/blog/${slug}`}
+        // ogImage={ogImage}
+        publishDate={publishDate}
+        modifiedDate={post.sys.updatedAt}
+      />
       <Head>
         <link rel="icon" href="/logo.png" />
         <title>{metaTitle}</title>
@@ -209,40 +221,44 @@ export default function Post({ post, relatedPosts }) {
         <meta name="twitter:image" content={imageUrl} />
 
         {/* Canonical URL */}
-        <link rel="canonical" href={fullUrl} />
+        {/* <link rel="canonical" href={fullUrl} /> */}
 
         {/* Note: Google Fonts should be moved to _document.js */}
 
         {/* Structured Data for Article */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": title,
-            "image": [imageUrl],
-            "datePublished": publishDate,
-            "dateModified": post.sys.updatedAt,
-            "author": {
-              "@type": "Organization",
-              "name": "AstroSight",
-              "url": "https://astrosight.co/about-us"
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "AstroSight",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://astrosight.co/logo.png"
-              }
-            },
-            "description": metaDescription,
-            "keywords": keywords,
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": fullUrl
-            }
-          })}
-        </script>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": title || "",
+      "image": [imageUrl || ""],
+      "datePublished": publishDate || "",
+      "dateModified": post?.sys?.updatedAt || "",
+      "author": {
+        "@type": "Organization",
+        "name": author.fields.name,
+        "url": "https://astrosight.ai/about-us",
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://astrosight.ai/log.png",
+        },
+      },
+      "description": metaDescription || "",
+      "keywords": keywords || "",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": fullUrl || "",
+      },
+    }),
+  }}
+></script>
+
 
         {/* Custom typography styles */}
         <style jsx global>{`
@@ -417,6 +433,12 @@ export default function Post({ post, relatedPosts }) {
                     {primaryKeyword}
                   </span>
                 )}
+                {/* Author link */}
+                {post.fields.author && post.fields.author.fields && (
+                  <Link href={`/blog/${encodeURIComponent(post.fields.author.fields.name)}`} className="flex items-center hover:underline">
+                    <span className="ml-2">By {post.fields.author.fields.name}</span>
+                  </Link>
+                )}
               </div>
 
               {/* Divider */}
@@ -440,6 +462,42 @@ export default function Post({ post, relatedPosts }) {
                 {documentToReactComponents(conclusion, renderOptions)}
               </div>
             </div>
+                        {/* Author Section */}
+            {author && (
+              <div className="mt-12 items-center juustify-center pt-8 border-t border-gray-200">
+                <div className="flex items-center juustify-center space-x-4">
+                  <div className="flex-shrink-0">
+                    {author.fields.profileImage ? (
+                      <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                        <Image justify center
+                          src={`https:${author.fields.profileImage.fields.file.url}`}
+                          alt={author.fields.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-xl">
+                          {author.fields.name.charAt(0)}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="font-serif text-lg font-semibold text-gray-900 mb-1">
+                      Written by {author.fields.name}
+                    </h3>
+                    {author.fields.bio && (
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {author.fields.bio}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
 {/* Related Posts */}
 <section className="bg-orange-50 py-12 mt-12">
           <div className="container mx-auto px-4">
@@ -518,9 +576,25 @@ export default function Post({ post, relatedPosts }) {
   </section>
 )}
 
+        {/* Internal Link Components */}
+        <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* All Compatibility Combinations */}
+          <CompatibilityLinksGrid />
+          
+          {/* All Horoscope Navigation */}
+          <HoroscopeNavigation />
+          
+          {/* Report Links */}
+          <ReportLinksGrid />
+          
+          {/* Recent Blog Links */}
+          <RecentBlogLinks limit={20} />
+        </section>
 
         {/* Footer */}
-        <Footer />
+        <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
       </div>
     </>
   );
@@ -537,12 +611,13 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params }) {
   // Fetch the main blog post with increased include depth
+try{  
   const { items } = await client.getEntries({
     content_type: 'astroanswerBlog',
     'fields.slug': params.slug,
@@ -604,7 +679,27 @@ export async function getStaticProps({ params }) {
   const sanitizeContentfulEntry = (item) => {
     // Process internalLinks if they exist
     const internalLinksToProcess = item.fields.internalLinks || [];
-    
+    // Process author information
+    const sanitizedAuthor = item.fields.author ? {
+      fields: {
+        name: item.fields.author || 'AstroSight Team', // Direct string access
+        bio: item.fields.authorProfile?.fields?.bio || '',
+        profileImage: item.fields.authorProfile?.fields?.profileImage ? {
+          fields: {
+            file: {
+              url: item.fields.authorProfile.fields.profileImage.fields.file.url
+            },
+            title: item.fields.authorProfile.fields.profileImage.fields.title || ''
+          }
+        } : null
+      }
+    } : {
+      fields: {
+        name: 'AstroSight Team',
+        bio: 'Expert astrologers and spiritual guides at AstroSight',
+        profileImage: null
+      }
+    };
     // Process internalLinks
     let sanitizedInternalLinks = internalLinksToProcess.map(link => {
       // Handle both direct entries and references
@@ -631,7 +726,10 @@ export async function getStaticProps({ params }) {
         primaryKeyword: item.fields.primaryKeyword || '',
         secondaryKeywords: item.fields.secondaryKeywords || [],
         internalLinks: sanitizedInternalLinks,
+                author: sanitizedAuthor, // Add author field
+
         coverImage: item.fields.coverImage
+        
           ? {
             fields: {
               file: {
@@ -655,7 +753,14 @@ export async function getStaticProps({ params }) {
       post: sanitizedPost,
       relatedPosts: sanitizedRelatedPosts,
     },
-    revalidate: 10,
-  };
+    revalidate: 60,
+};
+}
+ catch (error) {
+    console.error('Error fetching blog post:', error);      
+    return {
+      notFound: true,
+    };
+  }
 }
 

@@ -1,0 +1,6 @@
+# Allow all crawlers, including general web crawlers and AI data crawlers.
+User-agent: *
+Disallow:
+
+# Point crawlers to your sitemap's location.
+Sitemap: https://astrosight.ai/sitemap.xml

@@ -4,12 +4,15 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
+import SEOHead from "../../components/SEOHead";
 import { Card } from "@/components/ui/card";
 // import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import CustomHeader from '../../components/CustomHeader';
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
+import Footer from '../../components/Footer';
 
 const zodiacSigns = [
   { name: "Aries", dates: "Mar 21 - Apr 19", imageUrl: "/zodiacImages/aries.png" },
@@ -134,6 +137,7 @@ export default function PartnerSignPage() {
   };
 
   const calculateCompatibility = async () => {
+    
     setIsCalculating(true);
     setCalculationError(false);
     setCalculationStage("Analyzing signs...");
@@ -157,6 +161,8 @@ export default function PartnerSignPage() {
         setIsCalculating(false);
         if (userSign && partnerSign) {
           try {
+                router.push(`/compatibility/${userSign.name.toLowerCase()}/${partnerSign.name.toLowerCase()}`);
+
             const result = await fetchCompatibilityData(
               userSign.name,
               partnerSign.name,
@@ -186,7 +192,7 @@ export default function PartnerSignPage() {
         }}></script>
         <link rel="icon" href="/logo.png" />
         <title>
-          {`${capitalizedSign} Compatibility | Choose Partner's Zodiac | AstroAnswer`}
+          {`${capitalizedSign} Compatibility | Choose Partner's Zodiac | AstroSight`}
         
         </title>
         <meta
@@ -208,16 +214,16 @@ export default function PartnerSignPage() {
         />
         <meta
           property="og:url"
-          content={`https://astroanswer.co/compatibility/${sign}`}
+          content={`https://astrosight.ai/compatibility/${sign}`}
         />
         <meta
           property="og:image"
-          content={`https://astroanswer.co/zodiacImages/${sign?.toLowerCase()}.png`}
+          content={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"
-          content={`${capitalizedSign} Love Compatibility | AstroAnswer`}
+          content={`${capitalizedSign} Love Compatibility | AstroSight`}
         />
         <meta
           name="twitter:description"
@@ -225,29 +231,52 @@ export default function PartnerSignPage() {
         />
         <meta
           name="twitter:image"
-          content={`https://astroanswer.co/zodiacImages/${sign?.toLowerCase()}.png`}
+          content={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
         />
         <link
           rel="canonical"
-          href={`https://astroanswer.co/compatibility/${sign}`}
+          href={`https://astrosight.ai/compatibility/${sign}`}
         />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": `${capitalizedSign} Zodiac Compatibility Calculator`,
-            "description": `Explore ${capitalizedSign}'s love compatibility with other zodiac signs.`,
-            "url": `https://astroanswer.co/compatibility/${sign}`,
-            "provider": {
-              "@type": "Organization",
-              "name": "AstroAnswer",
-              "url": "https://astroanswer.co",
-            },
-          })}
-        </script>
-      </Head>
+    <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": `${capitalizedSign} Zodiac Compatibility Calculator`,
+      "description": `Explore ${capitalizedSign}s love compatibility with other zodiac signs.`,
+      "url": `https://astrosight.ai/compatibility/${sign}`,
+      "provider": {
+        "@type": "Organization",
+        "name": "AstroSight",
+        "url": "https://astrosight.ai"
+      },
+      "datePublished": new Date().toISOString().split('T')[0],
+      "dateModified": new Date().toISOString().split('T')[0],
+      "about": [
+        {
+          "@type": "Thing",
+          "name": capitalizedSign
+        }
+      ]
+    }),
+  }}
+/>
 
-      <div className="flex flex-col min-h-screen bg-[#FFF2E2] relative pb-16 font-sans">
+      </Head>
+<SEOHead
+  title={`${capitalizedSign} Compatibility | Choose Partner's Zodiac`}
+  description={`Discover ${capitalizedSign}'s love compatibility with other zodiac signs. Select your partner sign to reveal your astrological match, emotional connection, and relationship insights.`}
+  keywords={`${capitalizedSign} compatibility, best match for ${capitalizedSign}, ${capitalizedSign} love horoscope, zodiac compatibility ${capitalizedSign}, astrology partner match`}
+  canonical={`https://astrosight.ai/compatibility/${sign}`}
+  ogImage={`https://astrosight.ai/zodiacImages/${sign?.toLowerCase()}.png`}
+  ogType="article"
+  articleAuthor="AstroSight Team"
+  articlePublishedTime={null} // Add if you track publish date
+  articleModifiedTime={new Date().toISOString()} // Optional
+/>
+
+      <div className="flex flex-col  bg-[#FFF2E2] relative font-kohinoor-latin max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
         {/* Header */}
         <CustomHeader 
           title={`${capitalizedSign} Compatibility`}
@@ -255,7 +284,7 @@ export default function PartnerSignPage() {
         />
 
         {/* Main Content */}
-        <main className="flex-1 pt-20 px-4 pb-20">
+        <main className="flex-1 pt-20 px-4 ">
           <ScrollArea className="h-[calc(100vh-136px)]">
             {/* Banner Image */}
             <div className="w-full h-[120px] bg-gray-200 rounded-xl overflow-hidden mb-6">
@@ -278,11 +307,11 @@ export default function PartnerSignPage() {
                       Your Zodiac Sign
                     </h2>
                     <div
-                      className="relative w-24 h-24 mx-auto mb-2 rounded-full bg-[#FFE5CC] p-3 cursor-pointer"
+                      className="relative w-24 h-24 mx-auto mb-2 rounded-full  p-3 cursor-pointer"
                       onClick={() => setShowZodiacGrid(true)}
                     >
                       <Image
-                        src={`/zodicimg/${userSign.name.toLowerCase()}.png`}
+                        src={`/zodicimg/${capitalizedSign}.webp`}
                         alt={userSign.name}
                         width={96}
                         height={96}
@@ -311,11 +340,11 @@ export default function PartnerSignPage() {
                     {partnerSign ? (
                       <div>
                         <div
-                          className="relative w-24 h-24 mx-auto mb-2 rounded-full bg-[#FFE5CC] p-3 cursor-pointer"
+                          className="relative w-24 h-24 mx-auto mb-2 rounded-full  p-3 cursor-pointer"
                           onClick={() => setShowZodiacGrid(true)}
                         >
                           <Image
-                            src={`/zodicimg/${partnerSign.name.toLowerCase()}.png`}
+                            src={`/zodicimg/${partnerSign.name}.webp`}
                             alt={partnerSign.name}
                             width={96}
                             height={96}
@@ -368,7 +397,7 @@ export default function PartnerSignPage() {
                         >
                           <div className="w-16 h-16 rounded-full overflow-hidden bg-[#FFE5CC] p-2 mb-2">
                             <Image
-                              src={`/zodicimg/${sign.name.toLowerCase()}.png`}
+                              src={`/zodicimg/${sign.name}.webp`}
                               alt={sign.name}
                               width={64}
                               height={64}
@@ -555,7 +584,7 @@ export default function PartnerSignPage() {
 
             {/* Zodiac Sign Information */}
             <Card className="bg-white p-6 rounded-xl shadow-md mb-6">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-4">
+              <h2 className="text-2xl font-bold text-black mb-4">
                 {capitalizedSign} in Love and Relationships
               </h2>
               <p className="text-gray-600 mb-4">{signInfo?.loveStyle}</p>
@@ -574,7 +603,7 @@ export default function PartnerSignPage() {
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setIsBestExpanded(!isBestExpanded)}
               >
-                <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent">
+                <h2 className="text-xl font-bold text-black">
                   Best Compatibility Matches
                 </h2>
                 {isBestExpanded ? (
@@ -606,7 +635,7 @@ export default function PartnerSignPage() {
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setIsWorstExpanded(!isWorstExpanded)}
               >
-                <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent">
+                <h2 className="text-xl font-bold text-black">
                   Worst Compatibility Matches
                 </h2>
                 {isWorstExpanded ? (
@@ -638,7 +667,7 @@ export default function PartnerSignPage() {
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => setIsHoroscopeExpanded(!isHoroscopeExpanded)}
               >
-                <h2 className="text-xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent">
+                <h2 className="text-xl font-bold text-black">
                   Horoscopes of {capitalizedSign}
                 </h2>
                 {isHoroscopeExpanded ? (
@@ -666,7 +695,7 @@ export default function PartnerSignPage() {
 
             {/* Guidance Report Section */}
             <Card className="bg-white p-6 rounded-xl shadow-md mb-8">
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-500 to-rose-500 bg-clip-text text-transparent mb-4 text-center">
+              <h2 className="text-2xl font-bold text-black mb-4 text-center">
                 Get Your Personalized Guidance Report
               </h2>
               <p className="text-center text-gray-600">
@@ -699,10 +728,22 @@ export default function PartnerSignPage() {
               </p>
             </Card>
           </ScrollArea>
+          
+          {/* Internal Links Section */}
+          <div className="mt-12 space-y-8">
+            <InternalLinksGrid sign={sign} />
+            <HoroscopeNavigation />
+            <CompatibilityLinksGrid />
+            <ReportLinksGrid />
+            <RecentBlogLinks />
+          </div>
         </main>
 
         
       </div>
-    </>
+      
+<div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
+            <Footer />
+          </div>    </>
   );
 }

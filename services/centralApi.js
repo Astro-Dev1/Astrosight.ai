@@ -113,6 +113,171 @@ export const fetchHoroscope = async () => {
     headers: { Authorization: `Bearer ${getToken()}` },
   }).then(res => res.json());
 };
+// export const fetchHoroscope = async () => {
+//   try {
+//     const token = getToken();
+//     if (!token) throw new Error('No token found');
+//     const response = await fetch(`${BASE_URL}/horoscope/process`, {
+//       headers: { Authorization: `Bearer  ${getToken()}` },
+//     });
+//     return await response.json();
+//   } catch (error) {
+//     console.error('Fetch horoscope error:', error);
+//     throw error;
+//   }
+// };
+
+export const getDailyHoroscope = async ({ type, lang, sign, date }) => {
+  try {
+    console.log('centralApi.js: getDailyHoroscope called with:', { type, lang, sign, date });
+    const token = getToken();
+    
+    // Ensure proper sign formatting
+    const formattedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
+    
+    const url = `${BASE_URL}/horoscope/dailyHoroscope?type=${type}&lang=${lang}&sign=${formattedSign}&date=${date}`;
+    console.log('centralApi.js: Making request to:', url);
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Optional: Add Authorization if your API is protected
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
+    });
+    
+    console.log('centralApi.js: Response status:', response.status);
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('centralApi.js: API error response:', errorText);
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
+    }
+    
+    const result = await response.json();
+    console.log('centralApi.js: Success response:', result);
+    return result;
+  } catch (error) {
+    console.error('Fetch horoscope error:', error);
+    throw error;
+  }
+};
+
+// Weekly Horoscope
+export const getWeeklyHoroscope = async ({ lang, sign, date }) => {
+  try {
+    console.log('centralApi.js: getWeeklyHoroscope called with:', { lang, sign, date });
+    const token = getToken();
+    
+    const formattedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
+    const url = `${BASE_URL}/horoscope/weeklyHoroscope?lang=${lang}&sign=${formattedSign}&date=${date}`;
+    console.log('centralApi.js: Making request to:', url);
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
+    });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('centralApi.js: Weekly horoscope API error:', errorText);
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
+    }
+    
+    const result = await response.json();
+    console.log('centralApi.js: Weekly horoscope response:', result);
+    return result;
+  } catch (error) {
+    console.error('Fetch weekly horoscope error:', error);
+    throw error;
+  }
+};
+
+// Monthly Horoscope
+export const getMonthlyHoroscope = async ({ lang, sign, date }) => {
+  try {
+    console.log('centralApi.js: getMonthlyHoroscope called with:', { lang, sign, date });
+    const token = getToken();
+    
+    const formattedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
+    const url = `${BASE_URL}/horoscope/monthlyHoroscope?lang=${lang}&sign=${formattedSign}&date=${date}`;
+    console.log('centralApi.js: Making request to:', url);
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
+    });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('centralApi.js: Monthly horoscope API error:', errorText);
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
+    }
+    
+    const result = await response.json();
+    console.log('centralApi.js: Monthly horoscope response:', result);
+    return result;
+  } catch (error) {
+    console.error('Fetch monthly horoscope error:', error);
+    throw error;
+  }
+};
+
+// Yearly Horoscope
+export const getYearlyHoroscope = async ({ lang, sign, date }) => {
+  try {
+    console.log('centralApi.js: getYearlyHoroscope called with:', { lang, sign, date });
+    const token = getToken();
+    
+    const formattedSign = sign.charAt(0).toUpperCase() + sign.slice(1).toLowerCase();
+    const url = `${BASE_URL}/horoscope/yearlyHoroscope?lang=${lang}&sign=${formattedSign}&date=${date}`;
+    console.log('centralApi.js: Making request to:', url);
+    
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
+      },
+    });
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('centralApi.js: Yearly horoscope API error:', errorText);
+      throw new Error(`HTTP ${response.status}: ${errorText}`);
+    }
+    
+    const result = await response.json();
+    console.log('centralApi.js: Yearly horoscope response:', result);
+    return result;
+  } catch (error) {
+    console.error('Fetch yearly horoscope error:', error);
+    throw error;
+  }
+};
+
+// Generic horoscope fetcher that routes to the correct period-specific API
+export const getHoroscopeByPeriod = async ({ period, lang, sign, date }) => {
+  switch (period.toLowerCase()) {
+    case 'daily':
+      return getDailyHoroscope({ type: 'daily', lang, sign, date });
+    case 'weekly':
+      return getWeeklyHoroscope({ lang, sign, date });
+    case 'monthly':
+      return getMonthlyHoroscope({ lang, sign, date });
+    case 'yearly':
+      return getYearlyHoroscope({ lang, sign, date });
+    default:
+      throw new Error(`Unsupported period: ${period}`);
+  }
+};
 
 // ------------------ PANCHANGA ------------------
 export const fetchPanchanga = async (date) => {

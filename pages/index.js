@@ -6,13 +6,16 @@ import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 import BlogsSection from '../components/BlogsSection';
-// import CompanionsSection from '../components/TodaysPanchang';
+import CompanionsSection from '../components/TodaysPanchang';
 import TestimonialsSection from '../components/DailyHoroscope';
 import CustomHeader from '../components/CustomHeader';
 import SideMenu from '../components/SideMenu';
 import Footer from '../components/Footer';
+import SEOHead from '../components/SEOHead';
 import Head from 'next/head';
 import Cookies from "js-cookie";
+import { ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
+import { OnlineAstrologyArticle } from '../components/DailySignArticle';
 
 const HomeMobileScreen = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,6 +30,11 @@ const HomeMobileScreen = () => {
   }, []);
 
   return (<>
+        <SEOHead 
+          title="AstroSight - Expert Vedic Astrology Consultations & Horoscopes"
+          description="Get personalized Vedic astrology readings, accurate horoscopes, and spiritual guidance from experienced astrologers. Discover your life path through ancient astrological wisdom."
+          canonical="https://astrosight.ai"
+        />
         <Head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
@@ -64,8 +72,8 @@ const HomeMobileScreen = () => {
           property="og:description"
           content="Transform your life with expert Vedic astrology consultations. Get accurate readings, personalized guidance, and spiritual solutions."
         />
-        <meta property="og:url" content="https://astrosight.ai.co" />
-        <meta property="og:image" content="https://astrosight.ai.co/images/home-cover.jpg" />
+        <meta property="og:url" content="https://astrosight.ai" />
+        <meta property="og:image" content="https://astrosight.ai/images/home-cover.jpg" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -74,10 +82,10 @@ const HomeMobileScreen = () => {
           name="twitter:description"
           content="Experience transformative Vedic astrology readings with professional consultations and spiritual guidance."
         />
-        <meta name="twitter:image" content="https://astrosight.ai.co/images/home-cover.jpg" />
+        <meta name="twitter:image" content="https://astrosight.ai/images/home-cover.jpg" />
         <meta name="facebook-domain-verification" content="v1wzt5pr5bady8hkk5foyu029cgxpr" />
         {/* Canonical URL */}
-        <link rel="canonical" href="https://astrosight.ai.co" />
+        <link rel="canonical" href="https://astrosight.ai" />
 
         {/* Structured Data for Homepage */}
         <script type="application/ld+json">
@@ -86,19 +94,19 @@ const HomeMobileScreen = () => {
             "@type": "Organization",
             name: "Astro Sight",
             description: "Professional Vedic astrology services and consultations",
-            url: "https://astrosight.ai.co",
+            url: "https://astrosight.ai",
             logo: {
               "@type": "ImageObject",
-              url: "https://astrosight.ai.co/logo.png",
+              url: "https://astrosight.ai/logo.png"
             },
             sameAs: [
               "https://facebook.com/astrosight.ai",
               "https://twitter.com/astrosight.ai",
-              "https://instagram.com/astrosight.ai",
+              "https://instagram.com/astrosight.ai"
             ],
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": "https://astrosight.ai.co",
+              "@id": "https://astrosight.ai"
             },
           })}
         </script>
@@ -132,9 +140,9 @@ const HomeMobileScreen = () => {
       title="AstroSight"
       titleImage="/log.png"
       showBackButton={false}
+      isHomePage={true} 
       showSideMenu={true}
       showWallet={false}
-      showProfile={true}
       onSideMenuPress={() => setIsSideMenuOpen(true)}
     />
     
@@ -143,7 +151,7 @@ const HomeMobileScreen = () => {
       onClose={() => setIsSideMenuOpen(false)}
     />
     
-    <div className=" bg-orange-50 font-poppins min-h-screen pt-16"> {/* Added pt-16 for header spacing */}
+    <div className=" bg font-poppins min-h-screen pt-16"> {/* Added pt-16 for header spacing */}
  
         <section className="bg-white w-full pt-7 animate-pulse">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
@@ -151,23 +159,44 @@ const HomeMobileScreen = () => {
           </div>
         </section>
 
-        <section className="bg-[#FFF2E2] w-full animate-pulse relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <section className="bg-white w-full animate-pulse relative z-10">
+          <div className="max-w-7xl mx-auto justify-center  sm:px-6 lg:px-8 py-3">
             <ServicesSection />
           </div>
         </section>
 
         <section className="bg-white animate-pulse w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="max-w-7xl mx-auto  sm:px-6 lg:px-8 py-10">
             <BlogsSection />
           </div>
         </section> 
-
-        {/* <section className="animate-pulse w-full">
+      <section className="animate-pulse w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <CompanionsSection />
           </div>
-        </section> */}
+        </section>
+              <section className="animate-pulse w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+
+        <OnlineAstrologyArticle/>
+        </div>
+        </section>
+        {/* Internal Link Components */}
+        <section className=" w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            {/* All Compatibility Combinations */}
+            <CompatibilityLinksGrid />
+            
+            {/* All Horoscope Navigation */}
+            <HoroscopeNavigation />
+            
+            {/* Recent Blog Links */}
+            <RecentBlogLinks limit={20} />
+            <ReportLinksGrid/>
+          </div>
+        </section> 
+
+  
 
         {isLoggedIn && (
           <section className="bg-white animate-pulse w-full">
@@ -177,7 +206,7 @@ const HomeMobileScreen = () => {
           </section>
         )}
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-[#f46434]  mx-auto px-4 sm:px-6 lg:px-8">
             <Footer />
           </div>
         

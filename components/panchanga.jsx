@@ -25,7 +25,7 @@ export default function Panchanga() {
     console.log(isLoaded)
   const fetchPanchangaData = async (timezone,latitude,longitude) => {
     try {
-      const response = await fetch(' https://am8c7vna0d.execute-api.ap-south-1.amazonaws.com/prod/panchanga', {
+      const response = await fetch(' https://api.astrosight.co/panchanga/panchanga', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

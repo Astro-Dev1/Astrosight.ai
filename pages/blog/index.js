@@ -1,15 +1,18 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
+import Footer from '../../components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { fetchEntries } from '../../lib/contentful';
+import SEOHead from '../../components/SEOHead';
+import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid } from '../../components/InternalLinksGrid';
+import Head from 'next/head';
 // import { t } from '../../locales/i18n';
 
 const POSTS_PER_PAGE = 8;
@@ -78,69 +81,53 @@ export default function Blog({ posts }) {
         isOpen={sideMenuOpen}
         onClose={() => setSideMenuOpen(false)}
       />
-      <Head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17273163672"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17273163672');
-          `
-        }}></script>
-        <link rel="icon" href="/logo.png" />
-        <title>Astro Answer Blog - Explore Vedic Astrology Articles and Insights</title>
-        <meta name="description" content="Discover insightful Vedic astrology articles, horoscopes, planetary influences, and remedies. Learn how astrology shapes your life journey with expert guidance from Astro Answer." />
-        <meta name="keywords" content="Vedic astrology, horoscopes, zodiac signs, planetary aspects, astrology remedies, birth charts, Guna Milan, astrology predictions, cosmic insights" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Astro Answer Blog - Vedic Astrology Insights and Horoscopes" />
-        <meta property="og:description" content="Explore expert articles on Vedic astrology, horoscopes, planetary influences, and life-changing astrological remedies at Astro Answer." />
-        <meta property="og:url" content="https://astrosight.co/blog" />
-        <meta property="og:image" content="https://astrosight.co/images/blog-cover.jpg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Astro Answer Blog - Vedic Astrology Wisdom" />
-        <meta name="twitter:description" content="Dive into Vedic astrology articles, horoscopes, and cosmic insights. Discover how celestial bodies influence your life path." />
-        <meta name="twitter:image" content="https://astrosight.co/images/blog-cover.jpg" />
-        <link rel="canonical" href="https://astrosight.co/blog" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            "name": "Astro Answer Blog",
-            "description": "Expert Vedic astrology articles, horoscopes, and astrological remedies.",
-            "url": "https://astrosight.co/blog",
-            "publisher": {
-              "@type": "Organization",
-              "name": "Astro Answer",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://astrosight.co/logo.png"
-              }
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": "https://astrosight.co/blog"
-            },
-            "blogPost": currentPosts.map(post => ({
-              "@type": "BlogPosting",
-              "headline": post.fields.title,
-              "description": post.fields.description,
-              "datePublished": post.fields.publishDate,
-              "image": post.fields.coverImage ? post.fields.coverImage.fields.file.url : undefined,
-              "author": {
-                "@type": "Person",
-                "name": post.fields.author.name
-              }
-            }))
-          })}
-        </script>
-      </Head>
+<SEOHead
+  title="AstroSight Blog - Explore Astrological Wisdom and Insights"
+  description="Discover insightful blogs on Vedic astrology, zodiac signs, planetary influences, and spiritual guidance at AstroSight."
+  keywords="Vedic astrology, astrology blogs, zodiac signs, spiritual insights, horoscope articles"
+  canonical="https://astrosight.ai/blog"
+  ogImage="https://astrosight.ai/images/blog-cover.jpg"
+  ogType="website"
+  articleAuthor="AstroSight Team"
+  articlePublishedTime={null}  // or a date-string if applicable
+  articleModifiedTime={new Date().toISOString()}  // update as needed
+/>
+  <Head>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "AstroSight Blog",
+          "url": "https://astrosight.ai/blog",
+          "description": "Insightful blogs on Vedic astrology, zodiac signs, planetary influences, and spiritual guidance.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "AstroSight",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://astrosight.ai/logo.png"
+            }
+          },
+          "image": "https://astrosight.ai/images/blog-cover.jpg",
+          "inLanguage": "en",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://astrosight.ai/blog"
+          },
+          "datePublished": new Date().toISOString().split('T')[0],
+          "dateModified": new Date().toISOString().split('T')[0]
+        }),
+      }}
+    />
+  </Head>
 
-      <div className="flex flex-col min-h-screen bg-[#FFF2E2]">
-        <main className="flex-1 px-4 pb-20">
+
+      <div className="flex flex-col min-h-screen w-full max-w-7xl mx-auto">
+        <main className="flex-1 px-4 mt-16 pb-20">
           {/* Page Title */}
-          <div className="mb-6">
+          <div className="mb-6 text-center font-kohinoor-latin">
             <h1 className="text-2xl font-bold text-gray-900">{ 'Spiritual Blogs'}</h1>
             <p className="text-gray-600">{ 'Explore our collection of insightful articles'}</p>
           </div>
@@ -178,46 +165,50 @@ export default function Blog({ posts }) {
 
           {/* Blog Grid */}
           {currentPosts.length > 0 ? (
-            <div className="grid gap-5 mb-8">
+            <div className="grid gap-5 mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {currentPosts.map((post) => (
-<Link key={post.sys.id} href={post.fields.slug ? `/blog/${post.fields.slug}` : `/blog/${post.fields.slug}`}>
-                  <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                    <div className="flex flex-col">
-                      <div className="h-48 overflow-hidden">
-                        <Image
-                          src={post.fields.coverImage?.fields?.file?.url || '/images/default-blog-image.jpg'}
-                          alt={post.fields.title}
-                          width={500}
-                          height={200}
-                          className="w-full h-full object-cover object-top transition-transform hover:scale-105 duration-300"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <div className="flex justify-between items-center mb-2">
-                          <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs">
-                            {post.fields.category}
-                          </Badge>
-                          <div className="flex items-center text-gray-500 text-xs">
-                            <i className="far fa-clock mr-1"></i>
-                            <span>{post.fields.readTime}</span>
-                          </div>
-                        </div>
-                        <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">{post.fields.title}</h3>
-                        <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.fields.description}</p>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center">
-                            <Avatar className="h-6 w-6 mr-2">
-                              <AvatarImage src={post.fields.author.avatar} alt={post.fields.author.name} />
-                              <AvatarFallback>{post.fields.author.name[0]}</AvatarFallback>
-                            </Avatar>
-                            <span className="text-xs text-gray-700">{post.fields.author.name}</span>
-                          </div>
-                          <span className="text-xs text-gray-500">{post.fields.publishDate}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Card>
-                </Link>
+<div key={post.sys.id}>
+  <Link href={post.fields.slug ? `/blog/${post.fields.slug}` : `/blog/${post.fields.slug}`}
+    className="block group">
+    <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+      <div className="flex flex-col">
+        <div className="h-48 overflow-hidden">
+          <Image
+            src={post.fields.coverImage?.fields?.file?.url || '/images/default-blog-image.jpg'}
+            alt={post.fields.title}
+            width={500}
+            height={200}
+            className="w-full h-full object-cover object-top transition-transform group-hover:scale-105 duration-300"
+          />
+        </div>
+        <div className="p-4">
+          <div className="flex justify-between items-center mb-2">
+            <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs">
+              {post.fields.category}
+            </Badge>
+            <div className="flex items-center text-gray-500 text-xs">
+              <i className="far fa-clock mr-1"></i>
+              <span>{post.fields.readTime}</span>
+            </div>
+          </div>
+          <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">{post.fields.title}</h3>
+          <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.fields.description}</p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Avatar className="h-6 w-6 mr-2">
+                <AvatarImage src={post.fields.author} alt={post.fields.author.name} />
+                <AvatarFallback>{post.fields.author.name[0]}</AvatarFallback>
+              </Avatar>
+                {post.fields.author.name}
+
+            </div>
+            <span className="text-xs text-gray-500">{post.fields.publishDate}</span>
+          </div>
+        </div>
+      </div>
+    </Card>
+  </Link>
+</div>
               ))}
             </div>
           ) : (
@@ -294,7 +285,23 @@ export default function Blog({ posts }) {
               <i className="fas fa-arrow-up"></i>
             </button>
           )}
+
+          {/* Internal Link Components */}
+          <section className="mt-8">
+            {/* All Compatibility Combinations */}
+            <CompatibilityLinksGrid />
+            
+            {/* All Horoscope Navigation */}
+            <HoroscopeNavigation />
+            
+            {/* Report Links */}
+            <ReportLinksGrid />
+          </section>
         </main>
+
+        <div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>
       </div>
     </>
   );
@@ -319,9 +326,9 @@ export async function getStaticProps() {
           : new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
         readTime: post.fields.readTime || '5 min',
         author: {
-          name: post.fields.author?.fields?.name || 'Unknown Author',
-          avatar: post.fields.author?.fields?.avatar?.fields?.file?.url
-            ? `https:${post.fields.author.fields.avatar.fields.file.url}`
+          name: post.fields.author|| 'Unknown Author',
+          avatar: post.fields.authorProfile?.fields?.profileImage?.fields?.file?.url
+            ? `https:${post.fields.authorProfile.fields.profileImage.fields.file}`
             : '/images/default-avatar.jpg',
         },
         coverImage: {

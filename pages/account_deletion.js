@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/router';
+import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid,  RecentBlogLinks } from '../components/InternalLinksGrid';
+import Footer from '../components/Footer';
 
 const AccountDeletionPage = () => {
   const router = useRouter();
@@ -135,6 +137,17 @@ const AccountDeletionPage = () => {
           </div>
         )}
       </div>
+      
+      {/* Internal Links Section */}
+      <div className="max-w-4xl mx-auto mt-12 space-y-8">
+        <InternalLinksGrid />
+        <HoroscopeNavigation />
+        <CompatibilityLinksGrid />
+        <ReportLinksGrid />
+        <RecentBlogLinks />
+      </div>
+      
+      <Footer />
     </div>
   );
 };

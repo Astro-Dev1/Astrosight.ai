@@ -84,12 +84,12 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>
+    <section className="font-kohinoor">
       <div className="">
         {isLoggedIn ? (
-          <div className=" text-center font-poppins lg:text-left">
+          <div className="text-center lg:text-left font-kohinoor">
             <div className="">
-              <h1 className="text-[#FF6D3F] text-center mt-2 text-2xl mb-4 font-semibold" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>Welcome <span className='text-[#070707]'>{userName}</span> </h1>
+              <h1 className="text-[#FF6D3F] text-center mt-2 text-2xl mb-4 font-semibold font-kohinoor">Welcome <span className='text-[#070707]'>{userName}</span> </h1>
             </div>
             {/* Banner Section */}
             <div className="relative  rounded-xl overflow-hidden shadow-sm">
@@ -117,7 +117,7 @@ const HeroSection = () => {
             </div>
             {/* AI Companions Section */}
             <div className="mb-6">
-              <h2 className="text-black text-xl font-semibold mt-5 mb-3" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>Our AI Companions</h2>
+              <h2 className="text-black text-xl font-semibold mt-5 mb-3 font-kohinoor">Our AI Companions</h2>
 
                 <Card className="bg-white p-8 rounded-xl shadow-lg">
                   <div className="flex justify-between mb-6">
@@ -134,7 +134,7 @@ const HeroSection = () => {
                         </Avatar>
               </Link>
 
-                        <span className="text-[#FF9960] font-medium" style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}>{companion.name}</span>
+                        <span className="text-[#FF9960] font-medium font-kohinoor">{companion.name}</span>
                       </div>
                     ))}
                   </div>
@@ -145,8 +145,7 @@ const HeroSection = () => {
                          value={inputValue}
                              onChange={(e) => setInputValue(e.target.value)}
                       placeholder="Ask Anything"
-                      className="w-full py-3 px-4 rounded-full bg-[#FFE5CC] text-gray-700 border-none focus:outline-none"
-                      style={{ fontFamily: 'Noto Sans Devanagari, Arial, sans-serif' }}
+                      className="w-full py-3 px-4 rounded-full bg-[#FFE5CC] text-gray-700 border-none focus:outline-none font-kohinoor"
                     />
                              <Link
                 href={`/chatbot?persona=expert&&input=${inputValue}`}
@@ -161,29 +160,31 @@ const HeroSection = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 font-kohinoor lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left column - Text content */}
             <div className="space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
-              <div className="text-2xl/9 text-[#3A3026] px-auto font-bold" style={{ fontFamily: 'Kohinoor Devanagari, Noto Sans Devanagari, Arial, sans-serif' }}>
-                <span className="text-[#fd9474] text-2xl font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
+              <div className="text-[30px]/9 text-[#3a3026] px-auto lg:text-[42.4px]/10 font-bold font-kohinoor-latin" >
+                <span className="text-[#cf4526]  w-full text-[30px] font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
               <div className="md:flex md:flex-row md:items-start md:justify-between">
-                <p className="text-base/5 sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto lg:mx-0">
-                  Receive AI-Powered Horoscopes, Unlock Your Cosmic Blueprint, and Find Answers to Life&apos; Burning Questions
-                </p>
-                <div className="hidden md:flex relative -top-3 flex-col items-center lg:items-center md:mt-0 md:ml-6">
-                  <img
-                    src="/chat_assistant__1_-removebg-preview.png"
+                  <div className="md:flex-1 md:w-1/2 gap-4">
+
+                <p className="text-base/4 lg:w-1/2 sm:text-lg md:text-sm font-kohinoor-latin text-gray-600 max-w-2xl mx-auto lg:mx-0">
+Where Ancient Wisdom Meets AI: Unlock Your Cosmic Blueprint and Discover Answers to Life&apos;s Burning Questions                </p>
+                <div className="hidden lg:flex  relative -top-16 left-28 flex-col items-center lg:items-center md:mt-0 md:ml-6">
+                  <Image
+                    src="/qrcode.jpeg"
                     alt="QR Code for App Download"
-                    width={300}
-                    height={300}
+                    width={60}
+                    height={60}
                     className="rounded-lg"
                   />
-                  <p className="text-gray-600 text-center text-[12px]">Scan to download</p>
+                  <p className="text-gray-600 text-center text-[12px]">Scan to our download</p>
+                </div>
                 </div>
               </div>
               <div className="flex flex-row lg:hidden items-center justify-center gap-4">
-                <Link href="https://AstroSight.com/download" passHref>
+                <Link href="https://play.google.com/store/apps/details?id=com.astrosight" passHref>
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
                     <div className="mr-3">
                       <svg viewBox="30 336.7 120.9 129.2" width="20">
@@ -198,11 +199,14 @@ const HeroSection = () => {
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">Play Store</div>
                     </div>
                   </div>
-                                    <spam className="text-xs text-green-400">coming soon </spam>
                 </Link>
-                <Link href="https://AstroSight.com/download" passHref>
+                
+                <Link href="/" passHref>
+
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
+                    
                     <div className="mr-3">
+
                       <svg viewBox="0 0 384 512" width="20">
                         <path
                           fill="currentColor"
@@ -211,17 +215,19 @@ const HeroSection = () => {
                       </svg>
                     </div>
                     <div>
-                      <div className="md:text-xs text-[12px] uppercase">Download on</div>
+                      <div className="md:text-xs text-[12px] uppercase">coming soon</div>
                       <div className="md:text-xl text-sm font-semibold font-sans -mt-1">App Store</div>
+
                     </div>
+
                   </div>
-                                    <spam className="text-xs text-green-400">coming soon </spam>
 
                 </Link>
               </div>
+  
             </div>
             {/* Right column - Image */}
-            <div className="flex justify-center items-center lg:justify-end lg:items-end lg:mt-0 p-2 -mt-20 -mb-9">
+            <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
               <picture>
                 <source
                   media="(min-width: 1024px)"
@@ -236,13 +242,13 @@ const HeroSection = () => {
                   height={299.88}
                 />
                 <Image
-                  src="/chat_assistant__1_-removebg-preview.png"
+                  src="/hero.png"
                   alt="Guidance Report Preview"
-                  width={386.9}
-                  height={299}
-                  className="w-[586.9px] h-[499px] rounded-2xl object-contain mx-auto"
+                  width={628}
+                  height={299.88}
+                  className="w-full h-[327.88px] lg:h-[516px] rounded-2xl object-cover"
                   priority
-                  sizes="386.9px"
+                  sizes="(max-width: 1023px) 100vw, (min-width: 1024px) 328px"
                 />
               </picture>
             </div>

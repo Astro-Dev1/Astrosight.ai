@@ -46,7 +46,7 @@ export default function LoginPage() {
   const autocompleteRef = useRef(null);
   const router = useRouter();
 
-  const redirectTo = router.query.redirect || '/user/dashboard';
+  const redirectTo = router.query.redirect || '/';
   const totalProfileSteps = 20;
   const progress = (profileSubStep / totalProfileSteps) * 100;
   console.log(progress)

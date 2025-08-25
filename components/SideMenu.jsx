@@ -107,18 +107,39 @@ console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
   };
 
   // Create translated menu items
-  const getTranslatedMenuItems = () => [
+  const getTranslatedMenuItems = () => {
+  // Base menu items always shown
+  const baseMenuItems = [
     { id: 1, title: t("sidemenu.home") || "Home", icon: faHome, path: "/" },
+    { id: 2, title: t("sidemenu.blogs") || "Blogs", icon: faNewspaper, path: "/blog" },
+    { id: 3, title: t("sidemenu.compatibility") || "Compatibility", icon: faHeart, path: "/compatibility" },
+    { id: 6, title: t("sidemenu.horoscope") || "Horoscope", icon: faNewspaper, path: "/horoscope/today-horoscope" },
+    { id: 7, title: t("sidemenu.panchanga") || "Panchanga", icon: faNewspaper, path: "/panchanga" },
+        { id: 8, title: t("sidemenu.reports") || "Reports", icon: faFileAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/reports" },
+
+  ];
+
+  // User-specific menu items (only shown when user is logged in)
+  const userMenuItems = [
     { id: 5, title: t("sidemenu.profile") || "Profile", icon: faUser, path: "/profile/page" },
     { id: 4, title: t("sidemenu.wallet") || "Wallet", icon: faWallet, path: "/wallet/page" },
     { id: 14, title: t("sidemenu.order_history") || "Order History", icon: faHistory, path: "/wallet/page" },
-    // { id: 6, title: t("sidemenu.panchanga") || "Panchanga", icon: faCalendar, path: "/panchanga" },
-    { id: 2, title: t("sidemenu.blogs") || "Blogs", icon: faNewspaper, path: "/blog" },
-    { id: 3, title: t("sidemenu.compatibility") || "Compatibility", icon: faHeart, path: "/compatibility" },
     { id: 8, title: t("sidemenu.reports") || "Reports", icon: faFileAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/reports" },
     { id: 11, title: t("sidemenu.book_pooja") || "Book Pooja", icon: faOm, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/pooja-booking" },
     { id: 12, title: t("sidemenu.refer_earn") || "Refer & Earn", icon: faShareAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/refer-earn" },
   ];
+
+  // Check if user is logged in (currentUser.name exists and is not "Guest")
+  const isLoggedIn = currentUser.name && currentUser.name !== "Guest";
+  
+  if (isLoggedIn) {
+    // Return all menu items for logged in users
+    return [...baseMenuItems, ...userMenuItems];
+  } else {
+    // Return only base menu items for guests
+    return baseMenuItems;
+  }
+};
   // Initialize mounted state
   useEffect(() => {
     setMounted(true);
@@ -194,7 +215,11 @@ console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
 
   const handleLogout = async () => {
     try {
-      localStorage.removeItem('userToken');
+      // Remove token from cookies instead of localStorage
+      if (typeof window !== 'undefined') {
+        const Cookies = (await import('js-cookie')).default;
+        Cookies.remove('token');
+      }
       localStorage.removeItem('userData');
       onClose();
       router.push('/User/login');
