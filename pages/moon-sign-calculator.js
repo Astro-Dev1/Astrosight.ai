@@ -30,7 +30,7 @@ const MoonSignCalculator = () => {
         title="Moon Sign Calculator by Date of Birth – Free Vedic Astrology Moon Sign | AstroSight"
         description="Discover your Moon sign with our free Vedic astrology calculator. Get accurate Chandra Rashi, Nakshatra, and emotional insights based on your birth details."
         keywords="moon sign calculator, chandra rashi calculator, vedic moon sign, nakshatra calculator, lunar sign astrology, vedic astrology moon sign, emotional astrology"
-        canonical="https://astrosight.ai/moon-sign-calculator-by-dob"
+        canonical="https://astrosight.ai/moon-sign-calculator"
         ogImage="https://astrosight.ai/images/moon-sign-og.jpg"
         ogType="article"
       />

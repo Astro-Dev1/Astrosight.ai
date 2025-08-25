@@ -95,7 +95,7 @@ const RisingSignCalculator = () => {
         title="Rising Sign Calculator – Free Ascendant Calculator | Vedic & Western Astrology | AstroSight"
         description="Discover your rising sign (ascendant) with our precise calculator. Learn how your ascendant shapes your personality, appearance, and first impressions using accurate Vedic astrology methods."
         keywords="rising sign calculator, ascendant calculator, vedic rising sign, how to calculate rising sign, ascendant sign meaning, rising sign astrology, free ascendant calculator"
-        canonical="https://astrosight.ai/rising-sign-ascendant-calculator"
+        canonical="https://astrosight.ai/rashi-sign-calculator"
         ogImage="https://astrosight.ai/images/rising-sign-og.jpg"
         ogType="article"
       />

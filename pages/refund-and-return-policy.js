@@ -15,7 +15,7 @@ const RefundAndReturnPolicyPage = () => {
         title="Refund and Return Policy - AstroSight | Returns & Exchanges"
         description="Learn about AstroSight's refund and return policy, including return procedures, refund timelines, and exchange guidelines for our products and services."
         keywords="AstroSight refund policy, return policy, exchange policy, astrology app refunds, return procedure"
-        canonical="https://astrosight.ai/refund-policy"
+        canonical="https://astrosight.ai/refund-and-return-policy"
         ogImage="https://astrosight.ai/images/refund-policy.jpg"
       />
                   <CustomHeader />
@@ -83,7 +83,7 @@ const RefundAndReturnPolicyPage = () => {
             <h3 className="text-xl font-semibold text-[#FF9D42] mb-3">3. Exchanges</h3>
             <div className="space-y-3 text-gray-700">
               <p>
-                To initiate a return or exchange, please contact our customer support at <a href="mailto:admin@astrosight.ai" className="text-[#FF9D42] hover:underline">admin@astrosight.ai</a> or submit a return request through <a href="https://astrosight.ai/returns" className="text-[#FF9D42] hover:underline">https://astrosight.ai/returns</a> Our team will guide you through the process and provide necessary instructions.
+                To initiate a return or exchange, please contact our customer support at <a href="mailto:admin@astrosight.ai" className="text-[#FF9D42] hover:underline">admin@astrosight.ai</a> Our team will guide you through the process and provide necessary instructions.
               </p>
             </div>
           </section>
