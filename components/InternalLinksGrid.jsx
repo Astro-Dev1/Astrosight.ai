@@ -89,7 +89,7 @@ export const CompatibilityLinksGrid = ({ currentSign, currentPartnerSign }) => {
 };
 
 export const HoroscopeBySignNavigation = ({ currentSign }) => {
-  const types = ["daily", "weekly", "monthly", "yearly"];
+  const types = ["today", "weekly", "monthly", "yearly"];
 
   return (
     <div className="">
@@ -100,7 +100,7 @@ export const HoroscopeBySignNavigation = ({ currentSign }) => {
         {types.map((type) => (
           <Link
             key={`${currentSign}-${type}`}
-            href={`/horoscope/${currentSign.toLowerCase()}${type !== 'daily' ? '/' + type : ''}`}
+            href={`/horoscope/${type !== 'daily' ? '/' + type : ''}-horoscope/${currentSign.toLowerCase()}`}
             className="hover:underline"
           >
            |{capitalizeFirstLetter(currentSign)} {capitalizeFirstLetter(type)} Horoscope |
