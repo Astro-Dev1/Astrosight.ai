@@ -341,7 +341,7 @@ const SunSignCalculator = () => {
             Your sun sign isn&apos;t just a label. It&apos;s your light. It&apos;s how you shine in this world—even on cloudy days. Whether you&apos;re a bold Aries or a sensitive Pisces, your sun sign shows you the way back to your authentic self.
           </p>
           <p className="text-gray-700 mb-4">
-            Explore it. Understand it. And if you&apos;re curious to go deeper, I&apos;m here to guide you with personal <a href="/consult" className="text-purple-600 underline hover:text-purple-800">chart readings</a>, healing remedies, and <a href="/report" className="text-purple-600 underline hover:text-purple-800">deep-dive reports</a>.
+            Explore it. Understand it. And if you&apos;re curious to go deeper, I&apos;m here to guide you with personal <a href="/contact" className="text-purple-600 underline hover:text-purple-800">chart readings</a>, healing remedies, and <a href="/astrology-calculators-tools" className="text-purple-600 underline hover:text-purple-800">deep-dive reports</a>.
           </p>
           <p className="text-gray-700 font-medium">
             Also, visit our <Link href="/shop" className="text-purple-600 underline hover:text-purple-800">shop</Link> for customized remedies, gemstone sets, and yantras.<br />
