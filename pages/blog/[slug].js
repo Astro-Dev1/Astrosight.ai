@@ -435,9 +435,7 @@ export default function Post({ post, relatedPosts }) {
                 )}
                 {/* Author link */}
                 {post.fields.author && post.fields.author.fields && (
-                  <Link href={`/blog/${encodeURIComponent(post.fields.author.fields.name)}`} className="flex items-center hover:underline">
                     <span className="ml-2">By {post.fields.author.fields.name}</span>
-                  </Link>
                 )}
               </div>
 
