@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'; // Make sure you have 
 
 const cards = [
   { title: "Today's Horoscope", image: '/horoscope.png', link: '/horoscope/today-horoscope' },
-  { title: 'Astro Calculator', image: '/free_report.png', link: '/astrology-calculators-articles' },
+  { title: 'Astro Calculator', image: '/free_report.png', link: '/astrology-calculators-tools' },
   { title: 'Compatibility', image: '/compatibility.png', link: '/compatibility' },
   { title: 'Blog', image: '/free_report.png', link: '/blog' },
   { title: 'Today Panchang', image: '/panchanga.png', link: '/panchanga' },
