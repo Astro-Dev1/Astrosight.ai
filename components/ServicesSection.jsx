@@ -12,7 +12,7 @@ const cards = [
   { title: 'Compatibility', image: '/compatibility.png', link: '/compatibility' },
   { title: 'Blog', image: '/free_report.png', link: '/blog' },
   { title: 'Today Panchang', image: '/panchanga.png', link: '/panchanga' },
-];
+]; 
 
 const CARDS_PER_PAGE_MOBILE = 3;
 const CARD_WIDTH_DESKTOP = 180; // Adjust this to exact desktop card width in px
