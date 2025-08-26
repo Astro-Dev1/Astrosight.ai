@@ -404,3 +404,73 @@ export const confirmRechargeSuccess = async (paymentData) => {
     body: JSON.stringify(paymentData),
   });
 };
+
+export const submitFeedback = async (feedbackData) => {
+  try {
+    console.log('centralApi.js: submitFeedback called with:', feedbackData);
+    
+    // Get auth token if available (optional for feedback)
+    const token = getToken();
+    
+    // Prepare headers
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    
+    // Add auth token if available
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    // Make API request
+    const response = await fetch(`${BASE_URL}/feedback`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(feedbackData),
+    });
+    
+    // Parse response
+    const data = await response.json();
+    
+    // Handle API response
+    if (response.ok) {
+      return { 
+        success: true, 
+        message: 'Feedback submitted successfully', 
+        data: data.data 
+      };
+    } else {
+      // API returned an error
+      console.warn('Feedback API error:', data);
+      return { 
+        success: false, 
+        message: data.message || 'Failed to submit feedback' 
+      };
+    }
+  } catch (error) {
+    // Network or other error
+    console.error('Error submitting feedback:', error);
+    
+    // Create fallback email link
+    const subject = encodeURIComponent(`App Feedback: ${feedbackData.type || 'Feedback'}`);
+    const body = encodeURIComponent(
+      `Feedback from: ${feedbackData.username || 'User'}\n` +
+      `Email: ${feedbackData.email || 'Not provided'}\n` +
+      `Phone: ${feedbackData.phoneNumber || 'Not provided'}\n` +
+      `Zodiac: ${feedbackData.zodiacSign || 'Not provided'}\n` +
+      `Device: ${feedbackData.deviceInfo || 'Not provided'}\n` +
+      `App Version: ${feedbackData.appVersion || 'Not provided'}\n` +
+      `Timestamp: ${feedbackData.timestamp || new Date().toISOString()}\n\n` +
+      `Message:\n${feedbackData.message || ''}`
+    );
+    
+    const emailLink = `mailto:support@astrosight.com?subject=${subject}&body=${body}`;
+    
+    // Return error with fallback email link
+    return { 
+      success: false, 
+      message: 'Network error. Please try again or send via email.',
+      emailLink
+    };
+  }
+};

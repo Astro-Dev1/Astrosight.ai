@@ -5,6 +5,8 @@ import SEOHead from '../components/SEOHead';
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
 import Footer from '../components/Footer';
 import CustomHeader from '../components/CustomHeader';
+import Link from 'next/link';
+
 
 const PrivacyPolicyPage = () => {
   // const router = useRouter();
@@ -46,7 +48,7 @@ const PrivacyPolicyPage = () => {
                 This document is an electronic record generated under the provisions of the Information Technology Act, 2000 and the applicable rules, including any amendments. This Privacy Policy is published in accordance with Rule 3(1) of the Information Technology (Intermediaries Guidelines) Rules, 2011 and Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011.
               </p>
               <p>
-                Astrosight Services Pvt Ltd (&quot;AstroSight,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy outlines how we collect, use, store, and safeguard your personal information when you visit our website <a href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</a> or use our services.
+                Astrosight Services Pvt Ltd (&quot;AstroSight,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is committed to protecting your privacy. This Privacy Policy outlines how we collect, use, store, and safeguard your personal information when you visit our website <Link href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</Link> or use our services.
               </p>
               <p>
                 By using AstroSight, you acknowledge that you have read and understood this Privacy Policy and consent to the collection, use, and disclosure of your information as described herein.
@@ -234,7 +236,7 @@ const PrivacyPolicyPage = () => {
               <li>Objection: Object to certain uses of your personal information</li>
               <li>Withdrawal: Withdraw consent for marketing communications</li>
             </ul>
-            <p className="text-gray-700 mt-2">To exercise these rights, contact us at <a href="mailto:admin@astrosight.ai" className="text-[#FF9D42] hover:underline">admin@astrosight.ai</a>.</p>
+            <p className="text-gray-700 mt-2">To exercise these rights, contact us at <Link href="mailto:admin@astrosight.ai" className="text-[#FF9D42] hover:underline">admin@astrosight.ai</Link>.</p>
           </section>
 
           <section>

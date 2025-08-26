@@ -159,7 +159,7 @@ export default function CompatibilityResultsPage({ compatibility, sign, partner_
         <CustomHeader title={`${capitalizedSign} & ${capitalizedPartnerSign}`} showBackButton={true} />
         <div className="w-full rounded-3xl font-serif bg-gradient-to-r from-[#FF9933] to-[#FF5733] p-4 text-center mb-4 mt-16">
           <h1 className="text-4xl font-bold text-white font-kohinoor-devanagari mb-2">Zodiac Compatibility</h1>
-          <h1 className="text-2xl text-white">{capitalizedSign} & {capitalizedPartnerSign}</h1>
+          <h2 className="text-2xl text-white">{capitalizedSign} & {capitalizedPartnerSign}</h2>
         </div>
 
         <main className="container mx-auto px-4 py-8">
