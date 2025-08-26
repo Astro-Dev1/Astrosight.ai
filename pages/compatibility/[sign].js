@@ -285,7 +285,8 @@ export default function PartnerSignPage() {
 
         {/* Main Content */}
         <main className="flex-1 pt-20 px-4 ">
-          <ScrollArea className="h-[calc(100vh-136px)]">
+          <ScrollArea className="">
+            <h1 className="text-3xl text-center font-kohinoor font-bold ">{capitalizedSign} Compatibility | Choose Partner's Zodiac </h1>
             {/* Banner Image */}
             <div className="w-full h-[120px] bg-gray-200 rounded-xl overflow-hidden mb-6">
               <Image
