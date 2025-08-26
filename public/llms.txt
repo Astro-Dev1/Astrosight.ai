@@ -1,0 +1,44 @@
+# AstroSight
+
+> AstroSight is a hyper-personalized AI-powered astrology platform that solves user intent and builds trust in the astrology space through intelligent chatbot and audio conversations, leading to curated recommendations for reports, consultations, and spiritual services.
+
+AstroSight reimagines astrology through advanced AI technology that understands and responds to individual user intent. Our platform prioritizes trust-building in the astrology space by providing intelligent, personalized interactions through AI-powered chatbots and audio conversations as the primary user experience.
+
+**Core Philosophy**: Intent-driven astrology that builds trust through personalized AI interactions before offering complementary services.
+
+**User Journey Flow**:
+1. **AI Interaction**: Users engage with AI chatbot or audio conversation features
+2. **Intent Recognition**: AI understands specific needs and concerns  
+3. **Trust Building**: Personalized responses that demonstrate accuracy and relevance
+4. **Curated Recommendations**: AI suggests appropriate next steps based on user intent
+
+**Service Ecosystem**: Deep-dive reports, human expert consultations, remedial products, spiritual practices, and pooja services - all recommended based on AI-driven intent analysis.
+
+## AI-Powered Core Services
+
+- [AI Chatbot Platform](https://astrosight.ai#ai-chat): Hyper-personalized conversational AI that understands astrological queries and user intent
+- [Audio Conversation Feature](https://astrosight.ai#audio-ai): Voice-based AI interactions for natural, conversational astrology guidance
+- [Intent Recognition System](https://astrosight.ai#intent-ai): AI technology that identifies user needs and provides contextual recommendations
+
+## Curated Recommendations
+
+- [Deep Dive Reports](https://astrosight.ai#reports): Comprehensive personalized astrology reports recommended by AI based on user conversations
+- [Human Expert Consultations](https://astrosight.ai#consultations): Live sessions with certified astrologers, suggested when AI determines human expertise is needed
+- [Personalized Product Recommendations](https://astrosight.ai#products): AI-curated gemstones, rudrakshas, and yantras based on individual astrological needs
+
+## Spiritual Services
+
+- [Virtual Pooja Services](https://astrosight.ai#virtual-pooja): Online ritual services performed by certified priests with live streaming
+- [Physical Pooja Services](https://astrosight.ai#physical-pooja): Temple-based ritual services arranged on user's behalf with photo/video documentation
+- [Spiritual Sadhana Cohorts](https://astrosight.ai#sadhana-cohorts): Group spiritual practice programs guided by experts for collective growth
+
+## Platform Technology
+
+- [Trust-Building Framework](https://astrosight.ai#trust-framework): How AstroSight ensures accuracy and builds confidence in astrology services
+- [Personalization Engine](https://astrosight.ai#personalization): AI technology that adapts to individual user preferences and spiritual journey
+
+## Optional
+
+- [About Our AI Technology](https://astrosight.ai#ai-technology): Technical details on natural language processing and intent recognition systems
+- [Success Stories](https://astrosight.ai#testimonials): User experiences showcasing trust-building and accurate predictions
+- [Spiritual Practice Guides](https://astrosight.ai#guides): Educational content on meditation, mantras, and spiritual practices
