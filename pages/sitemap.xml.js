@@ -23,10 +23,7 @@ const calculators = [
     slug: 'numerology-calculator',
 
   },
-  {
-    slug: 'kundali-matching',
-
-  },
+  
     {
     slug: 'sun-sign-calculator',
   
