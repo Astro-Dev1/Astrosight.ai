@@ -38,7 +38,7 @@ const PrivacyPolicyPage = () => {
         {/* Content */}
         <div className="max-w-4xl mx-auto bg-white mt-11 rounded-xl shadow-lg p-6 space-y-6">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Privacy Policy</h2>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">Privacy Policy</h1>
             <p className="text-gray-600 font-medium">Last updated: August 11, 2025</p>
           </div>
 
@@ -279,7 +279,9 @@ const PrivacyPolicyPage = () => {
               <div>
                 <h4 className="font-semibold text-gray-800 mb-2">CC Avenue Integration</h4>
                 <p className="text-gray-700">
-                  We use CC Avenue as our primary payment gateway. CC Avenue&apos;s privacy practices are governed by their own privacy policy, which can be found at: <a href="https://www.ccavenue.com/privacy-policy" className="text-[#FF9D42] hover:underline">https://www.ccavenue.com/privacy-policy</a>.
+                  We use CC Avenue as our primary payment gateway. CC Avenue&apos;s privacy practices are governed by their own privacy policy, which can be found at: <Link href="https://astrosight.ai/privacy-policy
+" className="text-[#FF9D42] hover:underline">https://astrosight.ai/privacy-policy
+</Link>.
                 </p>
               </div>
 
@@ -319,7 +321,7 @@ const PrivacyPolicyPage = () => {
             <h3 className="text-xl font-semibold text-[#FF9D42] mb-3">Contact Information</h3>
             <p className="text-gray-700 mb-3">If you have any questions about this Privacy Policy or our practices, please contact us at:</p>
             <div className="bg-[#FFF6E9] p-4 rounded-lg space-y-1">
-              <p><strong>Email:</strong> <a href="mailto:admin@astrosight.ai" className="text-[#FF9D42] hover:underline">admin@astrosight.ai</a></p>
+              <p><strong>Email:</strong> <Link href="mailto:admin@astrosight.ai" className="text-[#FF9D42] hover:underline">admin@astrosight.ai</Link></p>
               <p><strong>Address:</strong> AstroSight Services Pvt Ltd, 27th Cross, Purnapragnya Layout, Poornapragna Housing Society L, Poornapragna Housing Society Layout, Bengaluru, Karnataka 560061, India</p>
               <p><strong>Phone:</strong> +918660128377</p>
               <p><strong>Website:</strong> <a href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</a></p>

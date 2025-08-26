@@ -36,7 +36,7 @@ const RefundAndReturnPolicyPage = () => {
         {/* Content */}
         <div className="max-w-4xl mx-auto bg-white mt-11 rounded-xl shadow-lg p-6 space-y-6">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Refund and Return Policy</h2>
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">Refund and Return Policy</h1>
           </div>
 
           <section>
