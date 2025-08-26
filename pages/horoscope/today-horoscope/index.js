@@ -194,6 +194,7 @@ export default function HoroscopeIndex() {
                   "@type": "ListItem",
                   "position": i + 1,
                   "name": sign.name,
+                  "description": `Today's horoscope for ${sign.name} (${sign.dates})`,
                   "url": `https://astrosight.ai/horoscope/today-horoscope/${sign.name.toLowerCase()}`
                 }))
               }
