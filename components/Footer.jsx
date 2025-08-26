@@ -138,6 +138,11 @@ export default function Footer() {
                 Refund and Return Policy
               </Link>
             </div>
+            <div>
+              <Link href="/about-us" className="hover:underline font-kohinoor   text-white">
+                About Us
+              </Link>
+            </div>
           </div>
         </div>
       </div>
