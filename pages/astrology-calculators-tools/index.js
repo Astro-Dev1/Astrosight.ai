@@ -151,8 +151,8 @@ export default function ReportIndex() {
           content="Explore our comprehensive collection of free astrology calculators including birth charts, compatibility, dasha, numerology, and more." 
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://astrosight.com/astrology-calculators-tools" />
-        <link rel="canonical" href="https://astrosight.com/astrology-calculators-tools" />
+        <meta property="og:url" content="https://astrosight.ai/astrology-calculators-tools" />
+        <link rel="canonical" href="https://astrosight.ai/astrology-calculators-tools" />
       </Head>
 
       <Header />
