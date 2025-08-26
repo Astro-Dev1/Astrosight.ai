@@ -285,33 +285,51 @@ const HeroSection = () => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/chatbot?persona=balanced" className="inline-block">
+                <Link href="https://app.astrosight.ai/chatbot
+                " className="inline-block">
                   <button className="bg-gradient-to-r from-[#FF6D3F] to-[#FF9933] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                     <i className="fas fa-comments mr-2"></i>
                     Start Your Free Cosmic Conversation
                   </button>
                 </Link>
-                <button className="border-2 border-[#FF6D3F] text-[#FF6D3F] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#FF6D3F] hover:text-white transition-all duration-300">
+                {/* <button className="border-2 border-[#FF6D3F] text-[#FF6D3F] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#FF6D3F] hover:text-white transition-all duration-300">
                   <i className="fas fa-play mr-2"></i>
                   See How It Works
-                </button>
+                </button> */}
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex items-center justify-center lg:justify-start space-x-8 pt-6">
-                <div className="flex items-center space-x-2">
-                  <i className="fas fa-shield-alt text-green-500"></i>
-                  <span className="text-sm text-gray-600 font-medium">End-to-End Encrypted</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <i className="fas fa-users text-[#FF6D3F]"></i>
-                  <span className="text-sm text-gray-600 font-medium">100K+ Conversations</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <i className="fas fa-star text-yellow-500"></i>
-                  <span className="text-sm text-gray-600 font-medium">4.9/5 Rating</span>
-                </div>
-              </div>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-8">
+  {/* End-to-End Encrypted */}
+  <div className="group flex items-center space-x-2 bg-white hover:bg-green-50 px-4 py-2 rounded-full border border-gray-200 hover:border-green-300 shadow-sm hover:shadow-md transition-all duration-300">
+    <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+      <i className="fas fa-shield-alt text-white text-xs"></i>
+    </div>
+    <span className="text-sm text-gray-700 font-medium group-hover:text-green-700 transition-colors">
+      End-to-End Encrypted
+    </span>
+  </div>
+
+  {/* 100K+ Conversations */}
+  <div className="group flex items-center space-x-2 bg-white hover:bg-orange-50 px-4 py-2 rounded-full border border-gray-200 hover:border-orange-300 shadow-sm hover:shadow-md transition-all duration-300">
+    <div className="w-6 h-6 bg-gradient-to-r from-[#FF6D3F] to-orange-600 rounded-full flex items-center justify-center">
+      <i className="fas fa-users text-white text-xs"></i>
+    </div>
+    <span className="text-sm text-gray-700 font-medium group-hover:text-orange-700 transition-colors">
+      100K+ Conversations
+    </span>
+  </div>
+
+  {/* 4.9/5 Rating */}
+  <div className="group flex items-center space-x-2 bg-white hover:bg-yellow-50 px-4 py-2 rounded-full border border-gray-200 hover:border-yellow-300 shadow-sm hover:shadow-md transition-all duration-300">
+    <div className="w-6 h-6 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
+      <i className="fas fa-star text-white text-xs"></i>
+    </div>
+    <span className="text-sm text-gray-700 font-medium group-hover:text-yellow-700 transition-colors">
+      4.9/5 Rating
+    </span>
+  </div>
+</div>
 
               {/* App Download Buttons for Mobile */}
               <div className="flex flex-row lg:hidden items-center justify-center gap-4">
