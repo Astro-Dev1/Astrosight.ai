@@ -5028,7 +5028,7 @@ export const CompatibilityCalculatorArticle = ({ data=compatibility_calculator.c
   return (
     <article className="max-w-4xl mx-auto px-4 py-12 font-inter text-gray-900">
       {/* Main Title */}
-      <h1 className="text-4xl font-bold mb-6 text-center text-[#cf4526]">{h1}</h1>
+      <h2 className="text-4xl font-bold mb-6 text-center text-[#cf4526]">{h1}</h2>
 
       {/* Intro Quote */}
       {intro_quote && (
