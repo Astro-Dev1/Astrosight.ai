@@ -5,6 +5,7 @@ import SEOHead from '../components/SEOHead';
 import { InternalLinksGrid, ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
 import Footer from '../components/Footer';
 import CustomHeader from '../components/CustomHeader';
+import Link from 'next/link';
 
 const TermsAndConditionsPage = () => {
   // const router = useRouter();
@@ -47,7 +48,7 @@ const TermsAndConditionsPage = () => {
                 This document constitutes the complete terms and conditions for using AstroSight services. Users are responsible for reading, understanding, and complying with these terms before using our services.
               </p>
               <p>
-                This document is an electronic record generated under the provisions of the Information Technology Act, 2000 and the applicable rules, including any amendments. This document is published in line with Rule 3(1) of the Information Technology (Intermediaries Guidelines) Rules, 2011, which mandates the publication of the website&apos;s terms of use, privacy policy, and rules for user access and interaction on <a href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</a>.
+                This document is an electronic record generated under the provisions of the Information Technology Act, 2000 and the applicable rules, including any amendments. This document is published in line with Rule 3(1) of the Information Technology (Intermediaries Guidelines) Rules, 2011, which mandates the publication of the website&apos;s terms of use, privacy policy, and rules for user access and interaction on <Link href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</Link>.
               </p>
             </div>
           </section>
@@ -198,7 +199,7 @@ const TermsAndConditionsPage = () => {
               <p>For questions about these Terms of Service, please contact us at:</p>
               <div className="bg-[#FFF6E9] p-4 rounded-lg space-y-1">
                 <p><strong>Email:</strong> admin@astrosight.ai</p>
-                <p><strong>Website:</strong> <a href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</a></p>
+                <p><strong>Website:</strong> <Link href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</Link></p>
                 <p><strong>Address:</strong> Astrosight Services Pvt Ltd, 27th Main, PP Layout, Uttarahalli, Bengaluru - 560061</p>
                 <p><strong>Phone:</strong> +918660128377</p>
               </div>

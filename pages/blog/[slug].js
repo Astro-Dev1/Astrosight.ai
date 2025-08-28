@@ -113,14 +113,14 @@ const renderOptions = {
     [INLINES.HYPERLINK]: (node, children) => {
       const { uri } = node.data;
       return (
-        <a
+        <Link
           href={uri}
           target="_blank"
           rel="noopener noreferrer"
           className="text-orange-600 hover:text-orange-500 border-b border-orange-200 hover:border-orange-500 transition-colors duration-200"
         >
           {children}
-        </a>
+        </Link>
       );
     },
     // Add support for tables

@@ -324,7 +324,7 @@ const PrivacyPolicyPage = () => {
               <p><strong>Email:</strong> <Link href="mailto:admin@astrosight.ai" className="text-[#FF9D42] hover:underline">admin@astrosight.ai</Link></p>
               <p><strong>Address:</strong> AstroSight Services Pvt Ltd, 27th Cross, Purnapragnya Layout, Poornapragna Housing Society L, Poornapragna Housing Society Layout, Bengaluru, Karnataka 560061, India</p>
               <p><strong>Phone:</strong> +918660128377</p>
-              <p><strong>Website:</strong> <a href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</a></p>
+              <p><strong>Website:</strong> <Link href="https://astrosight.ai" className="text-[#FF9D42] hover:underline">https://astrosight.ai</Link></p>
             </div>
           </section>
 

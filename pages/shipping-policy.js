@@ -89,6 +89,7 @@ const TermsAndConditions = () => {
       <Header />
       <div className="max-w-4xl mx-auto p-6 mt-8">
         <Section title="Shipping Policy">
+          <h1>Shipping Policy - Digital Service Delivery</h1>
           <p className="text-lg text-orange-700">
             At AstroSight, we pride ourselves on delivering celestial insights directly to you,
             without any physical shipping required. Our services are entirely digital, ensuring that
