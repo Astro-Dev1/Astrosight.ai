@@ -96,6 +96,8 @@ module.exports = {
     				DEFAULT: 'hsl(var(--destructive))',
     				foreground: 'hsl(var(--destructive-foreground))'
     			},
+    			'cosmic-purple': 'hsl(var(--cosmic-purple))',
+    			success: 'hsl(var(--success))',
     			chart: {
     				'1': 'hsl(var(--chart-1))',
     				'2': 'hsl(var(--chart-2))',

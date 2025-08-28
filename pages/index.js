@@ -16,6 +16,8 @@ import Head from 'next/head';
 import Cookies from "js-cookie";
 import { ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../components/InternalLinksGrid';
 import { OnlineAstrologyArticle } from '../components/DailySignArticle';
+// import ExpertNetworkHumanConnection from '../components/expert-network-human-connection/index';
+import AIChatHomepage from '../components/ai-chat-homepage/index';
 
 const HomeMobileScreen = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -157,8 +159,14 @@ const HomeMobileScreen = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <HeroSection />
           </div>
+      
         </section>
-
+        <section className="bg-white w-full pt-7 animate-pulse">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <AIChatHomepage />
+          </div>
+      
+        </section>
         <section className="bg-white w-full animate-pulse relative z-10">
           <div className="max-w-7xl mx-auto justify-center  sm:px-6 lg:px-8 py-3">
             <ServicesSection />
