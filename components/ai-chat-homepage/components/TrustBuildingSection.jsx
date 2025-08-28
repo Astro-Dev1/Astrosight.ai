@@ -112,7 +112,7 @@ const TrustBuildingSection = () => {
 
           
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            We've revolutionized astrology by combining ancient wisdom with cutting-edge AI that actually understands you as an individual.
+            We&apos;ve revolutionized astrology by combining ancient wisdom with cutting-edge AI that actually understands you as an individual.
           </p>
         </div>
 
@@ -144,7 +144,7 @@ const TrustBuildingSection = () => {
           <div className="text-center mb-12">
             <h3 className="text-3xl font-headline font-bold mb-4">Real People, Real Transformations</h3>
             <p className="text-text-secondary text-lg">
-              See how our AI's personalized insights have helped thousands discover their cosmic truth.
+              See how our A&apos;s personalized insights have helped thousands discover their cosmic truth.
             </p>
           </div>
 
@@ -163,7 +163,7 @@ const TrustBuildingSection = () => {
                 </div>
                 
                 <blockquote className="text-foreground mb-4 leading-relaxed">
-                  "{testimonial?.quote}"
+                  {testimonial?.quote}
                 </blockquote>
                 
                 <div className="flex items-center justify-between">
