@@ -152,7 +152,7 @@ const HeroSection = () => {
               </div>
             </div>
             {/* AI Companions Section */}
-            <div className="mb-6">
+            <div className="mb-4">
               <h2 className="text-black text-xl font-semibold mt-5 mb-3 font-kohinoor">Our AI Companions</h2>
               <Card className="bg-white p-8 rounded-xl shadow-lg">
                 <div className="flex justify-between mb-6">
@@ -261,7 +261,7 @@ const HeroSection = () => {
             </div>
 
             {/* Right column - Text content */}
-            <div className="order-1 lg:order-2 space-y-6 animate-fade-in text-center text-[25.4px] lg:text-left">
+            <div className="order-1 lg:order-2 space-y-4 animate-fade-in text-center text-[25.4px] lg:text-left">
               <div className="text-[30px]/9 text-[#3a3026] px-auto lg:text-[42.4px]/10 font-bold font-kohinoor-latin">
                 <span className="text-[#cf4526] w-full text-[30px] font-kohinoor-latin lg:text-[42.4px]/10 font-bold">AstroSight</span>, Transforming Ancient Astrological Wisdom Into Actionable Modern Guidance
               </div>
@@ -289,7 +289,7 @@ const HeroSection = () => {
                 " className="inline-block">
                   <button className="bg-gradient-to-r from-[#FF6D3F] to-[#FF9933] text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
                     <i className="fas fa-comments mr-2"></i>
-                    Start Your Free Cosmic Conversation
+                    Start Your Free Consultation
                   </button>
                 </Link>
                 {/* <button className="border-2 border-[#FF6D3F] text-[#FF6D3F] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#FF6D3F] hover:text-white transition-all duration-300">
@@ -299,9 +299,9 @@ const HeroSection = () => {
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-8">
+              <div className="flex flex-row items-center justify-center lg:justify-start gap-4 pt-8">
   {/* End-to-End Encrypted */}
-  <div className="group flex items-center space-x-2 bg-white hover:bg-green-50 px-4 py-2 rounded-full border border-gray-200 hover:border-green-300 shadow-sm hover:shadow-md transition-all duration-300">
+  <div className="group flex items-center space-x-2 bg-white hover:bg-green-50 px-4  rounded-full border border-gray-200 hover:border-green-300 shadow-sm hover:shadow-md transition-all duration-300">
     <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
       <i className="fas fa-shield-alt text-white text-xs"></i>
     </div>
@@ -311,7 +311,7 @@ const HeroSection = () => {
   </div>
 
   {/* 100K+ Conversations */}
-  <div className="group flex items-center space-x-2 bg-white hover:bg-orange-50 px-4 py-2 rounded-full border border-gray-200 hover:border-orange-300 shadow-sm hover:shadow-md transition-all duration-300">
+  <div className="group flex items-center space-x-2 bg-white hover:bg-orange-50 px-4  rounded-full border border-gray-200 hover:border-orange-300 shadow-sm hover:shadow-md transition-all duration-300">
     <div className="w-6 h-6 bg-gradient-to-r from-[#FF6D3F] to-orange-600 rounded-full flex items-center justify-center">
       <i className="fas fa-users text-white text-xs"></i>
     </div>
@@ -321,18 +321,18 @@ const HeroSection = () => {
   </div>
 
   {/* 4.9/5 Rating */}
-  <div className="group flex items-center space-x-2 bg-white hover:bg-yellow-50 px-4 py-2 rounded-full border border-gray-200 hover:border-yellow-300 shadow-sm hover:shadow-md transition-all duration-300">
+  {/* <div className="group flex items-center space-x-2 bg-white hover:bg-yellow-50 px-4 py-2 rounded-full border border-gray-200 hover:border-yellow-300 shadow-sm hover:shadow-md transition-all duration-300">
     <div className="w-6 h-6 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full flex items-center justify-center">
       <i className="fas fa-star text-white text-xs"></i>
     </div>
     <span className="text-sm text-gray-700 font-medium group-hover:text-yellow-700 transition-colors">
       4.9/5 Rating
     </span>
-  </div>
+  </div> */}
 </div>
 
               {/* App Download Buttons for Mobile */}
-              <div className="flex flex-row lg:hidden items-center justify-center gap-4">
+              {/* <div className="flex flex-row lg:hidden items-center justify-center gap-4">
                 <Link href="https://play.google.com/store/apps/details?id=com.astrosight" passHref>
                   <div className="flex mt-3 md:w-48 md:h-14 w-[150px] h-[45px] bg-black text-white rounded-lg items-center justify-center cursor-pointer hover:shadow-xl">
                     <div className="mr-3">
@@ -366,7 +366,7 @@ const HeroSection = () => {
                     </div>
                   </div>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         )}
