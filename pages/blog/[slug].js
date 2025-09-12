@@ -1,7 +1,7 @@
 // ../pages/blog/[slug].js
 
 import Script from 'next/script';
-import { client, fetchBlogBySlug, fetchRelatedPosts, getAllBlogSlugs } from '../../lib/contentful';
+import {  fetchBlogBySlug, fetchRelatedPosts, getAllBlogSlugs } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
