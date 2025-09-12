@@ -10,7 +10,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const CustomHeader = ({ isHomePage = false }) => {
   const router = useRouter();
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   // Handle mobile detection
@@ -30,7 +30,7 @@ const CustomHeader = ({ isHomePage = false }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-lg">
       <div className="max-w-screen-xl mx-auto px-4 py-3">
         
         {/* Mobile Layout */}
@@ -78,51 +78,49 @@ const CustomHeader = ({ isHomePage = false }) => {
               />
             </Link>
 
-            {/* Center: Navigation Menu (only for homepage) */}
-            {isHomePage && (
-              <nav className="flex items-center gap-8">
-                <Link 
-                  href="/" 
-                  className={`font-medium transition-colors hover:text-orange-600 ${
-                    router.pathname === '/' ? 'text-orange-600' : 'text-gray-700'
-                  }`}
-                >
-                  Home
-                </Link>
-                <Link 
-                  href="/compatibility" 
-                  className={`font-medium transition-colors hover:text-orange-600 ${
-                    router.pathname === '/compatibility' ? 'text-orange-600' : 'text-gray-700'
-                  }`}
-                >
-                  Compatibility
-                </Link>
-                <Link 
-                  href="/horoscope/today-horoscope" 
-                  className={`font-medium transition-colors hover:text-orange-600 ${
-                    router.pathname.includes('/horoscope') ? 'text-orange-600' : 'text-gray-700'
-                  }`}
-                >
-                  Horoscope
-                </Link>
-                <Link 
-                  href="/panchanga" 
-                  className={`font-medium transition-colors hover:text-orange-600 ${
-                    router.pathname === '/panchanga' ? 'text-orange-600' : 'text-gray-700'
-                  }`}
-                >
-                  Panchanga
-                </Link>
-                <Link 
-                  href="/blog" 
-                  className={`font-medium transition-colors hover:text-orange-600 ${
-                    router.pathname === '/blog' ? 'text-orange-600' : 'text-gray-700'
-                  }`}
-                >
-                  Blog
-                </Link>
-              </nav>
-            )}
+            {/* Center: Navigation Menu */}
+            <nav className="flex items-center gap-8">
+              <Link 
+                href="/" 
+                className={`font-medium transition-colors hover:text-orange-600 ${
+                  router.pathname === '/' ? 'text-orange-600' : 'text-gray-700'
+                }`}
+              >
+                Home
+              </Link>
+              <Link 
+                href="/compatibility" 
+                className={`font-medium transition-colors hover:text-orange-600 ${
+                  router.pathname === '/compatibility' ? 'text-orange-600' : 'text-gray-700'
+                }`}
+              >
+                Compatibility
+              </Link>
+              <Link 
+                href="/horoscope/today-horoscope" 
+                className={`font-medium transition-colors hover:text-orange-600 ${
+                  router.pathname.includes('/horoscope') ? 'text-orange-600' : 'text-gray-700'
+                }`}
+              >
+                Horoscope
+              </Link>
+              <Link 
+                href="/panchanga" 
+                className={`font-medium transition-colors hover:text-orange-600 ${
+                  router.pathname === '/panchanga' ? 'text-orange-600' : 'text-gray-700'
+                }`}
+              >
+                Panchanga
+              </Link>
+              <Link 
+                href="/blog" 
+                className={`font-medium transition-colors hover:text-orange-600 ${
+                  router.pathname === '/blog' ? 'text-orange-600' : 'text-gray-700'
+                }`}
+              >
+                Blog
+              </Link>
+            </nav>
 
             {/* Right: Login Button */}
             <button

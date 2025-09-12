@@ -1,370 +1,104 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-// import Image from 'next/image';
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHome,
   faUser,
-  faWallet,
-  faHistory,
-  // faCalendar,
   faNewspaper,
-  faHeart,  faFileAlt,
-  faOm,
-  faShareAlt,
-  faTimes,
-  faSignOutAlt
+  faHeart,
+  faCalendarAlt,
+  faBrain,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faFacebook,
-  faTwitter,
-  faInstagram,
-  faYoutube
-} from '@fortawesome/free-brands-svg-icons';
 
-// Import translations directly to avoid SSR issues
-import enTranslations from '../locales/en.json';
-import hiTranslations from '../locales/hi.json';
-import knTranslations from '../locales/kn.json';
-
-const translations = {
-  en: enTranslations,
-  hi: hiTranslations,
-  kn: knTranslations,
-};
-
-// App config for social links and version
-const APP_CONFIG = {
-  app: {
-    version: "1.0.0"
-  },
-  socialLinks: [
-    { id: 1, icon: faFacebook, type: "brand", link: "https://facebook.com/astrosight" },
-    { id: 2, icon: faTwitter, type: "brand", link: "https://twitter.com/astrosight" },
-    { id: 3, icon: faInstagram, type: "brand", link: "https://instagram.com/astrosight" },
-    { id: 4, icon: faYoutube, type: "brand", link: "https://youtube.com/astrosight" },
-  ]
-};
-
-// Helper function to handle image source (URL string or require object)
-// const getImageSource = (imageSource) => {
-//   if (typeof imageSource === 'string') {
-//     return imageSource;
-//   }
-//   return imageSource; // Already a require object or path
-// };
-
-const SideMenu = ({ 
-  isOpen, 
-  onClose, 
-  // navigation, // Will use useRouter instead
-  // activeTab, // Removed unused
-  // setActiveTab, // Removed unused
-  currentUser = {
-    name: "Guest",
-    phoneNumber: "+91-9740854522",
-    profileImage: "/default-profile.png",
-    zodiacSign: "Leo"
-  },
-  userProfileData = null // New prop for centralized user data
-}) => {  
-  const router = useRouter();
-  // Use a lazy initializer function to set the initial state
-  const [userProfile, setUserProfile] = useState(() => ({
-    name: currentUser.name || "Guest",
-    phoneNumber: currentUser.phoneNumber || "+91-9740854522",
-    profileImage: currentUser.profileImage || "/default-profile.png",
-    zodiacSign: currentUser.zodiacSign || "Leo"
-  }));
-  const [currentLanguage, setCurrentLanguage] = useState('en');
-  const [mounted, setMounted] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(280);
-console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
-  // Language helper functions
-  // const getLanguage = () => {
-  //   if (typeof window !== 'undefined') {
-  //     return localStorage.getItem('language') || 'en';
-  //   }
-  //   return 'en';
-  // };
-
-  const t = (key, fallback = key) => {
-    const translation = translations[currentLanguage];
-    
-    if (!translation) {
-      return fallback;
-    }
-    
-    // Handle nested keys (e.g., "sidemenu.home")
-    const keys = key.split('.');
-    let value = translation;
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k];
-      } else {
-        return fallback;
-      }
-    }
-    
-    return typeof value === 'string' ? value : fallback;
-  };
-
-  // Create translated menu items
-  const getTranslatedMenuItems = () => {
-  // Base menu items always shown
-  const baseMenuItems = [
-    { id: 1, title: t("sidemenu.home") || "Home", icon: faHome, path: "/" },
-    { id: 2, title: t("sidemenu.blogs") || "Blogs", icon: faNewspaper, path: "/blog" },
-    { id: 3, title: t("sidemenu.compatibility") || "Compatibility", icon: faHeart, path: "/compatibility" },
-    { id: 6, title: t("sidemenu.horoscope") || "Horoscope", icon: faNewspaper, path: "/horoscope/today-horoscope" },
-    { id: 7, title: t("sidemenu.panchanga") || "Panchanga", icon: faNewspaper, path: "/panchanga" },
-        { id: 8, title: t("sidemenu.reports") || "Reports", icon: faFileAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/reports" },
-
-  ];
-
-  // User-specific menu items (only shown when user is logged in)
-  const userMenuItems = [
-    { id: 5, title: t("sidemenu.profile") || "Profile", icon: faUser, path: "/profile/page" },
-    { id: 4, title: t("sidemenu.wallet") || "Wallet", icon: faWallet, path: "/wallet/page" },
-    { id: 14, title: t("sidemenu.order_history") || "Order History", icon: faHistory, path: "/wallet/page" },
-    { id: 8, title: t("sidemenu.reports") || "Reports", icon: faFileAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/reports" },
-    { id: 11, title: t("sidemenu.book_pooja") || "Book Pooja", icon: faOm, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/pooja-booking" },
-    { id: 12, title: t("sidemenu.refer_earn") || "Refer & Earn", icon: faShareAlt, badge: t("sidemenu.coming_soon") || "Coming Soon", path: "/refer-earn" },
-  ];
-
-  // Check if user is logged in (currentUser.name exists and is not "Guest")
-  const isLoggedIn = currentUser.name && currentUser.name !== "Guest";
-  
-  if (isLoggedIn) {
-    // Return all menu items for logged in users
-    return [...baseMenuItems, ...userMenuItems];
-  } else {
-    // Return only base menu items for guests
-    return baseMenuItems;
-  }
-};
-  // Initialize mounted state
-  useEffect(() => {
-    setMounted(true);
-    
-    if (typeof window !== 'undefined') {
-      // Only set language on initial mount
-      const initialLanguage = localStorage.getItem('language') || 'en';
-      setCurrentLanguage(initialLanguage);
-    }
-  }, []);
-  
-  // Handle window resize separately
-  useEffect(() => {
-    const handleResize = () => {
-      if (typeof window !== 'undefined') {
-        setWindowWidth(Math.min(280, window.innerWidth * 0.8));
-      }
-    };
-    
-    if (typeof window !== 'undefined') {
-      // Set initial window width
-      handleResize();
-      
-      // Add event listener for resize
-      window.addEventListener('resize', handleResize);
-      
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-  }, []);
-  
-  // Handle language changes separately
-  useEffect(() => {
-    const handleLanguageChange = () => {
-      if (typeof window !== 'undefined') {
-        const newLang = localStorage.getItem('language') || 'en';
-        setCurrentLanguage(newLang);
-      }
-    };
-    
-    if (typeof window !== 'undefined') {
-      window.addEventListener('languageChanged', handleLanguageChange);
-      
-      return () => {
-        window.removeEventListener('languageChanged', handleLanguageChange);
-      };
-    }
-  }, []);
-
-  // Update userProfile when currentUser or userProfileData props change
-  useEffect(() => {
-    // Use centralized data if available, otherwise use currentUser
-    if (userProfileData && userProfileData.astroProfile && userProfileData.userProfile) {
-      const centralizedUserProfile = {
-        name: userProfileData.astroProfile.name || currentUser.name,
-        phoneNumber: userProfileData.userProfile.phone || currentUser.phoneNumber,
-        profileImage: userProfileData.userProfile.image || currentUser.profileImage,
-        zodiacSign: userProfileData.astroProfile.zodiac || 'Leo'
-      };
-      setUserProfile(centralizedUserProfile);
-      console.log('SideMenu: Using centralized user data:', centralizedUserProfile);
-    } else {
-      // Only update if the values are different to prevent infinite loop
-      if (userProfile.name !== currentUser.name || 
-          userProfile.phoneNumber !== currentUser.phoneNumber ||
-          userProfile.profileImage !== currentUser.profileImage ||
-          userProfile.zodiacSign !== currentUser.zodiacSign) {
-        setUserProfile(currentUser);
-      }
-    }
-  }, [userProfileData]);
-
-  const handleLogout = async () => {
-    try {
-      // Remove token from cookies instead of localStorage
-      if (typeof window !== 'undefined') {
-        const Cookies = (await import('js-cookie')).default;
-        Cookies.remove('token');
-      }
-      localStorage.removeItem('userData');
-      onClose();
-      router.push('/User/login');
-    } catch (error) {
-      console.error('Logout error:', error);
-      alert('Failed to logout. Please try again.');
-    }
-  };
-
-  const renderMenuItem = (item) => (
-    <button
-      key={item.id}
-      className="w-full flex items-center px-4 py-3.5 min-h-[50px] hover:bg-orange-50 transition-colors"
-      onClick={() => {
-        console.log(`${item.title} pressed, path: ${item.path}`);
-        onClose();
-        if (item.path) {
-          router.push(item.path);
-        }
-      }}
-    >
-      <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center mr-3 flex-shrink-0">
-        <FontAwesomeIcon 
-          icon={item.icon} 
-          className="w-4 h-4"
-          style={{ color: '#f97316' }}
-        />
-      </div>
-      <div className="flex-1 flex items-center justify-between">
-        <span className="text-gray-800 text-sm flex-1 pr-2 text-left">
-          {item.title}
-        </span>
-        {item.badge && (
-          <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full flex-shrink-0">
-            {item.badge}
-          </span>
-        )}
-      </div>
-    </button>
-  );
-
-  const handleSocialLinkPress = (social) => {
-    if (social.link && social.link !== '#') {
-      window.open(social.link, '_blank');
-    }
-  };
-
-  // Prevent scroll when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
-
+const SideMenu = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
+
+  const menuItems = [
+    { name: 'Home', href: '/', icon: faHome },
+    { name: 'AI Chat', href: '/ai-chat-homepage', icon: faBrain },
+    { name: 'Compatibility', href: '/compatibility', icon: faHeart },
+    { name: 'Horoscope', href: '/horoscope/today-horoscope', icon: faCalendarAlt },
+    { name: 'Panchanga', href: '/panchanga', icon: faCalendarAlt },
+    { name: 'Blog', href: '/blog', icon: faNewspaper },
+  ];
+
+  const handleLoginClick = () => {
+    window.open('https://app.astrosight.ai/auth', '_blank');
+    onClose();
+  };
+
+  const handleLinkClick = () => {
+    onClose();
+  };
+
   return (
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 transition-opacity duration-300"
+        className="fixed inset-0  bg-opacity-19 z-60"
         onClick={onClose}
-      />      {/* Side Menu */}
-      <div 
-        className={`fixed top-0 left-0 h-full bg-[#FFF2E2] z-50 shadow-xl transition-transform duration-300 ease-in-out ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-        style={{ width: windowWidth }}
-      >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-2 hover:bg-orange-100 rounded-lg transition-colors z-10"
-        >
-          <FontAwesomeIcon icon={faTimes} className="w-5 h-5 text-gray-600" />
-        </button>
-
-        <div className="flex flex-col h-full">
-          {/* User Profile Section */}        
-          {/* <div className="p-3 border-b border-gray-200 flex items-center">
+      />
+      
+      {/* Side Menu */}
+      <div className="fixed top-0 left-0 h-full w-80 shadow-2xl z-50 transform transition-transform duration-300 bg-white border-r-4 border-orange-300">
+        
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-orange-200 bg-orange-50">
+          <div className="flex items-center space-x-2">
             <Image
-              src={getImageSource(userProfile.profileImage)}
-              alt="Profile"
-              width={56}
-              height={56}
-              className="h-14 w-14 rounded-full mr-3 flex-shrink-0 object-cover"
+              src="/log.png"
+              alt="AstroSight Logo"
+              width={120}
+              height={32}
+              className="h-8 w-auto object-contain"
             />
-            <div className="flex-1 min-w-0">
-              <h3 className="font-semibold text-base text-gray-800 truncate">
-                {userProfile.name}
-              </h3>              <p className="text-sm text-gray-600 truncate">
-                {userProfile.phoneNumber}
-              </p>
-            </div>
-          </div> */}
-
-          {/* Menu Items */}
-          <div className="flex-1 py-2 overflow-y-auto">
-            {getTranslatedMenuItems().map(renderMenuItem)}
           </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-orange-100 rounded-lg transition-colors"
+          >
+            <FontAwesomeIcon icon={faTimes} className="w-5 h-5 text-orange-600" />
+          </button>
+        </div>
 
-          {/* Footer Section */}
-          <div className="p-3 border-t border-gray-200">
-            <p className="text-sm text-gray-600 mb-3">Also available on</p>
-            <div className="flex flex-wrap gap-3 mb-4 justify-center">
-              {APP_CONFIG.socialLinks.map((social) => (
-                <button 
-                  key={social.id} 
-                  onClick={() => handleSocialLinkPress(social)}
-                  className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center hover:bg-orange-200 transition-colors"
-                >
-                  <FontAwesomeIcon 
-                    icon={social.icon}
-                    className="w-4 h-4"
-                    style={{ color: '#f97316' }}
-                  />
-                </button>
+        {/* Navigation */}
+        <div className="flex-1 overflow-y-auto px-4 py-6 bg-white">
+          <nav>
+            <ul className="space-y-3">
+              {menuItems.map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    onClick={handleLinkClick}
+                    className="flex items-center space-x-3 p-3 rounded-xl hover:bg-orange-50 hover:shadow-md transition-all duration-200 group w-full border border-transparent hover:border-orange-200"
+                  >
+                    <FontAwesomeIcon 
+                      icon={item.icon} 
+                      className="w-5 h-5 text-orange-600 group-hover:text-orange-700" 
+                    />
+                    <span className="text-gray-800 group-hover:text-orange-800 font-medium">
+                      {item.name}
+                    </span>
+                  </Link>
+                </li>
               ))}
-            </div>          
-            
-            <p className="text-sm text-gray-500 text-center mb-3 truncate">
-              Version {APP_CONFIG.app.version}
-            </p>          
-            
-            <button 
-              className="w-full py-3 bg-orange-500 rounded-lg flex items-center justify-center hover:bg-orange-600 transition-colors"
-              onClick={handleLogout}
-            >
-              <FontAwesomeIcon icon={faSignOutAlt} className="w-4 h-4 text-white mr-2" />
-              <span className="text-white font-semibold text-sm">
-                {t('exit') || 'Exit'}
-              </span>
-            </button>
-          </div>
+            </ul>
+          </nav>
+        </div>
+
+        {/* Login Button - Moved to Bottom */}
+        <div className="border-t border-orange-200 p-4 bg-orange-50">
+          <button
+            onClick={handleLoginClick}
+            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+          >
+            <FontAwesomeIcon icon={faUser} className="w-4 h-4" />
+            <span>Login to AstroSight</span>
+          </button>
         </div>
       </div>
     </>
