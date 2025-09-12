@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { fetchEntries } from '../../lib/contentful';
+import { fetchBlogIndex, debugContentfulFields } from '../../lib/contentful';
 import SEOHead from '../../components/SEOHead';
 import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid } from '../../components/InternalLinksGrid';
 import Head from 'next/head';
@@ -308,9 +308,13 @@ export default function Blog({ posts }) {
 }
 
 export async function getStaticProps() {
-  // Fetch blog posts using fetchEntries
-  const posts = await fetchEntries('astrosightBlog');
-
+  // Debug: Check available fields
+  const availableFields = await debugContentfulFields();
+  console.log('Available Contentful fields:', availableFields);
+  
+  // Fetch blog posts using optimized function
+  const posts = await fetchBlogIndex(12); // Only fetch 12 posts for index
+console.log(posts)
   // Sanitize the posts
   const sanitizedPosts = posts.map((post) => {
     console.log(post.fields)
@@ -349,6 +353,6 @@ export async function getStaticProps() {
     props: {
       posts: sanitizedPosts,
     },
-    revalidate: 10,
+    revalidate: 3600, // Cache for 1 hour instead of 10 seconds
   };
 }

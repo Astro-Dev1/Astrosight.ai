@@ -153,7 +153,7 @@ const HomeMobileScreen = () => {
       onClose={() => setIsSideMenuOpen(false)}
     />
     
-    <div className=" bg font-poppins min-h-screen pt-16"> {/* Added pt-16 for header spacing */}
+    <div className=" bg font-poppins min-h-screen pt-10"> {/* Added pt-16 for header spacing */}
  
         <section className="bg-white w-full pt-7 animate-pulse">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">

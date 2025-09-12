@@ -17,6 +17,12 @@ import {
   faTimes,
   faSignOutAlt
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faFacebook,
+  faTwitter,
+  faInstagram,
+  faYoutube
+} from '@fortawesome/free-brands-svg-icons';
 
 // Import translations directly to avoid SSR issues
 import enTranslations from '../locales/en.json';
@@ -35,10 +41,10 @@ const APP_CONFIG = {
     version: "1.0.0"
   },
   socialLinks: [
-    { id: 1, icon: "facebook", type: "brand", link: "https://facebook.com/astrosight" },
-    { id: 2, icon: "twitter", type: "brand", link: "https://twitter.com/astrosight" },
-    { id: 3, icon: "instagram", type: "brand", link: "https://instagram.com/astrosight" },
-    { id: 4, icon: "youtube", type: "brand", link: "https://youtube.com/astrosight" },
+    { id: 1, icon: faFacebook, type: "brand", link: "https://facebook.com/astrosight" },
+    { id: 2, icon: faTwitter, type: "brand", link: "https://twitter.com/astrosight" },
+    { id: 3, icon: faInstagram, type: "brand", link: "https://instagram.com/astrosight" },
+    { id: 4, icon: faYoutube, type: "brand", link: "https://youtube.com/astrosight" },
   ]
 };
 
@@ -337,7 +343,7 @@ console.log('SideMenu mounted:', mounted, 'windowWidth:', windowWidth);
                   className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center hover:bg-orange-200 transition-colors"
                 >
                   <FontAwesomeIcon 
-                    icon={['fab', social.icon] || social.icon}
+                    icon={social.icon}
                     className="w-4 h-4"
                     style={{ color: '#f97316' }}
                   />

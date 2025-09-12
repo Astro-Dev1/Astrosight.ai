@@ -1,7 +1,7 @@
 // ../pages/blog/[slug].js
 
 import Script from 'next/script';
-import { client } from '../../lib/contentful';
+import { client, fetchBlogBySlug, fetchRelatedPosts, getAllBlogSlugs } from '../../lib/contentful';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import CustomHeader from '../../components/CustomHeader';
 import SideMenu from '../../components/SideMenu';
@@ -597,92 +597,43 @@ export default function Post({ post, relatedPosts }) {
     </>
   );
 }
-
 export async function getStaticPaths() {
-  const entries = await client.getEntries({
-    content_type: 'astroanswerBlog',
-  });
+  // Use optimized function to get only slugs
+  const entries = await getAllBlogSlugs();
 
-  const paths = entries.items.map((post) => ({
+  const paths = entries.map((post) => ({
     params: { slug: post.fields.slug },
   }));
 
   return {
-    paths,
-    fallback: "blocking",
+    paths: paths.slice(0, 100), // Pre-generate only first 100 pages
+    fallback: "blocking", // Generate others on-demand
   };
 }
 
 export async function getStaticProps({ params }) {
-  // Fetch the main blog post with increased include depth
+  // Use optimized functions - SINGLE API call approach
 try{  
-  const { items } = await client.getEntries({
-    content_type: 'astroanswerBlog',
-    'fields.slug': params.slug,
-    include: 10  // Increase from default of 1-2
-  });
-
-  const post = items[0];
-
-  // Fetch ALL blog posts to supplement internal links
-  const allPosts = await client.getEntries({
-    content_type: 'astroanswerBlog',
-    limit: 100, // Maximum allowed by Contentful
-    'fields.slug[nin]': [params.slug], // Exclude current post
-    select: 'fields.title,fields.slug,sys.id' // Only get what we need for links
-  });
-
-  // Create a merged array of internal links
-  let allInternalLinks = [];
+  // Get main post with optimized function
+  const post = await fetchBlogBySlug(params.slug);
   
-  // First, add existing internal links
-  if (post.fields.internalLinks && Array.isArray(post.fields.internalLinks)) {
-    // Keep track of IDs we already have
-    const existingIds = post.fields.internalLinks.map(link => link.sys.id);
-    allInternalLinks = [...post.fields.internalLinks];
-    
-    // Add more links up to 10 total
-    const additionalLinksNeeded = 10 - allInternalLinks.length;
-    
-    if (additionalLinksNeeded > 0) {
-      // Add links from allPosts that aren't already included
-      const additionalLinks = allPosts.items
-        .filter(item => !existingIds.includes(item.sys.id))
-        .slice(0, additionalLinksNeeded);
-      
-      allInternalLinks = [...allInternalLinks, ...additionalLinks];
-    }
-  } else {
-    // If no internal links at all, use some from allPosts
-    allInternalLinks = allPosts.items.slice(0, 10);
+  if (!post) {
+    return { notFound: true };
   }
 
-  // Create a modified post with expanded links
-  const postWithMoreLinks = {
-    ...post,
-    fields: {
-      ...post.fields,
-      internalLinks: allInternalLinks
-    }
-  };
-
-  // Fetch related posts for display in "You Might Also Enjoy" section
-  const relatedPosts = await client.getEntries({
-    content_type: 'astroanswerBlog',
-    limit: 3,
-    'fields.slug[nin]': [params.slug],
-  });
+  // Get related posts with optimized function  
+  const relatedPosts = await fetchRelatedPosts(params.slug, 3);
 
   // Sanitization function
   const sanitizeContentfulEntry = (item) => {
     // Process internalLinks if they exist
     const internalLinksToProcess = item.fields.internalLinks || [];
-    // Process author information
-    const sanitizedAuthor = item.fields.author ? {
+    // Process author information safely
+    const sanitizedAuthor = {
       fields: {
-        name: item.fields.author || 'AstroSight Team', // Direct string access
-        bio: item.fields.authorProfile?.fields?.bio || '',
-        profileImage: item.fields.authorProfile?.fields?.profileImage ? {
+        name: item.fields.author || 'AstroSight Team',
+        bio: item.fields.authorProfile?.fields?.bio || 'Expert astrologers and spiritual guides at AstroSight',
+        profileImage: item.fields.authorProfile?.fields?.profileImage?.fields?.file?.url ? {
           fields: {
             file: {
               url: item.fields.authorProfile.fields.profileImage.fields.file.url
@@ -691,27 +642,24 @@ try{
           }
         } : null
       }
-    } : {
-      fields: {
-        name: 'AstroSight Team',
-        bio: 'Expert astrologers and spiritual guides at AstroSight',
-        profileImage: null
-      }
     };
-    // Process internalLinks
+    // Process internalLinks safely
     let sanitizedInternalLinks = internalLinksToProcess.map(link => {
       // Handle both direct entries and references
       const fields = link.fields || link;
       return {
         fields: {
-          title: fields.title,
-          slug: fields.slug
+          title: fields.title || 'Untitled',
+          slug: fields.slug || ''
         }
       };
     });
     console.log(item.fields.bodyContent)
     return {
-      sys: { id: item.sys.id, updatedAt: item.sys.updatedAt },
+      sys: { 
+        id: item.sys.id || '', 
+        updatedAt: item.sys.updatedAt || new Date().toISOString() 
+      },
       fields: {
         title: item.fields.title || '',
         slug: item.fields.slug || '',
@@ -726,32 +674,29 @@ try{
         internalLinks: sanitizedInternalLinks,
                 author: sanitizedAuthor, // Add author field
 
-        coverImage: item.fields.coverImage
-        
-          ? {
-            fields: {
-              file: {
-                url: item.fields.coverImage.fields.file.url,
-              },
-              title: item.fields.coverImage.fields.title,
+        coverImage: item.fields.coverImage?.fields?.file?.url ? {
+          fields: {
+            file: {
+              url: item.fields.coverImage.fields.file.url,
             },
-          }
-          : null,
+            title: item.fields.coverImage.fields.title || '',
+          },
+        } : null,
         faq: item.fields.faQs || null,
       },
     };
   };
 
-  // Use the enhanced post with more links
-  const sanitizedPost = sanitizeContentfulEntry(postWithMoreLinks);
-  const sanitizedRelatedPosts = relatedPosts.items.map(sanitizeContentfulEntry);
+  // Sanitize the optimized data
+  const sanitizedPost = sanitizeContentfulEntry(post);
+  const sanitizedRelatedPosts = relatedPosts.map(sanitizeContentfulEntry);
 
   return {
     props: {
       post: sanitizedPost,
       relatedPosts: sanitizedRelatedPosts,
     },
-    revalidate: 60,
+    revalidate: 7200, // Cache for 2 hours instead of 1 minute
 };
 }
  catch (error) {
@@ -761,4 +706,5 @@ try{
     };
   }
 }
+
 

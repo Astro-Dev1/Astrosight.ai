@@ -68,7 +68,7 @@ async function getDynamicPosts() {
   // Replace with your actual blog fetching logic
      const entries = await client.getEntries({
         content_type: 'astroanswerBlog',
-        limit: 1000, // Adjust based on your needs
+        limit: 50, // Adjust based on your needs
       });
   return entries.items.map(item => ({
     slug: item.fields.slug,
@@ -135,7 +135,7 @@ export async function getServerSideProps({ res }) {
     getXmlUrl({ url: `${siteUrl}/horoscope/weekly-horoscope`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/horoscope/monthly-horoscope`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/horoscope/yearly-horoscope`, lastModified: new Date() }),
-        getXmlUrl({ url: `${siteUrl}/panchanga/`, lastModified: new Date() }),
+        getXmlUrl({ url: `${siteUrl}/panchanga`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/compatibility/`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/privacy-policy`, lastModified: new Date() }),
     getXmlUrl({ url: `${siteUrl}/shop`, lastModified: new Date() }),
