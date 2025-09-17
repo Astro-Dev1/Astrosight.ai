@@ -500,8 +500,9 @@ const KaalSarpDoshCalculator = () => {
             <RecentBlogLinks />
           </div>
         </div>
-      <Footer />
-    </>
+<div className="bg-[#f46434] mx-auto px-4 sm:px-6 lg:px-8">
+          <Footer />
+        </div>    </>
   );
 };
 
