@@ -200,7 +200,8 @@ function renderContentBlock(block, index) {
                           target={child.url?.startsWith('http') ? '_blank' : '_self'}
                           rel={child.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
                         >
-                          {child.children && child.children.map((linkChild, lIndex) => (
+                          {child.children && child.children.map((linkChild) => (
+                            
                             linkChild.type === 'text' ? linkChild.text : ''
                           )).join('')}
                         </a>
@@ -229,7 +230,7 @@ function renderContentBlock(block, index) {
                 <ListTag key={pIndex} className="mb-4 ml-6">
                   {paragraph.children && paragraph.children.map((listItem, liIndex) => (
                     <li key={liIndex} className="mb-2">
-                      {listItem.children && listItem.children.map((child, cIndex) => (
+                      {listItem.children && listItem.children.map((child) => (
                         child.type === 'text' ? child.text : ''
                       )).join('')}
                     </li>
@@ -281,14 +282,15 @@ function renderContentBlock(block, index) {
 
 
 export default function Post({ post, relatedPosts, isStrapi }) {
+  console.log(relatedPosts, isStrapi)
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   
   const {
     title,
     publishDate,
-    introduction,
+    // introduction,
     bodyContent,
-    conclusion,
+    // conclusion,
     metaTitle,
     metaDescription,
     primaryKeyword,
