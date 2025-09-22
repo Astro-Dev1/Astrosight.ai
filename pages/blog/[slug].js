@@ -218,7 +218,7 @@ function renderContentBlock(block, index) {
               const HeadingTag = `h${paragraph.level || 2}`;
               return (
                 <HeadingTag key={pIndex} className="text-xl font-semibold text-gray-900 mt-6 mb-3">
-                  {paragraph.children && paragraph.children.map((child, cIndex) => (
+                  {paragraph.children && paragraph.children.map((child) => (
                     child.type === 'text' ? child.text : ''
                   )).join('')}
                 </HeadingTag>
