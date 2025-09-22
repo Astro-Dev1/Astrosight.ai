@@ -1,13 +1,15 @@
 // ../pages/blog/[slug].js
 
 import Script from 'next/script';
-import {  fetchBlogBySlug, fetchRelatedPosts, getAllBlogSlugs } from '../../lib/contentful';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+// import {  fetchBlogBySlug, fetchRelatedPosts, getAllBlogSlugs } from '../../lib/contentful';
+// import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import CustomHeader from '../../components/CustomHeader';
+import { strapiApi } from '../../lib/contentful';
+
 import SideMenu from '../../components/SideMenu';
 import Footer from '../../components/Footer';
 import SEOHead from '../../components/SEOHead';
-import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
+// import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -16,153 +18,269 @@ import Head from 'next/head';
 import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
 
 // Custom rendering options for Contentful rich text - Enhanced for Medium style with better spacing
-const renderOptions = {
-  renderMark: {
-    [MARKS.BOLD]: (text) => <strong className="font-semibold">{text}</strong>,
-    [MARKS.ITALIC]: (text) => <em className="italic">{text}</em>,
-    [MARKS.CODE]: (text) => (
-      <code className="font-mono text-sm bg-gray-100 rounded px-1 py-0.5">{text}</code>
-    ),
-    [MARKS.UNDERLINE]: (text) => <u className="underline">{text}</u>,
-  },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => {
-      // Check if this is the first paragraph to apply a special style
-      const isFirstParagraph = node.content && node.content[0] &&
-        !node.content[0].marks?.some(mark => mark.type === 'code');
+// const renderOptions = {
+//   renderMark: {
+//     [MARKS.BOLD]: (text) => <strong className="font-semibold">{text}</strong>,
+//     [MARKS.ITALIC]: (text) => <em className="italic">{text}</em>,
+//     [MARKS.CODE]: (text) => (
+//       <code className="font-mono text-sm bg-gray-100 rounded px-1 py-0.5">{text}</code>
+//     ),
+//     [MARKS.UNDERLINE]: (text) => <u className="underline">{text}</u>,
+//   },
+//   renderNode: {
+//     [BLOCKS.PARAGRAPH]: (node, children) => {
+//       // Check if this is the first paragraph to apply a special style
+//       const isFirstParagraph = node.content && node.content[0] &&
+//         !node.content[0].marks?.some(mark => mark.type === 'code');
 
-      // Check for alignment in the node data (if extended in Contentful)
-      const textAlign = node.data?.textAlign || 'left';
+//       // Check for alignment in the node data (if extended in Contentful)
+//       const textAlign = node.data?.textAlign || 'left';
 
-      return (
-        <p className={`font-serif text-lg leading-normal text-gray-800 mb-5 ${isFirstParagraph ? 'text-xl leading-relaxed' : ''
-          } text-${textAlign}`}>
-          {children}
-        </p>
-      );
-    },
-    [BLOCKS.HEADING_1]: (node, children) => {
-      const textAlign = node.data?.textAlign || 'left';
-      return <h1 className={`font-serif text-4xl md:text-5xl font-bold mt-10 text-center mb-6 text-gray-900 text-${textAlign}`}>{children}</h1>;
-    },
-    [BLOCKS.HEADING_2]: (node, children) => {
-      const textAlign = node.data?.textAlign || 'left';
-      return <h2 className={`font-serif text-3xl font-bold mt-8 mb-4 text-center text-gray-900 text-${textAlign}`}>{children}</h2>;
-    },
-    [BLOCKS.HEADING_3]: (node, children) => {
-      const textAlign = node.data?.textAlign || 'left';
-      return <h3 className={`font-serif text-2xl font-semibold mt-6 mb-3 text-center text-gray-900 text-${textAlign}`}>{children}</h3>;
-    },
-    [BLOCKS.HEADING_4]: (node, children) => {
-      const textAlign = node.data?.textAlign || 'left';
-      return <h4 className={`font-serif text-xl font-semibold mt-5 mb-3 text-gray-900 text-${textAlign}`}>{children}</h4>;
-    },
-    [BLOCKS.HR]: () => (
-      <div className="flex justify-center my-8">
-        <div className="w-16 h-0.5 bg-gray-300"></div>
-      </div>
-    ),
-    [BLOCKS.QUOTE]: (node, children) => {
-      return (
-        <blockquote className="border-l-4 border-orange-500 pl-6 py-1 my-6 italic font-serif text-xl text-gray-700">
-          {children}
-        </blockquote>
-      );
-    },
-    [BLOCKS.UL_LIST]: (node, children) => {
-      return <ul className="list-disc pl-8 mb-6 font-serif text-lg leading-normal text-gray-800">{children}</ul>;
-    },
-    [BLOCKS.OL_LIST]: (node, children) => {
-      return <ol className="list-decimal pl-8 mb-6 font-serif text-lg leading-normal text-gray-800">{children}</ol>;
-    },
-    [BLOCKS.LIST_ITEM]: (node, children) => {
-      return <li className="mb-2">{children}</li>;
-    },
-    // Enhanced image handling with alignment options like in first code sample
-    [BLOCKS.EMBEDDED_ASSET]: (node) => {
-      const { file, title, description } = node.data.target.fields;
-      const imageUrl = file.url;
-      const alignment = node.data?.alignment || 'center'; // Default to center
+//       return (
+//         <p className={`font-serif text-lg leading-normal text-gray-800 mb-5 ${isFirstParagraph ? 'text-xl leading-relaxed' : ''
+//           } text-${textAlign}`}>
+//           {children}
+//         </p>
+//       );
+//     },
+//     [BLOCKS.HEADING_1]: (node, children) => {
+//       const textAlign = node.data?.textAlign || 'left';
+//       return <h1 className={`font-serif text-4xl md:text-5xl font-bold mt-10 text-center mb-6 text-gray-900 text-${textAlign}`}>{children}</h1>;
+//     },
+//     [BLOCKS.HEADING_2]: (node, children) => {
+//       const textAlign = node.data?.textAlign || 'left';
+//       return <h2 className={`font-serif text-3xl font-bold mt-8 mb-4 text-center text-gray-900 text-${textAlign}`}>{children}</h2>;
+//     },
+//     [BLOCKS.HEADING_3]: (node, children) => {
+//       const textAlign = node.data?.textAlign || 'left';
+//       return <h3 className={`font-serif text-2xl font-semibold mt-6 mb-3 text-center text-gray-900 text-${textAlign}`}>{children}</h3>;
+//     },
+//     [BLOCKS.HEADING_4]: (node, children) => {
+//       const textAlign = node.data?.textAlign || 'left';
+//       return <h4 className={`font-serif text-xl font-semibold mt-5 mb-3 text-gray-900 text-${textAlign}`}>{children}</h4>;
+//     },
+//     [BLOCKS.HR]: () => (
+//       <div className="flex justify-center my-8">
+//         <div className="w-16 h-0.5 bg-gray-300"></div>
+//       </div>
+//     ),
+//     [BLOCKS.QUOTE]: (node, children) => {
+//       return (
+//         <blockquote className="border-l-4 border-orange-500 pl-6 py-1 my-6 italic font-serif text-xl text-gray-700">
+//           {children}
+//         </blockquote>
+//       );
+//     },
+//     [BLOCKS.UL_LIST]: (node, children) => {
+//       return <ul className="list-disc pl-8 mb-6 font-serif text-lg leading-normal text-gray-800">{children}</ul>;
+//     },
+//     [BLOCKS.OL_LIST]: (node, children) => {
+//       return <ol className="list-decimal pl-8 mb-6 font-serif text-lg leading-normal text-gray-800">{children}</ol>;
+//     },
+//     [BLOCKS.LIST_ITEM]: (node, children) => {
+//       return <li className="mb-2">{children}</li>;
+//     },
+//     // Enhanced image handling with alignment options like in first code sample
+//     [BLOCKS.EMBEDDED_ASSET]: (node) => {
+//       const { file, title, description } = node.data.target.fields;
+//       const imageUrl = file.url;
+//       const alignment = node.data?.alignment || 'center'; // Default to center
 
-      const alignmentClasses = {
-        'left': 'float-left mr-6 mb-4',
-        'right': 'float-right ml-6 mb-4',
-        'center': 'mx-auto'
-      };
+//       const alignmentClasses = {
+//         'left': 'float-left mr-6 mb-4',
+//         'right': 'float-right ml-6 mb-4',
+//         'center': 'mx-auto'
+//       };
 
-      return (
-        <figure className={`my-6 ${alignmentClasses[alignment]}`}>
-          <div className="relative aspect-video max-w-2xl overflow-hidden rounded-lg">
-            <Image
-              src={`https:${imageUrl}`}
-              alt={title || 'Blog image'}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-              className="object-cover"
-              priority
-            />
-          </div>
-          {description && (
-            <figcaption className="mt-2 text-center text-gray-600 text-sm italic">
-              {description}
-            </figcaption>
-          )}
-        </figure>
-      );
-    },
-    [INLINES.HYPERLINK]: (node, children) => {
-      const { uri } = node.data;
-      return (
-        <Link
-          href={uri}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-orange-600 hover:text-orange-500 border-b border-orange-200 hover:border-orange-500 transition-colors duration-200"
-        >
-          {children}
-        </Link>
-      );
-    },
-    // Add support for tables
-    [BLOCKS.TABLE]: (node, children) => (
-      <div className="overflow-x-auto my-6">
-        <table className="min-w-full divide-y divide-gray-300 border border-gray-200">
-          {children}
-        </table>
-      </div>
-    ),
-    [BLOCKS.TABLE_ROW]: (node, children) => <tr>{children}</tr>,
-    [BLOCKS.TABLE_CELL]: (node, children) => {
-      const isHeader = node.data?.isHeader || false;
-      if (isHeader) {
-        return (
-          <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 bg-gray-50">
-            {children}
-          </th>
-        );
-      }
-      return <td className="px-4 py-3 text-sm text-gray-700">{children}</td>;
-    },
-    // Add support for code blocks
-    [BLOCKS.CODE]: (node) => {
-      return (
-        <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-6 text-sm font-mono">
-          <code>{node.content[0].value}</code>
-        </pre>
-      );
-    },
-  },
-};
+//       return (
+//         <figure className={`my-6 ${alignmentClasses[alignment]}`}>
+//           <div className="relative aspect-video max-w-2xl overflow-hidden rounded-lg">
+//             <Image
+//               src={`https:${imageUrl}`}
+//               alt={title || 'Blog image'}
+//               fill
+//               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+//               className="object-cover"
+//               priority
+//             />
+//           </div>
+//           {description && (
+//             <figcaption className="mt-2 text-center text-gray-600 text-sm italic">
+//               {description}
+//             </figcaption>
+//           )}
+//         </figure>
+//       );
+//     },
+//     [INLINES.HYPERLINK]: (node, children) => {
+//       const { uri } = node.data;
+//       return (
+//         <Link
+//           href={uri}
+//           target="_blank"
+//           rel="noopener noreferrer"
+//           className="text-orange-600 hover:text-orange-500 border-b border-orange-200 hover:border-orange-500 transition-colors duration-200"
+//         >
+//           {children}
+//         </Link>
+//       );
+//     },
+//     // Add support for tables
+//     [BLOCKS.TABLE]: (node, children) => (
+//       <div className="overflow-x-auto my-6">
+//         <table className="min-w-full divide-y divide-gray-300 border border-gray-200">
+//           {children}
+//         </table>
+//       </div>
+//     ),
+//     [BLOCKS.TABLE_ROW]: (node, children) => <tr>{children}</tr>,
+//     [BLOCKS.TABLE_CELL]: (node, children) => {
+//       const isHeader = node.data?.isHeader || false;
+//       if (isHeader) {
+//         return (
+//           <th className="px-4 py-3 text-left text-sm font-semibold text-gray-900 bg-gray-50">
+//             {children}
+//           </th>
+//         );
+//       }
+//       return <td className="px-4 py-3 text-sm text-gray-700">{children}</td>;
+//     },
+//     // Add support for code blocks
+//     [BLOCKS.CODE]: (node) => {
+//       return (
+//         <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-6 text-sm font-mono">
+//           <code>{node.content[0].value}</code>
+//         </pre>
+//       );
+//     },
+//   },
+// };
 
 // Estimate reading time
 function calculateReadingTime(content) {
-  const text = JSON.stringify(content);
+  if (!content) return 5;
+  const text = typeof content === 'string' ? content : JSON.stringify(content);
   const wordCount = text.split(/\s+/).length;
-  const readingTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
+  const readingTime = Math.ceil(wordCount / 200);
   return readingTime;
 }
+function renderContentBlock(block, index) {
+  if (!block || !block.__component) return null;
 
-export default function Post({ post, relatedPosts }) {
+  switch (block.__component) {
+    case 'blog-components.rich-text':
+      return (
+        <div key={index} className="prose prose-lg max-w-none mb-6">
+          {block.body && block.body.map((paragraph, pIndex) => {
+            if (paragraph.type === 'paragraph') {
+              return (
+                <p key={pIndex} className="mb-4 text-gray-700 leading-relaxed">
+                  {paragraph.children && paragraph.children.map((child, cIndex) => {
+                    if (child.type === 'text') {
+                      // Handle text with formatting
+                      let textElement = child.text;
+                      
+                      // Apply formatting based on child properties
+                      if (child.bold && child.italic) {
+                        return <strong key={cIndex}><em>{textElement}</em></strong>;
+                      } else if (child.bold) {
+                        return <strong key={cIndex}>{textElement}</strong>;
+                      } else if (child.italic) {
+                        return <em key={cIndex}>{textElement}</em>;
+                      }
+                      
+                      return <span key={cIndex}>{textElement}</span>;
+                    } else if (child.type === 'link') {
+                      // Handle links
+                      return (
+                        <a 
+                          key={cIndex} 
+                          href={child.url} 
+                          className="text-orange-600 hover:text-orange-700 underline"
+                          target={child.url?.startsWith('http') ? '_blank' : '_self'}
+                          rel={child.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        >
+                          {child.children && child.children.map((linkChild, lIndex) => (
+                            linkChild.type === 'text' ? linkChild.text : ''
+                          )).join('')}
+                        </a>
+                      );
+                    }
+                    
+                    // Fallback for other types
+                    return <span key={cIndex}>{child.text || ''}</span>;
+                  })}
+                </p>
+              );
+            } else if (paragraph.type === 'heading') {
+              // Handle headings if they exist in rich-text
+              const HeadingTag = `h${paragraph.level || 2}`;
+              return (
+                <HeadingTag key={pIndex} className="text-xl font-semibold text-gray-900 mt-6 mb-3">
+                  {paragraph.children && paragraph.children.map((child, cIndex) => (
+                    child.type === 'text' ? child.text : ''
+                  )).join('')}
+                </HeadingTag>
+              );
+            } else if (paragraph.type === 'list') {
+              // Handle lists if they exist in rich-text
+              const ListTag = paragraph.format === 'ordered' ? 'ol' : 'ul';
+              return (
+                <ListTag key={pIndex} className="mb-4 ml-6">
+                  {paragraph.children && paragraph.children.map((listItem, liIndex) => (
+                    <li key={liIndex} className="mb-2">
+                      {listItem.children && listItem.children.map((child, cIndex) => (
+                        child.type === 'text' ? child.text : ''
+                      )).join('')}
+                    </li>
+                  ))}
+                </ListTag>
+              );
+            }
+            
+            return null;
+          })}
+        </div>
+      );
+
+    case 'blog-components.h2-block':
+      return (
+        <h2 key={index} className="text-2xl font-serif font-bold text-gray-900 mt-8 mb-4">
+          {block.heading}
+        </h2>
+      );
+
+    case 'blog-components.cta-block':
+      return (
+        <div key={index} className="bg-orange-50 border-l-4 border-orange-500 p-6 my-8 rounded-r-lg">
+          <h3 className="text-xl font-semibold text-gray-900 mb-3">{block.title}</h3>
+          <p className="text-gray-700 mb-4">{block.text}</p>
+          {block.buttonText && block.buttonLink && (
+            <a
+              href={block.buttonLink}
+              className="inline-block bg-orange-500 text-white px-6 py-2 rounded-lg hover:bg-orange-600 transition-colors"
+            >
+              {block.buttonText}
+            </a>
+          )}
+        </div>
+      );
+
+    case 'blog-components.key-links-block':
+      return (
+        <div key={index} className="bg-gray-50 p-6 my-8 rounded-lg">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">{block.linkHeading}</h3>
+        </div>
+      );
+
+    default:
+      console.warn(`Unknown component type: ${block.__component}`);
+      return null;
+  }
+}
+
+
+export default function Post({ post, relatedPosts, isStrapi }) {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   
   const {
@@ -179,14 +297,26 @@ export default function Post({ post, relatedPosts }) {
     author,
     // internalLinks,
     coverImage,
-  } = post.fields;
-  // console.log(internalLinks)  
+} = {
+    title: post.Title,
+    publishDate: post.publishedAt,
+    introduction: post.shortSnippet,
+    bodyContent: post.contentBlocks,
+    conclusion: null,
+    metaTitle: post.seo?.metaTitle || post.Title,
+    metaDescription: post.seo?.metaDescription || post.shortSnippet,
+    primaryKeyword: post.primaryKeyword,
+    secondaryKeywords: [],
+    slug: post.slug,
+    author: post.author || { name: 'AstroSight Team' },
+    coverImage: post.coverImage
+  };  // console.log(internalLinks)  
   // Calculate estimated reading time
   const readingTime = calculateReadingTime([ bodyContent]);
 
   const keywords = [primaryKeyword, ...(secondaryKeywords || [])].join(', ');
   const fullUrl = `https://astrosight.ai/blog/${slug}`;
-  const imageUrl = coverImage ? `https:${coverImage.fields.file.url}` : 'https://astrosight.ai/default-blog-image.jpg';
+  const imageUrl = coverImage?.url || 'https://astrosight.ai/default-blog-image.jpg';
 
   return (
     <>
@@ -197,7 +327,7 @@ export default function Post({ post, relatedPosts }) {
         canonical={`https://astrosight.ai/blog/${slug}`}
         // ogImage={ogImage}
         publishDate={publishDate}
-        modifiedDate={post.sys.updatedAt}
+        modifiedDate={post.updatedAt}
       />
       <Head>
         <link rel="icon" href="/logo.png" />
@@ -212,7 +342,7 @@ export default function Post({ post, relatedPosts }) {
         <meta property="og:url" content={fullUrl} />
         <meta property="og:image" content={imageUrl} />
         <meta property="article:published_time" content={publishDate} />
-        <meta property="article:modified_time" content={post.sys.updatedAt} />
+        <meta property="article:modified_time" content={post.updatedAt} />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -227,44 +357,42 @@ export default function Post({ post, relatedPosts }) {
 
         {/* Structured Data for Article */}
         <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": title || "",
-      "image": [imageUrl || ""],
-      "datePublished": publishDate || "",
-      "dateModified": post?.sys?.updatedAt || "",
-      "author": {
-        "@type": "Organization",
-        "name": author.fields.name,
-        "url": "https://astrosight.ai/about-us",
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "AstroSight",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://astrosight.ai/log.png",
-        },
-      },
-      "description": metaDescription || "",
-      "keywords": keywords || "",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": fullUrl || "",
-      },
-    }),
-  }}
+            type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "headline": title || "",
+              "image": [imageUrl || ""],
+              "datePublished": publishDate || "",
+              "dateModified": post?.updatedAt || "",
+              "author": {
+                "@type": "Organization",
+                "name": author.name,
+                "url": "https://astrosight.ai/about-us",
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "AstroSight",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://astrosight.ai/log.png",
+                },
+              },
+              "description": metaDescription || "",
+              "keywords": keywords || "",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": fullUrl || "",
+              },
+            }),
+          }}
 ></script>
 
 
         {/* Custom typography styles */}
         <style jsx global>{`
-          /* Tailwind CSS classes for Medium-style typography with improved spacing */
-          
-          /* Better spacing for content */
+
           .prose-medium {
             max-width: 680px;
             margin: 0 auto;
@@ -389,19 +517,20 @@ export default function Post({ post, relatedPosts }) {
         {/* Content */}
 
         {/* Hero Section with Cover Image */}
-        {coverImage && (
-          <div className="relative w-full mt-9 h-96 md:h-[500px] ">
+                {coverImage && (
+          <div className="relative w-full mt-9 h-96 md:h-[500px]">
             <Image
-              src={`https:${coverImage.fields.file.url}`}
-              alt={coverImage.fields.title || title}
+              src={coverImage.url}
+              alt={coverImage.alternativeText || title}
               fill
               priority
               sizes="200vw"
-              className="cvertical object-cover rounded-lg shadow-lg"
+              className="object-cover rounded-lg shadow-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           </div>
         )}
+
 
         {/* Article Container */}
         <article className={`container mx-auto px-4 ${coverImage ? '-mt-32' : 'mt-24'} relative z-10`}>
@@ -433,9 +562,10 @@ export default function Post({ post, relatedPosts }) {
                     {primaryKeyword}
                   </span>
                 )}
-                {/* Author link */}
-                {post.fields.author && post.fields.author.fields && (
-                    <span className="ml-2">By {post.fields.author.fields.name}</span>
+                                {author.name && (
+                  <span className="flex items-center">
+                    <span className="ml-2">By {author.name}</span>
+                  </span>
                 )}
               </div>
 
@@ -445,119 +575,56 @@ export default function Post({ post, relatedPosts }) {
 
             {/* Article Content */}
             <div className="prose-medium">
-              {/* Introduction */}
-              <div className="mb-8">
-                {documentToReactComponents(introduction, renderOptions)}
-              </div>
+              {bodyContent && bodyContent.map((block, index) => renderContentBlock(block, index))}
 
-              {/* Main Content */}
-              <div className="mb-8">
-                {documentToReactComponents(bodyContent, renderOptions)}
-              </div>
-
-              {/* Conclusion */}
-              <div>
-                {documentToReactComponents(conclusion, renderOptions)}
-              </div>
             </div>
                         {/* Author Section */}
             {author && (
-              <div className="mt-12 items-center juustify-center pt-8 border-t border-gray-200">
-                <div className="flex items-center juustify-center space-x-4">
+              <div className="mt-12 items-center justify-center pt-8 border-t border-gray-200">
+                <div className="flex items-center justify-center space-x-4">
                   <div className="flex-shrink-0">
-                    {author.fields.profileImage ? (
-                      <div className="relative w-16 h-16 rounded-full overflow-hidden">
-                        <Image justify center
-                          src={`https:${author.fields.profileImage.fields.file.url}`}
-                          alt={author.fields.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center">
-                        <span className="text-white font-bold text-xl">
-                          {author.fields.name.charAt(0)}
-                        </span>
-                      </div>
-                    )}
+                    <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center">
+                      <span className="text-white font-bold text-xl">
+                        {author.name?.charAt(0) || 'A'}
+                      </span>
+                    </div>
                   </div>
                   <div className="flex-grow">
                     <h3 className="font-serif text-lg font-semibold text-gray-900 mb-1">
-                      Written by {author.fields.name}
+                      Written by {author.name || 'AstroSight Team'}
                     </h3>
-                    {author.fields.bio && (
+                    {author.bio && (
                       <p className="text-gray-600 text-sm leading-relaxed">
-                        {author.fields.bio}
+                        {typeof author.bio === 'string' ? author.bio : 'Expert astrologer and content writer'}
                       </p>
                     )}
                   </div>
                 </div>
               </div>
             )}
-
-{/* Related Posts */}
-<section className="bg-orange-50 py-12 mt-12">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-serif font-bold text-gray-900 mb-8 text-center">
-              You Might Also Enjoy
-            </h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {relatedPosts.map((relatedPost) => (
-                <Link
-                  href={`/blog/${relatedPost.fields.slug}`}
-                  key={relatedPost.sys.id}
-                  className="group"
-                >
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 ease-in-out transform hover:scale-105 h-full flex flex-col">
-                    {relatedPost.fields.coverImage && (
-                      <div className="relative aspect-video w-full">
-                        <Image
-                          src={`https:${relatedPost.fields.coverImage.fields.file.url}`}
-                          alt={relatedPost.fields.coverImage.fields.title || relatedPost.fields.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover"
-                        />
-                      </div>
-                    )}
-                    <div className="p-5 flex-grow">
-                      <h3 className="font-serif font-semibold text-xl text-gray-900 group-hover:text-orange-700 transition-colors duration-300 mb-2">
-                        {relatedPost.fields.title}
-                      </h3>
-                      <p className="text-gray-600 line-clamp-3">
-                        {relatedPost.fields.metaDescription}
-                      </p>
-                    </div>
-                    <div className="px-5 pb-5">
-                      <span className="inline-block text-orange-600 font-medium group-hover:text-orange-700">
-                        Read more →
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-
-              ))}
-              
-            </div>
-          </div>
-        </section>
-            {/* Tags */}
-            {post.fields.faq && (
-              <section className="mt-10">
-                {/* <h2 className="font-serif text-4xl md:text-5xl text-center font-bold mt-10 mb-6 text-gray-900">Frequently Asked Questions</h2> */}
-                <div className="space-y-4">
-                  {documentToReactComponents(post.fields.faq, renderOptions)}
+            {/* Related Articles Tags */}
+            {post.relatedArticles && post.relatedArticles.length > 0 && (
+              <section className="mt-10 pt-6 border-t border-gray-200">
+                <h3 className="text-xl font-serif font-semibold text-center text-gray-900 mb-4">Related Topics</h3>
+                <div className="flex flex-wrap gap-2">
+                  {post.relatedArticles.slice(0, 5).map((article, index) => (
+                    <Link 
+                      href={`/blog/${article.slug}`} 
+                      key={`related-article-${index}`}
+                      className="inline-block px-4 py-2 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-full transition-colors duration-300 mb-2"
+                    >
+                      {article.Title}
+                    </Link>
+                  ))}
                 </div>
               </section>
             )}
-
           </div>
         </article>
 
+
         
-        {post.fields.internalLinks && post.fields.internalLinks.length > 0 && (
+        {/* {post.fields.internalLinks && post.fields.internalLinks.length > 0 && (
   <section className="mt-10 pt-6 border-t border-gray-200">
     <h3 className="text-xl font-serif font-semibold text-center text-gray-900 mb-4">Related Topics</h3>
     <div className="">
@@ -572,7 +639,7 @@ export default function Post({ post, relatedPosts }) {
       ))}
     </div>
   </section>
-)}
+)} */}
 
         {/* Internal Link Components */}
         <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -598,108 +665,54 @@ export default function Post({ post, relatedPosts }) {
   );
 }
 export async function getStaticPaths() {
-  // Use optimized function to get only slugs
-  const entries = await getAllBlogSlugs();
-
-  const paths = entries.map((post) => ({
-    params: { slug: post.fields.slug },
+  let strapiSlugs = [];
+  
+  try {
+    strapiSlugs = await strapiApi.getAllBlogSlugs();
+  } catch (error) {
+    console.error('Error fetching Strapi slugs:', error);
+  }
+  
+  const strapiPaths = strapiSlugs.map((slug) => ({
+    params: { slug },
   }));
 
   return {
-    paths: paths.slice(0, 100), // Pre-generate only first 100 pages
-    fallback: "blocking", // Generate others on-demand
+    paths: strapiPaths.slice(0, 200),
+    fallback: "blocking",
   };
 }
+
 
 export async function getStaticProps({ params }) {
-  // Use optimized functions - SINGLE API call approach
-try{  
-  // Get main post with optimized function
-  const post = await fetchBlogBySlug(params.slug);
-  
-  if (!post) {
-    return { notFound: true };
-  }
+  try {
+    const post = await strapiApi.getBlogPostBySlug(params.slug);
+    
+    if (!post) {
+      return { notFound: true };
+    }
 
-  // Get related posts with optimized function  
-  const relatedPosts = await fetchRelatedPosts(params.slug, 3);
+    let relatedPosts = [];
+    try {
+      const allPostsResponse = await strapiApi.getBlogPosts();
+      const allPosts = allPostsResponse.data || [];
+      relatedPosts = allPosts
+        .filter(p => p.slug !== params.slug)
+        .slice(0, 3);
+    } catch (relatedError) {
+      console.log('Could not fetch related posts:', relatedError);
+      relatedPosts = [];
+    }
 
-  // Sanitization function
-  const sanitizeContentfulEntry = (item) => {
-    // Process internalLinks if they exist
-    const internalLinksToProcess = item.fields.internalLinks || [];
-    // Process author information safely
-    const sanitizedAuthor = {
-      fields: {
-        name: item.fields.author || 'AstroSight Team',
-        bio: item.fields.authorProfile?.fields?.bio || 'Expert astrologers and spiritual guides at AstroSight',
-        profileImage: item.fields.authorProfile?.fields?.profileImage?.fields?.file?.url ? {
-          fields: {
-            file: {
-              url: item.fields.authorProfile.fields.profileImage.fields.file.url
-            },
-            title: item.fields.authorProfile.fields.profileImage.fields.title || ''
-          }
-        } : null
-      }
-    };
-    // Process internalLinks safely
-    let sanitizedInternalLinks = internalLinksToProcess.map(link => {
-      // Handle both direct entries and references
-      const fields = link.fields || link;
-      return {
-        fields: {
-          title: fields.title || 'Untitled',
-          slug: fields.slug || ''
-        }
-      };
-    });
-    console.log(item.fields.bodyContent)
     return {
-      sys: { 
-        id: item.sys.id || '', 
-        updatedAt: item.sys.updatedAt || new Date().toISOString() 
+      props: {
+        post,
+        relatedPosts,
+        isStrapi: true,
       },
-      fields: {
-        title: item.fields.title || '',
-        slug: item.fields.slug || '',
-        publishDate: item.fields.publishDate || null,
-        introduction: item.fields.introduction || null,
-        bodyContent: item.fields.bodyContent || null,
-        conclusion: item.fields.conclusion || null,
-        metaTitle: item.fields.metaTitle || '',
-        metaDescription: item.fields.metaDescription || '',
-        primaryKeyword: item.fields.primaryKeyword || '',
-        secondaryKeywords: item.fields.secondaryKeywords || [],
-        internalLinks: sanitizedInternalLinks,
-                author: sanitizedAuthor, // Add author field
-
-        coverImage: item.fields.coverImage?.fields?.file?.url ? {
-          fields: {
-            file: {
-              url: item.fields.coverImage.fields.file.url,
-            },
-            title: item.fields.coverImage.fields.title || '',
-          },
-        } : null,
-        faq: item.fields.faQs || null,
-      },
+      revalidate: 7200,
     };
-  };
-
-  // Sanitize the optimized data
-  const sanitizedPost = sanitizeContentfulEntry(post);
-  const sanitizedRelatedPosts = relatedPosts.map(sanitizeContentfulEntry);
-
-  return {
-    props: {
-      post: sanitizedPost,
-      relatedPosts: sanitizedRelatedPosts,
-    },
-    revalidate: 7200, // Cache for 2 hours instead of 1 minute
-};
-}
- catch (error) {
+  } catch (error) {
     console.error('Error fetching blog post:', error);      
     return {
       notFound: true,

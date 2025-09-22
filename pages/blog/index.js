@@ -9,15 +9,25 @@ import { Card } from '@/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { fetchBlogIndex, debugContentfulFields } from '../../lib/contentful';
+import { strapiApi } from '../../lib/contentful';
 import SEOHead from '../../components/SEOHead';
 import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid } from '../../components/InternalLinksGrid';
 import Head from 'next/head';
 // import { t } from '../../locales/i18n';
 
-const POSTS_PER_PAGE = 8;
-
-export default function Blog({ posts }) {
+const POSTS_PER_PAGE = 10;
+const formatDate = (dateString) => {
+  try {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  } catch (error) {
+    return 'Invalid Date';
+  }
+};
+export default function Blog({ strapiPosts }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,10 +68,12 @@ export default function Blog({ posts }) {
   ];
 
   // Filter posts
-  const filteredPosts = posts.filter((post) => {
-    const matchesSearch = post.fields.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.fields.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory = activeCategory === 'All' || post.fields.category === activeCategory;
+    // Filter posts from Strapi
+  const filteredPosts = strapiPosts.filter((post) => {
+    // Strapi data structure is flat, not nested in attributes
+    const matchesSearch = post.Title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.shortSnippet?.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = activeCategory === 'All' || (post.category?.name === activeCategory);
     return matchesSearch && matchesCategory;
   });
 
@@ -166,58 +178,68 @@ export default function Blog({ posts }) {
           {/* Blog Grid */}
           {currentPosts.length > 0 ? (
             <div className="grid gap-5 mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-              {currentPosts.map((post) => (
-<div key={post.sys.id}>
-  <Link href={post.fields.slug ? `/blog/${post.fields.slug}` : `/blog/${post.fields.slug}`}
-    className="block group">
-    <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-      <div className="flex flex-col">
-        <div className="h-48 overflow-hidden">
-          <Image
-            src={post.fields.coverImage?.fields?.file?.url || '/images/default-blog-image.jpg'}
-            alt={post.fields.title}
-            width={500}
-            height={200}
-            className="w-full h-full object-cover object-top transition-transform group-hover:scale-105 duration-300"
-          />
-        </div>
-        <div className="p-4">
-          <div className="flex justify-between items-center mb-2">
-            <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs">
-              {post.fields.category}
-            </Badge>
-            <div className="flex items-center text-gray-500 text-xs">
-              <i className="far fa-clock mr-1"></i>
-              <span>{post.fields.readTime}</span>
-            </div>
-          </div>
-          <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">{post.fields.title}</h3>
-          <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.fields.description}</p>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <Avatar className="h-6 w-6 mr-2">
-                <AvatarImage src={post.fields.author} alt={post.fields.author.name} />
-                <AvatarFallback>{post.fields.author.name[0]}</AvatarFallback>
-              </Avatar>
-                {post.fields.author.name}
+              {currentPosts.map((post) => {
+                // Strapi data structure - image URL is direct from the API response
+                const coverImageUrl = post.coverImage?.url 
+                  ? post.coverImage.url
+                  : '/images/default-blog-image.jpg';
 
+                return (
+                  <div key={post.id}>
+                    <Link href={`/blog/${post.slug}`} className="block group">
+                      <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                        <div className="flex flex-col">
+                          <div className="h-48 overflow-hidden">
+                            <Image
+                              src={coverImageUrl}
+                              alt={post.Title}
+                              width={500}
+                              height={200}
+                              className="w-full h-full object-cover object-top transition-transform group-hover:scale-105 duration-300"
+                            />
+                          </div>
+                          <div className="p-4">
+                            <div className="flex justify-between items-center mb-2">
+                              <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs">
+                                {post.category?.name || 'Astrology'}
+                              </Badge>
+                              <div className="flex items-center text-gray-500 text-xs">
+                                <i className="far fa-clock mr-1"></i>
+                                <span>5 min</span>
+                              </div>
+                            </div>
+                            <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">{post.Title}</h3>
+                            <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.shortSnippet}</p>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center">
+                                <Avatar className="h-6 w-6 mr-2">
+                                  <AvatarFallback>
+                                    {post.author?.name?.[0] || 'A'}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <span className="text-sm text-gray-700">
+                                  {post.author?.name || 'AstroSight Team'}
+                                </span>
+                              </div>
+                              <span className="text-xs text-gray-500">
+                                {formatDate(post.publishedAt)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Card>
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
-            <span className="text-xs text-gray-500">{post.fields.publishDate}</span>
-          </div>
-        </div>
-      </div>
-    </Card>
-  </Link>
-</div>
-              ))}
-            </div>
-          ) : (
+          ):(
             <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
               <Image
                 src="/images.png"
                 alt="No results found"
-                    width={500}
-                          height={200}
+                width={500}
+                height={200}
                 className="w-40 h-40 mb-4"
               />
               <h3 className="text-xl font-semibold text-gray-800 mb-2">No blogs found</h3>
@@ -226,7 +248,7 @@ export default function Blog({ posts }) {
                 onClick={() => {
                   setSearchQuery('');
                   setActiveCategory('All');
-                  setCurrentPage(1);
+                  setCurrentPage(3);
                 }}
                 className="bg-[#FF9933] hover:bg-[#FF9933]/90 text-white !rounded-button cursor-pointer"
               >
@@ -308,51 +330,24 @@ export default function Blog({ posts }) {
 }
 
 export async function getStaticProps() {
-  // Debug: Check available fields
-  const availableFields = await debugContentfulFields();
-  console.log('Available Contentful fields:', availableFields);
+    console.log('getStaticProps called - Strapi only');
   
-  // Fetch blog posts using optimized function
-  const posts = await fetchBlogIndex(12); // Only fetch 12 posts for index
-console.log(posts)
-  // Sanitize the posts
-  const sanitizedPosts = posts.map((post) => {
-    console.log(post.fields)
-    return {
-      sys: { id: post.sys.id },
-      fields: {
-        title: post.fields.title || '',
-        description: post.fields.metaDescription || '',
-        category: post.fields.category || 'Uncategorized',
-         slug: post.fields.slug ,
-        publishDate: post.fields.publishDate
-          ? new Date(post.fields.publishDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
-          : new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-        readTime: post.fields.readTime || '5 min',
-        author: {
-          name: post.fields.author|| 'Unknown Author',
-          avatar: post.fields.authorProfile?.fields?.profileImage?.fields?.file?.url
-            ? `https:${post.fields.authorProfile.fields.profileImage.fields.file}`
-            : '/images/default-avatar.jpg',
-        },
-        coverImage: {
-          fields: {
-            file: {
-              url: post.fields.coverImage?.fields?.file?.url
-                ? `https:${post.fields.coverImage.fields.file.url}`
-                : '/images/default-blog-image.jpg',
-            },
-            title: post.fields.coverImage?.fields?.title || post.fields.title || '',
-          },
-        },
-      },
-    };
-  });
+  let strapiPosts = [];
+
+  // Fetch Strapi posts
+  try {
+    const strapiResponse = await strapiApi.getBlogPosts(100, 1);
+    strapiPosts = strapiResponse?.data || [];
+    console.log('Strapi posts loaded:', strapiPosts.length);
+  } catch (error) {
+    console.error('Error fetching Strapi posts:', error);
+  }
+
 
   return {
     props: {
-      posts: sanitizedPosts,
+      strapiPosts: strapiPosts,
     },
-    revalidate: 3600, // Cache for 1 hour instead of 10 seconds
-  };
+    revalidate: 3600,
+  }
 }
