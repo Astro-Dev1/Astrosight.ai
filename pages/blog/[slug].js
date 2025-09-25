@@ -12,7 +12,7 @@ import SEOHead from '../../components/SEOHead';
 // import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CalendarIcon, Clock, Tag } from 'lucide-react';
 import Head from 'next/head';
 import {  ReportLinksGrid, HoroscopeNavigation, CompatibilityLinksGrid, RecentBlogLinks } from '../../components/InternalLinksGrid';
@@ -164,8 +164,110 @@ function calculateReadingTime(content) {
   const readingTime = Math.ceil(wordCount / 200);
   return readingTime;
 }
-function renderContentBlock(block, index) {
+
+// FAQ Item Component
+function FAQItem({ question, answer }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const renderAnswerContent = (blocks) => {
+    if (!blocks || !Array.isArray(blocks)) return null;
+
+    return blocks.map((block, index) => {
+      switch (block.type) {
+        case 'paragraph':
+          return (
+            <p key={index} className="mb-3 text-gray-700 leading-relaxed">
+              {block.children && block.children.map((child, childIndex) => {
+                if (child.type === 'text') {
+                  let textElement = child.text;
+                  
+                  if (child.bold && child.italic) {
+                    return <strong key={childIndex}><em>{textElement}</em></strong>;
+                  } else if (child.bold) {
+                    return <strong key={childIndex}>{textElement}</strong>;
+                  } else if (child.italic) {
+                    return <em key={childIndex}>{textElement}</em>;
+                  }
+                  
+                  return <span key={childIndex}>{textElement}</span>;
+                } else if (child.type === 'link') {
+                  return (
+                    <a 
+                      key={childIndex} 
+                      href={child.url} 
+                      className="text-orange-600 hover:text-orange-700 underline"
+                      target={child.url?.startsWith('http') ? '_blank' : '_self'}
+                      rel={child.url?.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    >
+                      {child.children && child.children.map((linkChild) => (
+                        linkChild.type === 'text' ? linkChild.text : ''
+                      )).join('')}
+                    </a>
+                  );
+                }
+                return <span key={childIndex}>{child.text || ''}</span>;
+              })}
+            </p>
+          );
+        
+        case 'list':
+          const ListTag = block.format === 'ordered' ? 'ol' : 'ul';
+          return (
+            <ListTag key={index} className="mb-4 ml-6 list-disc">
+              {block.children && block.children.map((listItem, liIndex) => (
+                <li key={liIndex} className="mb-2 text-gray-700">
+                  {listItem.children && listItem.children.map((child) => (
+                    child.type === 'text' ? child.text : ''
+                  )).join('')}
+                </li>
+              ))}
+            </ListTag>
+          );
+        
+        case 'heading':
+          const HeadingTag = `h${block.level || 3}`;
+          return (
+            <HeadingTag key={index} className="text-lg font-semibold text-gray-900 mt-4 mb-2">
+              {block.children && block.children.map((child) => (
+                child.type === 'text' ? child.text : ''
+              )).join('')}
+            </HeadingTag>
+          );
+        
+        default:
+          return null;
+      }
+    });
+  };
+
+  return (
+    <div className="border-b border-gray-200 last:border-b-0">
+      <button
+        className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="font-medium text-gray-900 pr-4">{question}</span>
+        <span className={`transform transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
+          <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </span>
+      </button>
+      
+      {isOpen && (
+        <div className="px-6 pb-4">
+          <div className="text-gray-700">
+            {renderAnswerContent(answer)}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+function renderContentBlock(block, index, allBlocks) {
   if (!block || !block.__component) return null;
+  
+  // console.log(`Rendering block ${index}:`, block.__component, block);
 
   switch (block.__component) {
     case 'blog-components.rich-text':
@@ -268,9 +370,66 @@ function renderContentBlock(block, index) {
       );
 
     case 'blog-components.key-links-block':
+      // Debug log to confirm you're receiving the data
+      // console.log('Key-links block data received:', block);
+      
+      // CORRECT: Get the links directly from the 'icon' field of this block.
+      const linksData = block.icon || [];
+      
       return (
-        <div key={index} className="bg-gray-50 p-6 my-8 rounded-lg">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">{block.linkHeading}</h3>
+        <div key={index} className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 p-8 my-8 rounded-lg shadow-sm">
+          <h3 className="text-xl font-bold text-blue-900 mb-6 text-center">{block.linkHeading}</h3>
+          
+          {linksData.length > 0 ? (
+            <div className="space-y-4">
+              {/* Iterate over the actual links data from the component */}
+              {linksData.map((linkItem, linkIndex) => (
+                <a
+                  key={linkIndex}
+                  // Use the URL from the link item - field name is 'url'
+                  href={linkItem.url || '#'} 
+                  className="flex items-start text-blue-700 hover:text-blue-800 transition-all duration-200 p-4 bg-white rounded-lg hover:shadow-md border border-blue-100 hover:border-blue-300 group block w-full cursor-pointer no-underline"
+                >
+                  <span className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold group-hover:bg-blue-700 transition-colors">
+                    {linkIndex + 1}
+                  </span>
+                  {/* Use the text from the link item - field name is 'text' */}
+                  <span className="font-medium text-gray-800 group-hover:text-blue-800 transition-colors leading-relaxed">
+                    {linkItem.text}
+                  </span>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <div className="p-4 bg-yellow-50 border border-yellow-200 rounded">
+              <p className="text-yellow-800">No links found for this component.</p>
+              <p className="text-sm text-yellow-600 mt-2">
+                Debug: Check if the 'icon' field in Strapi has link items for this entry.
+              </p>
+              <p className="text-xs text-yellow-500 mt-1">
+                Block data: {JSON.stringify(block, null, 2)}
+              </p>
+            </div>
+          )}
+        </div>
+      );
+
+    case 'seo-components.seo':
+      // This component contains FAQ items
+      return (
+        <div key={index} className="my-8">
+          {block.faq && block.faq.length > 0 && (
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+              <h3 className="bg-orange-500 text-white px-6 py-4 text-xl font-semibold">
+                Frequently Asked Questions
+              </h3>
+              <div className="divide-y divide-gray-200">
+                {block.faq.map((faqItem, faqIndex) => (
+                  <FAQItem key={faqIndex} question={faqItem.question} answer={faqItem.answer} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       );
 
@@ -283,12 +442,54 @@ function renderContentBlock(block, index) {
 
 export default function Post({ post, relatedPosts, isStrapi }) {
   console.log(relatedPosts, isStrapi)
+  // console.log('CLIENT: Post author received:', JSON.stringify(post.author, null, 2))
+  // console.log('CLIENT: Related articles in post:', post.relatedArticles)
+  // console.log('CLIENT: Related articles length:', post.relatedArticles?.length)
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const [completeAuthor, setCompleteAuthor] = useState(null);
+
+  // Fetch complete author data if needed (for avatar)
+  useEffect(() => {
+    if (post.author && post.author.slug && !post.author.avatar) {
+      const fetchCompleteAuthor = async () => {
+        try {
+          const authorData = await strapiApi.getAuthorBySlug(post.author.slug);
+          if (authorData) {
+            setCompleteAuthor(authorData);
+          }
+        } catch (error) {
+          console.error('Error fetching complete author:', error);
+        }
+      };
+      fetchCompleteAuthor();
+    }
+  }, [post.author]);
+  
+  // Also check if FAQ data exists in the SEO component directly
+  const seoFaqData = post.seo?.faq || [];
+  
+  // Extract FAQ data for structured data - combine both sources
+  const contentBlockFaq = post.contentBlocks
+    ?.filter(block => block.__component === 'seo-components.seo' && block.faq)
+    ?.flatMap(block => block.faq) || [];
+    
+  const allFaqData = [...contentBlockFaq, ...seoFaqData];
+  
+  const faqData = allFaqData.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer?.map(block => 
+        block.children?.map(child => child.text).join('') || ''
+      ).join(' ') || ''
+    }
+  }));
   
   const {
     title,
     publishDate,
-    // introduction,
+    introduction,
     bodyContent,
     // conclusion,
     metaTitle,
@@ -327,7 +528,7 @@ export default function Post({ post, relatedPosts, isStrapi }) {
         description={metaDescription}
         keywords={keywords}
         canonical={`https://astrosight.ai/blog/${slug}`}
-        // ogImage={ogImage}
+        ogImage={imageUrl}
         publishDate={publishDate}
         modifiedDate={post.updatedAt}
       />
@@ -378,7 +579,7 @@ export default function Post({ post, relatedPosts, isStrapi }) {
                 "name": "AstroSight",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://astrosight.ai/log.png",
+                  "url": "https://astrosight.ai/logo.png",
                 },
               },
               "description": metaDescription || "",
@@ -387,13 +588,46 @@ export default function Post({ post, relatedPosts, isStrapi }) {
                 "@type": "WebPage",
                 "@id": fullUrl || "",
               },
+              // Add FAQ structured data if available
+              ...(faqData.length > 0 && {
+                "mainEntity": {
+                  "@type": "FAQPage",
+                  "mainEntity": faqData
+                }
+              })
             }),
           }}
-></script>
+        ></script>
 
-
+        {/* Separate FAQ Structured Data if FAQs exist */}
+        {faqData.length > 0 && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": faqData
+              }),
+            }}
+          />
+        )}
         {/* Custom typography styles */}
         <style jsx global>{`
+          /* Line clamp utilities */
+          .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+          
+          .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
 
           .prose-medium {
             max-width: 680px;
@@ -553,21 +787,57 @@ export default function Post({ post, relatedPosts, isStrapi }) {
                   }) : 'No publish date'}
                 </time>
 
-                <span className="flex items-center">
+                {/* Author with Avatar - Top Section */}
+                {/* Author info - display actual author or fallback */}
+                {(author && author.name) || post.author?.name ? (
+                  <div className="flex items-center">
+                    {(author?.avatar?.url || post.author?.avatar?.url || completeAuthor?.avatar?.url) ? (
+                      <div className="relative w-8 h-8 rounded-full overflow-hidden mr-2">
+                        <Image
+                          src={author?.avatar?.url || post.author?.avatar?.url || completeAuthor.avatar.url}
+                          alt={author?.name || post.author?.name || completeAuthor?.name}
+                          fill
+                          className="object-cover"
+                          sizes="32px"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center mr-2">
+                        <span className="text-white font-bold text-sm">
+                          {(author?.name || post.author?.name || completeAuthor?.name)?.charAt(0) || 'A'}
+                        </span>
+                      </div>
+                    )}
+                    {(author?.slug || post.author?.slug || completeAuthor?.slug) ? (
+                      <Link href={`/author/${author?.slug || post.author?.slug || completeAuthor?.slug}`}>
+                        <span className="cursor-pointer hover:text-orange-600 transition-colors font-medium">
+                          By {author?.name || post.author?.name || completeAuthor?.name}
+                        </span>
+                      </Link>
+                    ) : (
+                      <span className="font-medium">By {author?.name || post.author?.name || completeAuthor?.name}</span>
+                    )}
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center mr-2">
+                      <span className="text-white font-bold text-sm">A</span>
+                    </div>
+                    <span className="font-medium">By AstroSight Team</span>
+                  </div>
+                )}                <span className="flex items-center">
                   <Clock className="w-5 h-5 mr-2" />
                   {readingTime} min read
                 </span>
 
-                {primaryKeyword && (
-                  <span className="flex items-center">
-                    <Tag className="w-5 h-5 mr-2" />
-                    {primaryKeyword}
-                  </span>
-                )}
-                                {author.name && (
-                  <span className="flex items-center">
-                    <span className="ml-2">By {author.name}</span>
-                  </span>
+                {/* Category */}
+                {post.category && (
+                  <Link href={`/category/${post.category.slug}`}>
+                    <span className="flex items-center cursor-pointer hover:text-orange-600 transition-colors">
+                      <Tag className="w-5 h-5 mr-2" />
+                      {post.category.name}
+                    </span>
+                  </Link>
                 )}
               </div>
 
@@ -577,48 +847,262 @@ export default function Post({ post, relatedPosts, isStrapi }) {
 
             {/* Article Content */}
             <div className="prose-medium">
-              {bodyContent && bodyContent.map((block, index) => renderContentBlock(block, index))}
+              {/* Introduction/Short Snippet Display */}
+              {introduction && (
+                <div className="bg-gradient-to-r from-orange-50 to-amber-50 border-l-4 border-orange-500 p-6 mb-8 rounded-r-lg">
+                  <p className="text-lg font-medium text-gray-800 leading-relaxed italic">
+                    {introduction}
+                  </p>
+                </div>
+              )}
 
-            </div>
-                        {/* Author Section */}
-            {author && (
-              <div className="mt-12 items-center justify-center pt-8 border-t border-gray-200">
-                <div className="flex items-center justify-center space-x-4">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center">
-                      <span className="text-white font-bold text-xl">
-                        {author.name?.charAt(0) || 'A'}
-                      </span>
+              {bodyContent && bodyContent.map((block, index) => renderContentBlock(block, index, bodyContent))}
+
+              {/* FAQ Section - Check if FAQ exists in SEO component directly */}
+              {/* {console.log('SEO FAQ Data:', seoFaqData)}
+              {console.log('Post SEO:', post.seo)} */}
+              {(seoFaqData && seoFaqData.length > 0) || (allFaqData && allFaqData.length > 0) ? (
+                <div className="my-8">
+                  <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                    <h3 className="bg-orange-500 text-white px-6 py-4 text-xl font-semibold">
+                      Frequently Asked Questions
+                    </h3>
+                    <div className="divide-y divide-gray-200">
+                      {(seoFaqData.length > 0 ? seoFaqData : allFaqData).map((faqItem, faqIndex) => (
+                        <FAQItem key={faqIndex} question={faqItem.question} answer={faqItem.answer} />
+                      ))}
                     </div>
                   </div>
-                  <div className="flex-grow">
-                    <h3 className="font-serif text-lg font-semibold text-gray-900 mb-1">
-                      Written by {author.name || 'AstroSight Team'}
-                    </h3>
-                    {author.bio && (
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {typeof author.bio === 'string' ? author.bio : 'Expert astrologer and content writer'}
+                </div>
+              ) : (
+                <div className="my-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-yellow-800">FAQ Debug Info:</p>
+                  <p className="text-sm text-yellow-600 mt-2">
+                    SEO FAQ count: {seoFaqData?.length || 0}<br/>
+                    Content blocks FAQ count: {contentBlockFaq?.length || 0}<br/>
+                    Post.seo exists: {post.seo ? 'Yes' : 'No'}<br/>
+                    Post.seo.faq exists: {post.seo?.faq ? 'Yes' : 'No'}<br/>
+                    Post.seo type: {typeof post.seo}
+                  </p>
+                </div>
+              )}
+
+            </div>
+                        {/* Enhanced Author Section */}
+            {(author && author.name) || post.author?.name || completeAuthor?.name ? (
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-8 shadow-sm">
+                  <h3 className="text-xl font-serif font-semibold text-gray-900 mb-6 text-center">About the Author</h3>
+                  
+                  <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
+                    {/* Author Avatar - Larger for bottom section */}
+                    <div className="flex-shrink-0">
+                      {(author?.avatar?.url || post.author?.avatar?.url || completeAuthor?.avatar?.url) ? (
+                        <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                          <Image
+                            src={author?.avatar?.url || post.author?.avatar?.url || completeAuthor.avatar.url}
+                            alt={author?.name || post.author?.name || completeAuthor?.name}
+                            fill
+                            className="object-cover"
+                            sizes="96px"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                          <span className="text-white font-bold text-2xl">
+                            {(author?.name || post.author?.name)?.charAt(0) || 'A'}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Author Info */}
+                    <div className="flex-1 text-center md:text-left">
+                      {(author?.slug || post.author?.slug || completeAuthor?.slug) ? (
+                        <Link href={`/author/${author?.slug || post.author?.slug || completeAuthor?.slug}`}>
+                          <h4 className="font-serif text-2xl font-bold text-gray-900 mb-2 hover:text-orange-600 cursor-pointer transition-colors">
+                            {author?.name || post.author?.name || completeAuthor?.name || 'AstroSight Team'}
+                          </h4>
+                        </Link>
+                      ) : (
+                        <h4 className="font-serif text-2xl font-bold text-gray-900 mb-2">
+                          {author?.name || post.author?.name || completeAuthor?.name || 'AstroSight Team'}
+                        </h4>
+                      )}
+                      
+                      {(author?.title || post.author?.title || completeAuthor?.title) && (
+                        <p className="text-orange-600 text-base font-semibold mb-3">
+                          {author?.title || post.author?.title || completeAuthor?.title}
+                        </p>
+                      )}
+                      
+                      {(author?.bio || post.author?.bio || completeAuthor?.bio) ? (
+                        <div className="text-gray-700 text-base leading-relaxed mb-4">
+                          {Array.isArray(author?.bio || post.author?.bio || completeAuthor?.bio) ? (
+                            // Handle rich text bio
+                            (author?.bio || post.author?.bio || completeAuthor?.bio).map((block, index) => {
+                              if (block.type === 'paragraph') {
+                                return (
+                                  <p key={index} className="mb-3">
+                                    {block.children?.map((child, childIndex) => {
+                                      if (child.type === 'text') {
+                                        let textElement = child.text;
+                                        if (child.bold && child.italic) {
+                                          return <strong key={childIndex}><em>{textElement}</em></strong>;
+                                        } else if (child.bold) {
+                                          return <strong key={childIndex}>{textElement}</strong>;
+                                        } else if (child.italic) {
+                                          return <em key={childIndex}>{textElement}</em>;
+                                        }
+                                        return <span key={childIndex}>{textElement}</span>;
+                                      }
+                                      return child.text || '';
+                                    })}
+                                  </p>
+                                );
+                              }
+                              return null;
+                            })
+                          ) : (
+                            // Handle string bio (fallback)
+                            <p>{typeof (author?.bio || post.author?.bio || completeAuthor?.bio) === 'string' ? (author?.bio || post.author?.bio || completeAuthor?.bio) : 'Expert astrologer and content writer with years of experience in Vedic astrology and spiritual guidance.'}</p>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-gray-700 text-base leading-relaxed mb-4">
+                          Expert astrologer and content writer with years of experience in Vedic astrology and spiritual guidance.
+                        </p>
+                      )}
+                      
+                      {(author?.slug || post.author?.slug || completeAuthor?.slug) && (
+                        <Link href={`/author/${author?.slug || post.author?.slug || completeAuthor?.slug}`}>
+                          <span className="inline-flex items-center px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-lg cursor-pointer transition-colors duration-200 shadow-sm hover:shadow-md">
+                            View all articles by {author?.name || post.author?.name || completeAuthor?.name}
+                            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </span>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              // Fallback for when no author data exists
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-8 shadow-sm">
+                  <h3 className="text-xl font-serif font-semibold text-gray-900 mb-6 text-center">About the Author</h3>
+                  
+                  <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
+                    <div className="flex-shrink-0">
+                      <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                        <span className="text-white font-bold text-2xl">A</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1 text-center md:text-left">
+                      <h4 className="font-serif text-2xl font-bold text-gray-900 mb-2">
+                        AstroSight Team
+                      </h4>
+                      
+                      <p className="text-gray-700 text-base leading-relaxed mb-4">
+                        Expert astrologers and content writers with years of experience in Vedic astrology and spiritual guidance.
                       </p>
-                    )}
+                    </div>
                   </div>
                 </div>
               </div>
             )}
-            {/* Related Articles Tags */}
+            {/* Related Articles Section */}
             {post.relatedArticles && post.relatedArticles.length > 0 && (
-              <section className="mt-10 pt-6 border-t border-gray-200">
-                <h3 className="text-xl font-serif font-semibold text-center text-gray-900 mb-4">Related Topics</h3>
-                <div className="flex flex-wrap gap-2">
-                  {post.relatedArticles.slice(0, 5).map((article, index) => (
+              <section className="mt-12 pt-8 border-t border-gray-200">
+                <h3 className="text-2xl font-serif font-bold text-center text-gray-900 mb-8">Related Articles</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {post.relatedArticles.slice(0, 6).map((article, index) => (
                     <Link 
                       href={`/blog/${article.slug}`} 
                       key={`related-article-${index}`}
-                      className="inline-block px-4 py-2 bg-orange-100 hover:bg-orange-200 text-orange-700 rounded-full transition-colors duration-300 mb-2"
+                      className="group block bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                     >
-                      {article.Title}
+                      {/* Article Image - Similar to your example */}
+                      {article.coverImage?.url ? (
+                        <div className="relative h-48 w-full overflow-hidden">
+                          <Image
+                            src={article.coverImage.url}
+                            alt={article.coverImage.alternativeText || article.Title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-300"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          />
+                        </div>
+                      ) : (
+                        <div className="h-48 w-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+                          <span className="text-white text-4xl font-bold">
+                            {article.Title?.charAt(0)?.toUpperCase() || 'A'}
+                          </span>
+                        </div>
+                      )}
+                      
+                      {/* Article Content - Following your example design */}
+                      <div className="p-4">
+                        {/* Category Badge - Like in your example */}
+                        {article.category?.name && (
+                          <div className="mb-3">
+                            <span className="inline-block bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">
+                              {article.category.name}
+                            </span>
+                          </div>
+                        )}
+                        
+                        {/* Reading time estimate */}
+                        <div className="text-right mb-2">
+                          <span className="text-gray-500 text-sm">5 min</span>
+                        </div>
+                        
+                        {/* Title */}
+                        <h4 className="font-serif text-lg font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors line-clamp-2 leading-tight">
+                          {article.Title}
+                        </h4>
+                        
+                        {/* Snippet */}
+                        {article.shortSnippet && (
+                          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
+                            {article.shortSnippet}
+                          </p>
+                        )}
+                        
+                        {/* Author and Date - Like in your example */}
+                        <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
+                          {/* Author */}
+                          <div className="flex items-center">
+                            <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center mr-2">
+                              <span className="text-white font-bold text-xs">
+                                {article.author?.name?.charAt(0)?.toUpperCase() || 'A'}
+                              </span>
+                            </div>
+                            <span className="text-gray-700 text-sm font-medium">
+                              {article.author?.name || 'Acharya Ravi Teja'}
+                            </span>
+                          </div>
+                          
+                          {/* Date */}
+                          {article.publishedAt && (
+                            <time dateTime={article.publishedAt} className="text-gray-500 text-sm">
+                              {new Date(article.publishedAt).toLocaleDateString('en-US', {
+                                day: '2-digit',
+                                month: '2-digit',
+                                year: 'numeric'
+                              })}
+                            </time>
+                          )}
+                        </div>
+                      </div>
                     </Link>
                   ))}
                 </div>
+                
+               
               </section>
             )}
           </div>
@@ -690,6 +1174,8 @@ export async function getStaticProps({ params }) {
   try {
     const post = await strapiApi.getBlogPostBySlug(params.slug);
     
+
+    
     if (!post) {
       return { notFound: true };
     }
@@ -712,7 +1198,7 @@ export async function getStaticProps({ params }) {
         relatedPosts,
         isStrapi: true,
       },
-      revalidate: 7200,
+      revalidate: 1,
     };
   } catch (error) {
     console.error('Error fetching blog post:', error);      

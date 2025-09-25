@@ -28,11 +28,20 @@ const formatDate = (dateString) => {
   }
 };
 export default function Blog({ strapiPosts }) {
+  const [allPosts, setAllPosts] = useState(strapiPosts);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
+  // Reset pagination when search or category changes
+  useEffect(() => {
+    setCurrentPage(1);
+    setAllPosts(strapiPosts);
+    setHasMore(true);
+  }, [searchQuery, activeCategory, strapiPosts]);
 
   // Scroll to top functionality
   useEffect(() => {
@@ -48,38 +57,54 @@ export default function Blog({ strapiPosts }) {
   };
 
   // Load more content
-  const loadMoreContent = () => {
+  const loadMoreContent = async () => {
+    if (isLoading || !hasMore) return;
+    
     setIsLoading(true);
-    setTimeout(() => {
-      setCurrentPage((prev) => prev + 1);
+    try {
+      const nextPage = currentPage + 1;
+      const response = await fetch(`/api/blog/posts?page=${nextPage}&limit=${POSTS_PER_PAGE}&category=${activeCategory}&search=${searchQuery}`);
+      const data = await response.json();
+      
+      if (data.posts && data.posts.length > 0) {
+        setAllPosts(prev => [...prev, ...data.posts]);
+        setCurrentPage(nextPage);
+        setHasMore(data.pagination.hasMore);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const categories = [
     { id: 'all', name: 'All' },
     { id: 'astrology', name: 'Astrology' },
-    { id: 'meditation', name: 'Meditation' },
-    { id: 'crystals', name: 'Crystals' },
     { id: 'spirituality', name: 'Spirituality' },
     { id: 'numerology', name: 'Numerology' },
-    { id: 'palmistry', name: 'Palmistry' },
-    { id: 'tarot', name: 'Tarot' },
+    { id: 'meditation', name: 'Meditation' },
+    { id: 'remedies', name: 'Remedies' },
+    { id: 'panchanga', name: 'Panchanga' },
+    { id: 'festivals', name: 'Festivals' },
+    { id: 'philosophy', name: 'Philosophy' },
+    { id: 'crystals', name: 'Crystals' },
+    { id: 'yantras', name: 'Yantras' },
+    { id: 'gems', name: 'Gems' },
   ];
 
   // Filter posts
-    // Filter posts from Strapi
-  const filteredPosts = strapiPosts.filter((post) => {
-    // Strapi data structure is flat, not nested in attributes
+  const filteredPosts = allPosts.filter((post) => {
     const matchesSearch = post.Title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.shortSnippet?.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = activeCategory === 'All' || (post.category?.name === activeCategory);
     return matchesSearch && matchesCategory;
   });
 
-  // Paginate posts
-  const currentPosts = filteredPosts.slice(0, currentPage * POSTS_PER_PAGE);
-  const hasMorePosts = filteredPosts.length > currentPosts.length;
+  // For client-side filtering, show all filtered posts
+  const currentPosts = filteredPosts;
 
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
@@ -186,9 +211,10 @@ export default function Blog({ strapiPosts }) {
 
                 return (
                   <div key={post.id}>
-                    <Link href={`/blog/${post.slug}`} className="block group">
-                      <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                        <div className="flex flex-col">
+                    <Card className="bg-white overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                      <div className="flex flex-col">
+                        {/* Cover Image - Clickable to post */}
+                        <Link href={`/blog/${post.slug}`} className="block group">
                           <div className="h-48 overflow-hidden">
                             <Image
                               src={coverImageUrl}
@@ -198,37 +224,72 @@ export default function Blog({ strapiPosts }) {
                               className="w-full h-full object-cover object-top transition-transform group-hover:scale-105 duration-300"
                             />
                           </div>
-                          <div className="p-4">
-                            <div className="flex justify-between items-center mb-2">
+                        </Link>
+                        
+                        <div className="p-4">
+                          <div className="flex justify-between items-center mb-2">
+                            {/* Category Badge - Clickable to category page */}
+                            {post.category?.slug ? (
+                              <Link href={`/category/${post.category.slug}`}>
+                                <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs hover:bg-[#FFD7B3] cursor-pointer transition-colors">
+                                  {post.category.name}
+                                </Badge>
+                              </Link>
+                            ) : (
                               <Badge variant="outline" className="bg-[#FFE5CC] text-[#FF9933] border-none text-xs">
                                 {post.category?.name || 'Astrology'}
                               </Badge>
-                              <div className="flex items-center text-gray-500 text-xs">
-                                <i className="far fa-clock mr-1"></i>
-                                <span>5 min</span>
-                              </div>
-                            </div>
-                            <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2">{post.Title}</h3>
-                            <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.shortSnippet}</p>
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center">
-                                <Avatar className="h-6 w-6 mr-2">
-                                  <AvatarFallback>
-                                    {post.author?.name?.[0] || 'A'}
-                                  </AvatarFallback>
-                                </Avatar>
-                                <span className="text-sm text-gray-700">
-                                  {post.author?.name || 'AstroSight Team'}
-                                </span>
-                              </div>
-                              <span className="text-xs text-gray-500">
-                                {formatDate(post.publishedAt)}
-                              </span>
+                            )}
+                            
+                            <div className="flex items-center text-gray-500 text-xs">
+                              <i className="far fa-clock mr-1"></i>
+                              <span>5 min</span>
                             </div>
                           </div>
+                          
+                          {/* Title - Clickable to post */}
+                          <Link href={`/blog/${post.slug}`}>
+                            <h3 className="font-semibold text-lg text-gray-900 mb-2 line-clamp-2 hover:text-[#FF9933] cursor-pointer transition-colors">{post.Title}</h3>
+                          </Link>
+                          
+                          {/* Excerpt */}
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-3">{post.shortSnippet}</p>
+                          
+                          <div className="flex items-center justify-between">
+                            {/* Author - Clickable to author page */}
+                            <div className="flex items-center">
+                              {post.author?.slug ? (
+                                <Link href={`/author/${post.author.slug}`} className="flex items-center hover:text-[#FF9933] transition-colors cursor-pointer">
+                                  <Avatar className="h-6 w-6 mr-2">
+                                    <AvatarFallback>
+                                      {post.author.name?.[0] || 'A'}
+                                    </AvatarFallback>
+                                  </Avatar>
+                                  <span className="text-sm text-gray-700">
+                                    {post.author.name}
+                                  </span>
+                                </Link>
+                              ) : (
+                                <div className="flex items-center">
+                                  <Avatar className="h-6 w-6 mr-2">
+                                    <AvatarFallback>
+                                      {post.author?.name?.[0] || 'A'}
+                                    </AvatarFallback>
+                                  </Avatar>
+                                  <span className="text-sm text-gray-700">
+                                    {post.author?.name || 'AstroSight Team'}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                            
+                            <span className="text-xs text-gray-500">
+                              {formatDate(post.publishedAt)}
+                            </span>
+                          </div>
                         </div>
-                      </Card>
-                    </Link>
+                      </div>
+                    </Card>
                   </div>
                 );
               })}
@@ -248,7 +309,9 @@ export default function Blog({ strapiPosts }) {
                 onClick={() => {
                   setSearchQuery('');
                   setActiveCategory('All');
-                  setCurrentPage(3);
+                  setCurrentPage(1);
+                  setAllPosts(strapiPosts);
+                  setHasMore(true);
                 }}
                 className="bg-[#FF9933] hover:bg-[#FF9933]/90 text-white !rounded-button cursor-pointer"
               >
@@ -286,14 +349,14 @@ export default function Blog({ strapiPosts }) {
           )}
 
           {/* Load More Button */}
-          {hasMorePosts && !isLoading && (
+          {hasMore && !isLoading && (searchQuery === '' && activeCategory === 'All') && (
             <div className="flex justify-center mb-8">
               <Button
                 onClick={loadMoreContent}
                 variant="outline"
                 className="border-[#FF9933] text-[#FF9933] hover:bg-[#FFE5CC] hover:text-[#FF9933] !rounded-button cursor-pointer"
               >
-                Load More
+                Load More Posts
               </Button>
             </div>
           )}
@@ -330,19 +393,22 @@ export default function Blog({ strapiPosts }) {
 }
 
 export async function getStaticProps() {
-    console.log('getStaticProps called - Strapi only');
+  console.log('getStaticProps called - Strapi only');
   
   let strapiPosts = [];
 
-  // Fetch Strapi posts
+  // Fetch only first page of posts (20 posts instead of 800)
   try {
-    const strapiResponse = await strapiApi.getBlogPosts(100, 1);
+    const strapiResponse = await strapiApi.getBlogPosts(20, 1);
     strapiPosts = strapiResponse?.data || [];
+    
+    // Sort by published date (most recent first)
+    strapiPosts.sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    
     console.log('Strapi posts loaded:', strapiPosts.length);
   } catch (error) {
     console.error('Error fetching Strapi posts:', error);
   }
-
 
   return {
     props: {
