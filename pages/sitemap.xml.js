@@ -623,8 +623,8 @@ export async function getServerSideProps({ res }) {
       getXmlUrl({ url: `${siteUrl}/shop`, lastModified: new Date() }),
       getXmlUrl({ url: `${siteUrl}/shipping-policy`, lastModified: new Date() }),
       getXmlUrl({ url: `${siteUrl}/blog`, lastModified: new Date() }),
-      getXmlUrl({ url: `${siteUrl}/blog/author`, lastModified: new Date() }),
-      getXmlUrl({ url: `${siteUrl}/blog/category`, lastModified: new Date() }),
+      // getXmlUrl({ url: `${siteUrl}/blog/author`, lastModified: new Date() }),
+      // getXmlUrl({ url: `${siteUrl}/blog/category`, lastModified: new Date() }),
       getXmlUrl({ url: `${siteUrl}/terms-and-conditions`, lastModified: new Date() }),
       getXmlUrl({ url: `${siteUrl}/festival-calendar`, lastModified: new Date() }),
     ];
