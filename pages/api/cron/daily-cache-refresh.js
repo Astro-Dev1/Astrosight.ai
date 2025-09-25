@@ -1,5 +1,5 @@
 // Daily cron job to refresh related articles cache
-import { refreshRelatedArticlesCache } from '../../lib/relatedArticlesCache.js';
+import { refreshRelatedArticlesCache } from '../../../lib/relatedArticlesCache.js';
 
 export default async function handler(req, res) {
   // Verify this is being called by a cron job or authorized request
